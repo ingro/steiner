@@ -14,8 +14,9 @@ const cli = meow(`
 
     Options
         -o Path to output dir
-        -fields List of module's model fields
-        -nameField Name of the module's model field that describe the model
+        -f, --fields List of module's model fields
+        -n, --name Name of the module's model field that describe the model
+        -s, --silent Silent output at the minimum
 `);
 
 // Gather templates variables
@@ -46,39 +47,40 @@ const tp = jetpack.cwd('./templates');
 // Tempdir-scoped fs
 const tf = jetpack.cwd(tmpDir.name);
 
+const vars = { 
+    name: moduleName,
+    ucName: ucModuleName
+};
+
+function generateFile(tplPath, destPath) {
+    const file = template(tp.read(tplPath), vars);
+    tf.write(destPath, file);
+    console.log(`File ${chalk.blue(destPath)} created`);
+}
+
 // Actions
-const actionsFile = template(tp.read('actions.tpl'), { name: moduleName });
-tf.write(`actions/${moduleName}.js`, actionsFile);
+generateFile('actions.tpl', `actions/${moduleName}.js`);
 
 // Apis
-const apisFile = template(tp.read('apis.tpl'), { name: moduleName });
-tf.write(`apis/${moduleName}.js`, apisFile);
+generateFile('apis.tpl', `apis/${moduleName}.js`);
 
 // Components
-const editFile = template(tp.read('components/edit.tpl'), { name: moduleName, ucName: ucModuleName });
-tf.write(`components/${ucModuleName}Edit.js`, editFile);
-const listFilterFile = template(tp.read('components/listFilter.tpl'), { name: moduleName, ucName: ucModuleName });
-tf.write(`components/${ucModuleName}ListFilter.js`, listFilterFile);
-const listTableFile = template(tp.read('components/listTable.tpl'), { name: moduleName, ucName: ucModuleName });
-tf.write(`components/${ucModuleName}ListTable.js`, listTableFile);
+generateFile('components/edit.tpl', `components/${ucModuleName}Edit.js`);
+generateFile('components/listFilter.tpl', `components/${ucModuleName}ListFilter.js`);
+generateFile('components/listTable.tpl', `components/${ucModuleName}ListTable.js`);
 
 // Containers
-const listLayoutFile = template(tp.read('containers/listLayout.tpl'), { name: moduleName, ucName: ucModuleName });
-tf.write(`containers/${ucModuleName}ListLayout.js`, listLayoutFile);
-const loaderFile = template(tp.read('containers/loader.tpl'), { name: moduleName, ucName: ucModuleName });
-tf.write(`containers/${ucModuleName}Loader.js`, loaderFile);
+generateFile('containers/listLayout.tpl', `containers/${ucModuleName}ListLayout.js`);
+generateFile('containers/loader.tpl', `containers/${ucModuleName}Loader.js`);
 
 // Reducers
-const reducersFile = template(tp.read('reducers.tpl'), { name: moduleName });
-tf.write(`reducers/${moduleName}.js`, reducersFile);
+generateFile('reducers.tpl', `reducers/${moduleName}.js`);
 
 // Routes
-const routesFiles = template(tp.read('routes.tpl'), { name: moduleName, ucName: ucModuleName });
-tf.write(`routes/${moduleName}.js`, routesFiles);
+generateFile('routes.tpl', `routes/${moduleName}.js`);
 
 // Sagas
-const sagasFile = template(tp.read('sagas.tpl'), { name: moduleName });
-tf.write(`sagas/${moduleName}.js`, sagasFile);
+generateFile('sagas.tpl', `sagas/${moduleName}.js`);
 
 tf.copy('.', od.path());
 

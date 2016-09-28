@@ -1,12 +1,14 @@
 {
   "name": "steiner",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Helpers and React Components to build dashboards and CRUD apps",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "react"
+  ],
+  "author": "Emanuele Ingrosso <ingro85@gmail.com>",
   "license": "MIT"
 }

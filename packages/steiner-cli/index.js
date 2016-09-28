@@ -16,7 +16,7 @@ const cli = meow(`
         -o Path to output dir
         -f, --fields List of module's model fields
         -n, --name Name of the module's model field that describe the model
-        -s, --silent Silent output at the minimum
+        -s, --silent Reduce the console output at the minimum
 `);
 
 // Gather templates variables
@@ -52,6 +52,7 @@ const vars = {
     ucName: ucModuleName
 };
 
+// Generate a file from a template
 function generateFile(tplPath, destPath) {
     const file = template(tp.read(tplPath), vars);
     tf.write(destPath, file);
@@ -82,6 +83,7 @@ generateFile('routes.tpl', `routes/${moduleName}.js`);
 // Sagas
 generateFile('sagas.tpl', `sagas/${moduleName}.js`);
 
+// Copy the generated files to the destination path
 tf.copy('.', od.path());
 
 console.log(chalk.green(`Module ${chalk.bold.yellow(moduleName)} generated successfully!`));

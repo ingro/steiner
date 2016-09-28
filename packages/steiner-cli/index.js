@@ -14,6 +14,8 @@ const cli = meow(`
 
     Options
         -o Path to output dir
+        -fields List of module's model fields
+        -nameField Name of the module's model field that describe the model
 `);
 
 // Gather templates variables
@@ -25,7 +27,7 @@ const od = jetpack.cwd(path.resolve(process.cwd(), cli.flags.o, moduleName));
 
 // Check if output folder already exists
 if (od.exists('.')) {
-    console.log(`Destination folder "${chalk.bold(od.path())}" already exists, aborting...`);
+    console.log(`${chalk.red('ERR:')} Destination folder "${chalk.bold(od.path())}" already exists, aborting...`);
     return false;
 }
 

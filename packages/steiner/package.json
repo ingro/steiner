@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "path-to-regexp": "^1.5.3",
+    "react-addons-shallow-compare": "^15.3.2",
     "seamless-immutable": "^6.1.1"
   },
   "peerDependencies": {

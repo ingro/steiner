@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Table from 'vivi/dist/Table';
 
-import NoRows from 'components/NoRows';
+import NoRows from './NoRows';
 
 export default class ListTable extends Component {
     handleSort = (data) => {

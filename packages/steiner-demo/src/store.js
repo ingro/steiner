@@ -4,6 +4,7 @@ import createLogger from 'redux-logger';
 import { batchedSubscribe } from 'redux-batched-subscribe';
 import { unstable_batchedUpdates as batchedUpdates } from 'react-dom';
 import createSagaMiddleware, { END } from 'redux-saga';
+import notificationMiddleware from 'steiner/dist/helpers/notificationMiddleware';
 
 import reducer from './reducers';
 
@@ -20,27 +21,11 @@ const loggerMiddleware = createLogger({
 
 const sagaMiddleware = createSagaMiddleware();
 
-import { addNotification as notify } from 'reapop';
-
-const notiMiddleware = store => next => action => {
-    const result = next(action);
-
-    if (action.notification) {
-        store.dispatch(notify({
-            title: action.notification.title,
-            message: action.notification.message,
-            status: action.notification.status
-        }));
-    }
-
-    return result;
-};
-
 const enhancer = compose(
     applyMiddleware(
         thunkMiddleware,
         sagaMiddleware,
-        notiMiddleware,
+        notificationMiddleware,
         loggerMiddleware
     ),
     devtools(),

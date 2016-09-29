@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import { NoRows } from 'steiner/dist/components';
+import { NoRows } from 'steiner';
 import './App.css';
 
 class App extends Component {

@@ -1,4 +1,4 @@
-import { createFormAction } from 'helpers/reduxFormSaga';
+import { createFormAction } from './reduxFormSaga';
 
 export function createSubmit(actionTypes) {
     return function submit(data, dispatch) {

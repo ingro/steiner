@@ -1,5 +1,5 @@
 import { actionTypes } from '../actions/${name}';
-import createReducer, { createHandlers, createSelectors, DEFAULT_STATE as baseDefaultState } from 'helpers/reducerCreator';
+import createReducer, { createHandlers, createSelectors, DEFAULT_STATE as baseDefaultState } from 'steiner/dist/helpers/reducerCreator';
 
 export const DEFAULT_STATE = baseDefaultState;
 

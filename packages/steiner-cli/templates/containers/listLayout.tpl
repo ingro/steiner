@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import { connectList } from 'helpers/connectCreator';
+import { connectList } from 'steiner/dist/helpers/connectCreator';
 import { actions } from '../actions/${name}';
 import { selectors } from '../reducers/${name}';
-import ListLayout from 'components/ListLayout';
+import ListLayout from 'steiner/dist/components/ListLayout';
 import ${ucName}ListFilter from '../components/${ucName}ListFilter';
 import ${ucName}ListTable from '../components/${ucName}ListTable';
 

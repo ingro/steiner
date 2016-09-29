@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import InputListFilter from 'components/InputListFilter';
+import InputListFilter from 'steiner/dist/components/InputListFilter';
 import { linkTo } from '../routes/${name}';
 
 export default class ${ucName}ListFilter extends Component {

@@ -3,8 +3,8 @@ import { reduxForm, Field } from 'redux-form';
 import InputField from 'vivi/dist/Form/InputField';
 
 import { actionTypes } from '../actions/${name}';
-import FormControls from 'components/FormControls';
-import { createSubmit } from 'helpers/formHelper';
+import FormControls from 'steiner/dist/components/FormControls';
+import { createSubmit } from 'steiner/dist/helpers/formHelper';
 import { linkTo } from '../routes/${name}';
 
 class ${ucName}Edit extends Component {

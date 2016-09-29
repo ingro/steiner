@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import { connectItem } from 'helpers/connectCreator';
+import { connectItem } from 'steiner/dist/helpers/connectCreator';
 import { actions } from '../actions/${name}';
 import { selectors } from '../reducers/${name}';
-import ItemLoader from 'components/ItemLoader';
+import ItemLoader from 'steiner/dist/components/ItemLoader';
 import ${ucName}Edit from '../components/${ucName}Edit';
 
 class ${ucName}Loader extends Component {

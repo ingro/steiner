@@ -1,4 +1,4 @@
-import generateRoutes, { generateLinks } from 'helpers/routeCreator';
+import generateRoutes, { generateLinks } from 'steiner/dist/helpers/routeCreator';
 import ${ucName}ListLayout from '../containers/${ucName}ListLayout';
 import ${ucName}Loader from '../containers/${ucName}Loader';
 

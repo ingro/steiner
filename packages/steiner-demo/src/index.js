@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import App from './App';
 import store from './store';
 import rootSaga from './sagas';
+
+import 'vivi/dist/style.css';
 import './index.css';
 
 store.runSaga(rootSaga);

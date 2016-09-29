@@ -1,5 +1,6 @@
 // import snakeCase from 'lodash/snakeCase';
-// import upperFirst from 'lodash/upperFirst';
+import upperFirst from 'lodash/upperFirst';
+import defaults from 'lodash/defaults';
 import trim from 'lodash/trim';
 
 function addAsyncGroup(resource, actionTypes, group, config) {
@@ -80,12 +81,43 @@ export function createActionTypes(resource, config) {
     return actionTypes;
 }
 
-export function createActions(actionTypes) {
-    // if (resource == null) {
-    //     throw new Error('Expected resource');
-    // }
+function generateDefaultMessages(resource) {
+    return {
+        createSuccess: `${resource} created with success!`,
+        createFail: `An error occured while creating ${resource}`,
+        updateSuccess: `${resource} updated successfully!`,
+        updateFail: `An error occured while updating ${resource}`,
+        deleteSuccess: `${resource} deleted with success!`,
+        deleteFail: `An error occured while deleting ${resource}`
+    };
+};
 
-    // resource = trim(upperFirst(resource));
+function generateSuccessNotification(message, title = 'Hooray!') {
+    return {
+        title,
+        message,
+        status: 'success'
+    }
+}
+
+function generateFailNotification(message, title = 'Oh snap!') {
+    return {
+        title,
+        message,
+        status: 'error'
+    }
+}
+
+export function createActions(resource, actionTypes, messages = {}) {
+    if (resource == null) {
+        throw new Error('Expected resource');
+    }
+
+    resource = trim(upperFirst(resource));
+
+    const defaultMessages = generateDefaultMessages(resource);
+
+    defaults(messages, defaultMessages);
 
     const actions = {};
 
@@ -113,6 +145,22 @@ export function createActions(actionTypes) {
         }
     }
 
+    actions['createSuccess'] = function(response) {
+        return {
+            type: actionTypes.createSuccess,
+            payload: response,
+            notification: generateSuccessNotification(messages.createSuccess)
+        }
+    }
+
+    actions['createFail'] = function(error) {
+        return {
+            type: actionTypes.createFail,
+            error,
+            notification: generateFailNotification(messages.createFail)
+        }
+    }
+
     actions[`update`] = function(id, data/*, resolve, reject*/) {
         return {
             type: actionTypes.update,
@@ -125,12 +173,44 @@ export function createActions(actionTypes) {
         }
     }
 
+    actions['updateSuccess'] = function(response) {
+        return {
+            type: actionTypes.updateSuccess,
+            payload: response,
+            notification: generateSuccessNotification(messages.updateSuccess)
+        }
+    }
+
+    actions['updateFail'] = function(error) {
+        return {
+            type: actionTypes.updateFail,
+            error,
+            notification: generateFailNotification(messages.updateFail)
+        }
+    }
+
     actions[`delete`] = function(id) {
         return {
             type: actionTypes.delete,
             payload: {
                 id
             }
+        }
+    }
+
+    actions['deleteSuccess'] = function(payload) {
+        return {
+            type: actionTypes.deleteSuccess,
+            payload,
+            notification: generateSuccessNotification(messages.deleteSuccess)
+        }
+    }
+
+    actions['deleteFail'] = function(error) {
+        return {
+            type: actionTypes.deleteFail,
+            error,
+            notification: generateFailNotification(messages.deleteFail)
         }
     }
 

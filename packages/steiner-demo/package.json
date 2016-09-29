@@ -26,9 +26,12 @@
     "vivi": "^0.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start:plain": "react-scripts start",
+    "build:plain": "react-scripts build",
+    "test:plain": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "start": "cross-env NODE_PATH=./src npm run start:plain",
+    "build": "cross-env NODE_PATH=./src npm run build:plain",
+    "test": "cross-env NODE_PATH=./src npm run test:plain"
   }
 }

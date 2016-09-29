@@ -20,10 +20,27 @@ const loggerMiddleware = createLogger({
 
 const sagaMiddleware = createSagaMiddleware();
 
+import { addNotification as notify } from 'reapop';
+
+const notiMiddleware = store => next => action => {
+    const result = next(action);
+
+    if (action.notification) {
+        store.dispatch(notify({
+            title: action.notification.title,
+            message: action.notification.message,
+            status: action.notification.status
+        }));
+    }
+
+    return result;
+};
+
 const enhancer = compose(
     applyMiddleware(
         thunkMiddleware,
         sagaMiddleware,
+        notiMiddleware,
         loggerMiddleware
     ),
     devtools(),

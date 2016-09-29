@@ -7,6 +7,7 @@ import { linkTo } from '../routes/hotels';
 
 export default class HotelsListTable extends Component {
     handleDelete = (id) => {
+        this.props.delete(id);
         // this.props.dispatch(createConfirm({
         //     title: 'Confirmation needed',
         //     message: 'Si conferma l\'eliminazione dell\'oggetto?',

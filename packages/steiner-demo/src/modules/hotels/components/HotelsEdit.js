@@ -2,23 +2,27 @@ import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import InputField from 'vivi/dist/Form/InputField';
 import CheckboxField from 'vivi/dist/Form/CheckboxField';
+import {
+    /*createValidator,*/
+    composeValidators,
+    combineValidators,
+    isRequired,
+    hasLengthGreaterThan
+} from 'revalidate';
 
 import { actionTypes } from '../actions/hotels';
 import { FormControls } from 'steiner';
 import { createSubmit } from 'steiner/dist/helpers/formHelper';
 import { linkTo } from '../routes/hotels';
 
-const validate = values => {
-    const errors = {};
-
-    if (!values.name) {
-        errors.name = 'Required'
-    } else if (values.name.length < 18) {
-        errors.name = 'Must be 8 characters or more'
-    }
-
-    return errors
-}
+const validate = combineValidators({
+    name: composeValidators(
+        isRequired('Name'),
+        hasLengthGreaterThan(8)({
+            message: 'The name must be at least 8 characters long'
+        })
+    )()
+});
 
 class HotelsEdit extends Component {
     constructor(props) {
@@ -36,7 +40,7 @@ class HotelsEdit extends Component {
     }
 
     render() {
-        const { handleSubmit, submitting, item, error } = this.props;
+        const { handleSubmit, submitting, valid, item, error } = this.props;
 
         return(
             <div className="container">
@@ -70,6 +74,7 @@ class HotelsEdit extends Component {
                         </div>
                         <div className="row">
                             <FormControls
+                                valid={valid}
                                 submitting={submitting}
                                 cancelLink={linkTo('list')}
                             />

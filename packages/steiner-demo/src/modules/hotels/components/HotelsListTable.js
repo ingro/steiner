@@ -27,6 +27,12 @@ export default class HotelsListTable extends Component {
                 flexGrow: 1
             },
             {
+                width: 100,
+                label: 'Active',
+                dataKey: 'active',
+                flexGrow: 0
+            },
+            {
                 width: 200,
                 label: 'Actions',
                 dataKey: 'id',

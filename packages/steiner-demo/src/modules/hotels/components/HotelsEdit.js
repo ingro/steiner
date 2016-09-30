@@ -1,11 +1,24 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import InputField from 'vivi/dist/Form/InputField';
+import CheckboxField from 'vivi/dist/Form/CheckboxField';
 
 import { actionTypes } from '../actions/hotels';
 import { FormControls } from 'steiner';
 import { createSubmit } from 'steiner/dist/helpers/formHelper';
 import { linkTo } from '../routes/hotels';
+
+const validate = values => {
+    const errors = {};
+
+    if (!values.name) {
+        errors.name = 'Required'
+    } else if (values.name.length < 18) {
+        errors.name = 'Must be 8 characters or more'
+    }
+
+    return errors
+}
 
 class HotelsEdit extends Component {
     constructor(props) {
@@ -39,7 +52,22 @@ class HotelsEdit extends Component {
                                 component={InputField}
                             />
                         </div>
-                        {/* Fields... */}
+                        <div className="form-group">
+                            <Field
+                                className="form-control"
+                                name="address"
+                                placeholder="Address"
+                                component={InputField}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <Field
+                                className="form-control"
+                                name="active"
+                                component={CheckboxField}
+                                type="checkbox"
+                            />
+                        </div>
                         <div className="row">
                             <FormControls
                                 submitting={submitting}
@@ -62,5 +90,6 @@ HotelsEdit.contextTypes = {
 };
 
 export default reduxForm({
-    form: 'hotels'
+    form: 'hotels',
+    validate
 })(HotelsEdit);

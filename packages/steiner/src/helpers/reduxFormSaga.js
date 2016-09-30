@@ -87,6 +87,7 @@ function *formActionSaga () {
         if (winner.success) {
             yield call(resolve, winner.success);
         } else {
+            // console.log(winner.fail);
             // TODO: capire come popolare questo oggetto in base ai diversi tipi di errore
             // yield call(reject, winner.fail);
             yield call(reject, new SubmissionError({ _error: 'Submit failed!', address: 'Too short!' }));

@@ -3,7 +3,7 @@
   "scripts": {
     "build": "cd packages/steiner && npm run build",
     "postinstall": "lerna bootstrap",
-    "seed:demo": "rm -r packages/steiner-demo/src/modules/hotels && cd packages/steiner-cli && node index hotels -o ../steiner-demo/src/modules",
+    "seed:demo": "rimraf packages/steiner-demo/src/modules/offers && cd packages/steiner-cli && node index offers -o ../steiner-demo/src/modules",
     "start:demo": "cd packages/steiner-demo && npm start"
   },
   "devDependencies": {
@@ -11,6 +11,7 @@
     "react": "^15.3.2",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",
-    "redux-form": "^6.0.5"
+    "redux-form": "^6.0.5",
+    "rimraf": "^2.5.4"
   }
 }

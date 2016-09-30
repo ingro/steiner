@@ -21,6 +21,9 @@ class App extends Component {
                                     <li>
                                         <Link to="/hotels">Hotels</Link>
                                     </li>
+                                    <li>
+                                        <Link to="/offers">Offers</Link>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

@@ -3,4 +3,12 @@ import createApi from 'steiner/dist/helpers/apiCreator';
 
 const apis = createApi('hotels', client);
 
+// apis.update = function(id, data) {
+//     return client({
+//         url: `/hotelsss/${id}`,
+//         method: 'patch',
+//         data
+//     });
+// };
+
 export default apis;

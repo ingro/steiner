@@ -70,44 +70,44 @@ function createFormAction (requestType, types, payloadCreator = identity) {
     // }, actionMethods);
 }
 
-function *formActionSaga () {
-    while (true) {
-        let action = yield take(PROMISE);
-        let { request, defer, types } = action.payload;
-        let { resolve, reject } = defer;
-        let [ SUCCESS, FAIL ] = types;
+function defaultCreateErrorPayload(error) {
+    // console.log(error);
+    const errorMsg = error.error ? error.error.message : 'Unexpected error!';
+    let errors = {};
 
-        yield put(request);
+    if (error.error && error.error.response) {
+        const response = error.error.response;
+        if (response.data && response.data.errors) {
+            errors = response.data.errors;
+        }
+    }
 
-        const winner = yield race({
-            success: take(SUCCESS),
-            fail: take(FAIL)
-        });
+    return {
+        ...errors,
+        _error: errorMsg
+    };
+}
 
-        if (winner.success) {
-            yield call(resolve, winner.success);
-        } else {
-            const error = winner.fail;
-            // console.log(error);
+function crateFormActionSaga(createErrorPayload = defaultCreateErrorPayload) {
+    return function *formActionSaga () {
+        while (true) {
+            let action = yield take(PROMISE);
+            let { request, defer, types } = action.payload;
+            let { resolve, reject } = defer;
+            let [ SUCCESS, FAIL ] = types;
 
-            const errorMsg = error.error ? error.error.message : 'Unexpected error!';
-            let errors = {};
+            yield put(request);
 
-            if (error.error && error.error.response) {
-                const response = error.error.response;
-                if (response.data && response.data.errors) {
-                    errors = response.data.errors;
-                }
+            const winner = yield race({
+                success: take(SUCCESS),
+                fail: take(FAIL)
+            });
+
+            if (winner.success) {
+                yield call(resolve, winner.success);
+            } else {
+                yield call(reject, new SubmissionError(createErrorPayload(winner.fail)));
             }
-
-            const errorPayload = {
-                ...errors,
-                _error: errorMsg
-            };
-
-            // console.warn(errorPayload);
-
-            yield call(reject, new SubmissionError(errorPayload));
         }
     }
 }
@@ -115,7 +115,7 @@ function *formActionSaga () {
 export {
     PROMISE,
     createFormAction,
-    formActionSaga
+    crateFormActionSaga
 }
 
-export default formActionSaga;
+export default crateFormActionSaga;

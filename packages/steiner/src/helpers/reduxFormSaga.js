@@ -87,10 +87,27 @@ function *formActionSaga () {
         if (winner.success) {
             yield call(resolve, winner.success);
         } else {
-            // console.log(winner.fail);
-            // TODO: capire come popolare questo oggetto in base ai diversi tipi di errore
-            // yield call(reject, winner.fail);
-            yield call(reject, new SubmissionError({ _error: 'Submit failed!', address: 'Too short!' }));
+            const error = winner.fail;
+            // console.log(error);
+
+            const errorMsg = error.error ? error.error.message : 'Unexpected error!';
+            let errors = {};
+
+            if (error.error && error.error.response) {
+                const response = error.error.response;
+                if (response.data && response.data.errors) {
+                    errors = response.data.errors;
+                }
+            }
+
+            const errorPayload = {
+                ...errors,
+                _error: errorMsg
+            };
+
+            // console.warn(errorPayload);
+
+            yield call(reject, new SubmissionError(errorPayload));
         }
     }
 }

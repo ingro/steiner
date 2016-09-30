@@ -1,6 +1,7 @@
 import actionCreatorModule from './actionCreator';
 import apiCreatorModule from './apiCreator';
 import connectCreatorModule from './connectCreator';
+import createConfirmModule from './confirmCreator';
 import formHelperModule from './formHelper';
 import notificationMiddlewareModule from './notificationMiddleware';
 import reducerCreatorModule from './reducerCreator';
@@ -11,6 +12,7 @@ import sagaCreatorModule from './sagaCreator';
 export const actionCreator = actionCreatorModule;
 export const apiCreator = apiCreatorModule;
 export const connectCreator = connectCreatorModule;
+export const createConfirm = createConfirmModule;
 export const formHelper = formHelperModule;
 export const notificationMiddleware = notificationMiddlewareModule;
 export const reducerCreator = reducerCreatorModule;

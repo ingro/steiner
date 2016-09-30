@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Match, Link } from 'react-router';
+import NotificationsSystem from 'reapop';
+import theme from 'steiner/dist/misc/notifications/flat-theme';
 
 import './App.css';
 import routes from './routes';
@@ -28,6 +30,14 @@ class App extends Component {
                             <Match key={i} {...route}/>
                         ))}
                     </div>
+                    <NotificationsSystem
+                        theme={theme}
+                        defaultValues={{
+                            position: "br",
+                            closeButton: true,
+                            allowHTML: true
+                        }}
+                    />
                 </div>
             </BrowserRouter>
         );

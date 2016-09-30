@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import ListTable from 'steiner/dist/components/ListTable';
-import createConfirm from 'steiner/dist/helpers/confirmCreator';
+import { ListTable, createConfirm } from 'steiner';
 import { linkTo } from '../routes/${name}';
 
 export default class ${ucName}ListTable extends Component {

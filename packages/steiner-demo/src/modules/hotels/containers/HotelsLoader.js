@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connectItem } from 'steiner/dist/helpers/connectCreator';
 import { actions } from '../actions/hotels';
 import { selectors } from '../reducers/hotels';
-import ItemLoader from 'steiner/dist/components/ItemLoader';
+import { ItemLoader } from 'steiner';
 import HotelsEdit from '../components/HotelsEdit';
 
 class HotelsLoader extends Component {

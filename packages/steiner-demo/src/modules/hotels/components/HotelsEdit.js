@@ -3,7 +3,7 @@ import { reduxForm, Field } from 'redux-form';
 import InputField from 'vivi/dist/Form/InputField';
 
 import { actionTypes } from '../actions/hotels';
-import FormControls from 'steiner/dist/components/FormControls';
+import { FormControls } from 'steiner';
 import { createSubmit } from 'steiner/dist/helpers/formHelper';
 import { linkTo } from '../routes/hotels';
 

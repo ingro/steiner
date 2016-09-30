@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connectList } from 'steiner/dist/helpers/connectCreator';
 import { actions } from '../actions/${name}';
 import { selectors } from '../reducers/${name}';
-import ListLayout from 'steiner/dist/components/ListLayout';
+import { ListLayout } from 'steiner';
 import ${ucName}ListFilter from '../components/${ucName}ListFilter';
 import ${ucName}ListTable from '../components/${ucName}ListTable';
 

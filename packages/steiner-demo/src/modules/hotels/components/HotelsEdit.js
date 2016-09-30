@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import InputField from 'vivi/dist/Form/InputField';
 import CheckboxField from 'vivi/dist/Form/CheckboxField';
+import SelectAsyncField from 'vivi/dist/Form/SelectAsyncField';
+import { createReactSelectLoader } from 'steiner/dist/helpers/apiCreator';
 import {
     /*createValidator,*/
     composeValidators,
@@ -10,6 +12,7 @@ import {
     hasLengthGreaterThan
 } from 'revalidate';
 
+import client from '../../../apis/client';
 import { actionTypes } from '../actions/hotels';
 import { FormControls } from 'steiner';
 import { createSubmit } from 'steiner/dist/helpers/formHelper';
@@ -62,6 +65,15 @@ class HotelsEdit extends Component {
                                 name="address"
                                 placeholder="Address"
                                 component={InputField}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <Field
+                                className="form-control"
+                                name="positionId"
+                                placeholder="Position"
+                                component={SelectAsyncField}
+                                loadOptions={createReactSelectLoader('positions', client)}
                             />
                         </div>
                         <div className="form-group">

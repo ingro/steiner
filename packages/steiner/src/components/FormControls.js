@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 export default class FormControls extends Component {
     render() {
-        const { submitting, cancelLink } = this.props;
+        const { submitting, cancelLink, valid } = this.props;
 
         return(
             <div>
@@ -17,6 +17,7 @@ export default class FormControls extends Component {
                 <div className="col-xs-6">
                     <LoadingButton
                         className="btn-success btn-block"
+                        disabled={! valid}
                         loading={submitting}
                     >
                         Submit
@@ -29,5 +30,6 @@ export default class FormControls extends Component {
 
 FormControls.propTypes = {
     submitting: PropTypes.bool,
-    cancelLink: PropTypes.string
+    cancelLink: PropTypes.string,
+    valid: PropTypes.bool
 };

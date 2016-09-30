@@ -2,17 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import ListTable from 'steiner/dist/components/ListTable';
-// import { createConfirm } from 'steiner/dist/helpers/notificationCreator';
+import { createConfirm } from 'steiner/dist/helpers/notificationCreator';
 import { linkTo } from '../routes/hotels';
 
 export default class HotelsListTable extends Component {
     handleDelete = (id) => {
-        this.props.delete(id);
-        // this.props.dispatch(createConfirm({
-        //     title: 'Confirmation needed',
-        //     message: 'Si conferma l\'eliminazione dell\'oggetto?',
-        //     onSuccess: () => this.props.delete(id)
-        // }));
+        this.props.dispatch(createConfirm({
+            title: 'Confirmation needed',
+            message: 'Si conferma l\'eliminazione dell\'oggetto?',
+            onSuccess: () => this.props.delete(id)
+        }));
     }
 
     getColumns() {

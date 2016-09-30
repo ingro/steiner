@@ -1,7 +1,10 @@
 {
   "private": true,
   "scripts": {
-    "postinstall": "lerna bootstrap"
+    "build": "cd packages/steiner && npm run build",
+    "postinstall": "lerna bootstrap",
+    "seed:demo": "rm -r packages/steiner-demo/src/modules/hotels && cd packages/steiner-cli && node index hotels -o ../steiner-demo/src/modules",
+    "start:demo": "cd packages/steiner-demo && npm start"
   },
   "devDependencies": {
     "lerna": "2.0.0-beta.29",

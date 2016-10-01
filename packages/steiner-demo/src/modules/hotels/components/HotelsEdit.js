@@ -74,6 +74,8 @@ class HotelsEdit extends Component {
                                 placeholder="Position"
                                 component={SelectAsyncField}
                                 loadOptions={createReactSelectLoader('positions', client)}
+                                initialLabel={item.position}
+                                normalize={value => value && value.id}
                             />
                         </div>
                         <div className="form-group">

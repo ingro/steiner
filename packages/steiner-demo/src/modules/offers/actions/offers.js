@@ -1,4 +1,4 @@
-import { createActionTypes, createActions } from 'steiner/dist/helpers/actionCreator';
+import { actionCreator } from 'steiner';
 
-export const actionTypes = createActionTypes('offers');
-export const actions = createActions('offers', actionTypes);
+export const actionTypes = actionCreator.createActionTypes('offers');
+export const actions = actionCreator.createActions('offers', actionTypes);

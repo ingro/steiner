@@ -123,7 +123,7 @@ export function createSelectors(key) {
     }
 }
 
-export default function createReducer(handlers, defaultState = DEFAULT_STATE) {
+export function createReducer(handlers, defaultState = DEFAULT_STATE) {
     return function(state = defaultState, action) {
         if (handlers.hasOwnProperty(action.type)) {
             return handlers[action.type](state, action);
@@ -132,3 +132,10 @@ export default function createReducer(handlers, defaultState = DEFAULT_STATE) {
         }
     }
 }
+
+export default {
+    createHandlers,
+    createReducer,
+    createSelectors,
+    DEFAULT_STATE
+};

@@ -1,10 +1,10 @@
+import { reducerCreator } from 'steiner';
 import { actionTypes } from '../actions/offers';
-import createReducer, { createHandlers, createSelectors, DEFAULT_STATE as baseDefaultState } from 'steiner/dist/helpers/reducerCreator';
 
-export const DEFAULT_STATE = baseDefaultState;
+export const DEFAULT_STATE = reducerCreator.DEFAULT_STATE;
 
-const handlers = createHandlers(actionTypes);
+const handlers = reducerCreator.createHandlers(actionTypes);
 
-export default createReducer(handlers, DEFAULT_STATE);
+export default reducerCreator.createReducer(handlers, DEFAULT_STATE);
 
-export const selectors = createSelectors('offers');
+export const selectors = reducerCreator.createSelectors('offers');

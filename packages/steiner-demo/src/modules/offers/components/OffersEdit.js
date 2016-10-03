@@ -1,17 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { FormControls, formHelper } from 'steiner';
 import InputField from 'vivi/dist/Form/InputField';
 
 import { actionTypes } from '../actions/offers';
-import { FormControls } from 'steiner';
-import { createSubmit } from 'steiner/dist/helpers/formHelper';
 import { linkTo } from '../routes/offers';
 
 class OffersEdit extends Component {
     constructor(props) {
         super(props);
 
-        this.submit = createSubmit(actionTypes);
+        this.submit = formHelper.createSubmit(actionTypes);
+    }
+
+    componentWillMount() {
+        this.props.initialize(this.props.item);
     }
 
     componentWillReceiveProps(props) {

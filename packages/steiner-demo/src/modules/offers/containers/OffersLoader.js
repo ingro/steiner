@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
+import { connectCreator, ItemLoader } from 'steiner';
 
-import { connectItem } from 'steiner/dist/helpers/connectCreator';
 import { actions } from '../actions/offers';
 import { selectors } from '../reducers/offers';
-import { ItemLoader } from 'steiner';
 import OffersEdit from '../components/OffersEdit';
 
 class OffersLoader extends Component {
@@ -17,4 +16,4 @@ class OffersLoader extends Component {
     }
 }
 
-export default connectItem(OffersLoader, actions, selectors);
+export default connectCreator.connectItem(OffersLoader, actions, selectors);

@@ -9,7 +9,7 @@ const identity = i => i;
 const PROMISE = '@@redux-form-saga/PROMISE';
 // const status = ['REQUEST', 'SUCCESS', 'FAIL'];
 
-function createFormAction (requestType, types, payloadCreator = identity) {
+function createFormAction(requestType, types, payloadCreator = identity) {
     if (!types || types.length !== 2) {
         throw new Error('Must include two action types: [ SUCCESS, FAIL ]');
     }

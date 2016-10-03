@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { FormControls, formHelper } from 'steiner';
 import InputField from 'vivi/dist/Form/InputField';
 import CheckboxField from 'vivi/dist/Form/CheckboxField';
 import SelectAsyncField from 'vivi/dist/Form/SelectAsyncField';
-import { createReactSelectLoader } from 'steiner/dist/helpers/apiCreator';
+
 import {
     /*createValidator,*/
     composeValidators,
@@ -14,10 +15,9 @@ import {
 // import { SimpleSelect } from 'react-selectize';
 // import SelectAsync from 'vivi/dist/SelectAsync';
 
-import client from '../../../apis/client';
+import client from 'apis/client';
+import { createReactSelectLoader } from 'helpers/helpers';
 import { actionTypes } from '../actions/hotels';
-import { FormControls } from 'steiner';
-import { createSubmit } from 'steiner/dist/helpers/formHelper';
 import { linkTo } from '../routes/hotels';
 
 const validate = combineValidators({
@@ -110,7 +110,7 @@ class HotelsEdit extends Component {
     constructor(props) {
         super(props);
 
-        this.submit = createSubmit(actionTypes, data => ({
+        this.submit = formHelper.createSubmit(actionTypes, data => ({
             ...data,
             positionId: data.positionId ? data.positionId.id : null
         }));

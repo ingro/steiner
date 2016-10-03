@@ -11,3 +11,7 @@ export function createSubmit(actionTypes, dataTransformer = identity) {
         return action(dataTransformer(data), dispatch);
     }
 }
+
+export default {
+    createSubmit
+};

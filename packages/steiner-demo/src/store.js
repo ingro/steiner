@@ -4,7 +4,7 @@ import createLogger from 'redux-logger';
 import { batchedSubscribe } from 'redux-batched-subscribe';
 import { unstable_batchedUpdates as batchedUpdates } from 'react-dom';
 import createSagaMiddleware, { END } from 'redux-saga';
-import notificationMiddleware from 'steiner/dist/helpers/notificationMiddleware';
+import { notificationMiddleware } from 'steiner';
 
 import reducer from './reducers';
 

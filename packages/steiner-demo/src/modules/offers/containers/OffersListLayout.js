@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
+import { connectCreator, ListLayout } from 'steiner';
 
-import { connectList } from 'steiner/dist/helpers/connectCreator';
 import { actions } from '../actions/offers';
 import { selectors } from '../reducers/offers';
-import { ListLayout } from 'steiner';
 import OffersListFilter from '../components/OffersListFilter';
 import OffersListTable from '../components/OffersListTable';
 
@@ -19,4 +18,4 @@ class OffersListLayout extends Component {
     }
 }
 
-export default connectList(OffersListLayout, actions, selectors);
+export default connectCreator.connectList(OffersListLayout, actions, selectors);

@@ -10,7 +10,7 @@
     "lerna": "2.0.0-beta.30",
     "react": "^15.3.2",
     "react-redux": "^4.4.5",
-    "react-router": "^4.0.0-alpha.3",
+    "react-router": "^4.0.0-alpha.4",
     "redux": "^3.6.0",
     "redux-form": "^6.0.5",
     "rimraf": "^2.5.4"

@@ -1,4 +1,4 @@
-## HEAD
+## 0.3.0 (October 3, 2016)
 
 - Easier exports from main package
 

@@ -1,4 +1,4 @@
-# Steiner-Cli
+# Steiner-cli
 
 ## Install
 
@@ -10,8 +10,20 @@ npm install --global steiner-cli
 
 ## Usage
 
-At the moment only one command is available to quickly generate a module boilerplate:
+There are two commands available:
+
+### GENERATE
+
+Quickly generate a module in the desider folder.
 
 ```
-steiner myModule -o path/to/modules/folder
+steiner generate moduleName -o path/to/modules/folder
+```
+
+### BOOTSTRAP
+
+Generate an app skeleton base on [create-react-app](https://github.com/facebookincubator/create-react-app)
+
+```
+steiner bootstrap appName
 ```

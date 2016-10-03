@@ -1,5 +1,5 @@
+const program  = require('commander');
 const fs       = require('fs');
-const meow     = require('meow');
 const chalk    = require('chalk');
 const tmp      = require('tmp');
 const path     = require('path');
@@ -7,83 +7,138 @@ const _        = require('lodash');
 const jetpack  = require('fs-jetpack');
 const template = require('es6-template-strings');
 
-// Init CLI
-const cli = meow(`
-    Usage
-        $ steiner <moduleName> -o path/to/output/dir
+function generateModule(moduleName, options) {
+    // TODO: Throw if options.outputPath is not defined
 
-    Options
-        -o Path to output dir
-        -f, --fields List of module's model fields
-        -n, --name Name of the module's model field that describe the model
-        -s, --silent Reduce the console output at the minimum
-`);
+    // Gather templates variables
+    const ucModuleName = _.capitalize(moduleName);
 
-// Gather templates variables
-const moduleName = cli.input[0];
-const ucModuleName = _.capitalize(moduleName);
+    // Output-scoped fs
+    const od = jetpack.cwd(path.resolve(process.cwd(), options.outputPath, moduleName));
 
-// Output-scoped fs
-const od = jetpack.cwd(path.resolve(process.cwd(), cli.flags.o, moduleName));
+    // Check if output folder already exists
+    if (od.exists('.')) {
+        console.log(`${chalk.red('ERR:')} Destination folder "${chalk.bold(od.path())}" already exists, aborting...`);
+        return false;
+    }
 
-// Check if output folder already exists
-if (od.exists('.')) {
-    console.log(`${chalk.red('ERR:')} Destination folder "${chalk.bold(od.path())}" already exists, aborting...`);
-    return false;
+    // Craete a temp dir
+    tmp.setGracefulCleanup();
+
+    const tmpDir = tmp.dirSync({
+        prefix: 'steiner_',
+        unsafeCleanup: true
+    });
+
+    // console.log(tmpDir.name);
+
+    // Templates-scoped fs
+    const tp = jetpack.cwd('./templates/module');
+    // Tempdir-scoped fs
+    const tf = jetpack.cwd(tmpDir.name);
+
+    const vars = { 
+        name: moduleName,
+        ucName: ucModuleName
+    };
+
+    // Generate a file from a template
+    function generateFile(tplPath, destPath) {
+        const file = template(tp.read(tplPath), vars);
+        tf.write(destPath, file);
+        console.log(`File ${chalk.blue(destPath)} created`);
+    }
+
+    // Actions
+    generateFile('actions.tpl', `actions/${moduleName}.js`);
+
+    // Apis
+    generateFile('apis.tpl', `apis/${moduleName}.js`);
+
+    // Components
+    generateFile('components/edit.tpl', `components/${ucModuleName}Edit.js`);
+    generateFile('components/listFilter.tpl', `components/${ucModuleName}ListFilter.js`);
+    generateFile('components/listTable.tpl', `components/${ucModuleName}ListTable.js`);
+
+    // Containers
+    generateFile('containers/listLayout.tpl', `containers/${ucModuleName}ListLayout.js`);
+    generateFile('containers/loader.tpl', `containers/${ucModuleName}Loader.js`);
+
+    // Reducers
+    generateFile('reducers.tpl', `reducers/${moduleName}.js`);
+
+    // Routes
+    generateFile('routes.tpl', `routes/${moduleName}.js`);
+
+    // Sagas
+    generateFile('sagas.tpl', `sagas/${moduleName}.js`);
+
+    // Copy the generated files to the destination path
+    tf.copy('.', od.path());
+
+    console.log(chalk.green(`Module ${chalk.bold.yellow(moduleName)} generated successfully!`));
 }
 
-// Craete a temp dir
-tmp.setGracefulCleanup();
+function generateApp(appName) {
+    // Output-scoped fs
+    const od = jetpack.cwd(path.resolve(process.cwd(), appName));
+    
+    // Check if output folder already exists
+    if (od.exists('.')) {
+        console.log(`${chalk.red('ERR:')} Destination folder "${chalk.bold(od.path())}" already exists, aborting...`);
+        return false;
+    }
 
-const tmpDir = tmp.dirSync({
-    prefix: 'steiner_',
-    unsafeCleanup: true
-});
+    // Craete a temp dir
+    tmp.setGracefulCleanup();
 
-// console.log(tmpDir.name);
+    const tmpDir = tmp.dirSync({
+        prefix: 'steiner_',
+        unsafeCleanup: true
+    });
 
-// Templates-scoped fs
-const tp = jetpack.cwd('./templates');
-// Tempdir-scoped fs
-const tf = jetpack.cwd(tmpDir.name);
+    // Templates-scoped fs
+    const tp = jetpack.cwd('./templates/app');
+    // Tempdir-scoped fs
+    const tf = jetpack.cwd(tmpDir.name);
 
-const vars = { 
-    name: moduleName,
-    ucName: ucModuleName
-};
+    const vars = { 
+        appName
+    };
 
-// Generate a file from a template
-function generateFile(tplPath, destPath) {
-    const file = template(tp.read(tplPath), vars);
-    tf.write(destPath, file);
-    console.log(`File ${chalk.blue(destPath)} created`);
+    // Generate a file from a template
+    function generateFile(tplPath, destPath) {
+        const file = template(tp.read(tplPath), vars);
+        tf.write(destPath, file);
+        console.log(`File ${chalk.blue(destPath)} created`);
+    }
+
+    // Copy all the files except the templates
+    tp.copy('.', tf.path(), { matching: ['!*.tpl'], overwrite: true });
+
+    // Generate files from templates
+    generateFile('package.json.tpl', `package.json`);
+    generateFile('.gitignore.tpl', `.gitignore`);
+
+    generateFile('public/index.html.tpl', 'public/index.html');
+    generateFile('src/App.js.tpl', 'src/App.js');
+
+    // Copy the generated files to the destination path
+    tf.copy('.', od.path());
 }
 
-// Actions
-generateFile('actions.tpl', `actions/${moduleName}.js`);
+program
+    .version('0.4.0');
 
-// Apis
-generateFile('apis.tpl', `apis/${moduleName}.js`);
+program
+    .command('generate <module>')
+    .description('generate a steiners\'s module')
+    .option('-o, --output-path <path>', 'Path to output dir')
+    .action(generateModule);
 
-// Components
-generateFile('components/edit.tpl', `components/${ucModuleName}Edit.js`);
-generateFile('components/listFilter.tpl', `components/${ucModuleName}ListFilter.js`);
-generateFile('components/listTable.tpl', `components/${ucModuleName}ListTable.js`);
+program 
+    .command('bootstrap <app>')
+    .description('bootstrap a steiners\'s app')
+    .action(generateApp);
 
-// Containers
-generateFile('containers/listLayout.tpl', `containers/${ucModuleName}ListLayout.js`);
-generateFile('containers/loader.tpl', `containers/${ucModuleName}Loader.js`);
-
-// Reducers
-generateFile('reducers.tpl', `reducers/${moduleName}.js`);
-
-// Routes
-generateFile('routes.tpl', `routes/${moduleName}.js`);
-
-// Sagas
-generateFile('sagas.tpl', `sagas/${moduleName}.js`);
-
-// Copy the generated files to the destination path
-tf.copy('.', od.path());
-
-console.log(chalk.green(`Module ${chalk.bold.yellow(moduleName)} generated successfully!`));
+program.parse(process.argv);

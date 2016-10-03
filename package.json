@@ -7,7 +7,7 @@
     "start:demo": "cd packages/steiner-demo && npm start"
   },
   "devDependencies": {
-    "lerna": "2.0.0-beta.29",
+    "lerna": "2.0.0-beta.30",
     "react": "^15.3.2",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",

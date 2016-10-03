@@ -1,4 +1,4 @@
 import client from 'apis/client';
-import createApi from 'steiner/dist/helpers/apiCreator';
+import { apiCreator } from 'steiner';
 
-export default createApi('${name}', client);
+export default apiCreator('${name}', client);

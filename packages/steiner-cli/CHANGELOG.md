@@ -1,3 +1,7 @@
+## HEAD
+
+- Update templates to match new exports
+
 ## 0.2.0 (October 3, 2016)
 
 - Updated edit template

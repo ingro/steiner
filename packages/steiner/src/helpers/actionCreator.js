@@ -260,3 +260,8 @@ export function createActions(resource, actionTypes, messages = {}) {
 
     return actions;
 }
+
+export default {
+    createActions,
+    createActionTypes
+};

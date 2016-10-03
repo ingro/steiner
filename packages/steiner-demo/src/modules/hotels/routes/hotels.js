@@ -1,13 +1,13 @@
-import generateRoutes, { generateLinks } from 'steiner/dist/helpers/routeCreator';
+import { routeCreator } from 'steiner';
 import HotelsListLayout from '../containers/HotelsListLayout';
 import HotelsLoader from '../containers/HotelsLoader';
 
-const routes = generateRoutes('hotels', {
+const routes = routeCreator.generateRoutes('hotels', {
     list: HotelsListLayout,
     edit: HotelsLoader
 });
 
-const links = generateLinks(routes.patterns);
+const links = routeCreator.generateLinks(routes.patterns);
 
 export function linkTo(route, props) {
     return links[route](props);

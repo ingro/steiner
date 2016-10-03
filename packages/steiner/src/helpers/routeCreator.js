@@ -19,7 +19,7 @@ export function generateLinks(patterns) {
     return links;
 }
 
-export default function generateRoutes(resource, components = {}) {
+export function generateRoutes(resource, components = {}) {
     const patterns = createPatterns(resource);
 
     return {
@@ -37,3 +37,8 @@ export default function generateRoutes(resource, components = {}) {
         patterns
     };
 }
+
+export default {
+    generateLinks,
+    generateRoutes
+};

@@ -40,3 +40,8 @@ export function connectItem(component, actions, selectors) {
 
     return connect(mapStateToProps, mapDispatchToProps)(component);
 }
+
+export default {
+    connectItem,
+    connectList
+};

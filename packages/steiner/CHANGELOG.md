@@ -1,4 +1,9 @@
+## HEAD
+
+- Easier exports from main package
+
 ## 0.2.0 (October 3, 2016)
+
 - Fixed some minor bugs
 - Improved error handling on form submit
 - Added support to query string endpoints on `createApi`

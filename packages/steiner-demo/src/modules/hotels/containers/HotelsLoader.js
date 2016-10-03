@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
+import { connectCreator, ItemLoader } from 'steiner';
 
-import { connectItem } from 'steiner/dist/helpers/connectCreator';
 import { actions } from '../actions/hotels';
 import { selectors } from '../reducers/hotels';
-import { ItemLoader } from 'steiner';
 import HotelsEdit from '../components/HotelsEdit';
 
 class HotelsLoader extends Component {
@@ -17,4 +16,4 @@ class HotelsLoader extends Component {
     }
 }
 
-export default connectItem(HotelsLoader, actions, selectors);
+export default connectCreator.connectItem(HotelsLoader, actions, selectors);

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-
 import { ListTable, createConfirm } from 'steiner';
+
 import { linkTo } from '../routes/hotels';
 
 export default class HotelsListTable extends Component {

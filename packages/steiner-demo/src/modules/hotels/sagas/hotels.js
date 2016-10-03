@@ -1,8 +1,9 @@
+import { sagaCreator } from 'steiner';
+
 import { actions, actionTypes } from '../actions/hotels';
 import { selectors } from '../reducers/hotels';
-import createSagas, { bootSagas } from 'steiner/dist/helpers/sagaCreator';
 import api from '../apis/hotels';
 
-const sagas = createSagas('hotels', actionTypes, actions, api, selectors);
+const sagas = sagaCreator.createSagas('hotels', actionTypes, actions, api, selectors);
 
-export default bootSagas(sagas, actionTypes);
+export default sagaCreator.bootSagas(sagas, actionTypes);

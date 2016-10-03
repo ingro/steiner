@@ -45,7 +45,7 @@ export function bootSagas(sagas, actionTypes) {
     ];
 }
 
-export default function createSagas(resource, actionTypes, actions, api, selectors) {
+export function createSagas(resource, actionTypes, actions, api, selectors) {
     if (resource == null) {
         throw new Error('Expected resource');
     }
@@ -178,3 +178,8 @@ export default function createSagas(resource, actionTypes, actions, api, selecto
 
     return sagas;
 }
+
+export default {
+    createSagas,
+    bootSagas
+};

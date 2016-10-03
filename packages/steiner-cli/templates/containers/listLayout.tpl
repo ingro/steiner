@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
+import { connectCreator, ListLayout } from 'steiner';
 
-import { connectList } from 'steiner/dist/helpers/connectCreator';
 import { actions } from '../actions/${name}';
 import { selectors } from '../reducers/${name}';
-import { ListLayout } from 'steiner';
 import ${ucName}ListFilter from '../components/${ucName}ListFilter';
 import ${ucName}ListTable from '../components/${ucName}ListTable';
 
@@ -19,4 +18,4 @@ class ${ucName}ListLayout extends Component {
     }
 }
 
-export default connectList(${ucName}ListLayout, actions, selectors);
+export default connectCreator.connectList(${ucName}ListLayout, actions, selectors);

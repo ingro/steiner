@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import InputField from 'vivi/dist/Form/InputField';
-
-import { actionTypes } from '../actions/${name}';
 import { FormControls } from 'steiner';
 import { createSubmit } from 'steiner/dist/helpers/formHelper';
+
+import { actionTypes } from '../actions/${name}';
 import { linkTo } from '../routes/${name}';
 
 class ${ucName}Edit extends Component {

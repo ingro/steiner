@@ -14,6 +14,10 @@ class ${ucName}Edit extends Component {
         this.submit = createSubmit(actionTypes);
     }
 
+    componentWillMount() {
+        this.props.initialize(this.props.item);
+    }
+
     componentWillReceiveProps(props) {
         if (props.submitSucceeded) {
             setTimeout(() => {

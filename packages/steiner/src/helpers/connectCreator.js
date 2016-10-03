@@ -30,8 +30,8 @@ export function connectItem(component, actions, selectors) {
 
         return {
             ...current,
-            item: isNew ? {} : current.item,
-            initialValues: isNew ? {} : current.item
+            item: isNew ? {} : current.item
+            // initialValues: isNew ? {} : current.item
         };
     }
 

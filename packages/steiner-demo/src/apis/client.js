@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const client = axios.create({
-    baseURL: 'https://ingruz-api-aqvckpkjre.now.sh/api',
+    baseURL: 'https://ingruz-api-wkyjwxqgqi.now.sh/api',
     responseType: 'json'
 });
 

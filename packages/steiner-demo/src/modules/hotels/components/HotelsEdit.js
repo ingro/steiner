@@ -11,6 +11,8 @@ import {
     isRequired,
     hasLengthGreaterThan
 } from 'revalidate';
+import { SimpleSelect } from 'react-selectize';
+import SelectAsync from 'vivi/dist/SelectAsync';
 
 import client from '../../../apis/client';
 import { actionTypes } from '../actions/hotels';
@@ -27,11 +29,103 @@ const validate = combineValidators({
     )()
 });
 
+// function searchPositions(search) {
+//     this.setState({ search });
+
+//     if (search.length > 0) {
+//         client.get('positions')
+//             .then(res => {
+//                 const options = res.data.data.map(item => ({ label: item.name, value: item.id }));
+
+//                 this.setState({
+//                     options
+//                 });
+//             });
+//     }
+// }
+
+// class SelectizeField extends Component {
+
+//     constructor(props) {
+//         super(props);
+
+//         this.state = {
+//             options: [],
+//             search: '',
+//             value: {}
+//         };
+//     }
+
+//     render() {
+//         console.log(this.props.input);
+
+//         return <SimpleSelect
+//             options={this.state.options}
+//             search={this.state.search}
+//             onValueChange={item => {
+//                 this.props.input.onChange(item);
+//                 this.setState({ value: item });
+//             }}
+//             onSearchChange={searchPositions.bind(this)}
+//             {...this.props.input}
+//             onBlur={() => {}}
+//             value={this.state.value}
+//         />
+//     }
+// }
+
+// class SelectField extends Component {
+
+//     constructor(props) {
+//         super(props);
+
+//         this.state = {
+//             options: props.options || [],
+//             value: props.defaultValue || {}
+//         };
+//     }
+
+//     render() {
+//         return <SelectAsync
+//             options={this.state.options}
+//             loadOptions={q => 
+//                 client.get(`/positions?_limit=20&q=${q}`)
+//                     .then(res => {
+//                         this.setState({ options: res.data.data });
+//                         return { options: res.data.data };
+//                     })
+//             }
+//             {...this.props.input}
+//             onChange={value => {
+//                 this.props.input.onChange(value);
+//                 this.setState({ value });
+//             }}
+//             onBlur={() => {}}
+//             value={this.state.value}
+//         />;
+//     }
+// }
+
 class HotelsEdit extends Component {
     constructor(props) {
         super(props);
 
-        this.submit = createSubmit(actionTypes);
+        this.submit = createSubmit(actionTypes, data => ({
+            ...data,
+            positionId: data.positionId ? data.positionId.id : null
+        }));
+    }
+
+    componentWillMount() {
+        const { item } = this.props;
+
+        const values = {
+            ...item,
+            positionId: item.position ? { id: item.positionId, name: item.position.name } : {},
+            tags: [{id: 1, name: 'estate'}, {id: 4, name: 'famiglia'}]
+        };
+
+        this.props.initialize(values);
     }
 
     componentWillReceiveProps(props) {
@@ -67,7 +161,7 @@ class HotelsEdit extends Component {
                                 component={InputField}
                             />
                         </div>
-                        <div className="form-group">
+                        {/*<div className="form-group">
                             <Field
                                 className="form-control"
                                 name="positionId"
@@ -76,6 +170,25 @@ class HotelsEdit extends Component {
                                 loadOptions={createReactSelectLoader('positions', client)}
                                 initialLabel={item.position}
                                 normalize={value => value && value.id}
+                            />
+                        </div>*/}
+                        <div className="form-group">
+                            <Field
+                                className="form-control"
+                                name="positionId"
+                                placeholder="Position"
+                                component={SelectAsyncField}
+                                loadOptions={createReactSelectLoader('positions', client)}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <Field
+                                className="form-control"
+                                name="tags"
+                                placeholder="Tags"
+                                component={SelectAsyncField}
+                                loadOptions={createReactSelectLoader('tags', client)}
+                                selectOptions={{ multi: true }}
                             />
                         </div>
                         <div className="form-group">

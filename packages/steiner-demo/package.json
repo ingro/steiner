@@ -21,7 +21,7 @@
     "redux-batched-subscribe": "^0.1.6",
     "redux-form": "^6.0.5",
     "redux-logger": "^2.6.1",
-    "redux-saga": "^0.11.1",
+    "redux-saga": "^0.12.0",
     "redux-thunk": "^2.1.0",
     "revalidate": "^0.4.1",
     "steiner": "^0.1.0",

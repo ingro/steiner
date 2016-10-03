@@ -42,22 +42,24 @@ export function createReactSelectLoader(endpoint, client, options = {}) {
 export default function createApi(endpoint, client, paramsMap = {}) {
     const routes = {};
 
+    const [uri, qs] = endpoint.split('?');
+
     routes.fetch = function(id) {
         return client({
-            url: `/${endpoint}/${id}`
+            url: `/${uri}/${id}${qs ? '?' + qs : ''}`
         });
     }
 
     routes.list = function(filters) {
         return client({
-            url: `/${endpoint}`,
+            url: `/${uri}${qs ? '?' + qs : ''}`,
             params: buildParams(filters, paramsMap)
         });
     }
 
     routes.create = function(data) {
         return client({
-            url: `/${endpoint}`,
+            url: `/${uri}`,
             method: 'post',
             data
         });
@@ -65,7 +67,7 @@ export default function createApi(endpoint, client, paramsMap = {}) {
 
     routes.update = function(id, data) {
         return client({
-            url: `/${endpoint}/${id}`,
+            url: `/${uri}/${id}`,
             method: 'patch',
             data
         });
@@ -73,7 +75,7 @@ export default function createApi(endpoint, client, paramsMap = {}) {
 
     routes.delete = function(id) {
         return client({
-            url: `/${endpoint}/${id}`,
+            url: `/${uri}/${id}`,
             method: 'delete'
         });
     }

@@ -7,6 +7,7 @@ import store from './store';
 import rootSaga from './sagas';
 
 import 'vivi/dist/style.css';
+// import 'react-selectize/dist/index.css';
 import './index.css';
 
 store.runSaga(rootSaga);

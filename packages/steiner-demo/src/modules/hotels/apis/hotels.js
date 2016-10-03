@@ -1,7 +1,7 @@
 import client from 'apis/client';
 import createApi from 'steiner/dist/helpers/apiCreator';
 
-const apis = createApi('hotels', client);
+const apis = createApi('hotels?_expand=position', client);
 
 // apis.update = function(id, data) {
 //     return client({

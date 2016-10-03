@@ -11,8 +11,8 @@ import {
     isRequired,
     hasLengthGreaterThan
 } from 'revalidate';
-import { SimpleSelect } from 'react-selectize';
-import SelectAsync from 'vivi/dist/SelectAsync';
+// import { SimpleSelect } from 'react-selectize';
+// import SelectAsync from 'vivi/dist/SelectAsync';
 
 import client from '../../../apis/client';
 import { actionTypes } from '../actions/hotels';

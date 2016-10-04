@@ -6,7 +6,7 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production babel src --out-dir lib && cp src/misc/notifications/flat-theme.css lib/misc/notifications/flat-theme.css",
     "prepublish": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "react"
@@ -18,6 +18,8 @@
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
     "babel-eslint": "^7.0.0",
+    "babel-jest": "^16.0.0",
+    "babel-polyfill": "^6.16.0",
     "babel-preset-react-app": "^0.2.1",
     "cross-env": "^3.0.0",
     "eslint": "^3.6.1",
@@ -26,6 +28,7 @@
     "eslint-plugin-import": "^2.0.0",
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.3.0",
+    "jest": "^16.0.0",
     "lodash": "^4.16.3",
     "rc-pagination": "^1.5.5",
     "react": "^15.3.2",
@@ -33,6 +36,7 @@
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
     "react-router": "^4.0.0-alpha.3",
+    "react-test-renderer": "^15.3.2",
     "react-virtualized": "^8.0.11",
     "reapop": "^0.5.0",
     "redux": "^3.6.0",

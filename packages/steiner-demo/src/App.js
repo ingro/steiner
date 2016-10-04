@@ -4,13 +4,8 @@ import NotificationsSystem from 'reapop';
 import theme from 'steiner/lib/misc/notifications/flat-theme';
 
 import './App.css';
+import HeaderLink from './HeaderLink';
 import routes from './routes';
-
-const HeaderLink = (props) => <Link to={props.to} activeClassName="active">{
-    ({ isActive, onClick, href }) => <li className={isActive ? 'active' : ''}>
-        <a href={href} onClick={onClick}>{props.name}</a>
-    </li>
-}</Link>;
 
 class App extends Component {
     render() {

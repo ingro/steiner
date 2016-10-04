@@ -1,0 +1,10 @@
+exports[`test HeaderLink renders correctly 1`] = `
+<li
+  className="active">
+  <a
+    href="/foo"
+    onClick={[Function anonymous]}>
+    Foo
+  </a>
+</li>
+`;

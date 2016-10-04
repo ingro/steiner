@@ -4,7 +4,8 @@
   "private": true,
   "devDependencies": {
     "cross-env": "^3.0.0",
-    "react-scripts": "0.6.1"
+    "react-scripts": "0.6.1",
+    "react-test-renderer": "^15.3.2"
   },
   "dependencies": {
     "axios": "^0.14.0",

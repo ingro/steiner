@@ -6,6 +6,12 @@ import theme from 'steiner/lib/misc/notifications/flat-theme';
 import './App.css';
 import routes from './routes';
 
+const HeaderLink = (props) => <Link to={props.to} activeClassName="active">{
+    ({ isActive, onClick, href }) => <li className={isActive ? 'active' : ''}>
+        <a href={href} onClick={onClick}>{props.name}</a>
+    </li>
+}</Link>;
+
 class App extends Component {
     render() {
         return (
@@ -18,12 +24,8 @@ class App extends Component {
                             </div>
                             <div className="collapse navbar-collapse">
                                 <ul className="nav navbar-nav">
-                                    <li>
-                                        <Link to="/hotels">Hotels</Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/offers">Offers</Link>
-                                    </li>
+                                    <HeaderLink to="/hotels" name="Hotels" />
+                                    <HeaderLink to="/offers" name="Offers" />
                                 </ul>
                             </div>
                         </div>

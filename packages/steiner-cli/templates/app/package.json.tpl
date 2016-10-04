@@ -24,7 +24,7 @@
     "redux-thunk": "^2.1.0",
     "revalidate": "^0.4.1",
     "steiner": "^0.3.0",
-    "steiner-cli": "^0.3.0",
+    "steiner-cli": "^0.4.0",
     "vivi": "^0.1.4"
   },
   "scripts": {

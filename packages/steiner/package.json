@@ -6,7 +6,7 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production babel src --out-dir lib && cp src/misc/notifications/flat-theme.css lib/misc/notifications/flat-theme.css",
     "prepublish": "npm run build",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "keywords": [
     "react"
@@ -35,7 +35,7 @@
     "react-addons-shallow-compare": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
-    "react-router": "^4.0.0-alpha.3",
+    "react-router": "^4.0.0-alpha.4",
     "react-test-renderer": "^15.3.2",
     "react-virtualized": "^8.0.11",
     "reapop": "^0.5.0",

@@ -4,7 +4,9 @@ export default class NoRows extends Component {
     render() {
         const { errorMsg, isFetching, loadingMsg, noRowsMsg, itemsNumber } = this.props;
 
-        if (isFetching && itemsNumber === 0) {
+        const rows = itemsNumber || 0;
+
+        if (isFetching && rows === 0) {
             return <div className="alert alert-info text-center">{loadingMsg}</div>;
         }
 
@@ -12,6 +14,10 @@ export default class NoRows extends Component {
             return <div className="alert alert-danger text-center">
                 {errorMsg}
             </div>;
+        }
+
+        if (rows > 0) {
+            return null;
         }
 
         return <div className="alert alert-warning text-center">{noRowsMsg}</div>;

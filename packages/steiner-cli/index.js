@@ -112,8 +112,9 @@ function generateApp(appName) {
     function generateFile(tplPath, destPath) {
         const file = template(tp.read(tplPath), vars);
         tf.write(destPath, file);
-        console.log(`File ${chalk.blue(destPath)} created`);
     }
+
+    console.log('Generating project\'s files...');
 
     // Copy all the files except the templates
     tp.copy('.', tf.path(), { matching: ['!*.tpl'], overwrite: true });
@@ -127,6 +128,9 @@ function generateApp(appName) {
 
     // Copy the generated files to the destination path
     tf.copy('.', od.path());
+
+    console.log(chalk.green(`Project ${chalk.yellow(appName)} bootstrapped correctly!`));
+    console.log(`To get started type "cd ${appName} && npm install"`);
 }
 
 program

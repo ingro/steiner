@@ -1,7 +1,7 @@
 import renderer from 'react-test-renderer';
 import React from 'react';
 
-import HeaderLink from '../src/HeaderLink';
+import HeaderLink from '../src/components/HeaderLink';
 
 test('HeaderLink renders correctly', () => {
     const tree = renderer.create(

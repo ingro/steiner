@@ -6,10 +6,31 @@ import offers from '../modules/offers/sagas/offers';
 
 const formSaga = reduxFormSaga();
 
+import { take, call, put } from 'redux-saga/effects';
+import axios from 'axios';
+
+const login = function(data) {
+    return axios.post('https://ingruz-api-jlguviziez.now.sh/login', data);
+}
+
+const loginSaga = function*() {
+    while (true) {
+        try {
+            const action = yield take('LOGIN_REQUEST');
+
+            const response = yield call(login, action.payload);
+            yield put({ type: 'LOGIN_REQUEST_SUCCESS', payload: response });
+        } catch(error) {
+            yield put({ type: 'LOGIN_REQUEST_FAIL', error: error.response && error.response.data ? { message: error.response.data.error } : error });
+        }
+    }
+}
+
 export default function* root() {
     yield [
         ...hotels,
         ...offers,
-        fork(formSaga)
+        fork(formSaga),
+        fork(loginSaga)
     ]
 }

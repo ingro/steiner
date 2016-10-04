@@ -4,7 +4,8 @@ import NotificationsSystem from 'reapop';
 import theme from 'steiner/lib/misc/notifications/flat-theme';
 
 import './App.css';
-import HeaderLink from './HeaderLink';
+import HeaderLink from './components/HeaderLink';
+import LoginForm from './components/LoginForm';
 import routes from './routes';
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
                         {routes.map((route, i) => (
                             <Match key={i} {...route}/>
                         ))}
+                        <Match pattern="/login" exactly={true} component={LoginForm} />
                     </div>
                     <NotificationsSystem
                         theme={theme}

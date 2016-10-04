@@ -145,60 +145,39 @@ class HotelsEdit extends Component {
                     <h3>{item.name ? item.name : 'Create new Hotels'}</h3>
                     {error && <div className="alert alert-danger">{error}</div>}
                     <form onSubmit={handleSubmit(this.submit)} className="form-horizontal">
-                        <div className="form-group">
-                            <Field
-                                className="form-control"
-                                name="name"
-                                placeholder="Name"
-                                component={InputField}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <Field
-                                className="form-control"
-                                name="address"
-                                placeholder="Address"
-                                component={InputField}
-                            />
-                        </div>
-                        {/*<div className="form-group">
-                            <Field
-                                className="form-control"
-                                name="positionId"
-                                placeholder="Position"
-                                component={SelectAsyncField}
-                                loadOptions={createReactSelectLoader('positions', client)}
-                                initialLabel={item.position}
-                                normalize={value => value && value.id}
-                            />
-                        </div>*/}
-                        <div className="form-group">
-                            <Field
-                                className="form-control"
-                                name="positionId"
-                                placeholder="Position"
-                                component={SelectAsyncField}
-                                loadOptions={createReactSelectLoader('positions', client)}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <Field
-                                className="form-control"
-                                name="tags"
-                                placeholder="Tags"
-                                component={SelectAsyncField}
-                                loadOptions={createReactSelectLoader('tags', client)}
-                                selectOptions={{ multi: true }}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <Field
-                                className="form-control"
-                                name="active"
-                                component={CheckboxField}
-                                type="checkbox"
-                            />
-                        </div>
+                        <Field
+                            className="form-control"
+                            name="name"
+                            placeholder="Name"
+                            component={InputField}
+                        />
+                        <Field
+                            className="form-control"
+                            name="address"
+                            placeholder="Address"
+                            component={InputField}
+                        />
+                        <Field
+                            className="form-control"
+                            name="positionId"
+                            placeholder="Position"
+                            component={SelectAsyncField}
+                            loadOptions={createReactSelectLoader('positions', client)}
+                        />
+                        <Field
+                            className="form-control"
+                            name="tags"
+                            placeholder="Tags"
+                            component={SelectAsyncField}
+                            loadOptions={createReactSelectLoader('tags', client)}
+                            selectOptions={{ multi: true }}
+                        />                  
+                        <Field
+                            className="form-control"
+                            name="active"
+                            component={CheckboxField}
+                            type="checkbox"
+                        />
                         <div className="row">
                             <FormControls
                                 valid={valid}

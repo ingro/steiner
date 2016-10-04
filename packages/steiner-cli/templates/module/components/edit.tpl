@@ -34,14 +34,12 @@ class ${ucName}Edit extends Component {
                     <h3>{item.name ? item.name : 'Create new ${ucName}'}</h3>
                     {error && <div className="alert alert-danger">{error}</div>}
                     <form onSubmit={handleSubmit(this.submit)} className="form-horizontal">
-                        <div className="form-group">
-                            <Field
-                                className="form-control"
-                                name="name"
-                                placeholder="Name"
-                                component={InputField}
-                            />
-                        </div>
+                        <Field
+                            className="form-control"
+                            name="name"
+                            placeholder="Name"
+                            component={InputField}
+                        />
                         {/* Fields... */}
                         <div className="row">
                             <FormControls

@@ -28,7 +28,7 @@ class App extends Component {
                             </div>
                             <div className="collapse navbar-collapse">
                                 <ul className="nav navbar-nav">
-                                    {/* Headers links */}
+                                    {/* <HeaderLink to="/posts" name="Posts" /> */}
                                 </ul>
                                 <ul className="nav navbar-nav navbar-right">
                                     {user 

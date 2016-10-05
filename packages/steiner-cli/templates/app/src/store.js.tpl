@@ -30,7 +30,7 @@ const enhancer = compose(
         loggerMiddleware
     ),
     persistState('user', { 
-        key: 'steiner'
+        key: '${appName}'
     }),
     devtools(),
     batchedSubscribe(batchedUpdates)

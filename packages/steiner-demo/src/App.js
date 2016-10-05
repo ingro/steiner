@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Match, Link } from 'react-router';
 import NotificationsSystem from 'reapop';
 import theme from 'reapop-theme-wybo';
-import { MatchWhenAuthorized, MatchWhenGuest, auth } from 'steiner';
+import { MatchWhenAuthorized, MatchWhenGuest, HeaderLink, auth } from 'steiner';
+import { getUser } from 'steiner/lib/auth/reducer';
 
 import './App.css';
-import HeaderLink from './components/HeaderLink';
 import LoginForm from './components/LoginForm';
 import routes from './routes';
-import { getUser } from 'steiner/lib/auth/reducer';
 
 class App extends Component {
     requestLogout = () => {

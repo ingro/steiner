@@ -6,6 +6,7 @@ import ListTableComponent from './ListTable';
 import NoRowsComponent from './NoRows';
 import MatchWhenAuthorizedComponent from './MatchWhenAuthorized';
 import MatchWhenGuestComponent from './MatchWhenGuest';
+import HeaderLinkComponent from './HeaderLink';
 
 export const FormControls = FormControlsComponent;
 export const InputListFilter = InputListFilterComponent;
@@ -15,3 +16,4 @@ export const ListTable = ListTableComponent;
 export const NoRows = NoRowsComponent;
 export const MatchWhenAuthorized = MatchWhenAuthorizedComponent;
 export const MatchWhenGuest = MatchWhenGuestComponent;
+export const HeaderLink = HeaderLinkComponent;

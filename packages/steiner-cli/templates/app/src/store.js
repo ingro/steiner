@@ -4,6 +4,7 @@ import createLogger from 'redux-logger';
 import { batchedSubscribe } from 'redux-batched-subscribe';
 import { unstable_batchedUpdates as batchedUpdates } from 'react-dom';
 import createSagaMiddleware, { END } from 'redux-saga';
+import persistState from 'redux-localstorage';
 import { notificationMiddleware } from 'steiner';
 
 import reducer from './reducers';
@@ -28,6 +29,9 @@ const enhancer = compose(
         notificationMiddleware,
         loggerMiddleware
     ),
+    persistState('user', { 
+        key: 'steiner'
+    }),
     devtools(),
     batchedSubscribe(batchedUpdates)
 );

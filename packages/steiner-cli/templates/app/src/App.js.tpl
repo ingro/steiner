@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter, Match, Link } from 'react-router';
 import NotificationsSystem from 'reapop';
-import theme from 'steiner/lib/misc/notifications/flat-theme';
+import theme from 'reapop-theme-wybo';
+import { MatchWhenAuthorized, MatchWhenGuest, HeaderLink, auth } from 'steiner';
+import { getUser } from 'steiner/lib/auth/reducer';
 
 import './App.css';
+import LoginForm from './components/LoginForm';
 import routes from './routes';
 
 class App extends Component {
+    requestLogout = () => {
+        this.props.dispatch(auth.actions.logoutRequest());
+    }
+
     render() {
+        const { user } = this.props;
+
         return (
             <BrowserRouter>
                 <div>
@@ -18,17 +28,30 @@ class App extends Component {
                             </div>
                             <div className="collapse navbar-collapse">
                                 <ul className="nav navbar-nav">
-                                    {*/<li>
-                                        <Link to="/posts">Posts</Link>
-                                    </li>*/}
+                                    {/* Headers links */}
+                                </ul>
+                                <ul className="nav navbar-nav navbar-right">
+                                    {user 
+                                        ? <li><a onClick={this.requestLogout}>Logout</a></li>
+                                        : <HeaderLink to="/login" name="Login" />
+                                    }
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div className="container-fluid">
+                        <Match pattern="/" exactly={true} render={() =>
+                            <div className="container">
+                                <div className="jumbotron">
+                                    <h1>${appName}</h1>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dicta, error autem magnam adipisci voluptas dolorum corporis possimus accusantium distinctio reprehenderit quo necessitatibus officia quod explicabo dolor alias provident excepturi.</p>
+                                </div>
+                            </div>
+                        }/>
                         {routes.map((route, i) => (
-                            <Match key={i} {...route}/>
+                            <MatchWhenAuthorized key={i} user={user} {...route}/>
                         ))}
+                        <MatchWhenGuest pattern="/login" exactly={true} component={LoginForm} />
                     </div>
                     <NotificationsSystem
                         theme={theme}
@@ -44,4 +67,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default connect(state => ({ user: getUser(state) }))(App);

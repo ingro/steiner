@@ -5,7 +5,7 @@
     "postinstall": "lerna bootstrap",
     "seed:demo": "rimraf packages/steiner-demo/src/modules/offers && cd packages/steiner-cli && node index offers -o ../steiner-demo/src/modules",
     "start:demo": "cd packages/steiner-demo && npm start",
-    "publish": "lerna publish && lerna-npm-readme-hack",
+    "publish": "lerna publish && lerna-npm-readme-hack --packages steiner,steiner-cli",
     "bootstrap": "lerna bootstrap && node scripts/link"
   },
   "devDependencies": {

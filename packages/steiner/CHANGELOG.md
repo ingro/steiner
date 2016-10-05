@@ -1,3 +1,10 @@
+## 0.4.0 (October 5, 2016)
+
+- Removed custom reapop theme in favor of the default `reapop-theme-wybo`
+- Added auth saga
+- Added auth acionts
+- Added user reducer
+
 ## 0.3.0 (October 3, 2016)
 
 - Easier exports from main package

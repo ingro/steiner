@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { createFormAction } from 'steiner/lib/helpers/reduxFormSaga';
+import { auth } from 'steiner';
 import InputField from 'vivi/dist/Form/InputField';
 import LoadingButton from 'vivi/dist/LoadingButton';
 
@@ -9,7 +10,7 @@ class LoginForm extends Component {
         super(props);
 
         this.submit = (data, dispatch) => {
-            const action = createFormAction('LOGIN_REQUEST', ['LOGIN_REQUEST_SUCCESS', 'LOGIN_REQUEST_FAIL']);
+            const action = createFormAction(auth.actionTypes.login, [auth.actionTypes.loginSuccess, auth.actionTypes.loginFail]);
 
             return action(data, dispatch);
         }
@@ -18,7 +19,7 @@ class LoginForm extends Component {
     componentWillReceiveProps(props) {
         if (props.submitSucceeded) {
             setTimeout(() => {
-                this.context.router.transitionTo('/hotels');
+                this.context.router.transitionTo('/');
             }, 0);
         }
     }

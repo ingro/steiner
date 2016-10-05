@@ -4,7 +4,6 @@
 - Better naming/organization of things
 - Better way to export modules for easier imports -> some improvements done, now almost all the most used function can be import from 'steiner'
 - Single exports point for routes? (global `linkto` -> linkTo('hotels/list'))
-- Customize how data is extracted in list reducer (from API to store)
 - Add tests
 - Create a global app helper? (see below)
 

@@ -13,7 +13,7 @@
     "react-addons-shallow-compare": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
-    "react-router": "^4.0.0-alpha.3",
+    "react-router": "^4.0.0-alpha.4",
     "react-select": "^1.0.0-rc.2",
     "react-virtualized": "^8.0.11",
     "reapop": "^0.5.0",
@@ -27,8 +27,8 @@
     "redux-thunk": "^2.1.0",
     "revalidate": "^0.4.1",
     "seamless-immutable": "^6.1.3",
-    "steiner": "^0.3.1",
-    "steiner-cli": "^0.4.0",
+    "steiner": "^0.4.0",
+    "steiner-cli": "^0.5.0",
     "vivi": "^0.1.4"
   },
   "scripts": {

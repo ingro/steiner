@@ -1,3 +1,7 @@
+## 0.4.1 (October 5, 2016)
+
+- Added option to customize how data is extracted from api response in listSuccess reducers handler
+
 ## 0.4.0 (October 5, 2016)
 
 - Removed custom reapop theme in favor of the default `reapop-theme-wybo`

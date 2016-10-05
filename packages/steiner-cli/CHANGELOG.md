@@ -1,3 +1,7 @@
+## 0.5.1 (October 5, 2016)
+
+- Minor bugfixes
+
 ## 0.5.0 (October 5, 2016)
 
 - Updated bootstrap templates for steiner 0.4.0

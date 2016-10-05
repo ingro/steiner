@@ -1,5 +1,5 @@
 import Immutable from 'seamless-immutable';
-import reject from 'lodash/reject';
+import _ from 'lodash';
 
 export const DEFAULT_STATE = Immutable({
     list: {
@@ -24,19 +24,38 @@ export const DEFAULT_STATE = Immutable({
     }
 });
 
+const defaultListSuccessOptions = {
+    items: 'data.data',
+    total: 'data.meta.total'
+};
+
+function createListSuccessHandler(options = {}) {
+    _.defaults(options, defaultListSuccessOptions);
+
+    return function listSuccess(state, action) {
+        return state.update('list', list => ({
+            ...list,
+            items: typeof options.items === 'function' ? options.items(action.payload) : _.get(action.payload, options.items),
+            isFetching: false,
+            errorMessage: null,
+            total: typeof options.total === 'function' ? options.total(action.payload) : _.get(action.payload, options.total)
+        }));
+    }
+}
+
 function list(state, action) {
     return state.setIn(['list', 'isFetching'], true);
 }
 
-function listSuccess(state, action) {
-    return state.update('list', list => ({
-        ...list,
-        items: action.payload.data.data,
-        isFetching: false,
-        errorMessage: null,
-        total: action.payload.data.meta.total
-    }));
-}
+// function listSuccess(state, action) {
+//     return state.update('list', list => ({
+//         ...list,
+//         items: action.payload.data.data,
+//         isFetching: false,
+//         errorMessage: null,
+//         total: action.payload.data.meta.total
+//     }));
+// }
 
 function listFail(state, action) {
     return state.update('list', list => ({
@@ -71,7 +90,7 @@ function fetchFail(state, action) {
 }
 
 function deleteSuccess(state, action) {
-    return state.setIn(['list', 'items'], reject(state.list.items, {id: action.payload.id }));
+    return state.setIn(['list', 'items'], _.reject(state.list.items, {id: action.payload.id }));
 }
 
 function resetCurrent(state, action) {
@@ -81,10 +100,6 @@ function resetCurrent(state, action) {
         errorMessage: null
     }));
 }
-
-// function inputQuery(state, action) {
-//     return state.setIn(['list', 'filters', 'q'], action.payload.q);
-// }
 
 function changePage(state, action) {
     return state.setIn(['list', 'filters', 'page'], action.payload.page);
@@ -98,17 +113,16 @@ function changeOrder(state, action) {
     return state.setIn(['list', 'filters', 'order'], action.payload);
 }
 
-export function createHandlers(actionTypes) {
+export function createHandlers(actionTypes, options) {
     return {
         [actionTypes.list]: list,
-        [actionTypes.listSuccess]: listSuccess,
+        [actionTypes.listSuccess]: createListSuccessHandler(options),
         [actionTypes.listFail]: listFail,
         [actionTypes.fetch]: fetch,
         [actionTypes.fetchSuccess]: fetchSuccess,
         [actionTypes.fetchFail]: fetchFail,
         [actionTypes.deleteSuccess]: deleteSuccess,
         [actionTypes.resetCurrent]: resetCurrent,
-        // [actionTypes.inputQuery]: inputQuery,
         [actionTypes.changePage]: changePage,
         [actionTypes.updateFilter]: updateFilter,
         [actionTypes.changeOrder]: changeOrder

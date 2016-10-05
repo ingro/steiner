@@ -35,7 +35,7 @@ function generateModule(moduleName, options) {
     // console.log(tmpDir.name);
 
     // Templates-scoped fs
-    const tp = jetpack.cwd(path.resolve(__dirname, 'templates/app'));
+    const tp = jetpack.cwd(path.resolve(__dirname, 'templates/module'));
     // Tempdir-scoped fs
     const tf = jetpack.cwd(tmpDir.name);
 

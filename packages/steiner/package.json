@@ -52,6 +52,7 @@
     "vivi": "^0.1.4"
   },
   "dependencies": {
+    "babel-runtime": "^6.11.6",
     "path-to-regexp": "^1.6.0",
     "seamless-immutable": "^6.1.3"
   },

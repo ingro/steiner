@@ -3,16 +3,21 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Match, Link } from 'react-router';
 import NotificationsSystem from 'reapop';
 import theme from 'reapop-theme-wybo';
-import { MatchWhenAuthorized, MatchWhenGuest, HeaderLink, auth } from 'steiner';
+import { MatchWhenAuthorized, MatchWhenGuest, HeaderLink, auth, createConfirm } from 'steiner';
 import { getUser } from 'steiner/lib/auth/reducer';
 
 import './App.css';
+import Welcome from './components/Welcome';
 import LoginForm from './components/LoginForm';
 import routes from './routes';
 
 class App extends Component {
     requestLogout = () => {
-        this.props.dispatch(auth.actions.logoutRequest());
+        this.props.dispatch(createConfirm({
+            title: 'Logout',
+            message: 'Are you really want to exit from the application?',
+            onSuccess: () => this.props.dispatch(auth.actions.logoutRequest())
+        }));
     }
 
     render() {
@@ -41,18 +46,11 @@ class App extends Component {
                         </div>
                     </div>
                     <div className="container-fluid">
-                        <Match pattern="/" exactly={true} render={() =>
-                            <div className="container">
-                                <div className="jumbotron">
-                                    <h1>Steiner</h1>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dicta, error autem magnam adipisci voluptas dolorum corporis possimus accusantium distinctio reprehenderit quo necessitatibus officia quod explicabo dolor alias provident excepturi.</p>
-                                </div>
-                            </div>
-                        }/>
+                        <Match pattern="/" exactly={true} render={() => <Welcome user={user}/>} />
                         {routes.map((route, i) => (
                             <MatchWhenAuthorized key={i} user={user} {...route}/>
                         ))}
-                        <MatchWhenGuest pattern="/login" exactly={true} component={LoginForm} />
+                        <MatchWhenGuest pattern="/login" exactly={true} component={LoginForm} user={user}/>
                     </div>
                     <NotificationsSystem
                         theme={theme}

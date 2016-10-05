@@ -2,11 +2,11 @@ import { addNotification as notify } from 'reapop';
 import _ from 'lodash';
 
 const defaultConfirmOptions = {
-    title: 'Attenzione',
+    title: 'Warning',
     status: 'warning',
     position: 'tc',
-    btn_primary_text: 'Conferma',
-    btn_secondary_text: 'Annulla'
+    btn_primary_text: 'Confirm',
+    btn_secondary_text: 'Cancel'
 };
 
 export default function createConfirm(options = {}) {

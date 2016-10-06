@@ -10,6 +10,10 @@ export default class ListLayout extends Component {
         this.props.changePage(page);
     }
 
+    handleChangePaginatorSize = (size) => {
+        this.props.updateFilter('perPage', size);
+    }
+
     render() {
         const { filters, total, isFetching, items, filterComponent, tableComponent } = this.props;
 
@@ -23,7 +27,16 @@ export default class ListLayout extends Component {
                 </div>
                 <div className="row">
                     <div className="col-xs-8">
-                        <Paginator current={filters.page} pageSize={filters.perPage} total={total} showStatusText={true} onChange={this.handleChangePage}/>
+                        <Paginator 
+                            current={filters.page} 
+                            pageSize={filters.perPage} 
+                            total={total} 
+                            showStatusText={true}
+                            showSizeChanger={true}
+                            onSizeChange={this.handleChangePaginatorSize}
+                            sizeOptions={[10, 20, 50]} 
+                            onChange={this.handleChangePage}
+                        />
                     </div>
                     <div className="col-xs-4">
                         {(isFetching && items.length > 0) &&

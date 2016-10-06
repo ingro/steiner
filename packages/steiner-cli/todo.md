@@ -1,3 +1,5 @@
 # Steiner-cli
 
-- Implement missing flags on create-module (**-f**, **-n**, **-s**)
+- DRY up app boostrap templates compile (using regex to find all templates?)
+- Tests templates compile result with Jest snapshots?
+- Implement missing flags on `generate` command (**-f**, **-n**, **-s**)

@@ -1,6 +1,6 @@
 {
   "name": "steiner-demo",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": true,
   "devDependencies": {
     "cross-env": "^3.1.1",
@@ -29,7 +29,7 @@
     "revalidate": "^0.4.1",
     "seamless-immutable": "^6.1.3",
     "steiner": "^0.5.0",
-    "steiner-cli": "^0.5.4",
+    "steiner-cli": "^0.5.5",
     "vivi": "^0.1.4"
   },
   "scripts": {

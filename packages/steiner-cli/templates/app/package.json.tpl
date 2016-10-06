@@ -27,7 +27,7 @@
     "redux-thunk": "^2.1.0",
     "revalidate": "^0.4.1",
     "seamless-immutable": "^6.1.3",
-    "steiner": "^0.4.0",
+    "steiner": "^0.5.0",
     "steiner-cli": "^0.5.0",
     "vivi": "^0.1.4"
   },

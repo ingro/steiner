@@ -33,29 +33,33 @@ class LoginForm extends Component {
                     <div className="panel panel-info">
                         <div className="panel-heading">Login</div>
                         <div className="panel-body">
-                            <form onSubmit={handleSubmit(this.submit)} className="form-horizontal">
-                                <Field
-                                    className="form-control"
-                                    name="email"
-                                    placeholder="Email"
-                                    component={InputField}
-                                />
-                                <Field
-                                    className="form-control"
-                                    name="password"
-                                    placeholder="Password"
-                                    component={InputField}
-                                    type="password"
-                                />
-                                <div className="row">
-                                    <div className="col-xs-12">
-                                        <LoadingButton
-                                            className="btn-success btn-block"
-                                            loading={submitting}
-                                        >
-                                            Login
-                                        </LoadingButton>
-                                    </div>
+                            <form onSubmit={handleSubmit(this.submit)}>
+                                <div className="form-group">
+                                    <Field
+                                        className="form-control"
+                                        name="email"
+                                        placeholder="Email"
+                                        component={InputField}
+                                        onlyInput={true}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <Field
+                                        className="form-control"
+                                        name="password"
+                                        placeholder="Password"
+                                        component={InputField}
+                                        type="password"
+                                        onlyInput={true}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <LoadingButton
+                                        className="btn-success btn-block"
+                                        loading={submitting}
+                                    >
+                                        Login
+                                    </LoadingButton>
                                 </div>
                             </form>
                         </div>

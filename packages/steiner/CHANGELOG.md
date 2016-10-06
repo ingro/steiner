@@ -1,3 +1,7 @@
+## 0.5.0 (October 6, 2016)
+
+- Changed internal structure of list reducer
+
 ## 0.4.1 (October 5, 2016)
 
 - Added option to customize how data is extracted from api response in listSuccess reducers handler

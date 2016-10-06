@@ -15,6 +15,7 @@ const filter = /^redux-form/;
 
 const loggerMiddleware = createLogger({
     collapsed: true,
+    diff: true,
     predicate(getState, action) {
         return ! filter.test(action.type);
     }

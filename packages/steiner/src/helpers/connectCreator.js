@@ -7,6 +7,7 @@ export function connectList(component, actions, selectors) {
 
         return {
             ...list,
+            items: selectors.itemsSelector(state),
             component
         };
     }

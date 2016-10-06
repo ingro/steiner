@@ -5,7 +5,8 @@ export const DEFAULT_STATE = Immutable({
     list: {
         errorMessage: null,
         isFetching: false,
-        items: [],
+        itemsById: {},
+        itemsId: [],
         filters: {
             q: '',
             page: 1,
@@ -26,16 +27,24 @@ export const DEFAULT_STATE = Immutable({
 
 const defaultListSuccessOptions = {
     items: 'data.data',
-    total: 'data.meta.total'
+    total: 'data.meta.total',
+    idKey: 'id'
 };
 
 function createListSuccessHandler(options = {}) {
     _.defaults(options, defaultListSuccessOptions);
 
     return function listSuccess(state, action) {
+        const items = typeof options.items === 'function' ? options.items(action.payload) : _.get(action.payload, options.items);
+
         return state.update('list', list => ({
             ...list,
-            items: typeof options.items === 'function' ? options.items(action.payload) : _.get(action.payload, options.items),
+            itemsId: items.map(item => item[options.idKey]),
+            itemsById: items.reduce((byId, item) => {
+                byId[item[options.idKey]] = item;
+
+                return byId;
+            }, {}),
             isFetching: false,
             errorMessage: null,
             total: typeof options.total === 'function' ? options.total(action.payload) : _.get(action.payload, options.total)
@@ -46,16 +55,6 @@ function createListSuccessHandler(options = {}) {
 function list(state, action) {
     return state.setIn(['list', 'isFetching'], true);
 }
-
-// function listSuccess(state, action) {
-//     return state.update('list', list => ({
-//         ...list,
-//         items: action.payload.data.data,
-//         isFetching: false,
-//         errorMessage: null,
-//         total: action.payload.data.meta.total
-//     }));
-// }
 
 function listFail(state, action) {
     return state.update('list', list => ({
@@ -132,6 +131,7 @@ export function createHandlers(actionTypes, options) {
 export function createSelectors(key) {
     return {
         listSelector: state => state[key].list,
+        itemsSelector: state => state[key].list.itemsId.map(id => state[key].list.itemsById[id]),
         currentSelector: state => state[key].current,
         getFilters: state => state[key].list.filters
     }

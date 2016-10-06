@@ -25,7 +25,6 @@ export default class ListTable extends Component {
         return (
             <Table
                 bordered={true}
-                height={400}
                 rowCount={items.length}
                 columns={this.props.columns}
                 rowGetter={({ index }) => items[index]}

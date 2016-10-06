@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Paginator from 'vivi/dist/Paginator';
+import { Flex, Box } from 'reflexbox';
 
 export default class ListLayout extends Component {
     componentDidMount() {
@@ -15,37 +16,33 @@ export default class ListLayout extends Component {
     }
 
     render() {
-        const { filters, total, isFetching, items, filterComponent, tableComponent } = this.props;
+        const { filters, total, filterComponent, tableComponent } = this.props;
 
         return (
-            <div className="container">
-                {React.createElement(filterComponent, this.props)}
-                <div className="row">
-                    <div className="col-xs-12">
-                        <hr/>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-xs-8">
-                        <Paginator 
-                            current={filters.page} 
-                            pageSize={filters.perPage} 
-                            total={total} 
-                            showStatusText={true}
-                            showSizeChanger={true}
-                            onSizeChange={this.handleChangePaginatorSize}
-                            sizeOptions={[10, 20, 50]} 
-                            onChange={this.handleChangePage}
-                        />
-                    </div>
-                    <div className="col-xs-4">
-                        {(isFetching && items.length > 0) &&
-                            <div className="pull-right"><i className="fa fa-spin fa-spinner" /> Loading...</div>
-                        }
-                    </div>
-                </div>
-                {React.createElement(tableComponent, this.props)}
-            </div>
+            <Flex 
+                wrap
+                flexColumn
+                style={{ height: 'calc(100vh - 80px)'}}
+            >
+                <Box col={12}>
+                    {React.createElement(filterComponent, this.props)}
+                </Box>
+                <Box col={12} style={{ flexGrow: 1 }}>
+                    {React.createElement(tableComponent, this.props)}
+                </Box>
+                <Box col={12}>
+                    <Paginator 
+                        current={filters.page} 
+                        pageSize={filters.perPage} 
+                        total={total} 
+                        showStatusText={true}
+                        showSizeChanger={true}
+                        onSizeChange={this.handleChangePaginatorSize}
+                        sizeOptions={[10, 20, 50]} 
+                        onChange={this.handleChangePage}
+                    />
+                </Box>
+            </Flex>
         );
     }
 }
@@ -54,8 +51,8 @@ ListLayout.propTypes = {
     changePage: PropTypes.func,
     filterComponent: PropTypes.func,
     filters: PropTypes.object,
-    isFetching: PropTypes.bool,
-    items: PropTypes.array,
+    // isFetching: PropTypes.bool,
+    // items: PropTypes.array,
     list: PropTypes.func,
     tableComponent: PropTypes.func,
     total: PropTypes.number

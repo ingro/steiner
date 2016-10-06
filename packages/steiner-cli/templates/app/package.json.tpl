@@ -25,11 +25,12 @@
     "redux-logger": "^2.6.1",
     "redux-saga": "^0.12.0",
     "redux-thunk": "^2.1.0",
+    "reflexbox": "^2.2.2",
     "revalidate": "^0.4.1",
     "seamless-immutable": "^6.1.3",
     "steiner": "^0.5.0",
     "steiner-cli": "^0.5.0",
-    "vivi": "^0.1.8"
+    "vivi": "^0.1.9"
   },
   "scripts": {
     "start:plain": "react-scripts start",

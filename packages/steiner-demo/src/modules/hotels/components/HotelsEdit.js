@@ -49,6 +49,10 @@ class HotelsEdit extends Component {
         this.props.initialize(values);
     }
 
+    componentDidMount() {
+        this.form.elements[0].focus()
+    }
+
     componentWillReceiveProps(props) {
         if (props.submitSucceeded) {
             setTimeout(() => {
@@ -66,7 +70,7 @@ class HotelsEdit extends Component {
                 <div className="col-xs-6 col-xs-offset-3 text-center">
                     <h3>{item.name ? item.name : 'Create new Hotels'}</h3>
                     {error && <div className="alert alert-danger">{error}</div>}
-                    <form onSubmit={handleSubmit(this.submit)} className="form-horizontal">
+                    <form ref={form => this.form = form} onSubmit={handleSubmit(this.submit)} className="form-horizontal">
                         <Field
                             className="form-control"
                             name="name"

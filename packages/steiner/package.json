@@ -51,7 +51,7 @@
     "redux-form": "^6.0.5",
     "redux-saga": "^0.12.0",
     "reflexbox": "^2.2.2",
-    "vivi": "^0.1.9"
+    "vivi": "^0.1.11"
   },
   "dependencies": {
     "babel-runtime": "^6.11.6",

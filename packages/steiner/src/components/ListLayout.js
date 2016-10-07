@@ -40,6 +40,7 @@ export default class ListLayout extends Component {
                         onSizeChange={this.handleChangePaginatorSize}
                         sizeOptions={[10, 20, 50]} 
                         onChange={this.handleChangePage}
+                        sizeChangerOptions={{ openUp: true }}
                     />
                 </Box>
             </Flex>

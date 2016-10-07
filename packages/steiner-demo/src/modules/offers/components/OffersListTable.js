@@ -42,15 +42,11 @@ export default class OffersListTable extends Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="col-xs-12">
-                    <ListTable
-                        {...this.props}
-                        columns={this.getColumns()}
-                        onChangeOrder={this.props.changeOrder}
-                    />
-                </div>
-            </div>
+            <ListTable
+                {...this.props}
+                columns={this.getColumns()}
+                onChangeOrder={this.props.changeOrder}
+            />
         );
     }
 }

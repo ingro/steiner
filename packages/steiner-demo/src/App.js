@@ -10,6 +10,7 @@ import { getUser } from 'steiner/lib/auth/reducer';
 import './App.css';
 import Welcome from './components/Welcome';
 import LoginForm from './components/LoginForm';
+import Breadcrumb from './components/Breadcrumb';
 import routes from './routes';
 
 class App extends Component {
@@ -47,6 +48,7 @@ class App extends Component {
                             </div>
                         </div>
                     </div>
+                    <Breadcrumb routes={routes}/>
                     <div className="container-fluid">
                         <Match pattern="/" exactly={true} render={() => <Welcome user={user}/>} />
                         {routes.map((route, i) => (

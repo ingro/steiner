@@ -19,7 +19,7 @@ export function generateLinks(patterns) {
     return links;
 }
 
-export function generateRoutes(resource, components = {}) {
+export function generateRoutes(resource, components, selectors) {
     const patterns = createPatterns(resource);
 
     return {
@@ -27,11 +27,23 @@ export function generateRoutes(resource, components = {}) {
             {
                 pattern: patterns.list,
                 exactly: true,
-                component: components.list
+                component: components.list,
+                breadcrumb: _.upperFirst(resource)
             },
             {
                 pattern: patterns.edit,
-                component: components.edit
+                component: components.edit,
+                breadcrumb: (state, ownProps) => {
+                    const current = selectors.currentSelector(state);
+
+                    if (current && current.item) {
+                        return {
+                            breadcrumbName: current.item.name
+                        };
+                    }
+
+                    return {};
+                }
             }
         ],
         patterns

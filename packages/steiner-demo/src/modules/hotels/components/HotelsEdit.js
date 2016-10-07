@@ -97,7 +97,7 @@ class HotelsEdit extends Component {
                             component={SelectAsyncField}
                             loadOptions={createReactSelectLoader('tags', client)}
                             selectOptions={{ multi: true }}
-                        />                  
+                        />
                         <Field
                             className="form-control"
                             name="active"

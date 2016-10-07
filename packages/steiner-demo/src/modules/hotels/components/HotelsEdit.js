@@ -1,19 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { FormControls, formHelper } from 'steiner';
+import { NavigationPrompt } from 'react-router';
 import InputField from 'vivi/dist/Form/InputField';
 import CheckboxField from 'vivi/dist/Form/CheckboxField';
 import SelectAsyncField from 'vivi/dist/Form/SelectAsyncField';
 
 import {
-    /*createValidator,*/
     composeValidators,
     combineValidators,
     isRequired,
     hasLengthGreaterThan
 } from 'revalidate';
-// import { SimpleSelect } from 'react-selectize';
-// import SelectAsync from 'vivi/dist/SelectAsync';
 
 import client from 'apis/client';
 import { createReactSelectLoader } from 'helpers/helpers';
@@ -28,83 +26,6 @@ const validate = combineValidators({
         })
     )()
 });
-
-// function searchPositions(search) {
-//     this.setState({ search });
-
-//     if (search.length > 0) {
-//         client.get('positions')
-//             .then(res => {
-//                 const options = res.data.data.map(item => ({ label: item.name, value: item.id }));
-
-//                 this.setState({
-//                     options
-//                 });
-//             });
-//     }
-// }
-
-// class SelectizeField extends Component {
-
-//     constructor(props) {
-//         super(props);
-
-//         this.state = {
-//             options: [],
-//             search: '',
-//             value: {}
-//         };
-//     }
-
-//     render() {
-//         console.log(this.props.input);
-
-//         return <SimpleSelect
-//             options={this.state.options}
-//             search={this.state.search}
-//             onValueChange={item => {
-//                 this.props.input.onChange(item);
-//                 this.setState({ value: item });
-//             }}
-//             onSearchChange={searchPositions.bind(this)}
-//             {...this.props.input}
-//             onBlur={() => {}}
-//             value={this.state.value}
-//         />
-//     }
-// }
-
-// class SelectField extends Component {
-
-//     constructor(props) {
-//         super(props);
-
-//         this.state = {
-//             options: props.options || [],
-//             value: props.defaultValue || {}
-//         };
-//     }
-
-//     render() {
-//         return <SelectAsync
-//             options={this.state.options}
-//             loadOptions={q => 
-//                 client.get(`/positions?_limit=20&q=${q}`)
-//                     .then(res => {
-//                         this.setState({ options: res.data.data });
-//                         return { options: res.data.data };
-//                     })
-//             }
-//             {...this.props.input}
-//             onChange={value => {
-//                 this.props.input.onChange(value);
-//                 this.setState({ value });
-//             }}
-//             onBlur={() => {}}
-//             value={this.state.value}
-//         />;
-//     }
-// }
 
 class HotelsEdit extends Component {
     constructor(props) {
@@ -137,10 +58,11 @@ class HotelsEdit extends Component {
     }
 
     render() {
-        const { handleSubmit, submitting, valid, item, error } = this.props;
+        const { handleSubmit, submitting, valid, item, error, dirty, submitSucceeded } = this.props;
 
         return(
             <div className="container">
+                <NavigationPrompt when={dirty && !submitSucceeded} message="Are you sure? Any unsaved changes will be lost." />
                 <div className="col-xs-6 col-xs-offset-3 text-center">
                     <h3>{item.name ? item.name : 'Create new Hotels'}</h3>
                     {error && <div className="alert alert-danger">{error}</div>}

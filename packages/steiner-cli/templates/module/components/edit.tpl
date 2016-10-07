@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { NavigationPrompt } from 'react-router';
 import { FormControls, formHelper } from 'steiner';
 import InputField from 'vivi/dist/Form/InputField';
 
@@ -26,10 +27,11 @@ class ${ucName}Edit extends Component {
     }
 
     render() {
-        const { handleSubmit, submitting, item, error } = this.props;
+        const { handleSubmit, submitting, valid, item, error, dirty, submitSucceeded } = this.props;
 
         return(
             <div className="container">
+                <NavigationPrompt when={dirty && !submitSucceeded} message="Are you sure? Any unsaved changes will be lost." />
                 <div className="col-xs-6 col-xs-offset-3 text-center">
                     <h3>{item.name ? item.name : 'Create new ${ucName}'}</h3>
                     {error && <div className="alert alert-danger">{error}</div>}
@@ -43,6 +45,7 @@ class ${ucName}Edit extends Component {
                         {/* Fields... */}
                         <div className="row">
                             <FormControls
+                                valid={valid}
                                 submitting={submitting}
                                 cancelLink={linkTo('list')}
                             />

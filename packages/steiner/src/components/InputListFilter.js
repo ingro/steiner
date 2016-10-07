@@ -10,6 +10,7 @@ export default class InputListFilter extends Component {
         const { value } = this.props;
 
         return <input
+            ref={input => this.input = input}
             className="form-control"
             placeholder="Search"
             value={value}

@@ -4,18 +4,30 @@ import upperFirst from 'lodash/upperFirst';
 import trim from 'lodash/trim';
 // import { addNotification as notify } from 'reapop';
 
-function success(type, response) {
-    return {
+function success(type, response, loadingBar) {
+    const action = {
         type,
         payload: response
     };
+
+    if (loadingBar) {
+        action.loadingBar = loadingBar;
+    }
+
+    return action;
 }
 
-function fail(type, response) {
-    return {
+function fail(type, response, loadingBar) {
+    const action = {
         type,
         error: response
     };
+
+    if (loadingBar) {
+        action.loadingBar = loadingBar;
+    }
+
+    return action;
 }
 
 // function notifySuccess(message) {
@@ -59,9 +71,9 @@ export function createSagas(resource, actionTypes, actions, api, selectors) {
             const filters = yield select(selectors.getFilters);
             const response = yield call(api.list, filters);
 
-            yield put(success(actionTypes.listSuccess, response));
+            yield put(success(actionTypes.listSuccess, response, 'hide'));
         } catch(error) {
-            yield put(fail(actionTypes.listFail, error));
+            yield put(fail(actionTypes.listFail, error, 'hide'));
         }
     }
 

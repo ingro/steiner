@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Match, Link } from 'react-router';
 import NotificationsSystem from 'reapop';
+import LoadingBar from 'react-redux-loading-bar';
 import theme from 'reapop-theme-wybo';
 import { MatchWhenAuthorized, MatchWhenGuest, HeaderLink, auth, createConfirm } from 'steiner';
 import { getUser } from 'steiner/lib/auth/reducer';
@@ -26,6 +27,7 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div>
+                    <LoadingBar updateTime={100} maxProgress={95} progressIncrease={10} />
                     <div className="navbar navbar-default">
                         <div className="container-fluid">
                             <div className="navbar-header">

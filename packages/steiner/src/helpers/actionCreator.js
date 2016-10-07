@@ -132,7 +132,8 @@ export function createActions(resource, actionTypes, messages = {}) {
 
     actions[`list`] = function(filters) {
         return {
-            type: actionTypes.list
+            type: actionTypes.list,
+            loadingBar: 'show'
         };
     }
 

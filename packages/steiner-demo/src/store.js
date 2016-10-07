@@ -5,7 +5,7 @@ import { batchedSubscribe } from 'redux-batched-subscribe';
 import { unstable_batchedUpdates as batchedUpdates } from 'react-dom';
 import createSagaMiddleware, { END } from 'redux-saga';
 import persistState from 'redux-localstorage';
-import { notificationMiddleware } from 'steiner';
+import { notificationMiddleware, loadingBarMiddleware } from 'steiner';
 
 import reducer from './reducers';
 
@@ -28,6 +28,7 @@ const enhancer = compose(
         thunkMiddleware,
         sagaMiddleware,
         notificationMiddleware,
+        loadingBarMiddleware,
         loggerMiddleware
     ),
     persistState('user', { 

@@ -27,8 +27,8 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div>
-                    <LoadingBar updateTime={100} maxProgress={95} progressIncrease={10} />
                     <div className="navbar navbar-default">
+                        <LoadingBar style={{ zIndex: 1 }} updateTime={250} maxProgress={95} />
                         <div className="container-fluid">
                             <div className="navbar-header">
                                 <Link className="navbar-brand" to="/">Steiner</Link>

@@ -10,7 +10,7 @@ export default class ${ucName}ListFilter extends Component {
     }
 
     render() {
-        const { filters, isFetching, items } = this.props;
+        const { filters } = this.props;
 
         return (
             <div className="row">
@@ -24,11 +24,6 @@ export default class ${ucName}ListFilter extends Component {
                 <div className="col-xs-4 text-right">
                     <Link className="btn btn-success" to={linkTo('create')}>Create</Link>
                 </div>
-                {(isFetching && items.length > 0) &&
-                    <div className="col-xs-4">
-                        <div className="pull-right"><i className="fa fa-spin fa-spinner" /> Loading...</div>
-                    </div>
-                }
             </div>
         );
     }
@@ -36,7 +31,5 @@ export default class ${ucName}ListFilter extends Component {
 
 ${ucName}ListFilter.propTypes = {
     filters: PropTypes.object,
-    isFetching: PropTypes.bool,
-    items: PropTypes.array,
     updateFilter: PropTypes.func
 };

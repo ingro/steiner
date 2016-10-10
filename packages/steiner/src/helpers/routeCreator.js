@@ -34,6 +34,12 @@ export function generateRoutes(resource, components, selectors) {
                 pattern: patterns.edit,
                 component: components.edit,
                 breadcrumb: (state, ownProps) => {
+                    if (ownProps.params.id === 'create') {
+                        return {
+                            breadcrumbName: 'Create new'
+                        };
+                    }
+
                     const current = selectors.currentSelector(state);
 
                     if (current && current.item) {

@@ -1,8 +1,12 @@
+.Breadcrumb-navbar:empty {
+    display: none;
+}
+
 .Breadcrumb-navbar {
     position: absolute;
     top: 8px;
     left: 150px;
-    background-color: lightblue;
+    background-color: #fff;
 }
 
 .sidebar-is-open .Breadcrumb-navbar {

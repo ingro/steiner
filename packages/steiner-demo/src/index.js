@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import App from './App';
-import store from './store';
+import configureStore from './store/configureStore';
 import rootSaga from './sagas';
 
 import 'vivi/dist/style.css';
 import './index.css';
+
+const store = configureStore();
 
 store.runSaga(rootSaga);
 

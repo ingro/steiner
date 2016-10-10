@@ -120,12 +120,11 @@ function generateApp(appName) {
     tp.copy('.', tf.path(), { matching: ['!*.tpl'], overwrite: true });
 
     // Generate files from templates
+    generateFile('.env.tpl', `.env`);
     generateFile('package.json.tpl', `package.json`);
     generateFile('.gitignore.tpl', `.gitignore`);
 
     generateFile('public/index.html.tpl', 'public/index.html');
-    generateFile('src/App.js.tpl', 'src/App.js');
-    generateFile('src/store.js.tpl', 'src/store.js');
 
     // Copy the generated files to the destination path
     tf.copy('.', od.path());

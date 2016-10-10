@@ -7,7 +7,7 @@ import createSagaMiddleware, { END } from 'redux-saga';
 import persistState from 'redux-localstorage';
 import { notificationMiddleware, loadingBarMiddleware } from 'steiner';
 
-import reducer from './reducers';
+import reducer from '../reducers';
 
 const devtools = window.devToolsExtension || (() => noop => noop);
 
@@ -32,19 +32,21 @@ const enhancer = compose(
         loggerMiddleware
     ),
     persistState('user', { 
-        key: 'steiner'
+        key: process.env.REACT_APP_NAME
     }),
     devtools(),
     batchedSubscribe(batchedUpdates)
 );
 
-const store = createStore(
-    reducer,
-    {},
-    enhancer
-);
+export default function configureStore(preloadedState = {}) {
+    const store = createStore(
+        reducer,
+        preloadedState,
+        enhancer
+    );
 
-store.runSaga = sagaMiddleware.run;
-store.close = () => store.dispatch(END);
+    store.runSaga = sagaMiddleware.run;
+    store.close = () => store.dispatch(END);
 
-export default store;
+    return store;
+}

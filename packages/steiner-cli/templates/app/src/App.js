@@ -65,7 +65,7 @@ class App extends Component {
                                         {! this.state.isSidebarOpen &&
                                             <SidebarToggle position="navbar" onClick={this.toggleSidebar} />
                                         }
-                                        <Link className="navbar-brand" to="/">${appName}</Link>
+                                        <Link className="navbar-brand" to="/">{process.env.REACT_APP_NAME}</Link>
                                     </div>
                                     <div className="collapse navbar-collapse">
                                         {/*<ul className="nav navbar-nav">

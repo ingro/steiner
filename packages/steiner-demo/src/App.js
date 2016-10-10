@@ -14,7 +14,10 @@ import LoginForm from './components/LoginForm';
 import Breadcrumb from './components/Breadcrumb';
 import SidebarToggle from './components/SidebarToggle';
 import SidebarMenu from './components/SidebarMenu';
+import Omnibox from './components/Omnibox';
 import routes from './routes';
+
+import KeyBinderHoc from './components/KeyBinder';
 
 const sidebarMenuLinks = [
     {
@@ -32,13 +35,27 @@ class App extends Component {
         super(props);
 
         this.state = {
+            isOmniboxOpen: false,
             isSidebarOpen: false
         };
+    }
+
+    componentWillMount() {
+        this.props.bindShortcut(['ctrl+p', 'command+p', 'meta+p'], (e) => { 
+            e.preventDefault(); 
+            this.toggleOmnibox();
+        }, true);
     }
 
     toggleSidebar = () => {
         this.setState({
             isSidebarOpen: ! this.state.isSidebarOpen
+        });
+    }
+
+    toggleOmnibox = () => {
+        this.setState({
+            isOmniboxOpen: ! this.state.isOmniboxOpen
         });
     }
 
@@ -56,6 +73,7 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div>
+                    {this.state.isOmniboxOpen && <Omnibox onChange={this.toggleOmnibox}/>}
                     <LoadingBar style={{ zIndex: 3 }} updateTime={250} maxProgress={95} />
                     <Sidebar 
                         sidebar={<SidebarMenu links={sidebarMenuLinks} onToggle={this.toggleSidebar}/>} 
@@ -109,4 +127,6 @@ class App extends Component {
     }
 }
 
-export default connect(state => ({ user: getUser(state) }))(App);
+const KeyedApp = KeyBinderHoc(App);
+
+export default connect(state => ({ user: getUser(state) }))(KeyedApp);

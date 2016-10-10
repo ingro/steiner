@@ -5,62 +5,23 @@ const os      = require('os');
 
 const linkType = os.platform() === 'win32' ? 'junction' : 'dir';
 
-rimraf(path.join(process.cwd(), './packages/steiner-demo/node_modules/react'), err => {
-    if (err) {
-        return;
-    }
+function doSymLink(packageName, folderName) {
+    rimraf(path.join(process.cwd(), `./packages/${folderName}/node_modules/${packageName}`), err => {
+        if (err) {
+            return;
+        }
 
-    fs.symlinkSync(path.join(process.cwd(), './node_modules/react'), path.join(process.cwd(), './packages/steiner-demo/node_modules/react'), linkType);
+        fs.symlinkSync(path.join(process.cwd(), `./node_modules/${packageName}`), path.join(process.cwd(), `./packages/${folderName}/node_modules/${packageName}`), linkType);
 
-    console.log('Symlink created!');
-});
+        console.log(`Symlink created for ${packageName} in ${folderName}!`);
+    });
+}
 
-rimraf(path.join(process.cwd(), './packages/steiner/node_modules/react'), err => {
-    if (err) {
-        return;
-    }
+function createSymLinkFor(packageName) {
+    doSymLink(packageName, 'steiner-demo');
+    doSymLink(packageName, 'steiner');
+}
 
-    fs.symlinkSync(path.join(process.cwd(), './node_modules/react'), path.join(process.cwd(), './packages/steiner/node_modules/react'), linkType);
-
-    console.log('Symlink created!');
-});
-
-rimraf(path.join(process.cwd(), './packages/steiner-demo/node_modules/react-router'), err => {
-    if (err) {
-        return;
-    }
-
-    fs.symlinkSync(path.join(process.cwd(), './node_modules/react-router'), path.join(process.cwd(), './packages/steiner-demo/node_modules/react-router'), linkType);
-
-    console.log('Symlink created!');
-});
-
-rimraf(path.join(process.cwd(), './packages/steiner/node_modules/react-router'), err => {
-    if (err) {
-        return;
-    }
-
-    fs.symlinkSync(path.join(process.cwd(), './node_modules/react-router'), path.join(process.cwd(), './packages/steiner/node_modules/react-router'), linkType);
-
-    console.log('Symlink created!');
-});
-
-rimraf(path.join(process.cwd(), './packages/steiner-demo/node_modules/redux-form'), err => {
-    if (err) {
-        return;
-    }
-
-    fs.symlinkSync(path.join(process.cwd(), './node_modules/redux-form'), path.join(process.cwd(), './packages/steiner-demo/node_modules/redux-form'), linkType);
-
-    console.log('Symlink created!');
-});
-
-rimraf(path.join(process.cwd(), './packages/steiner/node_modules/redux-form'), err => {
-    if (err) {
-        return;
-    }
-
-    fs.symlinkSync(path.join(process.cwd(), './node_modules/redux-form'), path.join(process.cwd(), './packages/steiner/node_modules/redux-form'), linkType);
-
-    console.log('Symlink created!');
-});
+createSymLinkFor('react');
+createSymLinkFor('react-router');
+createSymLinkFor('redux-form');

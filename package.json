@@ -17,5 +17,8 @@
     "redux": "^3.6.0",
     "redux-form": "^6.0.5",
     "rimraf": "^2.5.4"
+  },
+  "dependencies": {
+    "react-mousetrap": "^0.1.1"
   }
 }

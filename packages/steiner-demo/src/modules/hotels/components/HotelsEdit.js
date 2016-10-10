@@ -17,6 +17,7 @@ import client from 'apis/client';
 import { createReactSelectLoader } from 'helpers/helpers';
 import { actionTypes } from '../actions/hotels';
 import { linkTo } from '../routes/hotels';
+import KeyBinderHoc from 'components/KeyBinder';
 
 const validate = combineValidators({
     name: composeValidators(
@@ -47,6 +48,11 @@ class HotelsEdit extends Component {
         };
 
         this.props.initialize(values);
+
+        this.props.bindShortcut(['ctrl+s', 'command+s', 'meta+s'], (e) => { 
+            e.preventDefault(); 
+            this.props.handleSubmit(this.submit)();
+        }, true);
     }
 
     componentDidMount() {
@@ -126,7 +132,9 @@ HotelsEdit.contextTypes = {
     router: PropTypes.object
 };
 
+const BindHotelsEdit = KeyBinderHoc(HotelsEdit);
+
 export default reduxForm({
     form: 'hotels',
     validate
-})(HotelsEdit);
+})(BindHotelsEdit);

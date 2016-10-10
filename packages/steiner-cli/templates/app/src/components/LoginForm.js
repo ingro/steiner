@@ -16,6 +16,10 @@ class LoginForm extends Component {
         }
     }
 
+    componentDidMount() {
+        this.form.elements[0].focus();
+    }
+
     componentWillReceiveProps(props) {
         if (props.submitSucceeded) {
             setTimeout(() => {
@@ -33,7 +37,7 @@ class LoginForm extends Component {
                     <div className="panel panel-info">
                         <div className="panel-heading">Login</div>
                         <div className="panel-body">
-                            <form onSubmit={handleSubmit(this.submit)}>
+                            <form ref={form => this.form = form} onSubmit={handleSubmit(this.submit)}>
                                 <div className="form-group">
                                     <Field
                                         className="form-control"

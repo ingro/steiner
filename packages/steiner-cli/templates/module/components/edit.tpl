@@ -19,7 +19,7 @@ class ${ucName}Edit extends Component {
     }
 
     componentDidMount() {
-        this.form.elements[0].focus()
+        this.form.elements[0].focus();
     }
 
     componentWillReceiveProps(props) {

@@ -27,6 +27,14 @@ export default class HotelsListTable extends Component {
                 flexGrow: 1
             },
             {
+                label: 'Position',
+                dataKey: 'position',
+                flexGrow: 1,
+                cellRenderer: ({ cellData }) => <div>
+                    {cellData.name}
+                </div>
+            },
+            {
                 width: 100,
                 label: 'Active',
                 dataKey: 'active',

@@ -21,7 +21,7 @@ export default class ${ucName}ListFilter extends Component {
                         onChange={this.props.updateFilter}
                     />
                 </div>
-                <div className="col-xs-4 text-right">
+                <div className="col-xs-8 text-right">
                     <Link className="btn btn-success" to={linkTo('create')}>Create</Link>
                 </div>
             </div>

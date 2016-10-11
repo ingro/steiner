@@ -8,3 +8,4 @@
 - Keyboard shortcuts -> example in demo (HotelsEdit and HotelsListFilter), how to include them?
 - Helper with shortcuts
 - Bug: transitioning from /posts/5 to /posts/create doesn't reset the form
+- Write a simple getting started guide after bootstrap a new app with `steiner-cli`

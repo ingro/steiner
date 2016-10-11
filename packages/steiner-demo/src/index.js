@@ -6,7 +6,7 @@ import App from './App';
 import configureStore from './store/configureStore';
 import rootSaga from './sagas';
 
-import 'vivi/dist/style.css';
+import 'vivi/lib/style.css';
 import './index.css';
 
 const store = configureStore();

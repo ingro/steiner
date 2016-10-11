@@ -1,3 +1,8 @@
+## 0.6.0 (October 11, 2016)
+
+- Update to `vivi@0.2.0`
+- Improved app's skeleton
+
 ## 0.5.1 (October 5, 2016)
 
 - Minor bugfixes

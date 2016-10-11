@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { FormControls, formHelper } from 'steiner';
-import InputField from 'vivi/dist/Form/InputField';
+import InputField from 'vivi/lib/Form/InputField';
 
 import { actionTypes } from '../actions/offers';
 import { linkTo } from '../routes/offers';

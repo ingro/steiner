@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { FormControls, formHelper } from 'steiner';
 import { NavigationPrompt } from 'react-router';
-import InputField from 'vivi/dist/Form/InputField';
-import CheckboxField from 'vivi/dist/Form/CheckboxField';
-import SelectAsyncField from 'vivi/dist/Form/SelectAsyncField';
+import InputField from 'vivi/lib/Form/InputField';
+import CheckboxField from 'vivi/lib/Form/CheckboxField';
+import SelectAsyncField from 'vivi/lib/Form/SelectAsyncField';
 
 import {
     composeValidators,

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { InputListFilter } from 'steiner';
-import Tooltip from 'vivi/dist/Tooltip';
+import Tooltip from 'vivi/lib/Tooltip';
 
 import { linkTo } from '../routes/hotels';
 import KeyBinderHoc from 'components/KeyBinder';

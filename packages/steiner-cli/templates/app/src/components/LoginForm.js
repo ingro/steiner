@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { createFormAction } from 'steiner/lib/helpers/reduxFormSaga';
 import { auth } from 'steiner';
-import InputField from 'vivi/dist/Form/InputField';
-import LoadingButton from 'vivi/dist/LoadingButton';
+import InputField from 'vivi/lib/Form/InputField';
+import LoadingButton from 'vivi/lib/LoadingButton';
 
 class LoginForm extends Component {
     constructor(props) {

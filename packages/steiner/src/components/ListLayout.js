@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Paginator from 'vivi/dist/Paginator';
+import Paginator from 'vivi/lib/Paginator';
 import { Flex, Box } from 'reflexbox';
 
 export default class ListLayout extends Component {

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import LoadingButton from 'vivi/dist/LoadingButton';
+import LoadingButton from 'vivi/lib/LoadingButton';
 import { Link } from 'react-router';
 
 export default class FormControls extends Component {

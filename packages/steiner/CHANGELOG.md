@@ -1,3 +1,7 @@
+## 0.6.0 (October 11, 2016)
+
+- Update to `vivi@0.2.0`
+
 ## 0.5.0 (October 6, 2016)
 
 - Changed internal structure of list reducer

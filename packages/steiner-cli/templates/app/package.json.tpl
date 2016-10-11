@@ -36,7 +36,7 @@
     "seamless-immutable": "^6.1.3",
     "steiner": "^0.5.0",
     "steiner-cli": "^0.5.0",
-    "vivi": "^0.1.11"
+    "vivi": "^0.2.0"
   },
   "scripts": {
     "start:plain": "react-scripts start",

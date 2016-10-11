@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Table from 'vivi/dist/Table';
+import Table from 'vivi/lib/Table';
 
 import NoRows from './NoRows';
 

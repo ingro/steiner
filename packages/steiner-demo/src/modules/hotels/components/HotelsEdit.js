@@ -84,7 +84,7 @@ class HotelsEdit extends Component {
         const { handleSubmit, submitting, valid, error, dirty, submitSucceeded } = this.props;
 
         return(
-            <div className="container">
+            <div className="row">
                 <Helmet title={`Hotels > ${this.getTitle()}`} />
                 <NavigationPrompt when={dirty && !submitSucceeded} message="Are you sure? Any unsaved changes will be lost." />
                 <div className="col-xs-6 col-xs-offset-3 text-center">

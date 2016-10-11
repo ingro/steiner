@@ -42,7 +42,7 @@ class ${ucName}Edit extends Component {
         const { handleSubmit, submitting, valid, item, error, dirty, submitSucceeded } = this.props;
 
         return(
-            <div className="container">
+            <div className="row">
                 <NavigationPrompt when={dirty && !submitSucceeded} message="Are you sure? Any unsaved changes will be lost." />
                 <div className="col-xs-6 col-xs-offset-3 text-center">
                     <h3>{item.name ? item.name : 'Create new ${ucName}'}</h3>

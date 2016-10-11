@@ -20,6 +20,7 @@ import Omnibox from './components/Omnibox';
 import routes from './routes';
 
 import KeyBinderHoc from './components/KeyBinder';
+import Dropdown from './components/Dropdown';
 
 const sidebarMenuLinks = [
     {
@@ -138,6 +139,14 @@ class App extends Component {
                                                 ? <li><a onClick={this.requestLogout}>Logout</a></li>
                                                 : <HeaderLink to="/login" name="Login" />
                                             }
+                                            <Dropdown text="User" type="navbar">
+                                                <li>
+                                                    <Link to="/hotels">Hotels</Link>
+                                                </li>
+                                                <li>
+                                                    <Link to="/offers">Offers</Link>
+                                                </li>
+                                            </Dropdown>
                                         </ul>
                                     </div>
                                 </div>

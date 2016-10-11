@@ -4,6 +4,7 @@ import { BrowserRouter, Match, Link } from 'react-router';
 import NotificationsSystem from 'reapop';
 import LoadingBar from 'react-redux-loading-bar';
 import Sidebar from 'react-sidebar';
+import Helmet from 'react-helmet';
 import theme from 'reapop-theme-wybo';
 import { MatchWhenAuthorized, MatchWhenGuest, HeaderLink, auth, createConfirm } from 'steiner';
 import { getUser } from 'steiner/lib/auth/reducer';
@@ -85,6 +86,10 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div>
+                    <Helmet 
+                        title="App"
+                        titleTemplate={`${process.env.REACT_APP_NAME} | %s`}
+                    />
                     <ReactCSSTransitionGroup
                         transitionName="slide"
                         transitionEnterTimeout={300} 

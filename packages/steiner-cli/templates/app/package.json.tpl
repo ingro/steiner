@@ -4,7 +4,8 @@
   "devDependencies": {
     "cross-env": "^3.1.1",
     "react-scripts": "0.6.1",
-    "react-test-renderer": "^15.3.2"
+    "react-test-renderer": "^15.3.2",
+    "steiner-cli": "^0.6.0"
   },
   "dependencies": {
     "axios": "^0.15.0",
@@ -15,6 +16,7 @@
     "react-addons-css-transition-group": "^15.3.2",
     "react-addons-shallow-compare": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-helmet": "^3.1.0",
     "react-highlighter": "^0.3.3",
     "react-redux": "^5.0.0-beta.3",
     "react-redux-loading-bar": "^2.4.0",
@@ -34,8 +36,7 @@
     "reflexbox": "^2.2.2",
     "revalidate": "^0.4.1",
     "seamless-immutable": "^6.1.3",
-    "steiner": "^0.5.0",
-    "steiner-cli": "^0.5.0",
+    "steiner": "^0.6.0",
     "vivi": "^0.2.0"
   },
   "scripts": {

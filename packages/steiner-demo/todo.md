@@ -6,7 +6,8 @@
 - Omnibox -> missing styles
 - Add shortcut to toggle the sidebar
 - Keyboard shortcuts -> example in demo (HotelsEdit and HotelsListFilter), how to include them?
-- Helper with shortcuts
-- Bug: transitioning from /posts/5 to /posts/create doesn't reset the form
+- Helper modal with shortcuts
 - Write a simple getting started guide after bootstrap a new app with `steiner-cli`
-- Use react-helmet to handle page metadata
+- Support multiple api clients?
+- Reset forms
+- Componenti opzionali con react-helmet?

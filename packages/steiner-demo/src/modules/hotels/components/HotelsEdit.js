@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { FormControls, formHelper } from 'steiner';
 import { NavigationPrompt } from 'react-router';
+import Helmet from 'react-helmet';
 import InputField from 'vivi/lib/Form/InputField';
 import CheckboxField from 'vivi/lib/Form/CheckboxField';
 import SelectAsyncField from 'vivi/lib/Form/SelectAsyncField';
@@ -41,13 +42,7 @@ class HotelsEdit extends Component {
     componentWillMount() {
         const { item } = this.props;
 
-        const values = {
-            ...item,
-            positionId: item.position ? { id: item.positionId, name: item.position.name } : {},
-            tags: [{id: 1, name: 'estate'}, {id: 4, name: 'famiglia'}]
-        };
-
-        this.props.initialize(values);
+        this.props.initialize(this.createInitialFormValues(item));
 
         this.props.bindShortcut(['ctrl+s', 'command+s'], (e) => { 
             e.preventDefault(); 
@@ -59,22 +54,41 @@ class HotelsEdit extends Component {
         this.form.elements[0].focus();
     }
 
-    componentWillReceiveProps(props) {
-        if (props.submitSucceeded) {
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.item && nextProps.item.id !== this.props.item.id)  {
+            this.props.initialize(this.createInitialFormValues(nextProps.item));
+        }
+
+        if (nextProps.submitSucceeded) {
             setTimeout(() => {
                 this.context.router.transitionTo(linkTo('list'));
             }, 0);
         }
     }
 
+    createInitialFormValues(item) {
+        return {
+            ...item,
+            positionId: item.position ? { id: item.positionId, name: item.position.name } : {},
+            tags: [{id: 1, name: 'estate'}, {id: 4, name: 'famiglia'}]
+        };
+    }
+
+    getTitle() {
+        const { item } = this.props;
+
+        return item.name ? item.name : 'Create new Hotels';
+    }
+
     render() {
-        const { handleSubmit, submitting, valid, item, error, dirty, submitSucceeded } = this.props;
+        const { handleSubmit, submitting, valid, error, dirty, submitSucceeded } = this.props;
 
         return(
             <div className="container">
+                <Helmet title={`Hotels > ${this.getTitle()}`} />
                 <NavigationPrompt when={dirty && !submitSucceeded} message="Are you sure? Any unsaved changes will be lost." />
                 <div className="col-xs-6 col-xs-offset-3 text-center">
-                    <h3>{item.name ? item.name : 'Create new Hotels'}</h3>
+                    <h3>{this.getTitle()}</h3>
                     {error && <div className="alert alert-danger">{error}</div>}
                     <form ref={form => this.form = form} onSubmit={handleSubmit(this.submit)} className="form-horizontal">
                         <Field

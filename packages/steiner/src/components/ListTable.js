@@ -20,7 +20,7 @@ export default class ListTable extends Component {
     }
 
     render() {
-        const { filters, items } = this.props;
+        const { filters, items, selectable } = this.props;
 
         return (
             <Table
@@ -33,6 +33,7 @@ export default class ListTable extends Component {
                 sortBy={filters.order.key}
                 sortDirection={filters.order.direction}
                 onSort={this.handleSort}
+                selectable={selectable}
             />
         );
     }
@@ -45,5 +46,10 @@ ListTable.propTypes = {
     filters: PropTypes.object,
     isFetching: PropTypes.bool,
     items: PropTypes.array,
-    onChangeOrder: PropTypes.func
+    onChangeOrder: PropTypes.func,
+    selectable: PropTypes.bool
+};
+
+ListTable.defaultProps = {
+    selectable: true
 };

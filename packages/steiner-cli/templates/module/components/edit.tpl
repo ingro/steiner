@@ -15,19 +15,27 @@ class ${ucName}Edit extends Component {
     }
 
     componentWillMount() {
-        this.props.initialize(this.props.item);
+        this.props.initialize(this.createInitialFormValues(this.props.item));
     }
 
     componentDidMount() {
         this.form.elements[0].focus();
     }
 
-    componentWillReceiveProps(props) {
-        if (props.submitSucceeded) {
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.item && nextProps.item.id !== this.props.item.id)  {
+            this.props.initialize(this.createInitialFormValues(nextProps.item));
+        }
+
+        if (nextProps.submitSucceeded) {
             setTimeout(() => {
                 this.context.router.transitionTo(linkTo('list'));
             }, 0);
         }
+    }
+
+    createInitialFormValues(item) {
+        return item;
     }
 
     render() {

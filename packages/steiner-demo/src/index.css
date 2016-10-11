@@ -9,3 +9,21 @@
         display: block;
     }
 }
+
+.slide-enter {
+    top: -105px;
+}
+
+.slide-enter.slide-enter-active {
+    top: -5px;
+    transition: top 300ms ease-in;
+}
+
+.slide-leave {
+    top: -5px;
+}
+
+.slide-leave.slide-leave-active {
+    top: -105px;
+    transition: top 300ms ease-in;
+}

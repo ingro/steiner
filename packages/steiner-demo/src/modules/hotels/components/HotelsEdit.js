@@ -49,7 +49,7 @@ class HotelsEdit extends Component {
 
         this.props.initialize(values);
 
-        this.props.bindShortcut(['ctrl+s', 'command+s', 'meta+s'], (e) => { 
+        this.props.bindShortcut(['ctrl+s', 'command+s'], (e) => { 
             e.preventDefault(); 
             this.props.handleSubmit(this.submit)();
         }, true);

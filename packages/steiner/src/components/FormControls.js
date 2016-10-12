@@ -4,14 +4,20 @@ import { Link } from 'react-router';
 
 export default class FormControls extends Component {
     render() {
-        const { submitting, cancelLink, valid } = this.props;
+        const { submitting, dirty, valid, cancelLink, onReset } = this.props;
 
         return(
             <div>
-                <div className="col-xs-6">
+                <div className="col-xs-3">
                     {submitting
-                        ? <button className="btn btn-primary btn-block" disabled>Cancel</button>
+                        ? <a className="btn btn-primary btn-block" disabled>Cancel</a>
                         : <Link to={cancelLink} className="btn btn-primary btn-block">Cancel</Link>
+                    }
+                </div>
+                <div className="col-xs-3">
+                    {(submitting || ! dirty)
+                        ? <a className="btn btn-warning btn-block" disabled>Reset</a>
+                        : <a onClick={onReset} className="btn btn-warning btn-block">Reset</a>
                     }
                 </div>
                 <div className="col-xs-6">
@@ -29,7 +35,9 @@ export default class FormControls extends Component {
 }
 
 FormControls.propTypes = {
-    submitting: PropTypes.bool,
     cancelLink: PropTypes.string,
+    dirty: PropTypes.bool,
+    onReset: PropTypes.func,
+    submitting: PropTypes.bool,
     valid: PropTypes.bool
 };

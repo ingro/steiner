@@ -39,7 +39,7 @@ class ${ucName}Edit extends Component {
     }
 
     render() {
-        const { handleSubmit, submitting, valid, item, error, dirty, submitSucceeded } = this.props;
+        const { handleSubmit, submitting, valid, item, error, dirty, submitSucceeded, reset } = this.props;
 
         return(
             <div className="row">
@@ -59,7 +59,9 @@ class ${ucName}Edit extends Component {
                             <FormControls
                                 valid={valid}
                                 submitting={submitting}
+                                dirty={dirty}
                                 cancelLink={linkTo('list')}
+                                onReset={reset}
                             />
                         </div>
                     </form>
@@ -68,10 +70,6 @@ class ${ucName}Edit extends Component {
         );
     }
 }
-
-${ucName}Edit.PropTypes = {
-    handleSubmit: PropTypes.func
-};
 
 ${ucName}Edit.contextTypes = {
     router: PropTypes.object

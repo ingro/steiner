@@ -9,7 +9,6 @@
 - Helper modal with shortcuts
 - Write a simple getting started guide after bootstrap a new app with `steiner-cli`
 - Support multiple api clients?
-- Reset forms
 - Optional components to support react-helmet?
 - Example of use row selection in tables
 - Use tooltip on delete buttons

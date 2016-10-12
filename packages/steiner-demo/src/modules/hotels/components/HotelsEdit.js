@@ -81,7 +81,7 @@ class HotelsEdit extends Component {
     }
 
     render() {
-        const { handleSubmit, submitting, valid, error, dirty, submitSucceeded } = this.props;
+        const { handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset } = this.props;
 
         return(
             <div className="row">
@@ -128,7 +128,9 @@ class HotelsEdit extends Component {
                             <FormControls
                                 valid={valid}
                                 submitting={submitting}
+                                dirty={dirty}
                                 cancelLink={linkTo('list')}
+                                onReset={reset}
                             />
                         </div>
                     </form>
@@ -137,10 +139,6 @@ class HotelsEdit extends Component {
         );
     }
 }
-
-HotelsEdit.PropTypes = {
-    handleSubmit: PropTypes.func
-};
 
 HotelsEdit.contextTypes = {
     router: PropTypes.object

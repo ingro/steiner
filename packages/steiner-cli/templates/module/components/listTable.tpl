@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { ListTable, createConfirm } from 'steiner';
 
-import { linkTo } from '../routes/${name}';
+import { linkTo } from '../routes/{{name}}';
 
-export default class ${ucName}ListTable extends Component {
+export default class {{ucName}}ListTable extends Component {
     handleDelete = (id) => {
         this.props.dispatch(createConfirm({
             title: 'Confirmation needed',
@@ -51,7 +51,7 @@ export default class ${ucName}ListTable extends Component {
     }
 }
 
-${ucName}ListTable.propTypes = {
+{{ucName}}ListTable.propTypes = {
     changeOrder: PropTypes.func,
     delete: PropTypes.func,
     errorMessage: PropTypes.string,

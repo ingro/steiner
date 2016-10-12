@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { InputListFilter } from 'steiner';
 
-import { linkTo } from '../routes/${name}';
+import { linkTo } from '../routes/{{name}}';
 
-export default class ${ucName}ListFilter extends Component {
+export default class {{ucName}}ListFilter extends Component {
     componentDidMount() {
         this.filter.input.focus();
     }
@@ -29,7 +29,7 @@ export default class ${ucName}ListFilter extends Component {
     }
 }
 
-${ucName}ListFilter.propTypes = {
+{{ucName}}ListFilter.propTypes = {
     filters: PropTypes.object,
     updateFilter: PropTypes.func
 };

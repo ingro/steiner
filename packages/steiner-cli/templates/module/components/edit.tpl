@@ -4,10 +4,10 @@ import { NavigationPrompt } from 'react-router';
 import { FormControls, formHelper } from 'steiner';
 import InputField from 'vivi/lib/Form/InputField';
 
-import { actionTypes } from '../actions/${name}';
-import { linkTo } from '../routes/${name}';
+import { actionTypes } from '../actions/{{name}}';
+import { linkTo } from '../routes/{{name}}';
 
-class ${ucName}Edit extends Component {
+class {{ucName}}Edit extends Component {
     constructor(props) {
         super(props);
 
@@ -45,7 +45,7 @@ class ${ucName}Edit extends Component {
             <div className="row">
                 <NavigationPrompt when={dirty && !submitSucceeded} message="Are you sure? Any unsaved changes will be lost." />
                 <div className="col-xs-6 col-xs-offset-3 text-center">
-                    <h3>{item.name ? item.name : 'Create new ${ucName}'}</h3>
+                    <h3>{item.name ? item.name : 'Create new {{ucName}}'}</h3>
                     {error && <div className="alert alert-danger">{error}</div>}
                     <form ref={form => this.form = form} onSubmit={handleSubmit(this.submit)} className="form-horizontal">
                         <Field
@@ -71,10 +71,10 @@ class ${ucName}Edit extends Component {
     }
 }
 
-${ucName}Edit.contextTypes = {
+{{ucName}}Edit.contextTypes = {
     router: PropTypes.object
 };
 
 export default reduxForm({
-    form: '${name}'
-})(${ucName}Edit);
+    form: '{{name}}'
+})({{ucName}}Edit);

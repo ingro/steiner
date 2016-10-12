@@ -7,6 +7,7 @@ const tmp      = require('tmp');
 const path     = require('path');
 const _        = require('lodash');
 const jetpack  = require('fs-jetpack');
+const nunjucks = require('nunjucks');
 const template = require('es6-template-strings');
 
 function generateModule(moduleName, options) {
@@ -48,7 +49,8 @@ function generateModule(moduleName, options) {
 
     // Generate a file from a template
     function generateFile(tplPath, destPath) {
-        const file = template(tp.read(tplPath), vars);
+        const file = nunjucks.renderString(tp.read(tplPath), vars);
+        // const file = template(tp.read(tplPath), vars);
         tf.write(destPath, file);
         console.log(`File ${chalk.blue(destPath)} created`);
     }
@@ -145,6 +147,7 @@ program
     .description('generate a steiners\'s module')
     .option('-o, --output-path <path>', 'Path to output dir')
     .option('-n, --no-components', 'Don\'t generate components and containers')
+    .option('-r, --rich-components', 'Use react-helmet and keybindings in components')
     .action(generateModule);
 
 program 

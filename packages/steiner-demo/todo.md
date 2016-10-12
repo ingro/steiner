@@ -11,9 +11,7 @@
 - Support multiple api clients?
 - Reset forms
 - Optional components to support react-helmet?
-- Add component to manage user's settings
 - Example of use row selection in tables
 - Use tooltip on delete buttons
 - Use user's settings value for number of rows displayed in tables?
 - Generate dynamically sidebar links and omnibox options
-- Move Dropdown to Vivi

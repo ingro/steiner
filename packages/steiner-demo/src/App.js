@@ -9,18 +9,19 @@ import theme from 'reapop-theme-wybo';
 import { MatchWhenAuthorized, MatchWhenGuest, HeaderLink, auth, createConfirm } from 'steiner';
 import { getUser } from 'steiner/lib/auth/reducer';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Dropdown from 'vivi/lib/Dropdown';
 
-import './App.css';
 import Welcome from './components/Welcome';
 import LoginForm from './components/LoginForm';
 import Breadcrumb from './components/Breadcrumb';
 import SidebarToggle from './components/SidebarToggle';
 import SidebarMenu from './components/SidebarMenu';
 import Omnibox from './components/Omnibox';
+import Settings from './components/Settings';
+import Profile from './components/Profile';
 import routes from './routes';
 
 import KeyBinderHoc from './components/KeyBinder';
-import Dropdown from './components/Dropdown';
 
 const sidebarMenuLinks = [
     {
@@ -136,17 +137,15 @@ class App extends Component {
                                         </ul>*/}
                                         <ul className="nav navbar-nav navbar-right">
                                             {user 
-                                                ? <li><a onClick={this.requestLogout}>Logout</a></li>
+                                                ? <Dropdown text={<i className="fa fa-cog" />} type="navbar">
+                                                    <li className="dropdown-header">{user.email}</li>
+                                                    <li><Link to="/profile">Profile</Link></li>
+                                                    <li><Link to="/settings">Settings</Link></li>
+                                                    <li role="separator" className="divider"></li>
+                                                    <li><a onClick={this.requestLogout}>Logout</a></li>
+                                                </Dropdown>
                                                 : <HeaderLink to="/login" name="Login" />
                                             }
-                                            <Dropdown text="User" type="navbar">
-                                                <li>
-                                                    <Link to="/hotels">Hotels</Link>
-                                                </li>
-                                                <li>
-                                                    <Link to="/offers">Offers</Link>
-                                                </li>
-                                            </Dropdown>
                                         </ul>
                                     </div>
                                 </div>
@@ -154,6 +153,8 @@ class App extends Component {
                             <Breadcrumb routes={routes}/>
                             <div className="container-fluid">
                                 <Match pattern="/" exactly={true} render={() => <Welcome user={user}/>} />
+                                <Match pattern="/settings" component={Settings}/>
+                                <Match pattern="/profile" component={Profile}/>
                                 {routes.map((route, i) => (
                                     <MatchWhenAuthorized key={i} user={user} {...route}/>
                                 ))}

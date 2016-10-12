@@ -7,6 +7,7 @@ export const DEFAULT_STATE = Immutable({
         isFetching: false,
         itemsById: {},
         itemsId: [],
+        selected: [],
         filters: {
             q: '',
             page: 1,

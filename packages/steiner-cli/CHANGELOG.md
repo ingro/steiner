@@ -1,3 +1,7 @@
+## 0.6.1 (October 12, 2016)
+
+- Added `-n` flag to generate command
+
 ## 0.6.0 (October 11, 2016)
 
 - Update to `vivi@0.2.0`

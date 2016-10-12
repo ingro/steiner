@@ -11,6 +11,8 @@ const template = require('es6-template-strings');
 
 function generateModule(moduleName, options) {
     // TODO: Throw if options.outputPath is not defined
+    // console.log(options);
+    // return;
 
     // Gather templates variables
     const ucModuleName = _.capitalize(moduleName);
@@ -57,14 +59,16 @@ function generateModule(moduleName, options) {
     // Apis
     generateFile('apis.tpl', `apis/${moduleName}.js`);
 
-    // Components
-    generateFile('components/edit.tpl', `components/${ucModuleName}Edit.js`);
-    generateFile('components/listFilter.tpl', `components/${ucModuleName}ListFilter.js`);
-    generateFile('components/listTable.tpl', `components/${ucModuleName}ListTable.js`);
+    if (options.components) {
+        // Components
+        generateFile('components/edit.tpl', `components/${ucModuleName}Edit.js`);
+        generateFile('components/listFilter.tpl', `components/${ucModuleName}ListFilter.js`);
+        generateFile('components/listTable.tpl', `components/${ucModuleName}ListTable.js`);
 
-    // Containers
-    generateFile('containers/listLayout.tpl', `containers/${ucModuleName}ListLayout.js`);
-    generateFile('containers/loader.tpl', `containers/${ucModuleName}Loader.js`);
+        // Containers
+        generateFile('containers/listLayout.tpl', `containers/${ucModuleName}ListLayout.js`);
+        generateFile('containers/loader.tpl', `containers/${ucModuleName}Loader.js`);
+    }
 
     // Reducers
     generateFile('reducers.tpl', `reducers/${moduleName}.js`);
@@ -81,7 +85,7 @@ function generateModule(moduleName, options) {
     console.log(chalk.green(`Module ${chalk.bold.yellow(moduleName)} generated successfully!`));
 }
 
-function generateApp(appName) {
+function bootstrapApp(appName) {
     // Output-scoped fs
     const od = jetpack.cwd(path.resolve(process.cwd(), appName));
     
@@ -134,17 +138,18 @@ function generateApp(appName) {
 }
 
 program
-    .version('0.5.2');
+    .version('0.6.0');
 
 program
     .command('generate <module>')
     .description('generate a steiners\'s module')
     .option('-o, --output-path <path>', 'Path to output dir')
+    .option('-n, --no-components', 'Don\'t generate components and containers')
     .action(generateModule);
 
 program 
     .command('bootstrap <app>')
     .description('bootstrap a steiners\'s app')
-    .action(generateApp);
+    .action(bootstrapApp);
 
 program.parse(process.argv);

@@ -20,6 +20,10 @@ Quickly generate a module in the desider folder.
 steiner generate moduleName -o path/to/modules/folder
 ```
 
+#### Options
+- `-o, --output-path <path>`: output path of the module's files
+- `-n, --no-components`: avoid the creation of component and container files
+
 ### BOOTSTRAP
 
 Generate an app skeleton base on [create-react-app](https://github.com/facebookincubator/create-react-app)

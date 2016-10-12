@@ -3,8 +3,20 @@ import { Link } from 'react-router';
 import { InputListFilter } from 'steiner';
 
 import { linkTo } from '../routes/{{name}}';
+{% if richComponents %}import KeyBinderHoc from 'components/KeyBinder';{% endif %}
 
-export default class {{ucName}}ListFilter extends Component {
+{%- set componentName = name | title + 'ListFilter' %}
+
+export default class {{componentName}} extends Component {
+    {% if richComponents -%}
+    componentWillMount() {
+        this.props.bindShortcut(['ctrl+d', 'command+d'], (e) => { 
+            e.preventDefault(); 
+            this.context.router.transitionTo(linkTo('create'));
+        }, true);
+    }
+    {%- endif %}
+
     componentDidMount() {
         this.filter.input.focus();
     }
@@ -29,7 +41,13 @@ export default class {{ucName}}ListFilter extends Component {
     }
 }
 
-{{ucName}}ListFilter.propTypes = {
+{{componentName}}.propTypes = {
     filters: PropTypes.object,
     updateFilter: PropTypes.func
 };
+
+{{componentName}}.contextTypes = {
+    router: PropTypes.object
+};
+
+{% if richComponents %}export default KeyBinderHoc({{componentName}});{% endif %}

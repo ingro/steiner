@@ -3,11 +3,15 @@ import { reduxForm, Field } from 'redux-form';
 import { NavigationPrompt } from 'react-router';
 import { FormControls, formHelper } from 'steiner';
 import InputField from 'vivi/lib/Form/InputField';
+{% if richComponents %}import Helmet from 'react-helmet';{% endif %}
 
 import { actionTypes } from '../actions/{{name}}';
 import { linkTo } from '../routes/{{name}}';
+{% if richComponents %}import KeyBinderHoc from 'components/KeyBinder';{% endif %}
 
-class {{ucName}}Edit extends Component {
+{%- set componentName = name | title + 'Edit' %}
+
+class {{componentName}} extends Component {
     constructor(props) {
         super(props);
 
@@ -16,6 +20,13 @@ class {{ucName}}Edit extends Component {
 
     componentWillMount() {
         this.props.initialize(this.createInitialFormValues(this.props.item));
+
+        {% if richComponents -%}
+        this.props.bindShortcut(['ctrl+s', 'command+s'], (e) => { 
+            e.preventDefault(); 
+            this.props.handleSubmit(this.submit)();
+        }, true);
+        {%- endif %}
     }
 
     componentDidMount() {
@@ -38,14 +49,21 @@ class {{ucName}}Edit extends Component {
         return item;
     }
 
+    getTitle() {
+        const { item } = this.props;
+
+        return item.name ? item.name : 'Create new {{name | title}}';
+    }
+
     render() {
         const { handleSubmit, submitting, valid, item, error, dirty, submitSucceeded, reset } = this.props;
 
         return(
             <div className="row">
+                {% if richComponents %}<Helmet title={`{{name | title}} > ${this.getTitle()}`} />{% endif %}
                 <NavigationPrompt when={dirty && !submitSucceeded} message="Are you sure? Any unsaved changes will be lost." />
                 <div className="col-xs-6 col-xs-offset-3 text-center">
-                    <h3>{item.name ? item.name : 'Create new {{ucName}}'}</h3>
+                    <h3>{this.getTitle()}</h3>
                     {error && <div className="alert alert-danger">{error}</div>}
                     <form ref={form => this.form = form} onSubmit={handleSubmit(this.submit)} className="form-horizontal">
                         <Field
@@ -71,10 +89,15 @@ class {{ucName}}Edit extends Component {
     }
 }
 
-{{ucName}}Edit.contextTypes = {
+{{componentName}}.contextTypes = {
     router: PropTypes.object
 };
 
+{% if richComponents -%}
+    const {{componentName}}Keyed = KeyBinderHoc({{componentName}});
+    {%- set componentName = componentName + 'Keyed' -%}
+{%- endif %}
+
 export default reduxForm({
     form: '{{name}}'
-})({{ucName}}Edit);
+})({{componentName}});

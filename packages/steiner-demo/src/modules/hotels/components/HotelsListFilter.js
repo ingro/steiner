@@ -7,7 +7,7 @@ import { linkTo } from '../routes/hotels';
 import KeyBinderHoc from 'components/KeyBinder';
 
 class HotelsListFilter extends Component {
-     componentWillMount() {
+    componentWillMount() {
         this.props.bindShortcut(['ctrl+d', 'command+d'], (e) => { 
             e.preventDefault(); 
             this.context.router.transitionTo(linkTo('create'));

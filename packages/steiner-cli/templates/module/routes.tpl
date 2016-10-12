@@ -1,12 +1,12 @@
 import { routeCreator } from 'steiner';
 
-import {{ucName}}ListLayout from '../containers/{{ucName}}ListLayout';
-import {{ucName}}Loader from '../containers/{{ucName}}Loader';
+import {{name | title}}ListLayout from '../containers/{{name | title}}ListLayout';
+import {{name | title}}Loader from '../containers/{{name | title}}Loader';
 import { selectors } from '../reducers/{{name}}';
 
 const routes = routeCreator.generateRoutes('{{name}}', {
-    list: {{ucName}}ListLayout,
-    edit: {{ucName}}Loader
+    list: {{name | title}}ListLayout,
+    edit: {{name | title}}Loader
 }, selectors);
 
 const links = routeCreator.generateLinks(routes.patterns);

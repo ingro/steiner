@@ -144,9 +144,9 @@ HotelsEdit.contextTypes = {
     router: PropTypes.object
 };
 
-const BindHotelsEdit = KeyBinderHoc(HotelsEdit);
+const HotelsEditKeyed = KeyBinderHoc(HotelsEdit);
 
 export default reduxForm({
     form: 'hotels',
     validate
-})(BindHotelsEdit);
+})(HotelsEditKeyed);

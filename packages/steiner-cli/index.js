@@ -44,7 +44,7 @@ function generateModule(moduleName, options) {
 
     const vars = { 
         name: moduleName,
-        ucName: ucModuleName
+        richComponents: options.richComponents
     };
 
     // Generate a file from a template

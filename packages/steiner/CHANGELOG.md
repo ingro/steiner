@@ -1,3 +1,7 @@
+## 0.6.4 (October 13, 2016)
+
+- Added global getLinkTo in `routeRegister`
+
 ## 0.6.2 (October 13, 2016)
 
 - Updated selected logic in `ListTable`

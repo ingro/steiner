@@ -1,12 +1,12 @@
 {
   "name": "steiner-demo",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "private": true,
   "devDependencies": {
     "cross-env": "^3.1.1",
     "react-scripts": "0.6.1",
     "react-test-renderer": "^15.3.2",
-    "steiner-cli": "^0.6.2"
+    "steiner-cli": "^0.6.3"
   },
   "dependencies": {
     "axios": "^0.15.0",
@@ -37,7 +37,7 @@
     "reflexbox": "^2.2.2",
     "revalidate": "^0.4.1",
     "seamless-immutable": "^6.1.4",
-    "steiner": "^0.6.2",
+    "steiner": "^0.6.3",
     "vivi": "^0.2.4"
   },
   "scripts": {

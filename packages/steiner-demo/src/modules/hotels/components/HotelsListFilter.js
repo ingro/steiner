@@ -8,8 +8,8 @@ import KeyBinderHoc from 'components/KeyBinder';
 
 class HotelsListFilter extends Component {
     componentWillMount() {
-        this.props.bindShortcut(['ctrl+d', 'command+d'], (e) => { 
-            e.preventDefault(); 
+        this.props.bindShortcut(['ctrl+d', 'command+d'], (e) => {
+            e.preventDefault();
             this.context.router.transitionTo(linkTo('create'));
         }, true);
     }
@@ -18,8 +18,14 @@ class HotelsListFilter extends Component {
         this.filter.input.focus();
     }
 
+    handleBatchAction = (e) => {
+        e.preventDefault();
+
+        alert(`BATCH ACTION on items ${this.props.selected}`);
+    }
+
     render() {
-        const { filters } = this.props;
+        const { filters, selected } = this.props;
 
         return (
             <div className="row">
@@ -30,7 +36,14 @@ class HotelsListFilter extends Component {
                         onChange={this.props.updateFilter}
                     />
                 </div>
-                <div className="col-xs-8 text-right">
+                <div className="col-xs-4">
+                    {selected.length > 0 &&
+                       <button className="btn btn-info" onClick={this.handleBatchAction}>
+                            Batch action
+                        </button>
+                    }
+                </div>
+                <div className="col-xs-4 text-right">
                     <Tooltip position="left" enterDelay={0.5} content="Crea un nuovo hotel (CTRL+D)">
                         <Link className="btn btn-success" to={linkTo('create')}>Create</Link>
                     </Tooltip>

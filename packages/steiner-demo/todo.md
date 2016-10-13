@@ -8,7 +8,6 @@
 - Helper modal with shortcuts
 - Write a simple getting started guide after bootstrap a new app with `steiner-cli`
 - Support multiple api clients?
-- Example of use row selection in tables
 - Use tooltip on delete buttons
 - Use user's settings value for number of rows displayed in tables?
 - Generate dynamically sidebar links and omnibox options

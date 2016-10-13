@@ -2,7 +2,7 @@
 
 - Better naming/organization of things
 - Better way to export modules for easier imports -> some improvements done, now almost all the most used function can be import from 'steiner'
-- Single exports point for routes? (global `linkto` -> linkTo('hotels/list')) or use NamedLink from [react-router-addons-routes](https://github.com/ReactTraining/react-router-addons-routes)
+- Use NamedLink from [react-router-addons-routes](https://github.com/ReactTraining/react-router-addons-routes) to generate Links to routes?
 - Add tests
 - Optimistically update items on update?
 - Create a global app helper, where you can define you app's default for various generators? (see below)
@@ -14,7 +14,13 @@
 import steiner from 'steiner';
 
 const options = {
-    ...
+    listParamsMap: {
+        query: 'q',
+        page: 'page',
+        take: 'perPage',
+        sortBy: 'order.key',
+        orderBy: 'order.direction'
+    }
 };
 
 export default steiner(options);

@@ -3,14 +3,14 @@ import { Link } from 'react-router';
 import { InputListFilter } from 'steiner';
 import Tooltip from 'vivi/lib/Tooltip';
 
-import { linkTo } from '../routes/hotels';
+import routeRegister from 'helpers/routeRegister';
 import KeyBinderHoc from 'components/KeyBinder';
 
 class HotelsListFilter extends Component {
     componentWillMount() {
         this.props.bindShortcut(['ctrl+d', 'command+d'], (e) => {
             e.preventDefault();
-            this.context.router.transitionTo(linkTo('create'));
+            this.context.router.transitionTo(routeRegister.getLinkTo('hotels.create'));
         }, true);
     }
 
@@ -45,7 +45,7 @@ class HotelsListFilter extends Component {
                 </div>
                 <div className="col-xs-4 text-right">
                     <Tooltip position="left" enterDelay={0.5} content="Crea un nuovo hotel (CTRL+D)">
-                        <Link className="btn btn-success" to={linkTo('create')}>Create</Link>
+                        <Link className="btn btn-success" to={routeRegister.getLinkTo('hotels.create')}>Create</Link>
                     </Tooltip>
                 </div>
             </div>

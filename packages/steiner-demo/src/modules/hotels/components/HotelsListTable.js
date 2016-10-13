@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { ListTable, createConfirm } from 'steiner';
 
-import { linkTo } from '../routes/hotels';
+import routeRegister from 'helpers/routeRegister';
 
 export default class HotelsListTable extends Component {
     handleDelete = (id) => {
@@ -46,7 +46,7 @@ export default class HotelsListTable extends Component {
                 dataKey: 'id',
                 flexGrow: 0,
                 cellRenderer: ({ cellData }) => <div>
-                    <Link className="btn btn-primary" to={linkTo('edit', { id: cellData })}>Edit</Link>
+                    <Link className="btn btn-primary" to={routeRegister.getLinkTo('hotels.edit', { id: cellData })}>Edit</Link>
                     {' '}
                     <button className="btn btn-danger" onClick={this.handleDelete.bind(this, cellData)}><i className="fa fa-times" /></button>
                 </div>

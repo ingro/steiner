@@ -15,9 +15,9 @@ import {
 } from 'revalidate';
 
 import client from 'apis/client';
+import routeRegister from 'helpers/routeRegister';
 import { createReactSelectLoader } from 'helpers/helpers';
 import { actionTypes } from '../actions/hotels';
-import { linkTo } from '../routes/hotels';
 import KeyBinderHoc from 'components/KeyBinder';
 
 const validate = combineValidators({
@@ -44,8 +44,8 @@ class HotelsEdit extends Component {
 
         this.props.initialize(this.createInitialFormValues(item));
 
-        this.props.bindShortcut(['ctrl+s', 'command+s'], (e) => { 
-            e.preventDefault(); 
+        this.props.bindShortcut(['ctrl+s', 'command+s'], (e) => {
+            e.preventDefault();
             this.props.handleSubmit(this.submit)();
         }, true);
     }
@@ -61,7 +61,7 @@ class HotelsEdit extends Component {
 
         if (nextProps.submitSucceeded) {
             setTimeout(() => {
-                this.context.router.transitionTo(linkTo('list'));
+                this.context.router.transitionTo(routeRegister.getLinkTo('hotels.list'));
             }, 0);
         }
     }
@@ -129,7 +129,7 @@ class HotelsEdit extends Component {
                                 valid={valid}
                                 submitting={submitting}
                                 dirty={dirty}
-                                cancelLink={linkTo('list')}
+                                cancelLink={routeRegister.getLinkTo('hotels.list')}
                                 onReset={reset}
                             />
                         </div>

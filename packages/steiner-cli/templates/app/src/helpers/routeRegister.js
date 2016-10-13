@@ -3,6 +3,7 @@ import _ from 'lodash';
 class RouteRegister {
     constructor() {
         this.patterns = {};
+        this.links = {};
     }
 
     addPatterns(key, patterns) {
@@ -15,6 +16,18 @@ class RouteRegister {
 
     getPatterns() {
         return this.patterns;
+    }
+
+    addLinks(key, links) {
+        this.links[key] = links;
+    }
+
+    getLinksByKey(key) {
+        return this.links[key];
+    }
+
+    getLinks() {
+        return this.links;
     }
 
     getOmniboxOptions() {
@@ -50,6 +63,12 @@ class RouteRegister {
         });
 
         return _.sortBy(links, 'name');
+    }
+
+    getLinkTo(route, props) {
+        const linkGenerator = _.get(this.links, route);
+
+        return linkGenerator(props);
     }
 }
 

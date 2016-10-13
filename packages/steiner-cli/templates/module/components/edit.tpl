@@ -6,7 +6,7 @@ import InputField from 'vivi/lib/Form/InputField';
 {% if richComponents %}import Helmet from 'react-helmet';{% endif %}
 
 import { actionTypes } from '../actions/{{name}}';
-import { linkTo } from '../routes/{{name}}';
+import routeRegister from 'helpers/routeRegister';
 {% if richComponents %}import KeyBinderHoc from 'components/KeyBinder';{% endif %}
 
 {%- set componentName = name | title + 'Edit' %}
@@ -40,7 +40,7 @@ class {{componentName}} extends Component {
 
         if (nextProps.submitSucceeded) {
             setTimeout(() => {
-                this.context.router.transitionTo(linkTo('list'));
+                this.context.router.transitionTo(routeRegister.getLinkTo('{{name}}.list'));
             }, 0);
         }
     }
@@ -78,7 +78,7 @@ class {{componentName}} extends Component {
                                 valid={valid}
                                 submitting={submitting}
                                 dirty={dirty}
-                                cancelLink={linkTo('list')}
+                                cancelLink={routeRegister.getLinkTo('{{name}}.list')}
                                 onReset={reset}
                             />
                         </div>

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { InputListFilter } from 'steiner';
 
-import { linkTo } from '../routes/{{name}}';
+import routeRegister from 'helpers/routeRegister';
 {% if richComponents %}import KeyBinderHoc from 'components/KeyBinder';{% endif %}
 
 {%- set componentName = name | title + 'ListFilter' %}
@@ -10,9 +10,9 @@ import { linkTo } from '../routes/{{name}}';
 export default class {{componentName}} extends Component {
     {% if richComponents -%}
     componentWillMount() {
-        this.props.bindShortcut(['ctrl+d', 'command+d'], (e) => { 
-            e.preventDefault(); 
-            this.context.router.transitionTo(linkTo('create'));
+        this.props.bindShortcut(['ctrl+d', 'command+d'], (e) => {
+            e.preventDefault();
+            this.context.router.transitionTo(routeRegister.getLinkTo('{{name}}.create'));
         }, true);
     }
     {%- endif %}
@@ -34,7 +34,7 @@ export default class {{componentName}} extends Component {
                     />
                 </div>
                 <div className="col-xs-8 text-right">
-                    <Link className="btn btn-success" to={linkTo('create')}>Create</Link>
+                    <Link className="btn btn-success" to={routeRegister.getLinkTo('{{name}}.create')}>Create</Link>
                 </div>
             </div>
         );

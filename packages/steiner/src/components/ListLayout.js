@@ -22,7 +22,7 @@ export default class ListLayout extends Component {
             <Flex 
                 wrap
                 flexColumn
-                style={{ height: 'calc(100vh - 80px)'}}
+                style={{ height: 'calc(100vh - 75px)'}}
             >
                 <Box col={12}>
                     {React.createElement(filterComponent, this.props)}

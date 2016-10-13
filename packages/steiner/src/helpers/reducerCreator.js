@@ -38,14 +38,17 @@ function createListSuccessHandler(options = {}) {
     return function listSuccess(state, action) {
         const items = typeof options.items === 'function' ? options.items(action.payload) : _.get(action.payload, options.items);
 
+        const itemsId = items.map(item => item[options.idKey]);
+
         return state.update('list', list => ({
             ...list,
-            itemsId: items.map(item => item[options.idKey]),
+            itemsId,
             itemsById: items.reduce((byId, item) => {
                 byId[item[options.idKey]] = item;
 
                 return byId;
             }, {}),
+            selected: _.intersection(itemsId, state.list.selected),
             isFetching: false,
             errorMessage: null,
             total: typeof options.total === 'function' ? options.total(action.payload) : _.get(action.payload, options.total)

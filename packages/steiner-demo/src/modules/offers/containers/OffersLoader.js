@@ -10,7 +10,7 @@ class OffersLoader extends Component {
         return (
             <ItemLoader
                 {...this.props}
-                component={OffersEdit}
+                component={ OffersEdit }
             />
         );
     }

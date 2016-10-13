@@ -11,6 +11,7 @@ import { getUser } from 'steiner/lib/auth/reducer';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Dropdown from 'vivi/lib/Dropdown';
 
+import routeRegister from 'helpers/routeRegister';
 import Welcome from './components/Welcome';
 import LoginForm from './components/LoginForm';
 import Breadcrumb from './components/Breadcrumb';
@@ -23,27 +24,9 @@ import routes from './routes';
 
 import KeyBinderHoc from './components/KeyBinder';
 
-const sidebarMenuLinks = [
-    /*{
-        to: '/posts',
-        name: 'posts'
-    }*/
-];
+const sidebarMenuLinks = routeRegister.getSidebarLinks();
 
-const omniboxOptions = [
-    /*{
-        id: 1,
-        type: 'link',
-        path: '/posts',
-        label: 'Posts: list'
-    },
-    {
-        id: 2,
-        type: 'link',
-        path: '/posts/create',
-        label: 'Posts: create'
-    }*/
-];
+const omniboxOptions = routeRegister.getOmniboxOptions();
 
 class App extends Component {
     constructor(props) {
@@ -56,8 +39,8 @@ class App extends Component {
     }
 
     componentWillMount() {
-        this.props.bindShortcut(['ctrl+p', 'command+p'], (e) => { 
-            e.preventDefault(); 
+        this.props.bindShortcut(['ctrl+p', 'command+p'], (e) => {
+            e.preventDefault();
             this.toggleOmnibox();
         }, true);
     }
@@ -88,21 +71,21 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div>
-                    <Helmet 
+                    <Helmet
                         title="App"
                         titleTemplate={`${process.env.REACT_APP_NAME} | %s`}
                     />
                     <ReactCSSTransitionGroup
                         transitionName="slide"
-                        transitionEnterTimeout={300} 
+                        transitionEnterTimeout={300}
                         transitionLeaveTimeout={300}
                     >
                         {this.state.isOmniboxOpen && <Omnibox key="omnibox" onChange={this.toggleOmnibox} options={omniboxOptions}/>}
                     </ReactCSSTransitionGroup>
                     <LoadingBar style={{ zIndex: 3 }} updateTime={250} maxProgress={95} />
-                    <Sidebar 
-                        sidebar={<SidebarMenu links={sidebarMenuLinks} onToggle={this.toggleSidebar}/>} 
-                        docked={this.state.isSidebarOpen} 
+                    <Sidebar
+                        sidebar={<SidebarMenu links={sidebarMenuLinks} onToggle={this.toggleSidebar}/>}
+                        docked={this.state.isSidebarOpen}
                         transitions={false}
                     >
                         <div className={this.state.isSidebarOpen ? 'sidebar-is-open' : ''}>
@@ -119,7 +102,7 @@ class App extends Component {
                                             <HeaderLink to="/posts" name="Posts" />
                                         </ul>*/}
                                         <ul className="nav navbar-nav navbar-right">
-                                            {user 
+                                            {user
                                                 ? <Dropdown text={<i className="fa fa-cog" />} type="navbar">
                                                     <li className="dropdown-header">{user.email}</li>
                                                     <li><Link to="/profile">Profile</Link></li>

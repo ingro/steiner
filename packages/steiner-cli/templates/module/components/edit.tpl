@@ -22,8 +22,8 @@ class {{componentName}} extends Component {
         this.props.initialize(this.createInitialFormValues(this.props.item));
 
         {% if richComponents -%}
-        this.props.bindShortcut(['ctrl+s', 'command+s'], (e) => { 
-            e.preventDefault(); 
+        this.props.bindShortcut(['ctrl+s', 'command+s'], (e) => {
+            e.preventDefault();
             this.props.handleSubmit(this.submit)();
         }, true);
         {%- endif %}
@@ -56,7 +56,7 @@ class {{componentName}} extends Component {
     }
 
     render() {
-        const { handleSubmit, submitting, valid, item, error, dirty, submitSucceeded, reset } = this.props;
+        const { handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset } = this.props;
 
         return(
             <div className="row">

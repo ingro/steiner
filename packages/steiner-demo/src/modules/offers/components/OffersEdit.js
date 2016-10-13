@@ -1,10 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { NavigationPrompt } from 'react-router';
 import { FormControls, formHelper } from 'steiner';
 import InputField from 'vivi/lib/Form/InputField';
 
+
 import { actionTypes } from '../actions/offers';
 import { linkTo } from '../routes/offers';
+
 
 class OffersEdit extends Component {
     constructor(props) {
@@ -14,26 +17,48 @@ class OffersEdit extends Component {
     }
 
     componentWillMount() {
-        this.props.initialize(this.props.item);
+        this.props.initialize(this.createInitialFormValues(this.props.item));
+
+
     }
 
-    componentWillReceiveProps(props) {
-        if (props.submitSucceeded) {
+    componentDidMount() {
+        this.form.elements[0].focus();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.item && nextProps.item.id !== this.props.item.id)  {
+            this.props.initialize(this.createInitialFormValues(nextProps.item));
+        }
+
+        if (nextProps.submitSucceeded) {
             setTimeout(() => {
                 this.context.router.transitionTo(linkTo('list'));
             }, 0);
         }
     }
 
+    createInitialFormValues(item) {
+        return item;
+    }
+
+    getTitle() {
+        const { item } = this.props;
+
+        return item.name ? item.name : 'Create new Offers';
+    }
+
     render() {
-        const { handleSubmit, submitting, item, error } = this.props;
+        const { handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset } = this.props;
 
         return(
-            <div className="container">
+            <div className="row">
+
+                <NavigationPrompt when={dirty && !submitSucceeded} message="Are you sure? Any unsaved changes will be lost." />
                 <div className="col-xs-6 col-xs-offset-3 text-center">
-                    <h3>{item.name ? item.name : 'Create new Offers'}</h3>
+                    <h3>{this.getTitle()}</h3>
                     {error && <div className="alert alert-danger">{error}</div>}
-                    <form onSubmit={handleSubmit(this.submit)} className="form-horizontal">
+                    <form ref={form => this.form = form} onSubmit={handleSubmit(this.submit)} className="form-horizontal">
                         <Field
                             className="form-control"
                             name="name"
@@ -43,8 +68,11 @@ class OffersEdit extends Component {
                         {/* Fields... */}
                         <div className="row">
                             <FormControls
+                                valid={valid}
                                 submitting={submitting}
+                                dirty={dirty}
                                 cancelLink={linkTo('list')}
+                                onReset={reset}
                             />
                         </div>
                     </form>
@@ -54,13 +82,11 @@ class OffersEdit extends Component {
     }
 }
 
-OffersEdit.PropTypes = {
-    handleSubmit: PropTypes.func
-};
-
 OffersEdit.contextTypes = {
     router: PropTypes.object
 };
+
+
 
 export default reduxForm({
     form: 'offers'

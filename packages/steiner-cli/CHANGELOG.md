@@ -1,3 +1,8 @@
+## 0.6.2 (October 13, 2016)
+
+- Added `-r` flag to generate command
+- Updated templates of app and modules
+
 ## 0.6.1 (October 12, 2016)
 
 - Added `-n` flag to generate command

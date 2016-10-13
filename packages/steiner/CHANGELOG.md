@@ -1,3 +1,7 @@
+## 0.6.2 (October 13, 2016)
+
+- Updated selected logic in `ListTable`
+
 ## 0.6.0 (October 11, 2016)
 
 - Update to `vivi@0.2.0`

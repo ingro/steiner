@@ -8,6 +8,7 @@ export function connectList(component, actions, selectors) {
         return {
             ...list,
             items: selectors.itemsSelector(state),
+            selected: selectors.getSelectedId(state),
             component
         };
     }

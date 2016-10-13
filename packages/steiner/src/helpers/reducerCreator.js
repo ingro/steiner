@@ -113,6 +113,16 @@ function changeOrder(state, action) {
     return state.setIn(['list', 'filters', 'order'], action.payload);
 }
 
+function selectItems(state, action) {
+    const selected = _.uniq([].concat(state.list.selected, action.payload));
+    return state.setIn(['list', 'selected'], selected);
+}
+
+function deselectItems(state, action) {
+    const selected = _.difference(state.list.selected, action.payload);
+    return state.setIn(['list', 'selected'], selected);
+}
+
 export function createHandlers(actionTypes, options) {
     return {
         [actionTypes.list]: list,
@@ -125,7 +135,9 @@ export function createHandlers(actionTypes, options) {
         [actionTypes.resetCurrent]: resetCurrent,
         [actionTypes.changePage]: changePage,
         [actionTypes.updateFilter]: updateFilter,
-        [actionTypes.changeOrder]: changeOrder
+        [actionTypes.changeOrder]: changeOrder,
+        [actionTypes.selectItems]: selectItems,
+        [actionTypes.deselectItems]: deselectItems
     };
 }
 
@@ -134,7 +146,9 @@ export function createSelectors(key) {
         listSelector: state => state[key].list,
         itemsSelector: state => state[key].list.itemsId.map(id => state[key].list.itemsById[id]),
         currentSelector: state => state[key].current,
-        getFilters: state => state[key].list.filters
+        getFilters: state => state[key].list.filters,
+        getSelectedId: state => state[key].list.selected,
+        getSelected: state => state[key].list.selected.map(id => state[key].list.itemsById[id])
     }
 }
 

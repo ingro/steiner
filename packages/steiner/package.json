@@ -55,9 +55,10 @@
     "vivi": "^0.2.4"
   },
   "dependencies": {
+    "arrify": "^1.0.1",
     "babel-runtime": "^6.11.6",
     "path-to-regexp": "^1.6.0",
-    "seamless-immutable": "^6.1.3"
+    "seamless-immutable": "^6.1.4"
   },
   "peerDependencies": {
     "axios": "^0.15.0",

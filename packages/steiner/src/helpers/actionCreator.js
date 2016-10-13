@@ -1,4 +1,5 @@
 // import snakeCase from 'lodash/snakeCase';
+import arrify from 'arrify';
 import upperFirst from 'lodash/upperFirst';
 import defaults from 'lodash/defaults';
 import trim from 'lodash/trim';
@@ -57,11 +58,12 @@ export function createActionTypes(resource, config) {
 
     // const upperResource = snakeCase(resource).toUpperCase();
 
-    const resetCurrent = `${resource}/RESET_CURRENT`;
-    const changePage   = `${resource}/CHANGE_PAGE`;
-    const updateFilter = `${resource}/UDATE_FILTER`;
-    const changeOrder  = `${resource}/CHANGE_ORDER`;
-    // const inputQuery   = `${upperResource}_INPUT_QUERY`;
+    const resetCurrent  = `${resource}/RESET_CURRENT`;
+    const changePage    = `${resource}/CHANGE_PAGE`;
+    const updateFilter  = `${resource}/UDATE_FILTER`;
+    const changeOrder   = `${resource}/CHANGE_ORDER`;
+    const selectItems   = `${resource}/SELECT_ITEMS`;
+    const deselectItems = `${resource}/DESELECT_ITEMS`;
 
     actionTypes.resetCurrent = resetCurrent;
     actionTypes[resetCurrent] = resetCurrent;
@@ -75,8 +77,11 @@ export function createActionTypes(resource, config) {
     actionTypes.changeOrder = changeOrder;
     actionTypes[changeOrder] = changeOrder;
 
-    // actionTypes.inputQuery = inputQuery;
-    // actionTypes[inputQuery] = inputQuery;
+    actionTypes.selectItems = selectItems;
+    actionTypes[selectItems] = selectItems;
+
+    actionTypes.deselectItems = deselectItems;
+    actionTypes[deselectItems] = deselectItems;
 
     return actionTypes;
 }
@@ -221,15 +226,6 @@ export function createActions(resource, actionTypes, messages = {}) {
         };
     }
 
-    // actions[`updateQuery`] = function(q) {
-    //     return {
-    //         type: actionTypes.inputQuery,
-    //         payload: {
-    //             q
-    //         }
-    //     };
-    // }
-
     actions['changePage'] = function(page) {
         return {
             type: actionTypes.changePage,
@@ -257,6 +253,20 @@ export function createActions(resource, actionTypes, messages = {}) {
                 value
             }
         };
+    }
+
+    actions['selectItems'] = function(items) {
+        return {
+            type: actionTypes.selectItems,
+            payload: arrify(items)
+        }
+    }
+
+    actions['deselectItems'] = function(items) {
+        return {
+            type: actionTypes.deselectItems,
+            payload: arrify(items)
+        }
     }
 
     return actions;

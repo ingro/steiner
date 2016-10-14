@@ -5,6 +5,7 @@
     "cross-env": "^3.1.1",
     "react-scripts": "0.6.1",
     "react-test-renderer": "^15.3.2",
+    "redux-devtools-extension": "^1.0.0",
     "steiner-cli": "^0.6.0"
   },
   "dependencies": {

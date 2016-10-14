@@ -2,7 +2,7 @@
 
 - Breadcrumbs: wait for a better implementation of [react-router-addons-routes](https://github.com/ReactTraining/react-router-addons-routes) to find nested routes easily
 - Sync between filters and browser url (wait for React-Router ControlledRouter with Redux, see this example https://github.com/este/este/pull/1156/files -> src/browser/app/Root.js)
-- Better navbar (improve breadcrumb styles)
+- Better navbar (Breadcrumb position should be relative to app's name)
 - Omnibox -> missing styles (make width dynamic)
 - Add shortcut to toggle the sidebar
 - Helper modal with shortcuts
@@ -10,4 +10,3 @@
 - Support multiple api clients?
 - Use tooltip on delete buttons
 - Use user's settings value for number of rows displayed in tables?
-- Breadcrumb position should be relative to app's name

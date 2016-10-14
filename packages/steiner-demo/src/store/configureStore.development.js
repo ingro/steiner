@@ -1,15 +1,14 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
-import { batchedSubscribe } from 'redux-batched-subscribe';
-import { unstable_batchedUpdates as batchedUpdates } from 'react-dom';
+// import { batchedSubscribe } from 'redux-batched-subscribe';
+// import { unstable_batchedUpdates as batchedUpdates } from 'react-dom';
 import createSagaMiddleware, { END } from 'redux-saga';
 import persistState from 'redux-localstorage';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { notificationMiddleware, loadingBarMiddleware } from 'steiner';
 
 import reducer from '../reducers';
-
-const devtools = window.devToolsExtension || (() => noop => noop);
 
 const filter = /^redux-form/;
 
@@ -23,7 +22,7 @@ const loggerMiddleware = createLogger({
 
 const sagaMiddleware = createSagaMiddleware();
 
-const enhancer = compose(
+const enhancer = composeWithDevTools(
     applyMiddleware(
         thunkMiddleware,
         sagaMiddleware,
@@ -34,8 +33,7 @@ const enhancer = compose(
     persistState('user', { 
         key: process.env.REACT_APP_NAME
     }),
-    devtools(),
-    batchedSubscribe(batchedUpdates)
+    // batchedSubscribe(batchedUpdates)
 );
 
 export default function configureStore(preloadedState = {}) {

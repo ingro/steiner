@@ -24,7 +24,7 @@
     "react-router": "^4.0.0-alpha.4",
     "react-select": "^1.0.0-rc.2",
     "react-sidebar": "^2.2.1",
-    "react-virtualized": "^8.0.13",
+    "react-virtualized": "^8.1.0",
     "reapop": "^0.6.0",
     "reapop-theme-wybo": "^0.4.0",
     "redux": "^3.6.0",

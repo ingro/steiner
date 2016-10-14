@@ -10,3 +10,4 @@
 - Support multiple api clients?
 - Use tooltip on delete buttons
 - Use user's settings value for number of rows displayed in tables?
+- Breadcrumb position should be relative to app's name

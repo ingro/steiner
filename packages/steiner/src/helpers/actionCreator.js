@@ -10,9 +10,6 @@ function addAsyncGroup(resource, actionTypes, group, config) {
 
     resource = trim(resource);
 
-    // const start        = `${upperResource}_${upperGroup}`;
-    // const success      = `${upperResource}_${upperGroup}_SUCCESS`;
-    // const fail         = `${upperResource}_${upperGroup}_FAIL`;
     const start        = `${resource}/${upperGroup}`;
     const success      = `${resource}/${upperGroup}_SUCCESS`;
     const fail         = `${resource}/${upperGroup}_FAIL`;
@@ -58,12 +55,14 @@ export function createActionTypes(resource, config) {
 
     // const upperResource = snakeCase(resource).toUpperCase();
 
-    const resetCurrent  = `${resource}/RESET_CURRENT`;
-    const changePage    = `${resource}/CHANGE_PAGE`;
-    const updateFilter  = `${resource}/UDATE_FILTER`;
-    const changeOrder   = `${resource}/CHANGE_ORDER`;
-    const selectItems   = `${resource}/SELECT_ITEMS`;
-    const deselectItems = `${resource}/DESELECT_ITEMS`;
+    const resetCurrent = `${resource}/RESET_CURRENT`;
+    const changePage   = `${resource}/CHANGE_PAGE`;
+    const updateFilter = `${resource}/UDATE_FILTER`;
+    const changeOrder  = `${resource}/CHANGE_ORDER`;
+    const select       = `${resource}/SELECT`;
+    const deselect     = `${resource}/DESELECT`;
+    const selectAll    = `${resource}/SELECT_ALL`;
+    const deselectAll  = `${resource}/DESELECT_ALL`;
 
     actionTypes.resetCurrent = resetCurrent;
     actionTypes[resetCurrent] = resetCurrent;
@@ -77,11 +76,17 @@ export function createActionTypes(resource, config) {
     actionTypes.changeOrder = changeOrder;
     actionTypes[changeOrder] = changeOrder;
 
-    actionTypes.selectItems = selectItems;
-    actionTypes[selectItems] = selectItems;
+    actionTypes.select = select;
+    actionTypes[select] = select;
 
-    actionTypes.deselectItems = deselectItems;
-    actionTypes[deselectItems] = deselectItems;
+    actionTypes.deselect = deselect;
+    actionTypes[deselect] = deselect;
+
+    actionTypes.selectAll = selectAll;
+    actionTypes[selectAll] = selectAll;
+
+    actionTypes.deselectAll = deselectAll;
+    actionTypes[deselectAll] = deselectAll;
 
     return actionTypes;
 }
@@ -255,19 +260,32 @@ export function createActions(resource, actionTypes, messages = {}) {
         };
     }
 
-    actions['selectItems'] = function(items) {
+    actions['select'] = function(items) {
         return {
-            type: actionTypes.selectItems,
+            type: actionTypes.select,
             payload: arrify(items)
         }
     }
 
-    actions['deselectItems'] = function(items) {
+    actions['deselect'] = function(items) {
         return {
-            type: actionTypes.deselectItems,
+            type: actionTypes.deselect,
             payload: arrify(items)
         }
     }
+
+    actions['selectAll'] = function() {
+        return {
+            type: actionTypes.selectAll
+        }
+    }
+
+    actions['deselectAll'] = function() {
+        return {
+            type: actionTypes.deselectAll
+        }
+    }
+
 
     return actions;
 }

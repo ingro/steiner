@@ -37,19 +37,17 @@ export default class ListTable extends Component {
 
     onRowCheckClick = (rowData, checked) => {
         if (checked) {
-            this.props.selectItems(rowData.id);
+            this.props.select(rowData.id);
         } else {
-            this.props.deselectItems(rowData.id);
+            this.props.deselect(rowData.id);
         }
     }
 
     onHeaderCheckClick = (checked) => {
-        const ids = this.props.items.map(item => item.id);
-
         if (checked) {
-            this.props.selectItems(ids);
+            this.props.selectAll();
         } else {
-            this.props.deselectItems(ids);
+            this.props.deselectAll();
         }
     }
 
@@ -80,7 +78,8 @@ export default class ListTable extends Component {
 ListTable.propTypes = {
     columns: PropTypes.array,
     delete: PropTypes.func,
-    deselectItems: PropTypes.func,
+    deselect: PropTypes.func,
+    deselectAll: PropTypes.func,
     errorMessage: PropTypes.string,
     filters: PropTypes.object,
     isFetching: PropTypes.bool,
@@ -88,7 +87,8 @@ ListTable.propTypes = {
     onChangeOrder: PropTypes.func,
     selectable: PropTypes.bool,
     selected: PropTypes.array,
-    selectItems: PropTypes.func
+    select: PropTypes.func,
+    selectAll: PropTypes.func
 };
 
 ListTable.defaultProps = {

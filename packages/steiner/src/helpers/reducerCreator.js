@@ -116,14 +116,22 @@ function changeOrder(state, action) {
     return state.setIn(['list', 'filters', 'order'], action.payload);
 }
 
-function selectItems(state, action) {
+function select(state, action) {
     const selected = _.uniq([].concat(state.list.selected, action.payload));
     return state.setIn(['list', 'selected'], selected);
 }
 
-function deselectItems(state, action) {
+function deselect(state, action) {
     const selected = _.difference(state.list.selected, action.payload);
     return state.setIn(['list', 'selected'], selected);
+}
+
+function selectAll(state) {
+    return state.setIn(['list', 'selected'], state.list.itemsId);
+}
+
+function deselectAll(state) {
+    return state.setIn(['list', 'selected'], []);
 }
 
 export function createHandlers(actionTypes, options) {
@@ -139,8 +147,10 @@ export function createHandlers(actionTypes, options) {
         [actionTypes.changePage]: changePage,
         [actionTypes.updateFilter]: updateFilter,
         [actionTypes.changeOrder]: changeOrder,
-        [actionTypes.selectItems]: selectItems,
-        [actionTypes.deselectItems]: deselectItems
+        [actionTypes.select]: select,
+        [actionTypes.deselect]: deselect,
+        [actionTypes.selectAll]: selectAll,
+        [actionTypes.deselectAll]: deselectAll
     };
 }
 

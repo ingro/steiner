@@ -39,7 +39,7 @@
     "revalidate": "^0.4.1",
     "seamless-immutable": "^6.3.0",
     "steiner": "^0.6.4",
-    "vivi": "^0.2.4"
+    "vivi": "^0.3.0"
   },
   "scripts": {
     "start:plain": "react-scripts start",

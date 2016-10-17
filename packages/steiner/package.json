@@ -52,7 +52,7 @@
     "redux-form": "^6.1.0",
     "redux-saga": "^0.12.0",
     "reflexbox": "^2.2.2",
-    "vivi": "^0.2.4"
+    "vivi": "^0.3.0"
   },
   "dependencies": {
     "arrify": "^1.0.1",
@@ -73,6 +73,6 @@
     "redux-form": "^6.0.0",
     "redux-saga": "^0.12.0",
     "reflexbox": "^2.2.2",
-    "vivi": "^0.2.0"
+    "vivi": "^0.3.0"
   }
 }

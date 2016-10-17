@@ -96,6 +96,7 @@ class App extends Component {
                                             <SidebarToggle position="navbar" onClick={this.toggleSidebar} />
                                         }
                                         <Link className="navbar-brand" to="/">{process.env.REACT_APP_NAME}</Link>
+                                        <Breadcrumb routes={routes}/>
                                     </div>
                                     <div className="collapse navbar-collapse">
                                         {/*<ul className="nav navbar-nav">
@@ -117,7 +118,6 @@ class App extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <Breadcrumb routes={routes}/>
                             <div className="container-fluid">
                                 <Match pattern="/" exactly={true} render={() => <Welcome user={user}/>} />
                                 <Match pattern="/settings" component={Settings}/>

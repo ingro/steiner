@@ -3,12 +3,8 @@
 }
 
 .Breadcrumb-navbar {
-    position: absolute;
+    position: relative;
     top: 8px;
-    left: 150px;
+    display: inline-block;
     background-color: #fff;
-}
-
-.sidebar-is-open .Breadcrumb-navbar {
-    left: 90px;
 }

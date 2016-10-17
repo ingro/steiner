@@ -1,7 +1,7 @@
 .Omnibox {
     position: absolute;
-    left: 300px;
-    right: 300px;
+    left: 400px;
+    right: 400px;
     top: -5px;
     bottom: auto;
     z-index: 5;
@@ -27,4 +27,11 @@
 .slide-leave.slide-leave-active {
     top: -105px;
     transition: top 300ms ease-in;
+}
+
+@media (max-width: 1024px) {
+    .Omnibox {
+        left: 200px;
+        right: 200px;
+    }
 }

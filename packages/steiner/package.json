@@ -58,7 +58,7 @@
     "arrify": "^1.0.1",
     "babel-runtime": "^6.11.6",
     "path-to-regexp": "^1.6.0",
-    "seamless-immutable": "^6.1.4"
+    "seamless-immutable": "^6.3.0"
   },
   "peerDependencies": {
     "axios": "^0.15.0",

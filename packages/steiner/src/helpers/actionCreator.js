@@ -28,12 +28,10 @@ function addAsyncGroup(resource, actionTypes, group, config) {
     }
 }
 
-export function createActionTypes(resource, config) {
+export function createActionTypes(resource, config = {}) {
     if (resource == null) {
         throw new Error('Expected resource');
     }
-
-    config = config || {};
 
     if (config.addAlias == null) {
         config.addAlias = true;

@@ -134,7 +134,7 @@ function deselectAll(state) {
     return state.setIn(['list', 'selected'], []);
 }
 
-export function createHandlers(actionTypes, options) {
+export function createHandlers(actionTypes, options = {}) {
     return {
         [actionTypes.list]: list,
         [actionTypes.listSuccess]: createListSuccessHandler(options),

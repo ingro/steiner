@@ -1,17 +1,17 @@
 import React, { Component, PropTypes } from 'react';
+import ClearableInput from 'vivi/lib/ClearableInput';
 // import DebounceInput from 'react-debounce-input';
 
 export default class InputListFilter extends Component {
-    handleQueryInput = (event) => {
-        this.props.onChange('q', event.target.value);
+    handleQueryInput = (value) => {
+        this.props.onChange('q', value);
     }
 
     render() {
         const { value } = this.props;
 
-        return <input
-            ref={input => this.input = input}
-            className="form-control"
+        return <ClearableInput
+            autofocus={true}
             placeholder="Search"
             value={value}
             onChange={this.handleQueryInput}

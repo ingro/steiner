@@ -17,10 +17,6 @@ export default class {{componentName}} extends Component {
     }
     {%- endif %}
 
-    componentDidMount() {
-        this.filter.input.focus();
-    }
-
     render() {
         const { filters } = this.props;
 
@@ -28,7 +24,6 @@ export default class {{componentName}} extends Component {
             <div className="row">
                 <div className="col-xs-4">
                     <InputListFilter
-                        ref={filter => this.filter = filter}
                         value={filters.q}
                         onChange={this.props.updateFilter}
                     />

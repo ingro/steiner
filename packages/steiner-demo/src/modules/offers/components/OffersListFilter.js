@@ -4,14 +4,7 @@ import { InputListFilter } from 'steiner';
 
 import routeRegister from 'helpers/routeRegister';
 
-
 export default class OffersListFilter extends Component {
-    
-
-    componentDidMount() {
-        this.filter.input.focus();
-    }
-
     render() {
         const { filters } = this.props;
 
@@ -19,7 +12,6 @@ export default class OffersListFilter extends Component {
             <div className="row">
                 <div className="col-xs-4">
                     <InputListFilter
-                        ref={filter => this.filter = filter}
                         value={filters.q}
                         onChange={this.props.updateFilter}
                     />

@@ -14,10 +14,6 @@ class HotelsListFilter extends Component {
         }, true);
     }
 
-    componentDidMount() {
-        this.filter.input.focus();
-    }
-
     handleBatchAction = (e) => {
         e.preventDefault();
 
@@ -31,7 +27,6 @@ class HotelsListFilter extends Component {
             <div className="row">
                 <div className="col-xs-4">
                     <InputListFilter
-                        ref={filter => this.filter = filter}
                         value={filters.q}
                         onChange={this.props.updateFilter}
                     />

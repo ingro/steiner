@@ -2,7 +2,6 @@ import { take, put, call, select, cancel, fork } from 'redux-saga/effects';
 import { delay, takeLatest } from 'redux-saga';
 import upperFirst from 'lodash/upperFirst';
 import trim from 'lodash/trim';
-// import { addNotification as notify } from 'reapop';
 
 function success(type, response, loadingBar) {
     const action = {
@@ -29,22 +28,6 @@ function fail(type, response, loadingBar) {
 
     return action;
 }
-
-// function notifySuccess(message) {
-//     return notify({
-//         title: 'Hooray!',
-//         message,
-//         status: 'success'
-//     });
-// }
-
-// function notifyError(message) {
-//     return notify({
-//         title: 'Oh snap!',
-//         message,
-//         status: 'error'
-//     });
-// }
 
 export function bootSagas(sagas, actionTypes) {
     return [
@@ -103,12 +86,8 @@ export function createSagas(resource, actionTypes, actions, api, selectors) {
                 const response = yield call(api.create, action.payload);
 
                 yield put(actions.createSuccess(response));
-                // yield put(success(actionTypes.createSuccess, response));
-                // yield put(notifySuccess(`${resource} created with success!`));
             } catch(error) {
                 yield put(actions.createFail(error));
-                // yield put(fail(actionTypes.createFail, error));
-                // yield put(notifyError(`An error occured while creating ${resource}`));
             }
         }
     }
@@ -121,14 +100,8 @@ export function createSagas(resource, actionTypes, actions, api, selectors) {
                 const response = yield call(api.update, action.payload.id, action.payload);
 
                 yield put(actions.updateSuccess(response));
-                // yield put(success(actionTypes.updateSuccess, response));
-                // yield put(notifySuccess(`${resource} updated with success!`));
-                // yield call(action.payload.resolve, response);
             } catch(error) {
                 yield put(actions.updateFail(error));
-                // yield put(fail(actionTypes.updateFail, error));
-                // yield put(notifyError(`An error occured while updating ${resource}`));
-                // yield call(action.payload.reject, { _error: 'Fail' });
             }
         }
     }
@@ -141,13 +114,8 @@ export function createSagas(resource, actionTypes, actions, api, selectors) {
                 const response = yield call(api.delete, action.payload.id);
 
                 yield put(actions.deleteSuccess({ response, id: action.payload.id }));
-                // yield put(success(actionTypes.deleteSuccess, { response, id: action.payload.id }));
-                // yield put(notifySuccess(`${resource} deleted with success!`));
-                // yield put({ type: actionTypes.list });
             } catch(error) {
                 yield put(actions.deleteFail(error));
-                // yield put(fail(actionTypes.deleteFail, error));
-                // yield put(notifyError(`An error occured while deleting ${resource}`));
             }
         }
     }
@@ -171,22 +139,6 @@ export function createSagas(resource, actionTypes, actions, api, selectors) {
             task = yield fork(handleFilter);
         }
     }
-
-    // sagas[`changePage`] = function*() {
-    //     while (true) {
-    //         yield take(actionTypes.changePage);
-
-    //         yield put({ type: actionTypes.list });
-    //     }
-    // }
-
-    // sagas['changeOrder'] = function*() {
-    //     while (true) {
-    //         yield take(actionTypes.changeOrder);
-
-    //         yield put({ type: actionTypes.list });
-    //     }
-    // }
 
     return sagas;
 }

@@ -11,20 +11,20 @@
     border: 1px solid #ccc;
 }
 
-.slide-enter {
+.Omnibox__slide-enter {
     top: -105px;
 }
 
-.slide-enter.slide-enter-active {
+.Omnibox__slide-enter.Omnibox__slide-enter-active {
     top: -5px;
     transition: top 300ms ease-in;
 }
 
-.slide-leave {
+.Omnibox__slide-leave {
     top: -5px;
 }
 
-.slide-leave.slide-leave-active {
+.Omnibox__slide-leave.Omnibox__slide-leave-active {
     top: -105px;
     transition: top 300ms ease-in;
 }

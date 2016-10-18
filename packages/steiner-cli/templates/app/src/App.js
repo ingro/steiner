@@ -20,6 +20,7 @@ import SidebarMenu from './components/SidebarMenu';
 import Omnibox from './components/Omnibox';
 import Settings from './components/Settings';
 import Profile from './components/Profile';
+import ModalHelp from './components/ModalHelp';
 import routes from './routes';
 
 import KeyBinderHoc from './components/KeyBinder';
@@ -34,7 +35,8 @@ class App extends Component {
 
         this.state = {
             isOmniboxOpen: false,
-            isSidebarOpen: false
+            isSidebarOpen: false,
+            isHelpModalOpen: false
         };
     }
 
@@ -42,6 +44,16 @@ class App extends Component {
         this.props.bindShortcut(['ctrl+p', 'command+p'], (e) => {
             e.preventDefault();
             this.toggleOmnibox();
+        }, true);
+
+        this.props.bindShortcut(['ctrl+b', 'command+b'], (e) => {
+            e.preventDefault();
+            this.toggleSidebar();
+        }, true);
+
+        this.props.bindShortcut(['ctrl+h', 'command+h'], (e) => {
+            e.preventDefault();
+            this.toggleHelpModal();
         }, true);
     }
 
@@ -55,6 +67,14 @@ class App extends Component {
         this.setState({
             isOmniboxOpen: ! this.state.isOmniboxOpen
         });
+    }
+
+    toggleHelpModal = () => {
+        this.setState({
+            isHelpModalOpen: ! this.state.isHelpModalOpen
+        });
+
+        this.dropdown.close();
     }
 
     requestLogout = () => {
@@ -76,12 +96,13 @@ class App extends Component {
                         titleTemplate={`${process.env.REACT_APP_NAME} | %s`}
                     />
                     <ReactCSSTransitionGroup
-                        transitionName="slide"
+                        transitionName="Omnibox__slide"
                         transitionEnterTimeout={300}
                         transitionLeaveTimeout={300}
                     >
                         {this.state.isOmniboxOpen && <Omnibox key="omnibox" onChange={this.toggleOmnibox} options={omniboxOptions}/>}
                     </ReactCSSTransitionGroup>
+                    <ModalHelp isOpen={this.state.isHelpModalOpen} onClose={this.toggleHelpModal} />
                     <LoadingBar style={{ zIndex: 3 }} updateTime={250} maxProgress={95} />
                     <Sidebar
                         sidebar={<SidebarMenu links={sidebarMenuLinks} onToggle={this.toggleSidebar}/>}
@@ -104,12 +125,13 @@ class App extends Component {
                                         </ul>*/}
                                         <ul className="nav navbar-nav navbar-right">
                                             {user
-                                                ? <Dropdown text={<i className="fa fa-cog" />} type="navbar">
+                                                ? <Dropdown text={<i className="fa fa-cog" />} type="navbar" ref={ref => this.dropdown = ref}>
                                                     <li className="dropdown-header">{user.email}</li>
-                                                    <li><Link to="/profile">Profile</Link></li>
-                                                    <li><Link to="/settings">Settings</Link></li>
+                                                    <li><Link to="/profile"><i className="fa fa-user"/> Profile</Link></li>
+                                                    <li><Link to="/settings"><i className="fa fa-wrench" /> Settings</Link></li>
+                                                    <li><a onClick={this.toggleHelpModal}><i className="fa fa-question"/> Help</a></li>
                                                     <li role="separator" className="divider"></li>
-                                                    <li><a onClick={this.requestLogout}>Logout</a></li>
+                                                    <li><a onClick={this.requestLogout}><i className="fa fa-sign-out"/> Logout</a></li>
                                                 </Dropdown>
                                                 : <HeaderLink to="/login" name="Login" />
                                             }

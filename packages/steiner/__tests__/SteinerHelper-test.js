@@ -1,6 +1,6 @@
 import SteinerHelper from '../src/index';
 
-describe('SteinerHelpers', () => {
+describe('SteinerHelper', () => {
     it('is instantiable', () => {
         const helper = new SteinerHelper();
 
@@ -58,7 +58,7 @@ describe('SteinerHelpers', () => {
                 messageTemplates: {
                     deleteFail: '${resource} cleared!'
                 }
-            }
+            };
 
             expect(helper.getCreateActionsOptions(options)).toEqual({
                 messageTemplates: {

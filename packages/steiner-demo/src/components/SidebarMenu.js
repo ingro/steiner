@@ -7,7 +7,7 @@ import './Sidebar.css';
 class SidebarMenu extends Component {
     render() {
         return (
-            <div className="Sidebar-Wrapper">
+            <div className="Sidebar__wrapper">
                 <SidebarToggle position="sidebar" onClick={this.props.onToggle} />
                 <ul>
                     {this.props.links.map((link, i) =>

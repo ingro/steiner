@@ -1,7 +1,7 @@
-import { apiCreator } from 'steiner';
+// import { apiCreator } from 'steiner';
 import _ from 'lodash';
 
-import client from 'apis/client';
+import helper from 'helpers/steinerHelper';
 
 const paramsMapper = {
     _sort: (filters) => {
@@ -15,14 +15,6 @@ const paramsMapper = {
     }
 }
 
-const apis = apiCreator('hotels?_expand=position', client, paramsMapper);
-
-// apis.update = function(id, data) {
-//     return client({
-//         url: `/hotelsss/${id}`,
-//         method: 'patch',
-//         data
-//     });
-// };
+const apis = helper.createApi('hotels?_expand=position', null, paramsMapper);
 
 export default apis;

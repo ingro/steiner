@@ -1,3 +1,7 @@
+## 0.7.0 (October 18, 2016)
+
+- Updated templates for `SteinerHelper`
+
 ## 0.6.4 (October 13, 2016)
 
 - Added global getLinkTo in `routeRegister`

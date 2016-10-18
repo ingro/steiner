@@ -1,4 +1,6 @@
-import { actionCreator } from 'steiner';
+// import { actionCreator } from 'steiner';
 
-export const actionTypes = actionCreator.createActionTypes('hotels');
-export const actions = actionCreator.createActions('hotels', actionTypes);
+import helper from 'helpers/steinerHelper';
+
+export const actionTypes = helper.createActionTypes('hotels');
+export const actions = helper.createActions('hotels', actionTypes);

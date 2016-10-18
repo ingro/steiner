@@ -4,7 +4,7 @@ export * from './components';
 export * from './helpers';
 export const auth = authModule;
 
-import { createActions } from './helpers/actionCreator';
+import { createActions, createActionTypes } from './helpers/actionCreator';
 import createApi from './helpers/apiCreator';
 import { createHandlers } from './helpers/reducerCreator';
 
@@ -31,6 +31,10 @@ export default class SteinerHelper {
 
     createActions(resource, actionTypes, options) {
         return createActions(resource, actionTypes, this.getCreateActionsOptions(options));
+    }
+
+    createActionTypes(resource, options) {
+        return createActionTypes(resource, options);
     }
 
     createApi(endpoint, client, paramsMap) {

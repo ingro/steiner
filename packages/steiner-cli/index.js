@@ -44,7 +44,8 @@ function generateModule(moduleName, options) {
 
     const vars = { 
         name: moduleName,
-        richComponents: options.richComponents
+        richComponents: options.richComponents,
+        useHelper: options.helper
     };
 
     // Generate a file from a template
@@ -148,6 +149,7 @@ program
     .option('-o, --output-path <path>', 'Path to output dir')
     .option('-n, --no-components', 'Don\'t generate components and containers')
     .option('-r, --rich-components', 'Use react-helmet and keybindings in components')
+    .option('-h, --no-helper', 'Don\'t use SteinerHelper')
     .action(generateModule);
 
 program 

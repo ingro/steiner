@@ -1,4 +1,3 @@
-// import snakeCase from 'lodash/snakeCase';
 import arrify from 'arrify';
 import upperFirst from 'lodash/upperFirst';
 import defaults from 'lodash/defaults';
@@ -7,7 +6,6 @@ import trim from 'lodash/trim';
 import template from 'lodash/template';
 
 function addAsyncGroup(resource, actionTypes, group, options) {
-    // const upperResource = snakeCase(resource).toUpperCase();
     const upperGroup    = group.toUpperCase();
 
     resource = trim(resource);
@@ -53,8 +51,6 @@ export function createActionTypes(resource, options = {}) {
     addAsyncGroup(resource, actionTypes, 'update', options);
     addAsyncGroup(resource, actionTypes, 'delete', options);
 
-    // const upperResource = snakeCase(resource).toUpperCase();
-
     const resetCurrent = `${resource}/RESET_CURRENT`;
     const changePage   = `${resource}/CHANGE_PAGE`;
     const updateFilter = `${resource}/UDATE_FILTER`;
@@ -90,17 +86,6 @@ export function createActionTypes(resource, options = {}) {
 
     return actionTypes;
 }
-
-// function generateDefaultMessages(resource) {
-//     return {
-//         createSuccess: `${resource} created with success!`,
-//         createFail: `An error occured while creating ${resource}`,
-//         updateSuccess: `${resource} updated successfully!`,
-//         updateFail: `An error occured while updating ${resource}`,
-//         deleteSuccess: `${resource} deleted with success!`,
-//         deleteFail: `An error occured while deleting ${resource}`
-//     };
-// };
 
 function generateSuccessNotification(message, title = 'Hooray!') {
     return {

@@ -8,3 +8,4 @@
 - Support multiple api clients?
 - Use tooltip on delete buttons
 - Use user's settings value for number of rows displayed in tables?
+- Use all the helpers from SteinerHelper

@@ -2,9 +2,11 @@
 import arrify from 'arrify';
 import upperFirst from 'lodash/upperFirst';
 import defaults from 'lodash/defaults';
+import forOwn from 'lodash/forOwn';
 import trim from 'lodash/trim';
+import template from 'lodash/template';
 
-function addAsyncGroup(resource, actionTypes, group, config) {
+function addAsyncGroup(resource, actionTypes, group, options) {
     // const upperResource = snakeCase(resource).toUpperCase();
     const upperGroup    = group.toUpperCase();
 
@@ -21,20 +23,20 @@ function addAsyncGroup(resource, actionTypes, group, config) {
     actionTypes[success] = success;
     actionTypes[fail]    = fail;
 
-    if (config.addAlias) {
+    if (options.addAlias) {
         actionTypes[startAlias]   = start;
         actionTypes[successAlias] = success;
         actionTypes[failAlias]    = fail;
     }
 }
 
-export function createActionTypes(resource, config = {}) {
+export function createActionTypes(resource, options = {}) {
     if (resource == null) {
         throw new Error('Expected resource');
     }
 
-    if (config.addAlias == null) {
-        config.addAlias = true;
+    if (options.addAlias == null) {
+        options.addAlias = true;
     }
 
     resource = trim(resource);
@@ -45,11 +47,11 @@ export function createActionTypes(resource, config = {}) {
 
     const actionTypes = {};
 
-    addAsyncGroup(resource, actionTypes, 'list', config);
-    addAsyncGroup(resource, actionTypes, 'fetch', config);
-    addAsyncGroup(resource, actionTypes, 'create', config);
-    addAsyncGroup(resource, actionTypes, 'update', config);
-    addAsyncGroup(resource, actionTypes, 'delete', config);
+    addAsyncGroup(resource, actionTypes, 'list', options);
+    addAsyncGroup(resource, actionTypes, 'fetch', options);
+    addAsyncGroup(resource, actionTypes, 'create', options);
+    addAsyncGroup(resource, actionTypes, 'update', options);
+    addAsyncGroup(resource, actionTypes, 'delete', options);
 
     // const upperResource = snakeCase(resource).toUpperCase();
 
@@ -89,16 +91,16 @@ export function createActionTypes(resource, config = {}) {
     return actionTypes;
 }
 
-function generateDefaultMessages(resource) {
-    return {
-        createSuccess: `${resource} created with success!`,
-        createFail: `An error occured while creating ${resource}`,
-        updateSuccess: `${resource} updated successfully!`,
-        updateFail: `An error occured while updating ${resource}`,
-        deleteSuccess: `${resource} deleted with success!`,
-        deleteFail: `An error occured while deleting ${resource}`
-    };
-};
+// function generateDefaultMessages(resource) {
+//     return {
+//         createSuccess: `${resource} created with success!`,
+//         createFail: `An error occured while creating ${resource}`,
+//         updateSuccess: `${resource} updated successfully!`,
+//         updateFail: `An error occured while updating ${resource}`,
+//         deleteSuccess: `${resource} deleted with success!`,
+//         deleteFail: `An error occured while deleting ${resource}`
+//     };
+// };
 
 function generateSuccessNotification(message, title = 'Hooray!') {
     return {
@@ -116,16 +118,49 @@ function generateFailNotification(message, title = 'Oh snap!') {
     }
 }
 
-export function createActions(resource, actionTypes, messages = {}) {
+const defaultMessageTemplates = {
+    createSuccess: template('${resource} created with success!'),
+    createFail: template('An error occured while creating ${resource}'),
+    updateSuccess: template('${resource} updated successfully!'),
+    updateFail: template('An error occured while updating ${resource}'),
+    deleteSuccess: template('${resource} deleted with success!'),
+    deleteFail: template('An error occured while deleting ${resource}')
+};
+
+export function createDefaultMessages(resource, messageTemplates = {}) {
+    const messages = {};
+
+    defaults(messageTemplates, defaultMessageTemplates);
+
+    forOwn(messageTemplates, (value, key) => {
+        if (typeof value === 'function') {
+            messages[key] = value({ resource });
+        } else if (typeof value === 'string') {
+            const compiled = template(value);
+            messages[key] = compiled({ resource });
+        }
+    });
+
+    return messages;
+}
+
+export function createActionMessages(resource, options = {}) {
+    const messages = options.messages || {};
+
+    const defaultMessages = createDefaultMessages(resource, options.messageTemplates);
+    defaults(messages, defaultMessages);
+
+    return messages;
+}
+
+export function createActions(resource, actionTypes, options = {}) {
     if (resource == null) {
         throw new Error('Expected resource');
     }
 
     resource = trim(upperFirst(resource));
 
-    const defaultMessages = generateDefaultMessages(resource);
-
-    defaults(messages, defaultMessages);
+    const messages = createActionMessages(resource, options);
 
     const actions = {};
 
@@ -170,14 +205,12 @@ export function createActions(resource, actionTypes, messages = {}) {
         }
     }
 
-    actions[`update`] = function(id, data/*, resolve, reject*/) {
+    actions[`update`] = function(id, data) {
         return {
             type: actionTypes.update,
             payload: {
                 id,
                 data
-                /*resolve,
-                reject*/
             }
         }
     }

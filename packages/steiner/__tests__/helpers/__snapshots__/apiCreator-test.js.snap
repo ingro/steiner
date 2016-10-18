@@ -1,0 +1,45 @@
+exports[`apiCreator creates the correct api calls 1`] = `
+Object {
+  "url": "/posts/42",
+}
+`;
+
+exports[`apiCreator creates the correct api calls 2`] = `
+Object {
+  "params": Object {
+    "_limit": undefined,
+    "_order": undefined,
+    "_page": undefined,
+    "_sort": undefined,
+    "q": undefined,
+  },
+  "url": "/posts",
+}
+`;
+
+exports[`apiCreator creates the correct api calls 3`] = `
+Object {
+  "data": Object {
+    "foo": "bar",
+  },
+  "method": "post",
+  "url": "/posts",
+}
+`;
+
+exports[`apiCreator creates the correct api calls 4`] = `
+Object {
+  "data": Object {
+    "foo": "bar",
+  },
+  "method": "patch",
+  "url": "/posts/42",
+}
+`;
+
+exports[`apiCreator creates the correct api calls 5`] = `
+Object {
+  "method": "delete",
+  "url": "/posts/42",
+}
+`;

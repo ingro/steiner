@@ -158,7 +158,7 @@ export function createActions(resource, actionTypes, options = {}) {
         };
     }
 
-    actions[`list`] = function(filters) {
+    actions[`list`] = function() {
         return {
             type: actionTypes.list,
             loadingBar: 'show'

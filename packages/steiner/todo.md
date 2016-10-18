@@ -7,3 +7,4 @@
 - Optimistically update items on update?
 - Add all the missing helper's function on SteinerHelper
 - Pass only the minimum state/actions from redux's connect?
+- Move SteinerHelper in its own file

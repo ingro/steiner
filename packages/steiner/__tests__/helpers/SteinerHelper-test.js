@@ -1,4 +1,4 @@
-import SteinerHelper from '../src/index';
+import SteinerHelper from '../../src/index';
 
 describe('SteinerHelper', () => {
     it('is instantiable', () => {

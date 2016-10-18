@@ -1,0 +1,247 @@
+exports[`createActionTypes generates the correct action types 1`] = `
+Object {
+  "changeOrder": "posts/CHANGE_ORDER",
+  "changePage": "posts/CHANGE_PAGE",
+  "create": "posts/CREATE",
+  "createFail": "posts/CREATE_FAIL",
+  "createSuccess": "posts/CREATE_SUCCESS",
+  "delete": "posts/DELETE",
+  "deleteFail": "posts/DELETE_FAIL",
+  "deleteSuccess": "posts/DELETE_SUCCESS",
+  "deselect": "posts/DESELECT",
+  "deselectAll": "posts/DESELECT_ALL",
+  "fetch": "posts/FETCH",
+  "fetchFail": "posts/FETCH_FAIL",
+  "fetchSuccess": "posts/FETCH_SUCCESS",
+  "list": "posts/LIST",
+  "listFail": "posts/LIST_FAIL",
+  "listSuccess": "posts/LIST_SUCCESS",
+  "posts/CHANGE_ORDER": "posts/CHANGE_ORDER",
+  "posts/CHANGE_PAGE": "posts/CHANGE_PAGE",
+  "posts/CREATE": "posts/CREATE",
+  "posts/CREATE_FAIL": "posts/CREATE_FAIL",
+  "posts/CREATE_SUCCESS": "posts/CREATE_SUCCESS",
+  "posts/DELETE": "posts/DELETE",
+  "posts/DELETE_FAIL": "posts/DELETE_FAIL",
+  "posts/DELETE_SUCCESS": "posts/DELETE_SUCCESS",
+  "posts/DESELECT": "posts/DESELECT",
+  "posts/DESELECT_ALL": "posts/DESELECT_ALL",
+  "posts/FETCH": "posts/FETCH",
+  "posts/FETCH_FAIL": "posts/FETCH_FAIL",
+  "posts/FETCH_SUCCESS": "posts/FETCH_SUCCESS",
+  "posts/LIST": "posts/LIST",
+  "posts/LIST_FAIL": "posts/LIST_FAIL",
+  "posts/LIST_SUCCESS": "posts/LIST_SUCCESS",
+  "posts/RESET_CURRENT": "posts/RESET_CURRENT",
+  "posts/SELECT": "posts/SELECT",
+  "posts/SELECT_ALL": "posts/SELECT_ALL",
+  "posts/UDATE_FILTER": "posts/UDATE_FILTER",
+  "posts/UPDATE": "posts/UPDATE",
+  "posts/UPDATE_FAIL": "posts/UPDATE_FAIL",
+  "posts/UPDATE_SUCCESS": "posts/UPDATE_SUCCESS",
+  "resetCurrent": "posts/RESET_CURRENT",
+  "select": "posts/SELECT",
+  "selectAll": "posts/SELECT_ALL",
+  "update": "posts/UPDATE",
+  "updateFail": "posts/UPDATE_FAIL",
+  "updateFilter": "posts/UDATE_FILTER",
+  "updateSuccess": "posts/UPDATE_SUCCESS",
+}
+`;
+
+exports[`createActions generates the correct actions 1`] = `
+Object {
+  "payload": Object {
+    "id": 42,
+  },
+  "type": "posts/FETCH",
+}
+`;
+
+exports[`createActions generates the correct actions 2`] = `
+Object {
+  "loadingBar": "show",
+  "type": "posts/LIST",
+}
+`;
+
+exports[`createActions generates the correct actions 3`] = `
+Object {
+  "payload": Object {
+    "data": Object {
+      "foo": "bar",
+    },
+  },
+  "type": "posts/CREATE",
+}
+`;
+
+exports[`createActions generates the correct actions 4`] = `
+Object {
+  "notification": Object {
+    "message": "Posts created with success!",
+    "status": "success",
+    "title": "Hooray!",
+  },
+  "payload": Object {
+    "foo": "bar",
+  },
+  "type": "posts/CREATE_SUCCESS",
+}
+`;
+
+exports[`createActions generates the correct actions 5`] = `
+Object {
+  "error": Object {
+    "foo": "bar",
+  },
+  "notification": Object {
+    "message": "An error occured while creating Posts",
+    "status": "error",
+    "title": "Oh snap!",
+  },
+  "type": "posts/CREATE_FAIL",
+}
+`;
+
+exports[`createActions generates the correct actions 6`] = `
+Object {
+  "payload": Object {
+    "data": Object {
+      "foo": "bar",
+    },
+    "id": 42,
+  },
+  "type": "posts/UPDATE",
+}
+`;
+
+exports[`createActions generates the correct actions 7`] = `
+Object {
+  "notification": Object {
+    "message": "Posts updated successfully!",
+    "status": "success",
+    "title": "Hooray!",
+  },
+  "payload": Object {
+    "foo": "bar",
+  },
+  "type": "posts/UPDATE_SUCCESS",
+}
+`;
+
+exports[`createActions generates the correct actions 8`] = `
+Object {
+  "error": Object {
+    "foo": "bar",
+  },
+  "notification": Object {
+    "message": "An error occured while updating Posts",
+    "status": "error",
+    "title": "Oh snap!",
+  },
+  "type": "posts/UPDATE_FAIL",
+}
+`;
+
+exports[`createActions generates the correct actions 9`] = `
+Object {
+  "payload": Object {
+    "id": 42,
+  },
+  "type": "posts/DELETE",
+}
+`;
+
+exports[`createActions generates the correct actions 10`] = `
+Object {
+  "notification": Object {
+    "message": "Posts deleted with success!",
+    "status": "success",
+    "title": "Hooray!",
+  },
+  "payload": Object {
+    "foo": "bar",
+  },
+  "type": "posts/DELETE_SUCCESS",
+}
+`;
+
+exports[`createActions generates the correct actions 11`] = `
+Object {
+  "error": Object {
+    "foo": "bar",
+  },
+  "notification": Object {
+    "message": "An error occured while deleting Posts",
+    "status": "error",
+    "title": "Oh snap!",
+  },
+  "type": "posts/DELETE_FAIL",
+}
+`;
+
+exports[`createActions generates the correct actions 12`] = `
+Object {
+  "type": "posts/RESET_CURRENT",
+}
+`;
+
+exports[`createActions generates the correct actions 13`] = `
+Object {
+  "payload": Object {
+    "page": 3,
+  },
+  "type": "posts/CHANGE_PAGE",
+}
+`;
+
+exports[`createActions generates the correct actions 14`] = `
+Object {
+  "payload": Object {
+    "direction": "DESC",
+    "key": "name",
+  },
+  "type": "posts/CHANGE_ORDER",
+}
+`;
+
+exports[`createActions generates the correct actions 15`] = `
+Object {
+  "payload": Object {
+    "key": "q",
+    "value": "foo",
+  },
+  "type": "posts/UDATE_FILTER",
+}
+`;
+
+exports[`createActions generates the correct actions 16`] = `
+Object {
+  "payload": Array [
+    42,
+  ],
+  "type": "posts/SELECT",
+}
+`;
+
+exports[`createActions generates the correct actions 17`] = `
+Object {
+  "payload": Array [
+    42,
+  ],
+  "type": "posts/DESELECT",
+}
+`;
+
+exports[`createActions generates the correct actions 18`] = `
+Object {
+  "type": "posts/SELECT_ALL",
+}
+`;
+
+exports[`createActions generates the correct actions 19`] = `
+Object {
+  "type": "posts/DESELECT_ALL",
+}
+`;

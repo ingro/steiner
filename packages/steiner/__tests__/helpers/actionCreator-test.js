@@ -1,4 +1,4 @@
-import { createDefaultMessages, createActionMessages } from '../src/helpers/actionCreator';
+import { createActions, createActionTypes, createDefaultMessages, createActionMessages } from '../../src/helpers/actionCreator';
 
 const defaultPostsMessages = {
     createFail: 'An error occured while creating posts',
@@ -78,3 +78,39 @@ describe('createActionMessages', () => {
         });
     })
 });
+
+describe('createActionTypes', () => {
+    it('generates the correct action types', () => {
+        const actionTypes = createActionTypes('posts');
+
+        expect(actionTypes).toMatchSnapshot();
+    });
+});
+
+describe('createActions', () => {
+    it('generates the correct actions', () => {
+        const actionTypes = createActionTypes('posts');
+
+        const actions = createActions('posts', actionTypes);
+
+        expect(actions.fetch(42)).toMatchSnapshot();
+        expect(actions.list()).toMatchSnapshot();
+        expect(actions.create({ foo: 'bar' })).toMatchSnapshot();
+        expect(actions.createSuccess({ foo: 'bar' })).toMatchSnapshot();
+        expect(actions.createFail({ foo: 'bar' })).toMatchSnapshot();
+        expect(actions.update(42, { foo: 'bar' })).toMatchSnapshot();
+        expect(actions.updateSuccess({ foo: 'bar' })).toMatchSnapshot();
+        expect(actions.updateFail({ foo: 'bar' })).toMatchSnapshot();
+        expect(actions.delete(42)).toMatchSnapshot();
+        expect(actions.deleteSuccess({ foo: 'bar' })).toMatchSnapshot();
+        expect(actions.deleteFail({ foo: 'bar' })).toMatchSnapshot();
+        expect(actions.resetCurrent()).toMatchSnapshot();
+        expect(actions.changePage(3)).toMatchSnapshot();
+        expect(actions.changeOrder('name', 'DESC')).toMatchSnapshot();
+        expect(actions.updateFilter('q', 'foo')).toMatchSnapshot();
+        expect(actions.select(42)).toMatchSnapshot();
+        expect(actions.deselect(42)).toMatchSnapshot();
+        expect(actions.selectAll()).toMatchSnapshot();
+        expect(actions.deselectAll()).toMatchSnapshot();
+    })
+})

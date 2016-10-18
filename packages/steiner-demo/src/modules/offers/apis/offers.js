@@ -1,5 +1,3 @@
-import { apiCreator } from 'steiner';
+import helper from 'helpers/steinerHelper';
 
-import client from 'apis/client';
-
-export default apiCreator('offers', client);
+export default helper.createApi('offers');

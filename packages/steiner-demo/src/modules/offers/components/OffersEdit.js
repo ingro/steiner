@@ -6,7 +6,7 @@ import InputField from 'vivi/lib/Form/InputField';
 
 
 import { actionTypes } from '../actions/offers';
-import { linkTo } from '../routes/offers';
+import routeRegister from 'helpers/routeRegister';
 
 
 class OffersEdit extends Component {
@@ -19,7 +19,7 @@ class OffersEdit extends Component {
     componentWillMount() {
         this.props.initialize(this.createInitialFormValues(this.props.item));
 
-
+        
     }
 
     componentDidMount() {
@@ -33,7 +33,7 @@ class OffersEdit extends Component {
 
         if (nextProps.submitSucceeded) {
             setTimeout(() => {
-                this.context.router.transitionTo(linkTo('list'));
+                this.context.router.transitionTo(routeRegister.getLinkTo('offers.list'));
             }, 0);
         }
     }
@@ -53,7 +53,7 @@ class OffersEdit extends Component {
 
         return(
             <div className="row">
-
+                
                 <NavigationPrompt when={dirty && !submitSucceeded} message="Are you sure? Any unsaved changes will be lost." />
                 <div className="col-xs-6 col-xs-offset-3 text-center">
                     <h3>{this.getTitle()}</h3>
@@ -71,7 +71,7 @@ class OffersEdit extends Component {
                                 valid={valid}
                                 submitting={submitting}
                                 dirty={dirty}
-                                cancelLink={linkTo('list')}
+                                cancelLink={routeRegister.getLinkTo('offers.list')}
                                 onReset={reset}
                             />
                         </div>

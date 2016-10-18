@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { InputListFilter } from 'steiner';
 
-import { linkTo } from '../routes/offers';
+import routeRegister from 'helpers/routeRegister';
 
 
 export default class OffersListFilter extends Component {
@@ -25,7 +25,7 @@ export default class OffersListFilter extends Component {
                     />
                 </div>
                 <div className="col-xs-8 text-right">
-                    <Link className="btn btn-success" to={linkTo('create')}>Create</Link>
+                    <Link className="btn btn-success" to={routeRegister.getLinkTo('offers.create')}>Create</Link>
                 </div>
             </div>
         );

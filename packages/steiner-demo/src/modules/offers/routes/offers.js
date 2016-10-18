@@ -12,10 +12,7 @@ const routes = routeCreator.generateRoutes('offers', {
 
 const links = routeCreator.generateLinks(routes.patterns);
 
-export function linkTo(route, props) {
-    return links[route](props);
-}
-
 routeRegister.addPatterns('offers', routes.patterns);
+routeRegister.addLinks('offers', links);
 
 export default routes.list;

@@ -25,4 +25,5 @@ function createSymLinkFor(packageName) {
 createSymLinkFor('react');
 createSymLinkFor('react-redux');
 createSymLinkFor('react-router');
+createSymLinkFor('react-router-addons-controlled');
 createSymLinkFor('redux-form');

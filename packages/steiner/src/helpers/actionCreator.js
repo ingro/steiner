@@ -52,8 +52,9 @@ export function createActionTypes(resource, options = {}) {
     addAsyncGroup(resource, actionTypes, 'delete', options);
 
     const resetCurrent = `${resource}/RESET_CURRENT`;
-    const changePage   = `${resource}/CHANGE_PAGE`;
     const updateFilter = `${resource}/UDATE_FILTER`;
+    const syncFilters  = `${resource}/SYNC_FILTERS`;
+    const changePage   = `${resource}/CHANGE_PAGE`;
     const changeOrder  = `${resource}/CHANGE_ORDER`;
     const select       = `${resource}/SELECT`;
     const deselect     = `${resource}/DESELECT`;
@@ -63,11 +64,14 @@ export function createActionTypes(resource, options = {}) {
     actionTypes.resetCurrent = resetCurrent;
     actionTypes[resetCurrent] = resetCurrent;
 
-    actionTypes.changePage = changePage;
-    actionTypes[changePage] = changePage;
-
     actionTypes.updateFilter = updateFilter;
     actionTypes[updateFilter] = updateFilter;
+
+    actionTypes.syncFilters = syncFilters;
+    actionTypes[syncFilters] = syncFilters;
+
+    actionTypes.changePage = changePage;
+    actionTypes[changePage] = changePage;
 
     actionTypes.changeOrder = changeOrder;
     actionTypes[changeOrder] = changeOrder;
@@ -171,7 +175,7 @@ export function createActions(resource, actionTypes, options = {}) {
             payload: {
                 data
             }
-        }
+        };
     }
 
     actions['createSuccess'] = function(response) {
@@ -179,7 +183,7 @@ export function createActions(resource, actionTypes, options = {}) {
             type: actionTypes.createSuccess,
             payload: response,
             notification: generateSuccessNotification(messages.createSuccess)
-        }
+        };
     }
 
     actions['createFail'] = function(error) {
@@ -187,7 +191,7 @@ export function createActions(resource, actionTypes, options = {}) {
             type: actionTypes.createFail,
             error,
             notification: generateFailNotification(messages.createFail)
-        }
+        };
     }
 
     actions[`update`] = function(id, data) {
@@ -197,7 +201,7 @@ export function createActions(resource, actionTypes, options = {}) {
                 id,
                 data
             }
-        }
+        };
     }
 
     actions['updateSuccess'] = function(response) {
@@ -205,7 +209,7 @@ export function createActions(resource, actionTypes, options = {}) {
             type: actionTypes.updateSuccess,
             payload: response,
             notification: generateSuccessNotification(messages.updateSuccess)
-        }
+        };
     }
 
     actions['updateFail'] = function(error) {
@@ -213,7 +217,7 @@ export function createActions(resource, actionTypes, options = {}) {
             type: actionTypes.updateFail,
             error,
             notification: generateFailNotification(messages.updateFail)
-        }
+        };
     }
 
     actions[`delete`] = function(id) {
@@ -222,7 +226,7 @@ export function createActions(resource, actionTypes, options = {}) {
             payload: {
                 id
             }
-        }
+        };
     }
 
     actions['deleteSuccess'] = function(payload) {
@@ -230,7 +234,7 @@ export function createActions(resource, actionTypes, options = {}) {
             type: actionTypes.deleteSuccess,
             payload,
             notification: generateSuccessNotification(messages.deleteSuccess)
-        }
+        };
     }
 
     actions['deleteFail'] = function(error) {
@@ -238,32 +242,13 @@ export function createActions(resource, actionTypes, options = {}) {
             type: actionTypes.deleteFail,
             error,
             notification: generateFailNotification(messages.deleteFail)
-        }
+        };
     }
 
     actions[`resetCurrent`] = function() {
         return {
             type: actionTypes.resetCurrent
         };
-    }
-
-    actions['changePage'] = function(page) {
-        return {
-            type: actionTypes.changePage,
-            payload: {
-                page
-            }
-        }
-    }
-
-    actions['changeOrder'] = function(key, direction) {
-        return {
-            type: actionTypes.changeOrder,
-            payload: {
-                key,
-                direction
-            }
-        }
     }
 
     actions['updateFilter'] = function(key, value) {
@@ -276,32 +261,57 @@ export function createActions(resource, actionTypes, options = {}) {
         };
     }
 
+    actions['syncFilters'] = function(filters) {
+        return {
+            type: actionTypes.syncFilters,
+            payload: filters
+        };
+    }
+
+    actions['changePage'] = function(page) {
+        return {
+            type: actionTypes.changePage,
+            payload: {
+                page
+            }
+        };
+    }
+
+    actions['changeOrder'] = function(key, direction) {
+        return {
+            type: actionTypes.changeOrder,
+            payload: {
+                key,
+                direction
+            }
+        };
+    }
+
     actions['select'] = function(items) {
         return {
             type: actionTypes.select,
             payload: arrify(items)
-        }
+        };
     }
 
     actions['deselect'] = function(items) {
         return {
             type: actionTypes.deselect,
             payload: arrify(items)
-        }
+        };
     }
 
     actions['selectAll'] = function() {
         return {
             type: actionTypes.selectAll
-        }
+        };
     }
 
     actions['deselectAll'] = function() {
         return {
             type: actionTypes.deselectAll
-        }
+        };
     }
-
 
     return actions;
 }

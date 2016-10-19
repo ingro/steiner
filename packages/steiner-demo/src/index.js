@@ -9,7 +9,14 @@ import rootSaga from './sagas';
 import 'vivi/lib/style.css';
 import './index.css';
 
-const store = configureStore();
+import history from './history';
+
+const store = configureStore({
+    router: {
+        location: history.location,
+        action: history.action
+    }
+});
 
 store.runSaga(rootSaga);
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Match, Link } from 'react-router';
+import { Match, Link } from 'react-router';
 import NotificationsSystem from 'reapop';
 import LoadingBar from 'react-redux-loading-bar';
 import Sidebar from 'react-sidebar';
@@ -28,6 +28,9 @@ import KeyBinderHoc from './components/KeyBinder';
 const sidebarMenuLinks = routeRegister.getSidebarLinks();
 
 const omniboxOptions = routeRegister.getOmniboxOptions();
+
+import Router from 'react-router-addons-controlled/ControlledBrowserRouter';
+import history from './history';
 
 class App extends Component {
     constructor(props) {
@@ -89,7 +92,29 @@ class App extends Component {
         const { user } = this.props;
 
         return (
-            <BrowserRouter>
+            <Router
+                history={history}
+                location={this.props.location}
+                action={this.props.action}
+                onChange={(location, action) => {
+                    // console.warn(location);
+                    console.warn(action);
+
+                    if (action === 'SYNC') {
+                        this.props.dispatch({
+                            type: 'NAVIGATE',
+                            location,
+                            action: this.props.action
+                        });
+                    } else {
+                        this.props.dispatch({
+                            type: 'NAVIGATE',
+                            location,
+                            action
+                        });
+                    }
+                }}
+            >
                 <div>
                     <Helmet
                         title="App"
@@ -160,11 +185,11 @@ class App extends Component {
                         }}
                     />
                 </div>
-            </BrowserRouter>
+            </Router>
         );
     }
 }
 
 const KeyedApp = KeyBinderHoc(App);
 
-export default connect(state => ({ user: getUser(state) }))(KeyedApp);
+export default connect(state => ({ user: getUser(state), location: state.router.location, action: state.router.action }))(KeyedApp);

@@ -1,3 +1,7 @@
+## 0.8.0 (October 20, 2016)
+
+- Added routing helpers
+
 ## 0.7.0 (October 18, 2016)
 
 - Added `SteinerHelper`

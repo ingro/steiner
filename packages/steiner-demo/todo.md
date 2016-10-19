@@ -5,3 +5,5 @@
 - Write a simple getting started guide after bootstrap a new app with `steiner-cli`
 - Use user's settings value for number of rows displayed in tables?
 - Use all the helpers from SteinerHelper
+- Move logic from hotels sagas into sagaCreator helper to sync filter and url
+- Check deps (react-router-addons-controlled, history, query-string)

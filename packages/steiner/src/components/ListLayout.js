@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Paginator from 'vivi/lib/Paginator';
 import { Flex, Box } from 'reflexbox';
+import queryString from 'query-string';
 
 export default class ListLayout extends Component {
     componentDidMount() {
@@ -13,6 +14,10 @@ export default class ListLayout extends Component {
 
     handleChangePaginatorSize = (size) => {
         this.props.updateFilter('perPage', size);
+    }
+
+    componentWillMount() {
+        this.props.syncFilters(queryString.parse(window.location.search));
     }
 
     render() {
@@ -52,8 +57,6 @@ ListLayout.propTypes = {
     changePage: PropTypes.func,
     filterComponent: PropTypes.func,
     filters: PropTypes.object,
-    // isFetching: PropTypes.bool,
-    // items: PropTypes.array,
     list: PropTypes.func,
     tableComponent: PropTypes.func,
     total: PropTypes.number

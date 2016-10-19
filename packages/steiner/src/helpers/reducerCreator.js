@@ -104,12 +104,29 @@ function resetCurrent(state, action) {
     }));
 }
 
+function updateFilter(state, action) {
+    return state.setIn(['list', 'filters', action.payload.key], action.payload.value);
+}
+
 function changePage(state, action) {
     return state.setIn(['list', 'filters', 'page'], action.payload.page);
 }
 
-function updateFilter(state, action) {
-    return state.setIn(['list', 'filters', action.payload.key], action.payload.value);
+function syncFilters(state, action) {
+    const toSync = action.payload;
+
+    if (toSync.page) {
+        toSync.page = parseInt(toSync.page, 10);
+    }
+
+    if (toSync.perPage) {
+        toSync.perPage = parseInt(toSync.perPage, 10);
+    }
+
+    return state.updateIn(['list', 'filters'], filters => ({
+        ...filters,
+        ...toSync
+    })); 
 }
 
 function changeOrder(state, action) {
@@ -144,8 +161,9 @@ export function createHandlers(actionTypes, options = {}) {
         [actionTypes.fetchFail]: fetchFail,
         [actionTypes.deleteSuccess]: deleteSuccess,
         [actionTypes.resetCurrent]: resetCurrent,
-        [actionTypes.changePage]: changePage,
         [actionTypes.updateFilter]: updateFilter,
+        [actionTypes.syncFilters]: syncFilters,
+        [actionTypes.changePage]: changePage,
         [actionTypes.changeOrder]: changeOrder,
         [actionTypes.select]: select,
         [actionTypes.deselect]: deselect,

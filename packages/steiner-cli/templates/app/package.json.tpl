@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^0.15.0",
     "mousetrap": "^1.6.0",
+    "query-string": "^4.2.3",
     "rc-pagination": "^1.5.5",
     "rc-tooltip": "^3.4.2",
     "react": "^15.3.2",
@@ -22,7 +23,7 @@
     "react-modal": "^1.5.2",
     "react-redux": "^5.0.0-beta.3",
     "react-redux-loading-bar": "^2.4.0",
-    "react-router": "^4.0.0-alpha.4",
+    "react-router": "^4.0.0-alpha.5",
     "react-select": "^1.0.0-rc.2",
     "react-sidebar": "^2.2.1",
     "react-virtualized": "^8.0.11",

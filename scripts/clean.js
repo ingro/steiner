@@ -19,4 +19,5 @@ function cleanModule(packageName) {
 cleanModule('react');
 cleanModule('react-redux');
 cleanModule('react-router');
+cleanModule('react-router-addons-controlled');
 cleanModule('redux-form');

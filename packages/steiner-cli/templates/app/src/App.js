@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Match, Link } from 'react-router';
+import { Match, Link } from 'react-router';
 import NotificationsSystem from 'reapop';
 import LoadingBar from 'react-redux-loading-bar';
 import Sidebar from 'react-sidebar';

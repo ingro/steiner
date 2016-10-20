@@ -1,6 +1,6 @@
 {
   "name": "steiner",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Helpers and React Components to build dashboards and CRUD apps",
   "main": "lib/index.js",
   "scripts": {

@@ -21,7 +21,7 @@ npm install steiner --save
 Steiner also has some peer-dependencies that you need to install:
 
 ```
-npm install axios@^0.15.0 lodash@^4.0.0 react@^15.0.0 react-dom@^15.0.0 react-redux@^4.0.0 react-router@^4.0.0-alpha.4 reapop@^0.6.0 redux@^3.0.0 redux-form@^6.0.0 redux-saga^0.12.0 vivi@^0.3.0
+npm install axios@^0.15.0 lodash@^4.0.0 react@^15.0.0 react-dom@^15.0.0 react-redux@^4.0.0 react-router@^4.0.0-alpha.5 reapop@^0.6.0 redux@^3.0.0 redux-form@^6.0.0 redux-saga^0.12.0 vivi@^0.3.0
 ```
 
 ## Usage

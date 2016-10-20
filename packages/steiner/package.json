@@ -44,6 +44,7 @@
     "react-redux": "^5.0.0-beta.3",
     "react-redux-loading-bar": "^2.4.0",
     "react-router": "^4.0.0-alpha.5",
+    "react-router-addons-controlled": "0.0.1",
     "react-select": "^1.0.0-rc.2",
     "react-test-renderer": "^15.3.2",
     "react-virtualized": "^8.1.1",

@@ -17,39 +17,43 @@ function* handleFilter() {
     yield put(actions.list());
 }
 
+let task;
+
 sagas.filter = function*() {
-    let task;
-
     while (true) {
-        yield take([actionTypes.updateFilter, actionTypes.changePage, actionTypes.changeOrder]);
+        const action = yield take([actionTypes.updateFilter, actionTypes.changePage, actionTypes.changeOrder, actionTypes.syncFilters]);
 
-        const { q, page, perPage } = yield select(selectors.getFilters);
+        if (action.type !== actionTypes.syncFilters) {
 
-        const query = {
-            q,
-            page,
-            perPage
-        };
+            const { q, page, perPage } = yield select(selectors.getFilters);
 
-        const validFilterParameters = ['q', 'page', 'perPage'];
+            const query = {
+                q,
+                page,
+                perPage
+            };
 
-        const filters = DEFAULT_STATE.list.filters;
+            const validFilterParameters = ['q', 'page', 'perPage'];
 
-        const defaultState = {
-            q: filters.q,
-            page: filters.page,
-            perPage: filters.perPage
-        };
+            const filters = DEFAULT_STATE.list.filters;
 
-        const diff = _.pick(_.omitBy(query, (v, k) => defaultState[k] === v), validFilterParameters);
+            const defaultState = {
+                q: filters.q,
+                page: filters.page,
+                perPage: filters.perPage
+            };
 
-        yield put({
-            type: 'NAVIGATE',
-            location: { pathname:'/hotels', search: qs.stringify(diff), query: diff },
-            action: 'REPLACE'
-        });
+            const diff = _.pick(_.omitBy(query, (v, k) => defaultState[k] === v), validFilterParameters);
+
+            yield put({
+                type: 'NAVIGATE',
+                location: { pathname:'/hotels', search: '?' + qs.stringify(diff), query: diff },
+                action: 'PUSH'
+            });
+        }
 
         if (task) {
+            yield put({ type:'NOOP', loadingBar: 'hide' });
             yield cancel(task);
         }
 
@@ -57,4 +61,58 @@ sagas.filter = function*() {
     }
 }
 
-export default sagaCreator.bootSagas(sagas, actionTypes);
+// sagas.sync = function*() {
+//     while (true) {
+//         yield take([actionTypes.syncFilters]);
+//     }
+// }
+
+sagas.checkSync = function*() {
+    while (true) {
+        const action = yield take('hotels/CHECK_SYNC');
+
+        const filters = action.payload;
+
+        _.defaults(filters, DEFAULT_STATE.list.filters);
+
+        // const validFilterParameters = ['q', 'page', 'perPage'];
+
+        // const currentState = yield select(selectors.getFilters);
+
+        // const diff = _.pick(_.omitBy(filters, (v, k) => currentState[k] === v), validFilterParameters);
+
+        // const { q, page, perPage } = yield select(selectors.getFilters);
+
+        // const payloadPage = action.payload.page || 1;
+
+        yield put({
+            type: actionTypes.syncFilters,
+            payload: filters
+        });
+
+        // console.warn(payloadPage, page);
+
+        // if (payloadPage !== page) {
+            // console.warn('PAGE IS NOT THE SAME!');
+            // if (task) {
+            //     // yield put({ type: 'NOOP', loadingBar: 'hide' });
+            //     yield cancel(task);
+            // }
+
+            // task = yield fork(handleFilter);
+        // }   
+    }
+}
+
+// export default sagaCreator.bootSagas(sagas, actionTypes);
+
+export default [
+    takeLatest(actionTypes.list, sagas.list),
+    fork(sagas.fetch),
+    fork(sagas.create),
+    fork(sagas.update),
+    fork(sagas.delete),
+    fork(sagas.filter),
+    fork(sagas.checkSync)
+    // fork(sagas.sync)
+];

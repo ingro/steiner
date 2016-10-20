@@ -2,6 +2,10 @@ import { take, put, call, select, cancel, fork } from 'redux-saga/effects';
 import { delay, takeLatest } from 'redux-saga';
 import upperFirst from 'lodash/upperFirst';
 import trim from 'lodash/trim';
+import omitBy from 'lodash/omitBy';
+import defaults from 'lodash/defaults';
+import isEmpty from 'lodash/isEmpty';
+import queryString from 'query-string';
 
 function success(type, response, loadingBar) {
     const action = {
@@ -36,11 +40,13 @@ export function bootSagas(sagas, actionTypes) {
         fork(sagas.create),
         fork(sagas.update),
         fork(sagas.delete),
-        fork(sagas.filter)
+        fork(sagas.filter),
+        fork(sagas.syncFilters),
+        fork(sagas.checkSync)
     ];
 }
 
-export function createSagas(resource, actionTypes, actions, api, selectors) {
+export function createSagas(resource, actionTypes, actions, api, selectors, defaultState) {
     if (resource == null) {
         throw new Error('Expected resource');
     }
@@ -126,17 +132,78 @@ export function createSagas(resource, actionTypes, actions, api, selectors) {
         yield put(actions.list());
     }
 
+    function getDiff(src, matchers) {
+        return omitBy(src, (v, k) => matchers[k] == v);
+    }
+
     sagas[`filter`] = function*() {
         let task;
 
         while (true) {
-            yield take([actionTypes.updateFilter, actionTypes.changePage, actionTypes.changeOrder]);
+            const action = yield take([actionTypes.updateFilter, actionTypes.changePage, actionTypes.changeOrder]);
+
+            if (action.type !== actionTypes.syncFilters) {
+
+                const filters = yield select(selectors.getFilters);
+
+                const defaultFilters = defaultState.list.filters.asMutable();
+
+                // TODO: blacklist params???
+                // const diff = _.omit(_.omitBy(filters.asMutable(), (v, k) => defaultFilters[k] == v), blacklist);
+
+                const diff = getDiff(filters.asMutable(), defaultFilters);
+
+                yield put({
+                    type: 'NAVIGATE',
+                    location: { 
+                        pathname: window.location.pathname, 
+                        search: `?${queryString.stringify(diff)}`, 
+                        query: diff 
+                    },
+                    action: 'PUSH'
+                });
+            }
 
             if (task) {
+                yield put({ type:'NOOP', loadingBar: 'hide' });
                 yield cancel(task);
             }
 
             task = yield fork(handleFilter);
+        }
+    }
+
+    sagas['syncFilters'] = function*() {
+        while (true) {
+            yield take([actionTypes.syncFilters]);
+
+            yield put(actions.list());
+        }
+    }
+
+    sagas['checkSync'] = function*() {
+        while (true) {
+            const action = yield take(actionTypes.checkSync);
+
+            const filters = action.payload;
+
+            defaults(filters, defaultState.list.filters.asMutable());
+
+            const currentState = yield select(selectors.getFilters);
+
+            // console.warn(filters);
+            // console.warn(currentState);
+
+            const diff = getDiff(filters, currentState);
+
+            // console.warn(diff);
+
+            if (! isEmpty(diff)) {
+                yield put({
+                    type: actionTypes.syncFilters,
+                    payload: filters
+                });
+            }
         }
     }
 

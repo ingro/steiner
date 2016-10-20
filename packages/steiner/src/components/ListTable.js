@@ -62,8 +62,8 @@ export default class ListTable extends Component {
                 rowGetter={this.rowGetter}
                 rowHeight={55}
                 noRowsRenderer={this.getNoRowsRenderer}
-                sortBy={filters.order.key}
-                sortDirection={filters.order.direction}
+                sortBy={filters.orderKey}
+                sortDirection={filters.orderDirection}
                 onSort={this.handleSort}
                 selectable={selectable}
                 isSelected={this.isSelected}

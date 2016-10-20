@@ -7,3 +7,4 @@
 - Use all the helpers from SteinerHelper
 - Move logic from hotels sagas into sagaCreator helper to sync filter and url
 - Check deps (react-router-addons-controlled, history, query-string)
+- Implement a better solution (debounce) for list filter input to allow a lower delay in handleFilter saga

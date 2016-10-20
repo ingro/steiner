@@ -12,10 +12,8 @@ export const DEFAULT_STATE = Immutable({
             q: '',
             page: 1,
             perPage: 20,
-            order: {
-                key: null,
-                direction: 'ASC'
-            }
+            orderKey: null,
+            orderDirection: 'ASC'
         },
         total: 0
     },
@@ -108,10 +106,6 @@ function updateFilter(state, action) {
     return state.setIn(['list', 'filters', action.payload.key], action.payload.value);
 }
 
-function changePage(state, action) {
-    return state.setIn(['list', 'filters', 'page'], action.payload.page);
-}
-
 function syncFilters(state, action) {
     const toSync = action.payload;
 
@@ -129,8 +123,18 @@ function syncFilters(state, action) {
     })); 
 }
 
+function changePage(state, action) {
+    return state.setIn(['list', 'filters', 'page'], action.payload.page);
+}
+
 function changeOrder(state, action) {
-    return state.setIn(['list', 'filters', 'order'], action.payload);
+    const { key, direction } = action.payload;
+
+    return state.updateIn(['list', 'filters'], filters => ({
+        ...filters,
+        orderKey: key,
+        orderDirection: direction
+    }));
 }
 
 function select(state, action) {

@@ -1,3 +1,4 @@
+import ControlledRouterComponent from './ControlledRouter';
 import FormControlsComponent from './FormControls';
 import InputListFilterComponent from './InputListFilter';
 import ItemLoaderComponent from './ItemLoader';
@@ -8,6 +9,7 @@ import MatchWhenAuthorizedComponent from './MatchWhenAuthorized';
 import MatchWhenGuestComponent from './MatchWhenGuest';
 import HeaderLinkComponent from './HeaderLink';
 
+export const ControlledRouter = ControlledRouterComponent;
 export const FormControls = FormControlsComponent;
 export const InputListFilter = InputListFilterComponent;
 export const ItemLoader = ItemLoaderComponent;

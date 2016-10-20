@@ -4,8 +4,8 @@ export const DEFAULT_PARAMS_MAP = {
     q: 'q',
     _page: 'page',
     _limit: 'perPage',
-    _sort: 'order.key',
-    _order: 'order.direction'
+    _sort: 'orderKey',
+    _order: 'orderDirection'
 };
 
 function buildParams(filters, paramsMap = {}) {

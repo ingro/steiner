@@ -1,118 +1,102 @@
 import { sagaCreator } from 'steiner';
-import { take, put, call, select, cancel, fork } from 'redux-saga/effects';
-import { delay, takeLatest } from 'redux-saga';
-import _ from 'lodash';
+// import { take, put, call, select, cancel, fork } from 'redux-saga/effects';
+// import { delay, takeLatest } from 'redux-saga';
+// import _ from 'lodash';
 
 import { actions, actionTypes } from '../actions/hotels';
 import { selectors, DEFAULT_STATE } from '../reducers/hotels';
 import api from '../apis/hotels';
 
-const sagas = sagaCreator.createSagas('hotels', actionTypes, actions, api, selectors);
+const sagas = sagaCreator.createSagas('hotels', actionTypes, actions, api, selectors, DEFAULT_STATE);
 
-import qs from 'query-string';
+// import qs from 'query-string';
 
-function* handleFilter() {
-    yield call(delay, 500);
+// function* handleFilter() {
+//     yield call(delay, 500);
 
-    yield put(actions.list());
-}
+//     yield put(actions.list());
+// }
 
-let task;
+// sagas.filter = function*() {
+//     let task;
 
-sagas.filter = function*() {
-    while (true) {
-        const action = yield take([actionTypes.updateFilter, actionTypes.changePage, actionTypes.changeOrder, actionTypes.syncFilters]);
+//     while (true) {
+//         const action = yield take([actionTypes.updateFilter, actionTypes.changePage, actionTypes.changeOrder]);
 
-        if (action.type !== actionTypes.syncFilters) {
+//         if (action.type !== actionTypes.syncFilters) {
 
-            const { q, page, perPage } = yield select(selectors.getFilters);
+//             const filters = yield select(selectors.getFilters);
 
-            const query = {
-                q,
-                page,
-                perPage
-            };
+//             const defaultFilters = DEFAULT_STATE.list.filters.asMutable();
 
-            const validFilterParameters = ['q', 'page', 'perPage'];
+//             // TODO: blacklist params???
+//             // const diff = _.omit(_.omitBy(filters.asMutable(), (v, k) => defaultFilters[k] == v), blacklist);
 
-            const filters = DEFAULT_STATE.list.filters;
+//             const diff = _.omitBy(filters.asMutable(), (v, k) => defaultFilters[k] == v);
 
-            const defaultState = {
-                q: filters.q,
-                page: filters.page,
-                perPage: filters.perPage
-            };
+//             yield put({
+//                 type: 'NAVIGATE',
+//                 location: { 
+//                     pathname: window.location.pathname, 
+//                     search: `?${qs.stringify(diff)}`, 
+//                     query: diff 
+//                 },
+//                 action: 'PUSH'
+//             });
+//         }
 
-            const diff = _.pick(_.omitBy(query, (v, k) => defaultState[k] === v), validFilterParameters);
+//         if (task) {
+//             yield put({ type:'NOOP', loadingBar: 'hide' });
+//             yield cancel(task);
+//         }
 
-            yield put({
-                type: 'NAVIGATE',
-                location: { pathname:'/hotels', search: '?' + qs.stringify(diff), query: diff },
-                action: 'PUSH'
-            });
-        }
-
-        if (task) {
-            yield put({ type:'NOOP', loadingBar: 'hide' });
-            yield cancel(task);
-        }
-
-        task = yield fork(handleFilter);
-    }
-}
+//         task = yield fork(handleFilter);
+//     }
+// }
 
 // sagas.sync = function*() {
 //     while (true) {
 //         yield take([actionTypes.syncFilters]);
+
+//         yield put(actions.list());
 //     }
 // }
 
-sagas.checkSync = function*() {
-    while (true) {
-        const action = yield take('hotels/CHECK_SYNC');
+// sagas.checkSync = function*() {
+//     while (true) {
+//         const action = yield take('hotels/CHECK_SYNC');
 
-        const filters = action.payload;
+//         const filters = action.payload;
 
-        _.defaults(filters, DEFAULT_STATE.list.filters);
+//         _.defaults(filters, DEFAULT_STATE.list.filters.asMutable());
 
-        // const validFilterParameters = ['q', 'page', 'perPage'];
+//         const currentState = yield select(selectors.getFilters);
 
-        // const currentState = yield select(selectors.getFilters);
+//         // console.warn(filters);
+//         // console.warn(currentState);
 
-        // const diff = _.pick(_.omitBy(filters, (v, k) => currentState[k] === v), validFilterParameters);
+//         const diff = _.omitBy(filters, (v, k) => currentState[k] == v);
 
-        // const { q, page, perPage } = yield select(selectors.getFilters);
+//         // console.warn(diff);
 
-        // const payloadPage = action.payload.page || 1;
+//         if (!_.isEmpty(diff)) {
+//             yield put({
+//                 type: actionTypes.syncFilters,
+//                 payload: filters
+//             });
+//         }
+//     }
+// }
 
-        yield put({
-            type: actionTypes.syncFilters,
-            payload: filters
-        });
+export default sagaCreator.bootSagas(sagas, actionTypes);
 
-        // console.warn(payloadPage, page);
-
-        // if (payloadPage !== page) {
-            // console.warn('PAGE IS NOT THE SAME!');
-            // if (task) {
-            //     // yield put({ type: 'NOOP', loadingBar: 'hide' });
-            //     yield cancel(task);
-            // }
-
-            // task = yield fork(handleFilter);
-        // }   
-    }
-}
-
-// export default sagaCreator.bootSagas(sagas, actionTypes);
-
-export default [
-    takeLatest(actionTypes.list, sagas.list),
-    fork(sagas.fetch),
-    fork(sagas.create),
-    fork(sagas.update),
-    fork(sagas.delete),
-    fork(sagas.filter),
-    fork(sagas.checkSync)
-    // fork(sagas.sync)
-];
+// export default [
+//     takeLatest(actionTypes.list, sagas.list),
+//     fork(sagas.fetch),
+//     fork(sagas.create),
+//     fork(sagas.update),
+//     fork(sagas.delete),
+//     fork(sagas.filter),
+//     fork(sagas.checkSync),
+//     fork(sagas.sync)
+// ];

@@ -1,11 +1,1 @@
-/* Overrides bootstrap */
-
-.navbar-toggle {
-    float: left;
-}
-
-@media (min-width: 768px) {
-    .navbar-toggle {
-        display: block;
-    }
-}
+/* Your custom CSS here */

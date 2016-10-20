@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { getRouter } from '../routing/reducer';
 
 export function connectList(component, actions, selectors) {
     function mapStateToProps(state) {
@@ -9,7 +10,7 @@ export function connectList(component, actions, selectors) {
             ...list,
             items: selectors.itemsSelector(state),
             selected: selectors.getSelectedId(state),
-            component
+            router: getRouter(state)
         };
     }
 

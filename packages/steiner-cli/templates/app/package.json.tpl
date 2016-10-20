@@ -6,7 +6,7 @@
     "react-scripts": "0.6.1",
     "react-test-renderer": "^15.3.2",
     "redux-devtools-extension": "^1.0.0",
-    "steiner-cli": "^0.7.0"
+    "steiner-cli": "^0.8.0"
   },
   "dependencies": {
     "axios": "^0.15.0",
@@ -24,6 +24,7 @@
     "react-redux": "^5.0.0-beta.3",
     "react-redux-loading-bar": "^2.4.0",
     "react-router": "^4.0.0-alpha.5",
+    "react-router-addons-controlled": "^0.0.1",
     "react-select": "^1.0.0-rc.2",
     "react-sidebar": "^2.2.1",
     "react-virtualized": "^8.0.11",
@@ -39,7 +40,7 @@
     "reflexbox": "^2.2.2",
     "revalidate": "^0.4.1",
     "seamless-immutable": "^6.1.3",
-    "steiner": "^0.7.0",
+    "steiner": "^0.8.0",
     "vivi": "^0.3.4"
   },
   "scripts": {

@@ -6,10 +6,11 @@ import LoadingBar from 'react-redux-loading-bar';
 import Sidebar from 'react-sidebar';
 import Helmet from 'react-helmet';
 import theme from 'reapop-theme-wybo';
-import { MatchWhenAuthorized, MatchWhenGuest, HeaderLink, auth, createConfirm } from 'steiner';
+import { ControlledRouter, MatchWhenAuthorized, MatchWhenGuest, HeaderLink, auth, createConfirm } from 'steiner';
 import { getUser } from 'steiner/lib/auth/reducer';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Dropdown from 'vivi/lib/Dropdown';
+import { getRouter } from 'steiner/lib/routing/reducer';
 
 import routeRegister from 'helpers/routeRegister';
 import Welcome from './components/Welcome';
@@ -22,15 +23,13 @@ import Settings from './components/Settings';
 import Profile from './components/Profile';
 import ModalHelp from './components/ModalHelp';
 import routes from './routes';
+import history from './history';
 
 import KeyBinderHoc from './components/KeyBinder';
 
 const sidebarMenuLinks = routeRegister.getSidebarLinks();
 
 const omniboxOptions = routeRegister.getOmniboxOptions();
-
-import Router from 'react-router-addons-controlled/ControlledBrowserRouter';
-import history from './history';
 
 class App extends Component {
     constructor(props) {
@@ -89,31 +88,14 @@ class App extends Component {
     }
 
     render() {
-        const { user } = this.props;
+        const { user, router, dispatch } = this.props;
 
         return (
-            <Router
+            <ControlledRouter
                 history={history}
-                location={this.props.location}
-                action={this.props.action}
-                onChange={(location, action) => {
-                    // console.warn(location);
-                    console.warn(action);
-
-                    if (action === 'SYNC') {
-                        this.props.dispatch({
-                            type: 'NAVIGATE',
-                            location,
-                            action: this.props.action
-                        });
-                    } else {
-                        this.props.dispatch({
-                            type: 'NAVIGATE',
-                            location,
-                            action
-                        });
-                    }
-                }}
+                location={router.location}
+                action={router.action}
+                dispatch={dispatch}
             >
                 <div>
                     <Helmet
@@ -185,11 +167,11 @@ class App extends Component {
                         }}
                     />
                 </div>
-            </Router>
+            </ControlledRouter>
         );
     }
 }
 
 const KeyedApp = KeyBinderHoc(App);
 
-export default connect(state => ({ user: getUser(state), location: state.router.location, action: state.router.action }))(KeyedApp);
+export default connect(state => ({ user: getUser(state), router: getRouter(state) }))(KeyedApp);

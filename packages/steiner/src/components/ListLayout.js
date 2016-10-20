@@ -5,7 +5,7 @@ import queryString from 'query-string';
 
 export default class ListLayout extends Component {
     componentDidMount() {
-        this.props.list();
+        this.props.syncFilters(queryString.parse(window.location.search));
     }
 
     handleChangePage = (page) => {
@@ -16,8 +16,10 @@ export default class ListLayout extends Component {
         this.props.updateFilter('perPage', size);
     }
 
-    componentWillMount() {
-        this.props.syncFilters(queryString.parse(window.location.search));
+    componentWillReceiveProps(nextProps) {
+        if ((nextProps.router.location.search !== this.props.router.location.search) && nextProps.router.action === 'POP') {
+            this.props.checkSync(queryString.parse(window.location.search));
+        }
     }
 
     render() {

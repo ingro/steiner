@@ -5,7 +5,7 @@ import helper from 'helpers/steinerHelper';
 
 const paramsMapper = {
     _sort: (filters) => {
-        const raw = _.get(filters, 'order.key');
+        const raw = _.get(filters, 'orderKey');
 
         if (raw === 'position') {
             return 'position.name';

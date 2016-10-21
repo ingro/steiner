@@ -6,7 +6,8 @@
     "seed:demo": "rimraf packages/steiner-demo/src/modules/offers && cd packages/steiner-cli && node index generate offers -o ../steiner-demo/src/modules",
     "start:demo": "cd packages/steiner-demo && npm start",
     "publish": "lerna publish && lerna-npm-readme-hack --packages steiner,steiner-cli",
-    "bootstrap": "node scripts/clean && lerna bootstrap && node scripts/link"
+    "bootstrap": "node scripts/clean && lerna bootstrap && node scripts/link",
+    "test": "cd packages/steiner && npm test"
   },
   "devDependencies": {
     "lerna": "2.0.0-beta.30",

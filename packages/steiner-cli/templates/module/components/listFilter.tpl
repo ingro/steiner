@@ -25,7 +25,7 @@ export default class {{componentName}} extends Component {
                 <div className="col-xs-4">
                     <InputListFilter
                         value={filters.q}
-                        onChange={this.props.updateFilter}
+                        updateFilter={this.props.updateFilter}
                     />
                 </div>
                 <div className="col-xs-8 text-right">

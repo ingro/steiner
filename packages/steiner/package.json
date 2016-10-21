@@ -35,7 +35,7 @@
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.1",
-    "jest": "^16.0.1",
+    "jest": "^16.0.2",
     "lodash": "^4.16.4",
     "rc-pagination": "^1.5.5",
     "react": "^15.3.2",
@@ -47,13 +47,13 @@
     "react-router-addons-controlled": "0.0.1",
     "react-select": "^1.0.0-rc.2",
     "react-test-renderer": "^15.3.2",
-    "react-virtualized": "^8.1.1",
+    "react-virtualized": "^8.2.0",
     "reapop": "^0.6.0",
     "redux": "^3.6.0",
     "redux-form": "^6.1.0",
     "redux-saga": "^0.12.0",
     "reflexbox": "^2.2.2",
-    "vivi": "^0.3.4"
+    "vivi": "^0.3.5"
   },
   "dependencies": {
     "arrify": "^1.0.1",
@@ -76,6 +76,6 @@
     "redux-form": "^6.0.0",
     "redux-saga": "^0.12.0",
     "reflexbox": "^2.2.2",
-    "vivi": "^0.3.4"
+    "vivi": "^0.3.5"
   }
 }

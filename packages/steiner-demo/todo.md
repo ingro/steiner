@@ -4,4 +4,3 @@
 - Write a simple getting started guide after bootstrap a new app with `steiner-cli`
 - Use user's settings value for number of rows displayed in tables?
 - Use all the helpers from SteinerHelper
-- Implement a better solution (debounce or press enter to filter?) for list filter input to allow a lower delay in handleFilter saga

@@ -19,16 +19,16 @@ class HotelsListFilter extends Component {
 
         alert(`BATCH ACTION on items ${this.props.selected}`);
     }
-
+    
     render() {
-        const { filters, selected } = this.props;
+        const { filters, selected, updateFilter } = this.props;
 
         return (
             <div className="row">
                 <div className="col-xs-4">
                     <InputListFilter
                         value={filters.q}
-                        onChange={this.props.updateFilter}
+                        updateFilter={updateFilter}
                     />
                 </div>
                 <div className="col-xs-4">

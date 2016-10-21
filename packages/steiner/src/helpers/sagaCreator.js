@@ -127,7 +127,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
     }
 
     function* handleFilter() {
-        yield call(delay, 500);
+        yield call(delay, 100);
 
         yield put(actions.list());
     }
@@ -140,29 +140,26 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         let task;
 
         while (true) {
-            const action = yield take([actionTypes.updateFilter, actionTypes.changePage, actionTypes.changeOrder]);
+            yield take([actionTypes.updateFilter, actionTypes.changePage, actionTypes.changeOrder]);
 
-            if (action.type !== actionTypes.syncFilters) {
+            const filters = yield select(selectors.getFilters);
 
-                const filters = yield select(selectors.getFilters);
+            const defaultFilters = defaultState.list.filters.asMutable();
 
-                const defaultFilters = defaultState.list.filters.asMutable();
+            // TODO: blacklist params???
+            // const diff = _.omit(_.omitBy(filters.asMutable(), (v, k) => defaultFilters[k] == v), blacklist);
 
-                // TODO: blacklist params???
-                // const diff = _.omit(_.omitBy(filters.asMutable(), (v, k) => defaultFilters[k] == v), blacklist);
+            const diff = getDiff(filters.asMutable(), defaultFilters);
 
-                const diff = getDiff(filters.asMutable(), defaultFilters);
-
-                yield put({
-                    type: 'NAVIGATE',
-                    location: { 
-                        pathname: window.location.pathname, 
-                        search: `?${queryString.stringify(diff)}`, 
-                        query: diff 
-                    },
-                    action: 'PUSH'
-                });
-            }
+            yield put({
+                type: 'NAVIGATE',
+                location: { 
+                    pathname: window.location.pathname, 
+                    search: `?${queryString.stringify(diff)}`, 
+                    query: diff 
+                },
+                action: 'PUSH'
+            });
 
             if (task) {
                 yield put({ type:'NOOP', loadingBar: 'hide' });

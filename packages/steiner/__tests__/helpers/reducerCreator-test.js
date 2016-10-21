@@ -1,4 +1,4 @@
-import { createHandlers, DEFAULT_STATE } from '../../src/helpers/reducerCreator';
+import { createHandlers, createSelectors, DEFAULT_STATE } from '../../src/helpers/reducerCreator';
 import { createActionTypes } from '../../src/helpers/actionCreator';
 
 describe('createHandlers', () => {
@@ -163,5 +163,40 @@ describe('createHandlers', () => {
         const selectState = DEFAULT_STATE.setIn(['list', 'selected'], [33, 42, 56]);
 
         expect(handlers[actionTypes.deselectAll](selectState)).toMatchSnapshot();
+    });
+});
+
+describe('createSelectors', () => {
+    const selectors = createSelectors('posts');
+
+    const state = {
+        posts: DEFAULT_STATE
+            .setIn(['list', 'itemsId'], [ 33, 42])
+            .setIn(['list', 'itemsById'], { 33: { id: 33, name: 'foo' }, 42: { id: 42, name: 'bar' }})
+            .setIn(['list', 'selected'], [42])
+    }
+
+    it('listSelector returns the list from the state', () => {
+        expect(selectors.listSelector(state)).toMatchSnapshot();
+    });
+
+    it('itemsSelector returns the list of items from the state', () => {
+        expect(selectors.itemsSelector(state)).toMatchSnapshot();
+    });
+
+    it('currentSelector returns the current item from the state', () => {
+        expect(selectors.currentSelector(state)).toMatchSnapshot();
+    });
+
+    it('getFilters returns the filters from the state', () => {
+        expect(selectors.getFilters(state)).toMatchSnapshot();
+    });
+
+    it('getSelectedId returns the filters from the state', () => {
+        expect(selectors.getSelectedId(state)).toMatchSnapshot();
+    });
+
+    it('getSelected returns the filters from the state', () => {
+        expect(selectors.getSelected(state)).toMatchSnapshot();
     });
 });

@@ -429,3 +429,81 @@ Object {
   },
 }
 `;
+
+exports[`createSelectors currentSelector returns the current item from the state 1`] = `
+Object {
+  "errorMessage": null,
+  "isFetching": false,
+  "item": null,
+}
+`;
+
+exports[`createSelectors getFilters returns the filters from the state 1`] = `
+Object {
+  "orderDirection": "ASC",
+  "orderKey": null,
+  "page": 1,
+  "perPage": 20,
+  "q": "",
+}
+`;
+
+exports[`createSelectors getSelected returns the filters from the state 1`] = `
+Array [
+  Object {
+    "id": 42,
+    "name": "bar",
+  },
+]
+`;
+
+exports[`createSelectors getSelectedId returns the filters from the state 1`] = `
+Array [
+  42,
+]
+`;
+
+exports[`createSelectors itemsSelector returns the list of items from the state 1`] = `
+Array [
+  Object {
+    "id": 33,
+    "name": "foo",
+  },
+  Object {
+    "id": 42,
+    "name": "bar",
+  },
+]
+`;
+
+exports[`createSelectors listSelector returns the list from the state 1`] = `
+Object {
+  "errorMessage": null,
+  "filters": Object {
+    "orderDirection": "ASC",
+    "orderKey": null,
+    "page": 1,
+    "perPage": 20,
+    "q": "",
+  },
+  "isFetching": false,
+  "itemsById": Object {
+    "33": Object {
+      "id": 33,
+      "name": "foo",
+    },
+    "42": Object {
+      "id": 42,
+      "name": "bar",
+    },
+  },
+  "itemsId": Array [
+    33,
+    42,
+  ],
+  "selected": Array [
+    42,
+  ],
+  "total": 0,
+}
+`;

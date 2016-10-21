@@ -1,6 +1,5 @@
 import Immutable from 'seamless-immutable';
-import { take, put, call, select, cancel, fork } from 'redux-saga/effects';
-import { delay, takeLatest } from 'redux-saga';
+import { take, put, call, select, fork } from 'redux-saga/effects';
 
 import { createSagas } from '../../src/helpers/sagaCreator';
 import { createActions, createActionTypes } from '../../src/helpers/actionCreator';

@@ -1,0 +1,431 @@
+exports[`createHandlers handles correctly changeOrder action 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": null,
+    "isFetching": false,
+    "item": null,
+  },
+  "list": Object {
+    "errorMessage": null,
+    "filters": Object {
+      "orderDirection": "DESC",
+      "orderKey": "name",
+      "page": 1,
+      "perPage": 20,
+      "q": "",
+    },
+    "isFetching": false,
+    "itemsById": Object {},
+    "itemsId": Array [],
+    "selected": Array [],
+    "total": 0,
+  },
+}
+`;
+
+exports[`createHandlers handles correctly changePage action 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": null,
+    "isFetching": false,
+    "item": null,
+  },
+  "list": Object {
+    "errorMessage": null,
+    "filters": Object {
+      "orderDirection": "ASC",
+      "orderKey": null,
+      "page": 10,
+      "perPage": 20,
+      "q": "",
+    },
+    "isFetching": false,
+    "itemsById": Object {},
+    "itemsId": Array [],
+    "selected": Array [],
+    "total": 0,
+  },
+}
+`;
+
+exports[`createHandlers handles correctly deleteSuccess action 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": null,
+    "isFetching": false,
+    "item": null,
+  },
+  "list": Object {
+    "errorMessage": null,
+    "filters": Object {
+      "orderDirection": "ASC",
+      "orderKey": null,
+      "page": 1,
+      "perPage": 20,
+      "q": "",
+    },
+    "isFetching": false,
+    "itemsById": Object {
+      "33": Object {
+        "foo": "bar",
+      },
+    },
+    "itemsId": Array [
+      33,
+    ],
+    "selected": Array [],
+    "total": 0,
+  },
+}
+`;
+
+exports[`createHandlers handles correctly deselect action 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": null,
+    "isFetching": false,
+    "item": null,
+  },
+  "list": Object {
+    "errorMessage": null,
+    "filters": Object {
+      "orderDirection": "ASC",
+      "orderKey": null,
+      "page": 1,
+      "perPage": 20,
+      "q": "",
+    },
+    "isFetching": false,
+    "itemsById": Object {},
+    "itemsId": Array [],
+    "selected": Array [],
+    "total": 0,
+  },
+}
+`;
+
+exports[`createHandlers handles correctly deselectAll action 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": null,
+    "isFetching": false,
+    "item": null,
+  },
+  "list": Object {
+    "errorMessage": null,
+    "filters": Object {
+      "orderDirection": "ASC",
+      "orderKey": null,
+      "page": 1,
+      "perPage": 20,
+      "q": "",
+    },
+    "isFetching": false,
+    "itemsById": Object {},
+    "itemsId": Array [],
+    "selected": Array [],
+    "total": 0,
+  },
+}
+`;
+
+exports[`createHandlers handles correctly fetch action 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": null,
+    "isFetching": true,
+    "item": null,
+  },
+  "list": Object {
+    "errorMessage": null,
+    "filters": Object {
+      "orderDirection": "ASC",
+      "orderKey": null,
+      "page": 1,
+      "perPage": 20,
+      "q": "",
+    },
+    "isFetching": false,
+    "itemsById": Object {},
+    "itemsId": Array [],
+    "selected": Array [],
+    "total": 0,
+  },
+}
+`;
+
+exports[`createHandlers handles correctly fetchFail action 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": "error",
+    "isFetching": false,
+    "item": null,
+  },
+  "list": Object {
+    "errorMessage": null,
+    "filters": Object {
+      "orderDirection": "ASC",
+      "orderKey": null,
+      "page": 1,
+      "perPage": 20,
+      "q": "",
+    },
+    "isFetching": false,
+    "itemsById": Object {},
+    "itemsId": Array [],
+    "selected": Array [],
+    "total": 0,
+  },
+}
+`;
+
+exports[`createHandlers handles correctly fetchSuccess action 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": null,
+    "isFetching": false,
+    "item": Object {
+      "id": 42,
+      "name": "foo",
+    },
+  },
+  "list": Object {
+    "errorMessage": null,
+    "filters": Object {
+      "orderDirection": "ASC",
+      "orderKey": null,
+      "page": 1,
+      "perPage": 20,
+      "q": "",
+    },
+    "isFetching": false,
+    "itemsById": Object {},
+    "itemsId": Array [],
+    "selected": Array [],
+    "total": 0,
+  },
+}
+`;
+
+exports[`createHandlers handles correctly list action 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": null,
+    "isFetching": false,
+    "item": null,
+  },
+  "list": Object {
+    "errorMessage": null,
+    "filters": Object {
+      "orderDirection": "ASC",
+      "orderKey": null,
+      "page": 1,
+      "perPage": 20,
+      "q": "",
+    },
+    "isFetching": true,
+    "itemsById": Object {},
+    "itemsId": Array [],
+    "selected": Array [],
+    "total": 0,
+  },
+}
+`;
+
+exports[`createHandlers handles correctly listFail action 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": null,
+    "isFetching": false,
+    "item": null,
+  },
+  "list": Object {
+    "errorMessage": "error",
+    "filters": Object {
+      "orderDirection": "ASC",
+      "orderKey": null,
+      "page": 1,
+      "perPage": 20,
+      "q": "",
+    },
+    "isFetching": false,
+    "itemsById": Object {},
+    "itemsId": Array [],
+    "selected": Array [],
+    "total": 0,
+  },
+}
+`;
+
+exports[`createHandlers handles correctly listSuccess action 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": null,
+    "isFetching": false,
+    "item": null,
+  },
+  "list": Object {
+    "errorMessage": null,
+    "filters": Object {
+      "orderDirection": "ASC",
+      "orderKey": null,
+      "page": 1,
+      "perPage": 20,
+      "q": "",
+    },
+    "isFetching": false,
+    "itemsById": Object {
+      "33": Object {
+        "id": 33,
+        "name": "foo",
+      },
+      "44": Object {
+        "id": 44,
+        "name": "bar",
+      },
+    },
+    "itemsId": Array [
+      33,
+      44,
+    ],
+    "selected": Array [],
+    "total": 2,
+  },
+}
+`;
+
+exports[`createHandlers handles correctly resetCurrent action 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": null,
+    "isFetching": false,
+    "item": null,
+  },
+  "list": Object {
+    "errorMessage": null,
+    "filters": Object {
+      "orderDirection": "ASC",
+      "orderKey": null,
+      "page": 1,
+      "perPage": 20,
+      "q": "",
+    },
+    "isFetching": false,
+    "itemsById": Object {},
+    "itemsId": Array [],
+    "selected": Array [],
+    "total": 0,
+  },
+}
+`;
+
+exports[`createHandlers handles correctly select action 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": null,
+    "isFetching": false,
+    "item": null,
+  },
+  "list": Object {
+    "errorMessage": null,
+    "filters": Object {
+      "orderDirection": "ASC",
+      "orderKey": null,
+      "page": 1,
+      "perPage": 20,
+      "q": "",
+    },
+    "isFetching": false,
+    "itemsById": Object {},
+    "itemsId": Array [],
+    "selected": Array [
+      42,
+      33,
+    ],
+    "total": 0,
+  },
+}
+`;
+
+exports[`createHandlers handles correctly selectAll action 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": null,
+    "isFetching": false,
+    "item": null,
+  },
+  "list": Object {
+    "errorMessage": null,
+    "filters": Object {
+      "orderDirection": "ASC",
+      "orderKey": null,
+      "page": 1,
+      "perPage": 20,
+      "q": "",
+    },
+    "isFetching": false,
+    "itemsById": Object {},
+    "itemsId": Array [
+      33,
+      42,
+      56,
+    ],
+    "selected": Array [
+      33,
+      42,
+      56,
+    ],
+    "total": 0,
+  },
+}
+`;
+
+exports[`createHandlers handles correctly syncFilters action 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": null,
+    "isFetching": false,
+    "item": null,
+  },
+  "list": Object {
+    "errorMessage": null,
+    "filters": Object {
+      "orderDirection": "ASC",
+      "orderKey": null,
+      "page": 10,
+      "perPage": 20,
+      "q": "hello",
+    },
+    "isFetching": false,
+    "itemsById": Object {},
+    "itemsId": Array [],
+    "selected": Array [],
+    "total": 0,
+  },
+}
+`;
+
+exports[`createHandlers handles correctly updateFilter action 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": null,
+    "isFetching": false,
+    "item": null,
+  },
+  "list": Object {
+    "errorMessage": null,
+    "filters": Object {
+      "orderDirection": "ASC",
+      "orderKey": null,
+      "page": 1,
+      "perPage": 20,
+      "q": "hello",
+    },
+    "isFetching": false,
+    "itemsById": Object {},
+    "itemsId": Array [],
+    "selected": Array [],
+    "total": 0,
+  },
+}
+`;

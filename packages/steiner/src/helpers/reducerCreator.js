@@ -91,7 +91,11 @@ function fetchFail(state, action) {
 }
 
 function deleteSuccess(state, action) {
-    return state.setIn(['list', 'items'], _.reject(state.list.items, {id: action.payload.id }));
+    return state.updateIn(['list'], list => ({
+        ...list,
+        itemsById: list.itemsById.without(action.payload.id),
+        itemsId: _.difference(list.itemsId, [action.payload.id])
+    }));
 }
 
 function resetCurrent(state, action) {
@@ -124,7 +128,7 @@ function syncFilters(state, action) {
 }
 
 function changePage(state, action) {
-    return state.setIn(['list', 'filters', 'page'], action.payload.page);
+    return state.setIn(['list', 'filters', 'page'], parseInt(action.payload.page, 10));
 }
 
 function changeOrder(state, action) {

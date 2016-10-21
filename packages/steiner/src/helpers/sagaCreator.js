@@ -172,7 +172,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
     sagas['syncFilters'] = function*() {
         while (true) {
-            yield take([actionTypes.syncFilters]);
+            yield take(actionTypes.syncFilters);
 
             yield put(actions.list());
         }

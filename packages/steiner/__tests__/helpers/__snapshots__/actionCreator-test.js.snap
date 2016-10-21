@@ -2,6 +2,7 @@ exports[`createActionTypes generates the correct action types 1`] = `
 Object {
   "changeOrder": "posts/CHANGE_ORDER",
   "changePage": "posts/CHANGE_PAGE",
+  "checkSync": "posts/CHECK_SYNC",
   "create": "posts/CREATE",
   "createFail": "posts/CREATE_FAIL",
   "createSuccess": "posts/CREATE_SUCCESS",
@@ -18,6 +19,7 @@ Object {
   "listSuccess": "posts/LIST_SUCCESS",
   "posts/CHANGE_ORDER": "posts/CHANGE_ORDER",
   "posts/CHANGE_PAGE": "posts/CHANGE_PAGE",
+  "posts/CHECK_SYNC": "posts/CHECK_SYNC",
   "posts/CREATE": "posts/CREATE",
   "posts/CREATE_FAIL": "posts/CREATE_FAIL",
   "posts/CREATE_SUCCESS": "posts/CREATE_SUCCESS",
@@ -35,6 +37,7 @@ Object {
   "posts/RESET_CURRENT": "posts/RESET_CURRENT",
   "posts/SELECT": "posts/SELECT",
   "posts/SELECT_ALL": "posts/SELECT_ALL",
+  "posts/SYNC_FILTERS": "posts/SYNC_FILTERS",
   "posts/UDATE_FILTER": "posts/UDATE_FILTER",
   "posts/UPDATE": "posts/UPDATE",
   "posts/UPDATE_FAIL": "posts/UPDATE_FAIL",
@@ -42,6 +45,7 @@ Object {
   "resetCurrent": "posts/RESET_CURRENT",
   "select": "posts/SELECT",
   "selectAll": "posts/SELECT_ALL",
+  "syncFilters": "posts/SYNC_FILTERS",
   "update": "posts/UPDATE",
   "updateFail": "posts/UPDATE_FAIL",
   "updateFilter": "posts/UDATE_FILTER",
@@ -218,6 +222,20 @@ Object {
 
 exports[`createActions generates the correct actions 16`] = `
 Object {
+  "payload": "q",
+  "type": "posts/SYNC_FILTERS",
+}
+`;
+
+exports[`createActions generates the correct actions 17`] = `
+Object {
+  "payload": "q",
+  "type": "posts/CHECK_SYNC",
+}
+`;
+
+exports[`createActions generates the correct actions 18`] = `
+Object {
   "payload": Array [
     42,
   ],
@@ -225,7 +243,7 @@ Object {
 }
 `;
 
-exports[`createActions generates the correct actions 17`] = `
+exports[`createActions generates the correct actions 19`] = `
 Object {
   "payload": Array [
     42,
@@ -234,13 +252,13 @@ Object {
 }
 `;
 
-exports[`createActions generates the correct actions 18`] = `
+exports[`createActions generates the correct actions 20`] = `
 Object {
   "type": "posts/SELECT_ALL",
 }
 `;
 
-exports[`createActions generates the correct actions 19`] = `
+exports[`createActions generates the correct actions 21`] = `
 Object {
   "type": "posts/DESELECT_ALL",
 }

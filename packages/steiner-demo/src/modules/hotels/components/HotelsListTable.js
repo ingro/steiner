@@ -31,7 +31,7 @@ export default class HotelsListTable extends Component {
                 dataKey: 'position',
                 flexGrow: 1,
                 cellRenderer: ({ cellData }) => <div>
-                    {cellData.name}
+                    {cellData ? cellData.name : '-'}
                 </div>
             },
             {

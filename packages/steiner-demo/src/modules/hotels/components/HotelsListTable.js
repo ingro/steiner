@@ -8,7 +8,7 @@ export default class HotelsListTable extends Component {
     handleDelete = (id) => {
         this.props.dispatch(createConfirm({
             title: 'Confirmation needed',
-            message: 'Si conferma l\'eliminazione dell\'oggetto?',
+            message: 'Do you really want to delete the item?',
             onSuccess: () => this.props.delete(id)
         }));
     }

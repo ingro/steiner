@@ -3,10 +3,10 @@
   "private": true,
   "devDependencies": {
     "cross-env": "^3.1.1",
-    "react-scripts": "0.6.1",
+    "react-scripts": "0.7.0",
     "react-test-renderer": "^15.3.2",
     "redux-devtools-extension": "^1.0.0",
-    "steiner-cli": "^0.8.0"
+    "steiner-cli": "^0.8.2"
   },
   "dependencies": {
     "axios": "^0.15.0",
@@ -40,7 +40,7 @@
     "reflexbox": "^2.2.2",
     "revalidate": "^0.4.1",
     "seamless-immutable": "^6.1.3",
-    "steiner": "^0.8.0",
+    "steiner": "^0.8.1",
     "vivi": "^0.3.5"
   },
   "scripts": {

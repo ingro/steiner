@@ -9,6 +9,7 @@ import reducerCreatorModule from './reducerCreator';
 import reduxFormSagaModule from './reduxFormSaga';
 import routeCreatorModule from './routeCreator';
 import sagaCreatorModule from './sagaCreator';
+import steinerHelperModule from './steinerHelper';
 
 export const actionCreator = actionCreatorModule;
 export const apiCreator = apiCreatorModule;
@@ -21,3 +22,4 @@ export const reducerCreator = reducerCreatorModule;
 export const reduxFormSaga = reduxFormSagaModule;
 export const routeCreator = routeCreatorModule;
 export const sagaCreator = sagaCreatorModule;
+export const steinerHelper = steinerHelperModule;

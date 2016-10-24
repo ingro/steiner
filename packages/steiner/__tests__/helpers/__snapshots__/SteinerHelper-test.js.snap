@@ -1,4 +1,4 @@
-exports[`SteinerHelper getCreateActionsOptions allow to override the helper's options 1`] = `
+exports[`steinerHelper getCreateActionsOptions allow to override the helper's options 1`] = `
 Object {
   "messageTemplates": Object {
     "deleteFail": "${resource} cleared!",
@@ -11,7 +11,7 @@ Object {
 }
 `;
 
-exports[`SteinerHelper getCreateActionsOptions returns actionMessageTemplates options if defined as messageTemplates 1`] = `
+exports[`steinerHelper getCreateActionsOptions returns actionMessageTemplates options if defined as messageTemplates 1`] = `
 Object {
   "messageTemplates": Object {
     "createFail": "${resource} cannot be created!",
@@ -25,7 +25,7 @@ Object {
 }
 `;
 
-exports[`SteinerHelper getCreateActionsOptions returns actionMessages options if defined as messages 1`] = `
+exports[`steinerHelper getCreateActionsOptions returns actionMessages options if defined as messages 1`] = `
 Object {
   "messageTemplates": Object {
     "createFail": "An error occured while creating ${resource}",
@@ -46,7 +46,7 @@ Object {
 }
 `;
 
-exports[`SteinerHelper getCreateActionsOptions returns translated custom messages 1`] = `
+exports[`steinerHelper getCreateActionsOptions returns translated custom messages 1`] = `
 Object {
   "messageTemplates": Object {
     "createFail": "Booo ${resource}",
@@ -60,7 +60,7 @@ Object {
 }
 `;
 
-exports[`SteinerHelper getCreateActionsOptions returns translated default messages 1`] = `
+exports[`steinerHelper getCreateActionsOptions returns translated default messages 1`] = `
 Object {
   "messageTemplates": Object {
     "createFail": "Si è verificato un errore inaspettato durante la creazione di ${resource}",
@@ -78,7 +78,7 @@ Object {
 }
 `;
 
-exports[`SteinerHelper getCreateActionsOptions returns undefined if no helper options are defined 1`] = `
+exports[`steinerHelper getCreateActionsOptions returns undefined if no helper options are defined 1`] = `
 Object {
   "messageTemplates": Object {
     "createFail": "An error occured while creating ${resource}",

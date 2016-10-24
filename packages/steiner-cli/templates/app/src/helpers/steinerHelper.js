@@ -1,6 +1,6 @@
-import SteinerHelper from 'steiner';
+import { steinerHelper } from 'steiner';
 import client from 'apis/client';
 
-export default new SteinerHelper({
+export default new steinerHelper({
     defaultClient: client
 });

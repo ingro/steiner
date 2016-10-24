@@ -1,21 +1,21 @@
-import SteinerHelper from '../../src/index';
+import steinerHelper from '../../src/helpers/steinerHelper';
 
-describe('SteinerHelper', () => {
+describe('steinerHelper', () => {
     it('is instantiable', () => {
-        const helper = new SteinerHelper();
+        const helper = new steinerHelper();
 
-        expect(helper).toBeInstanceOf(SteinerHelper);
+        expect(helper).toBeInstanceOf(steinerHelper);
     });
 
     describe('getCreateActionsOptions', () => {
         it('returns undefined if no helper options are defined', () => {
-            const helper = new SteinerHelper();
+            const helper = new steinerHelper();
 
             expect(helper.getCreateActionsOptions()).toMatchSnapshot();
         }); 
 
         it('returns actionMessageTemplates options if defined as messageTemplates', () => {
-            const helper = new SteinerHelper({
+            const helper = new steinerHelper({
                 actionMessageTemplates: {
                     createFail: '${resource} cannot be created!',
                     createSuccess: '${resource} created!'
@@ -26,7 +26,7 @@ describe('SteinerHelper', () => {
         });
 
         it('returns actionMessages options if defined as messages', () => {
-            const helper = new SteinerHelper({
+            const helper = new steinerHelper({
                 actionMessages: {
                     createFail: 'Hooray!',
                     createSuccess: 'Boooo'
@@ -38,7 +38,7 @@ describe('SteinerHelper', () => {
         });
 
         it('returns translated default messages', () => {
-            const helper = new SteinerHelper({
+            const helper = new steinerHelper({
                 lang: 'it'
             });
 
@@ -46,7 +46,7 @@ describe('SteinerHelper', () => {
         });
 
         it('returns translated custom messages', () => {
-            const helper = new SteinerHelper({
+            const helper = new steinerHelper({
                 defaultMessages: {
                     en: {
                         templates: {
@@ -71,7 +71,7 @@ describe('SteinerHelper', () => {
         });
 
         it('allow to override the helper\'s options', () => {
-            const helper = new SteinerHelper({
+            const helper = new steinerHelper({
                 actionMessageTemplates: {
                     createFail: '${resource} cannot be created!',
                     createSuccess: '${resource} created!'

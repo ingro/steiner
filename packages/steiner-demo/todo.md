@@ -4,6 +4,4 @@
 - Write a simple getting started guide after bootstrap a new app with `steiner-cli`
 - Use user's settings value for number of rows displayed in tables?
 - Use all the helpers from SteinerHelper
-- Move API_PATH e LOGIN_PATH inside .env file
-- Add more options to configure messages in various language (Provider like Vivi?)
 - Use [redux-seamless-immutable](https://www.npmjs.com/package/redux-seamless-immutable)?

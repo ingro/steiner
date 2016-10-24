@@ -7,7 +7,7 @@ import offers from '../modules/offers/sagas/offers';
 import { auth } from 'steiner'
 
 function login(data) {
-    return axios.post('https://ingruz-api-jlguviziez.now.sh/login', data);
+    return axios.post(process.env.REACT_LOGIN_URL, data);
 }
 
 function logout() {

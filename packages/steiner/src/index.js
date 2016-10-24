@@ -12,6 +12,7 @@ import { createActions, createActionTypes } from './helpers/actionCreator';
 import createApi from './helpers/apiCreator';
 import { createHandlers } from './helpers/reducerCreator';
 import { generateRoutes } from './helpers/routeCreator';
+import createConfirm from './helpers/confirmCreator';
 import enMessages from './messages/en';
 import itMessages from './messages/it';
 
@@ -52,6 +53,10 @@ export default class SteinerHelper {
         }
 
         return this.options.breadcrumbOptions;
+    }
+
+    getConfirmDialogOptions() {
+        return defaults(this.options.confirmDialogOptions || {}, this.options.defaultMessages[this.options.lang].messages.confirmDialog);
     }
 
     getCreateActionsOptions(options) {
@@ -99,5 +104,10 @@ export default class SteinerHelper {
         };
 
         return generateRoutes(resource, components, selectors, options);
+    }
+
+    createConfirmAction(options) {
+        defaults(options, this.getConfirmDialogOptions());
+        return createConfirm(options);
     }
 }

@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import { ListTable, createConfirm } from 'steiner';
+import { ListTable } from 'steiner';
+import helper from 'helpers/steinerHelper';
 
 import routeRegister from 'helpers/routeRegister';
 
 export default class {{name | title}}ListTable extends Component {
     handleDelete = (id) => {
-        this.props.dispatch(createConfirm({
-            title: 'Confirmation needed',
+        this.props.dispatch(helper.createConfirmAction({
             message: 'Do you really want to delete the item?',
             onSuccess: () => this.props.delete(id)
         }));

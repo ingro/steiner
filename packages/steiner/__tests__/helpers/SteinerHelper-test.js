@@ -12,16 +12,6 @@ describe('SteinerHelper', () => {
             const helper = new SteinerHelper();
 
             expect(helper.getCreateActionsOptions()).toMatchSnapshot();
-            // expect(helper.getCreateActionsOptions()).toEqual({
-            //     messageTemplates: {
-            //         createSuccess: '${resource} created with success!',
-            //         createFail: 'An error occured while creating ${resource}',
-            //         updateSuccess: '${resource} updated successfully!',
-            //         updateFail: 'An error occured while updating ${resource}',
-            //         deleteSuccess: '${resource} deleted with success!',
-            //         deleteFail: 'An error occured while deleting ${resource}'
-            //     }
-            // });
         }); 
 
         it('returns actionMessageTemplates options if defined as messageTemplates', () => {
@@ -33,13 +23,6 @@ describe('SteinerHelper', () => {
             });
 
             expect(helper.getCreateActionsOptions()).toMatchSnapshot();
-
-            // expect(helper.getCreateActionsOptions()).toEqual({
-            //     messageTemplates: {
-            //         createFail: '${resource} cannot be created!',
-            //         createSuccess: '${resource} created!'
-            //     }
-            // });
         });
 
         it('returns actionMessages options if defined as messages', () => {
@@ -50,22 +33,8 @@ describe('SteinerHelper', () => {
                 }
             });
 
+            // expect({ foo: 'bar' }).toMatchSnapshot();
             expect(helper.getCreateActionsOptions()).toMatchSnapshot();
-
-            // expect(helper.getCreateActionsOptions()).toEqual({
-            //     messageTemplates: {
-            //         createSuccess: '${resource} created with success!',
-            //         createFail: 'An error occured while creating ${resource}',
-            //         updateSuccess: '${resource} updated successfully!',
-            //         updateFail: 'An error occured while updating ${resource}',
-            //         deleteSuccess: '${resource} deleted with success!',
-            //         deleteFail: 'An error occured while deleting ${resource}'
-            //     },
-            //     messages: {
-            //         createFail: 'Hooray!',
-            //         createSuccess: 'Boooo'
-            //     }
-            // });
         });
 
         it('returns translated default messages', () => {
@@ -74,17 +43,6 @@ describe('SteinerHelper', () => {
             });
 
             expect(helper.getCreateActionsOptions()).toMatchSnapshot();
-
-            // expect(helper.getCreateActionsOptions()).toEqual({
-            //     messageTemplates: {
-            //         createSuccess: '${resource} creato con successo!',
-            //         createFail: 'Si è verificato un errore inaspettato durante la creazione di ${resource}',
-            //         updateSuccess: '${resource} aggiornato con successo!',
-            //         updateFail: 'Si è verificato un errore inaspettato durante l\'aggiornamento di ${resource}',
-            //         deleteSuccess: '${resource} cancellato con successo!',
-            //         deleteFail: 'Si è verificato un errore inaspettato durante la cancellazione di ${resource})'
-            //     }
-            // });
         });
 
         it('returns translated custom messages', () => {
@@ -110,13 +68,6 @@ describe('SteinerHelper', () => {
             });
 
             expect(helper.getCreateActionsOptions()).toMatchSnapshot();
-
-            // expect(helper.getCreateActionsOptions()).toEqual({
-            //     messageTemplates: {
-            //         createSuccess: 'Hooray ${resource}',
-            //         createFail: 'Booo ${resource}'
-            //     }
-            // });
         });
 
         it('allow to override the helper\'s options', () => {
@@ -134,12 +85,6 @@ describe('SteinerHelper', () => {
             };
 
             expect(helper.getCreateActionsOptions(options)).toMatchSnapshot();
-
-            // expect(helper.getCreateActionsOptions(options)).toEqual({
-            //     messageTemplates: {
-            //         deleteFail: '${resource} cleared!'
-            //     }
-            // });
         });
     });
 });

@@ -15,6 +15,9 @@ export default {
                 success: 'Successo!',
                 fail: 'Error!'
             }
+        },
+        breadcrumbs: {
+            editNew: 'Crea nuovo'
         }
     }
 };

@@ -1,6 +1,8 @@
 import pathToRegexp from 'path-to-regexp';
 import _ from 'lodash';
 
+import defaultMessages from '../messages/en';
+
 function createPatterns(resource) {
     return {
         list: `/${resource}`,
@@ -19,8 +21,12 @@ export function generateLinks(patterns) {
     return links;
 }
 
-export function generateRoutes(resource, components, selectors) {
+export function generateRoutes(resource, components, selectors, options = {}) {
     const patterns = createPatterns(resource);
+
+    _.defaults(options, {
+        breadcrumbs: defaultMessages.messages.breadcrumbs
+    });
 
     return {
         list: [
@@ -36,7 +42,7 @@ export function generateRoutes(resource, components, selectors) {
                 breadcrumb: (state, ownProps) => {
                     if (ownProps.params.id === 'create') {
                         return {
-                            breadcrumbName: 'Create new'
+                            breadcrumbName: options.breadcrumbs.editNew
                         };
                     }
 

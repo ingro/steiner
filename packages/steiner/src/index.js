@@ -11,6 +11,7 @@ export const routing = routingModule;
 import { createActions, createActionTypes } from './helpers/actionCreator';
 import createApi from './helpers/apiCreator';
 import { createHandlers } from './helpers/reducerCreator';
+import { generateRoutes } from './helpers/routeCreator';
 import enMessages from './messages/en';
 import itMessages from './messages/it';
 
@@ -43,6 +44,14 @@ export default class SteinerHelper {
         }
 
         return this.options.notificationTitles;
+    }
+
+    getBreadcrumbOptions() {
+        if (typeof this.options.breadcrumbOptions === 'undefined') {
+            return this.options.defaultMessages[this.options.lang].messages.breadcrumbs;
+        }
+
+        return this.options.breadcrumbOptions;
     }
 
     getCreateActionsOptions(options) {
@@ -82,5 +91,13 @@ export default class SteinerHelper {
         options = options || this.options.listSuccessOptions;
 
         return createHandlers(actionTypes, options);
+    }
+
+    generateRoutes(resource, components, selectors, options) {
+        options = options || { 
+            breadcrumbs: this.getBreadcrumbOptions() 
+        };
+
+        return generateRoutes(resource, components, selectors, options);
     }
 }

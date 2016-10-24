@@ -1,16 +1,15 @@
 import { addNotification as notify } from 'reapop';
 import _ from 'lodash';
 
+import defaultMessages from '../messages/en';
+
 const defaultConfirmOptions = {
-    title: 'Warning',
     status: 'warning',
-    position: 'tc',
-    btn_primary_text: 'Confirm',
-    btn_secondary_text: 'Cancel'
+    position: 'tc'
 };
 
 export default function createConfirm(options = {}) {
-    _.defaults(options, defaultConfirmOptions);
+    _.defaults(options, defaultConfirmOptions, defaultMessages.messages.confirmDialog);
 
     return notify({
         title: options.title,

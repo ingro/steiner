@@ -10,14 +10,19 @@ export default {
         }
     },
     messages: {
+        breadcrumbs: {
+            editNew: 'Crea nuovo'
+        },
+        confirmDialog: {
+            title: 'Attenzione!',
+            btn_primary_text: 'Conferma',
+            btn_secondary_text: 'Annulla'
+        },
         notifications: {
             titles: {
                 success: 'Successo!',
                 fail: 'Error!'
             }
-        },
-        breadcrumbs: {
-            editNew: 'Crea nuovo'
         }
     }
 };

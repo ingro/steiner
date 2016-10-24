@@ -2,3 +2,4 @@ todo.md
 .babelrc
 .eslintrc
 __tests__
+coverage

@@ -5,6 +5,8 @@ import forOwn from 'lodash/forOwn';
 import trim from 'lodash/trim';
 import template from 'lodash/template';
 
+import defaultMessages from '../messages/en';
+
 function addAsyncGroup(resource, actionTypes, group, options) {
     const upperGroup    = group.toUpperCase();
 
@@ -95,7 +97,7 @@ export function createActionTypes(resource, options = {}) {
     return actionTypes;
 }
 
-function generateSuccessNotification(message, title = 'Hooray!') {
+function generateSuccessNotification(message, title) {
     return {
         title,
         message,
@@ -103,7 +105,7 @@ function generateSuccessNotification(message, title = 'Hooray!') {
     }
 }
 
-function generateFailNotification(message, title = 'Oh snap!') {
+function generateFailNotification(message, title) {
     return {
         title,
         message,
@@ -111,19 +113,10 @@ function generateFailNotification(message, title = 'Oh snap!') {
     }
 }
 
-const defaultMessageTemplates = {
-    createSuccess: template('${resource} created with success!'),
-    createFail: template('An error occured while creating ${resource}'),
-    updateSuccess: template('${resource} updated successfully!'),
-    updateFail: template('An error occured while updating ${resource}'),
-    deleteSuccess: template('${resource} deleted with success!'),
-    deleteFail: template('An error occured while deleting ${resource}')
-};
-
 export function createDefaultMessages(resource, messageTemplates = {}) {
     const messages = {};
 
-    defaults(messageTemplates, defaultMessageTemplates);
+    defaults(messageTemplates, defaultMessages.templates.actionMessages);
 
     forOwn(messageTemplates, (value, key) => {
         if (typeof value === 'function') {
@@ -154,6 +147,7 @@ export function createActions(resource, actionTypes, options = {}) {
     resource = trim(upperFirst(resource));
 
     const messages = createActionMessages(resource, options);
+    const titles = options.notificationTitles || defaultMessages.messages.notifications.titles;
 
     const actions = {};
 
@@ -186,7 +180,7 @@ export function createActions(resource, actionTypes, options = {}) {
         return {
             type: actionTypes.createSuccess,
             payload: response,
-            notification: generateSuccessNotification(messages.createSuccess)
+            notification: generateSuccessNotification(messages.createSuccess, titles.success)
         };
     }
 
@@ -194,7 +188,7 @@ export function createActions(resource, actionTypes, options = {}) {
         return {
             type: actionTypes.createFail,
             error,
-            notification: generateFailNotification(messages.createFail)
+            notification: generateFailNotification(messages.createFail, titles.fail)
         };
     }
 
@@ -212,7 +206,7 @@ export function createActions(resource, actionTypes, options = {}) {
         return {
             type: actionTypes.updateSuccess,
             payload: response,
-            notification: generateSuccessNotification(messages.updateSuccess)
+            notification: generateSuccessNotification(messages.updateSuccess, titles.success)
         };
     }
 
@@ -220,7 +214,7 @@ export function createActions(resource, actionTypes, options = {}) {
         return {
             type: actionTypes.updateFail,
             error,
-            notification: generateFailNotification(messages.updateFail)
+            notification: generateFailNotification(messages.updateFail, titles.fail)
         };
     }
 
@@ -237,7 +231,7 @@ export function createActions(resource, actionTypes, options = {}) {
         return {
             type: actionTypes.deleteSuccess,
             payload,
-            notification: generateSuccessNotification(messages.deleteSuccess)
+            notification: generateSuccessNotification(messages.deleteSuccess, titles.success)
         };
     }
 
@@ -245,7 +239,7 @@ export function createActions(resource, actionTypes, options = {}) {
         return {
             type: actionTypes.deleteFail,
             error,
-            notification: generateFailNotification(messages.deleteFail)
+            notification: generateFailNotification(messages.deleteFail, titles.fail)
         };
     }
 

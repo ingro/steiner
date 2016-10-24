@@ -1,3 +1,5 @@
+import defaults from 'lodash/defaults';
+
 import authModule from './auth';
 import routingModule from './routing';
 
@@ -9,22 +11,52 @@ export const routing = routingModule;
 import { createActions, createActionTypes } from './helpers/actionCreator';
 import createApi from './helpers/apiCreator';
 import { createHandlers } from './helpers/reducerCreator';
+import enMessages from './messages/en';
+import itMessages from './messages/it';
+
+const defaultOptions = {
+    lang: 'en',
+    defaultMessages: {
+        en: enMessages,
+        it: itMessages
+    }
+};
 
 export default class SteinerHelper {
     constructor(options = {}) {
         this.options = options;
+
+        defaults(this.options, defaultOptions);
+    }
+
+    getActionMessageTemplates() {
+        if (typeof this.options.actionMessageTemplates === 'undefined') {
+            return this.options.defaultMessages[this.options.lang].templates.actionMessages;
+        }
+
+        return this.options.actionMessageTemplates;
+    }
+
+    getNotificationTitles() {
+        if (typeof this.options.notificationTitles === 'undefined') {
+            return this.options.defaultMessages[this.options.lang].messages.notifications.titles;
+        }
+
+        return this.options.notificationTitles;
     }
 
     getCreateActionsOptions(options) {
         if (typeof options === 'undefined') {
             options = {
                 messages: this.options.actionMessages,
-                messageTemplates: this.options.actionMessageTemplates
+                messageTemplates: this.getActionMessageTemplates(),
+                notificationTitles: this.getNotificationTitles()
             };
         } else {
             options = {
                 messages: options.messages || this.options.actionMessages,
-                messageTemplates: options.messageTemplates || this.options.actionMessageTemplates
+                messageTemplates: options.messageTemplates || this.getActionMessageTemplates(),
+                notificationTitles: options.notificationTitles || this.getNotificationTitles()
             };
         }
 

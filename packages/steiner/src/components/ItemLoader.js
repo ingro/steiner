@@ -11,6 +11,9 @@ export default class ItemLoader extends Component {
 
     render() {
         const { component, errorMessage, isFetching, item } = this.props;
+
+        const loadingLabel = this.context.steiner ? this.context.steiner.messages.loadingMsg : 'Loading...';
+
         if (! isFetching && errorMessage) {
             return <div className="container">
                 <div className="alert alert-danger">
@@ -22,7 +25,7 @@ export default class ItemLoader extends Component {
         return ! item || isFetching
             ? <div className="container">
                 <div className="alert alert-info">
-                    <h4>Loading...</h4>
+                    <h4>{loadingLabel}</h4>
                 </div>
             </div>
             : React.createElement(component, this.props);
@@ -37,4 +40,8 @@ ItemLoader.propTypes = {
     item: PropTypes.object,
     params: PropTypes.object,
     resetCurrent: PropTypes.func.isRequired
+};
+
+ItemLoader.contextTypes = {
+    steiner: PropTypes.object
 };

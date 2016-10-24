@@ -11,12 +11,3 @@
 - Pass only the minimum state/actions from redux's connect?
 
 ## Translations
-
-### Components
-
-- InputListFilter
-- NoRows
-
-### Helpers
-
-- confirmCreator

@@ -8,6 +8,7 @@ import NoRowsComponent from './NoRows';
 import MatchWhenAuthorizedComponent from './MatchWhenAuthorized';
 import MatchWhenGuestComponent from './MatchWhenGuest';
 import HeaderLinkComponent from './HeaderLink';
+import ProviderComponent from './Provider';
 
 export const ControlledRouter = ControlledRouterComponent;
 export const FormControls = FormControlsComponent;
@@ -19,3 +20,4 @@ export const NoRows = NoRowsComponent;
 export const MatchWhenAuthorized = MatchWhenAuthorizedComponent;
 export const MatchWhenGuest = MatchWhenGuestComponent;
 export const HeaderLink = HeaderLinkComponent;
+export const Provider = ProviderComponent;

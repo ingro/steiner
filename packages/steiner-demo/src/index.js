@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { Provider as SteinerProvider } from 'steiner';
+import messages from 'steiner/lib/messages/it';
 
 import App from './App';
 import configureStore from './store/configureStore';
@@ -22,7 +24,11 @@ store.runSaga(rootSaga);
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <SteinerProvider
+            messages={messages.components}
+        >
+            <App />
+        </SteinerProvider>
     </Provider>,
     document.getElementById('root')
 );

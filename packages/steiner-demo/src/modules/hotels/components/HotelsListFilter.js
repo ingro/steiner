@@ -29,6 +29,7 @@ class HotelsListFilter extends Component {
                     <InputListFilter
                         value={filters.q}
                         updateFilter={updateFilter}
+                        placeholder={this.context.steiner.messages.inputListFilterPlaceholder}
                     />
                 </div>
                 <div className="col-xs-4">
@@ -40,7 +41,7 @@ class HotelsListFilter extends Component {
                 </div>
                 <div className="col-xs-4 text-right">
                     <Tooltip position="left" enterDelay={0.5} content="Crea un nuovo hotel (CTRL+D)">
-                        <Link className="btn btn-success" to={routeRegister.getLinkTo('hotels.create')}>Create</Link>
+                        <Link className="btn btn-success" to={routeRegister.getLinkTo('hotels.create')}>{this.context.steiner.messages.create}</Link>
                     </Tooltip>
                 </div>
             </div>
@@ -55,6 +56,10 @@ HotelsListFilter.propTypes = {
 
 HotelsListFilter.contextTypes = {
     router: PropTypes.object
+};
+
+HotelsListFilter.contextTypes = {
+    steiner: PropTypes.object
 };
 
 export default KeyBinderHoc(HotelsListFilter);

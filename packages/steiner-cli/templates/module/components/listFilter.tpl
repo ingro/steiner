@@ -26,10 +26,11 @@ export default class {{componentName}} extends Component {
                     <InputListFilter
                         value={filters.q}
                         updateFilter={this.props.updateFilter}
+                        placeholder={this.context.steiner.messages.inputListFilterPlaceholder}
                     />
                 </div>
                 <div className="col-xs-8 text-right">
-                    <Link className="btn btn-success" to={routeRegister.getLinkTo('{{name}}.create')}>Create</Link>
+                    <Link className="btn btn-success" to={routeRegister.getLinkTo('{{name}}.create')}>{this.context.steiner.messages.create}</Link>
                 </div>
             </div>
         );
@@ -43,6 +44,10 @@ export default class {{componentName}} extends Component {
 
 {{componentName}}.contextTypes = {
     router: PropTypes.object
+};
+
+{{componentName}}.contextTypes = {
+    steiner: PropTypes.object
 };
 
 {% if richComponents %}export default KeyBinderHoc({{componentName}});{% endif %}

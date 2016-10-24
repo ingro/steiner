@@ -10,10 +10,12 @@ export default class ListTable extends Component {
     }
 
     getNoRowsRenderer = () => {
-        const { errorMessage, isFetching, items } = this.props;
+        const { errorMessage, isFetching, items, loadingMsg, noRowsMsg } = this.props;
 
         return <NoRows
             errorMsg={errorMessage}
+            loadingMsg={loadingMsg}
+            noRowsMsg={noRowsMsg}
             isFetching={isFetching}
             itemsNumber={items.length}
         />;
@@ -84,6 +86,8 @@ ListTable.propTypes = {
     filters: PropTypes.object,
     isFetching: PropTypes.bool,
     items: PropTypes.array,
+    loadingMsg: PropTypes.string,
+    noRowsMsg: PropTypes.string,
     onChangeOrder: PropTypes.func,
     selectable: PropTypes.bool,
     selected: PropTypes.array,

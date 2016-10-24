@@ -24,5 +24,17 @@ export default {
                 fail: 'Oh snap!'
             }
         }
+    },
+    components: {
+        actions: 'Actions',
+        cancel: 'Cancel',
+        confirmDeleteMessage: 'Do you really want to delete the selected item?',
+        create: 'Create',
+        edit: 'Edit',
+        inputListFilterPlaceholder: 'Type to search...',
+        loadingMsg: 'Please wait...',
+        noRowsMsg: 'No items to show',
+        reset: 'Reset',
+        submit: 'Save'
     }
 };

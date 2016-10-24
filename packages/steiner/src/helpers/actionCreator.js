@@ -122,7 +122,9 @@ export function createDefaultMessages(resource, messageTemplates = {}) {
         if (typeof value === 'function') {
             messages[key] = value({ resource });
         } else if (typeof value === 'string') {
-            const compiled = template(value);
+            const compiled = template(value, {
+                interpolate : /\{\{([\s\S]+?)\}\}/g
+            });
             messages[key] = compiled({ resource });
         }
     });

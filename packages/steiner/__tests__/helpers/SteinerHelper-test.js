@@ -1,7 +1,7 @@
 import steinerHelper from '../../src/helpers/steinerHelper';
 
 describe('steinerHelper', () => {
-    it('is instantiable', () => {
+    it('is instantiables', () => {
         const helper = new steinerHelper();
 
         expect(helper).toBeInstanceOf(steinerHelper);
@@ -17,8 +17,8 @@ describe('steinerHelper', () => {
         it('returns actionMessageTemplates options if defined as messageTemplates', () => {
             const helper = new steinerHelper({
                 actionMessageTemplates: {
-                    createFail: '${resource} cannot be created!',
-                    createSuccess: '${resource} created!'
+                    createFail: '{{resource}} cannot be created!',
+                    createSuccess: '{{resource}} created!'
                 }
             });
 
@@ -33,7 +33,6 @@ describe('steinerHelper', () => {
                 }
             });
 
-            // expect({ foo: 'bar' }).toMatchSnapshot();
             expect(helper.getCreateActionsOptions()).toMatchSnapshot();
         });
 
@@ -51,8 +50,8 @@ describe('steinerHelper', () => {
                     en: {
                         templates: {
                             actionMessages: {
-                                createSuccess: 'Hooray ${resource}',
-                                createFail: 'Booo ${resource}'
+                                createSuccess: 'Hooray {{resource}}',
+                                createFail: 'Booo {{resource}}'
                             }
                         },
                         messages: {
@@ -73,14 +72,14 @@ describe('steinerHelper', () => {
         it('allow to override the helper\'s options', () => {
             const helper = new steinerHelper({
                 actionMessageTemplates: {
-                    createFail: '${resource} cannot be created!',
-                    createSuccess: '${resource} created!'
+                    createFail: '{{resource}} cannot be created!',
+                    createSuccess: '{{resource}} created!'
                 }
             });
 
             const options = {
                 messageTemplates: {
-                    deleteFail: '${resource} cleared!'
+                    deleteFail: '{{resource}} cleared!'
                 }
             };
 

@@ -18,8 +18,8 @@ describe('createDefaultMessages', () => {
 
     it('handles custom templates correctly', () => {
         const templates = {
-            createFail: '${resource} cannot be created!',
-            createSuccess: '${resource} created!'
+            createFail: '{{resource}} cannot be created!',
+            createSuccess: '{{resource}} created!'
         };
 
         const defaultMessages = createDefaultMessages('posts', templates);
@@ -62,8 +62,8 @@ describe('createActionMessages', () => {
 
     it('generates messages from custom templates', () => {
         const templates = {
-            createFail: '${resource} cannot be created!',
-            createSuccess: '${resource} created!'
+            createFail: '{{resource}} cannot be created!',
+            createSuccess: '{{resource}} created!'
         };
 
         const messages = createActionMessages('posts', { messageTemplates: templates });

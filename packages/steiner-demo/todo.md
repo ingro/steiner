@@ -6,3 +6,4 @@
 - Use all the helpers from SteinerHelper
 - Use [redux-seamless-immutable](https://www.npmjs.com/package/redux-seamless-immutable)?
 - Change ViviProvider to be a generic translations provider and use it with Steiner
+- BUG: Wrapping a Link with a Tooltip results in a page change

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { InputListFilter } from 'steiner';
-import Tooltip from 'vivi/lib/Tooltip';
+// import Tooltip from 'vivi/lib/Tooltip';
 
 import routeRegister from 'helpers/routeRegister';
 import KeyBinderHoc from 'components/KeyBinder';
@@ -40,9 +40,9 @@ class HotelsListFilter extends Component {
                     }
                 </div>
                 <div className="col-xs-4 text-right">
-                    <Tooltip position="left" enterDelay={0.5} content="Crea un nuovo hotel (CTRL+D)">
+                    {/*<Tooltip position="left" enterDelay={0.5} content="Crea un nuovo hotel (CTRL+D)">*/}
                         <Link className="btn btn-success" to={routeRegister.getLinkTo('hotels.create')}>{this.context.steiner.messages.create}</Link>
-                    </Tooltip>
+                    {/*</Tooltip>*/}
                 </div>
             </div>
         );

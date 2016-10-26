@@ -93,6 +93,7 @@ HotelsListTable.defaultProps = {
 };
 
 export default TranslatorHoc(HotelsListTable, {
+    actionsLabel: 'steiner.labels.actions',
     confirmDeleteMessage: 'steiner.messages.confirmDelete',
     editLabel: 'steiner.labels.edit',
     loadingMsg: 'steiner.messages.loading',

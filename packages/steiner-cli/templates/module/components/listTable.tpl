@@ -79,6 +79,7 @@ export class {{name | title}}ListTable extends Component {
 };
 
 export default TranslatorHoc({{name | title}}, {
+    actionsLabel: 'steiner.labels.actions',
     confirmDeleteMessage: 'steiner.messages.confirmDelete',
     editLabel: 'steiner.labels.edit',
     loadingMsg: 'steiner.messages.loading',

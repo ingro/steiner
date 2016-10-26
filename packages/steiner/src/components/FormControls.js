@@ -1,14 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import LoadingButton from 'vivi/lib/LoadingButton';
+import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 import { Link } from 'react-router';
 
-export default class FormControls extends Component {
+export class FormControls extends Component {
     render() {
-        const { submitting, dirty, valid, cancelLink, onReset } = this.props;
-
-        const cancelLabel = this.context.steiner ? this.context.steiner.messages.cancel : 'Cancel';
-        const resetLabel = this.context.steiner ? this.context.steiner.messages.reset : 'Reset';
-        const submitLabel = this.context.steiner ? this.context.steiner.messages.submit : 'Submit';
+        const { cancelLabel, submitting, submitLabel, dirty, valid, cancelLink, onReset, resetLabel } = this.props;
 
         return(
             <div>
@@ -39,13 +36,24 @@ export default class FormControls extends Component {
 }
 
 FormControls.propTypes = {
+    cancelLabel: PropTypes.string,
     cancelLink: PropTypes.string,
     dirty: PropTypes.bool,
     onReset: PropTypes.func,
+    resetLabel: PropTypes.string,
+    submitLabel: PropTypes.string,
     submitting: PropTypes.bool,
     valid: PropTypes.bool
 };
 
-FormControls.contextTypes = {
-    steiner: PropTypes.object
+FormControls.defaultProps = {
+    cancelLabel: 'Cancel',
+    resetLabel: 'Reset',
+    submitLabel: 'Submit'
 };
+
+export default TranslatorHoc(FormControls, {
+    cancelLabel: 'steiner.labels.cancel',
+    resetLabel: 'steiner.labels.reset',
+    submitLabel: 'steiner.labels.submit'
+});

@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { InputListFilter } from 'steiner';
+import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 
 import routeRegister from 'helpers/routeRegister';
 {% if richComponents %}import KeyBinderHoc from 'components/KeyBinder';{% endif %}
 
 {%- set componentName = name | title + 'ListFilter' %}
 
-export default class {{componentName}} extends Component {
+export class {{componentName}} extends Component {
     {% if richComponents -%}
     componentWillMount() {
         this.props.bindShortcut(['ctrl+d', 'command+d'], (e) => {
@@ -18,7 +19,7 @@ export default class {{componentName}} extends Component {
     {%- endif %}
 
     render() {
-        const { filters } = this.props;
+        const { createLabel, filters, inputListFilterPlaceholder } = this.props;
 
         return (
             <div className="row">
@@ -26,11 +27,11 @@ export default class {{componentName}} extends Component {
                     <InputListFilter
                         value={filters.q}
                         updateFilter={this.props.updateFilter}
-                        placeholder={this.context.steiner.messages.inputListFilterPlaceholder}
+                        placeholder={inputListFilterPlaceholder}
                     />
                 </div>
                 <div className="col-xs-8 text-right">
-                    <Link className="btn btn-success" to={routeRegister.getLinkTo('{{name}}.create')}>{this.context.steiner.messages.create}</Link>
+                    <Link className="btn btn-success" to={routeRegister.getLinkTo('{{name}}.create')}>{createLabel}</Link>
                 </div>
             </div>
         );
@@ -38,16 +39,27 @@ export default class {{componentName}} extends Component {
 }
 
 {{componentName}}.propTypes = {
+    createLabel: PropTypes.string,
     filters: PropTypes.object,
+    inputListFilterPlaceholder: PropTypes.string,
     updateFilter: PropTypes.func
+};
+
+{{componentName}}.defaultProps = {
+    createLabel: 'Create',
+    inputListFilterPlaceholder: 'Type to search...'
 };
 
 {{componentName}}.contextTypes = {
     router: PropTypes.object
 };
 
-{{componentName}}.contextTypes = {
-    steiner: PropTypes.object
-};
+{% if richComponents -%}
+    const {{componentName}}Keyed = KeyBinderHoc({{componentName}});
+    {%- set componentName = componentName + 'Keyed' -%}
+{%- endif %}
 
-{% if richComponents %}export default KeyBinderHoc({{componentName}});{% endif %}
+export default TranslatorHoc({{componentName}}, {
+    createLabel: 'steiner.labels.create',
+    inputListFilterPlaceholder: 'steiner.labels.searchPlaceholder'
+});

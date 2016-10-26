@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 
-export default class ItemLoader extends Component {
+export class ItemLoader extends Component {
     componentDidMount() {
         if (this.props.params.id === 'create') {
             this.props.resetCurrent();
@@ -10,9 +11,7 @@ export default class ItemLoader extends Component {
     }
 
     render() {
-        const { component, errorMessage, isFetching, item } = this.props;
-
-        const loadingLabel = this.context.steiner ? this.context.steiner.messages.loadingMsg : 'Loading...';
+        const { component, errorMessage, isFetching, item, loadingLabel } = this.props;
 
         if (! isFetching && errorMessage) {
             return <div className="container">
@@ -38,10 +37,15 @@ ItemLoader.propTypes = {
     fetch: PropTypes.func.isRequired,
     isFetching: PropTypes.bool,
     item: PropTypes.object,
+    loadingLabel: PropTypes.string,
     params: PropTypes.object,
     resetCurrent: PropTypes.func.isRequired
 };
 
-ItemLoader.contextTypes = {
-    steiner: PropTypes.object
+ItemLoader.defaultProps = {
+    loadingLabel: 'Loading...'
 };
+
+export default TranslatorHoc(ItemLoader, {
+    loadingLabel: 'steiner.messages.loading'
+});

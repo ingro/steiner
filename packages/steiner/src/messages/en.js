@@ -26,15 +26,19 @@ export default {
         }
     },
     components: {
-        actions: 'Actions',
-        cancel: 'Cancel',
-        confirmDeleteMessage: 'Do you really want to delete the selected item?',
-        create: 'Create',
-        edit: 'Edit',
-        inputListFilterPlaceholder: 'Type to search...',
-        loadingMsg: 'Please wait...',
-        noRowsMsg: 'No items to show',
-        reset: 'Reset',
-        submit: 'Save'
+        labels: {
+            actions: 'Actions',
+            cancel: 'Cancel',
+            create: 'Create',
+            edit: 'Edit',
+            reset: 'Reset',
+            searchPlaceholder: 'Type to search...',
+            submit: 'Save'
+        },
+        messages: {
+            confirmDelete: 'Do you really want to delete the selected item?',
+            loading: 'Please wait...',
+            noRows: 'No items to show'
+        }
     }
 };

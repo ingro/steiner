@@ -1,4 +1,4 @@
-## 0.9.0 (October 24, 2016)
+## 0.9.0 (October 26, 2016)
 
 - Added messages translations
 

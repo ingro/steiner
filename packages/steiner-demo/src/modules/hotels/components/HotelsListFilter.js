@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { InputListFilter } from 'steiner';
+import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 // import Tooltip from 'vivi/lib/Tooltip';
 
 import routeRegister from 'helpers/routeRegister';
@@ -21,7 +22,7 @@ class HotelsListFilter extends Component {
     }
     
     render() {
-        const { filters, selected, updateFilter } = this.props;
+        const { createLabel, filters, selected, updateFilter, inputListFilterPlaceholder } = this.props;
 
         return (
             <div className="row">
@@ -29,7 +30,7 @@ class HotelsListFilter extends Component {
                     <InputListFilter
                         value={filters.q}
                         updateFilter={updateFilter}
-                        placeholder={this.context.steiner.messages.inputListFilterPlaceholder}
+                        placeholder={inputListFilterPlaceholder}
                     />
                 </div>
                 <div className="col-xs-4">
@@ -41,7 +42,7 @@ class HotelsListFilter extends Component {
                 </div>
                 <div className="col-xs-4 text-right">
                     {/*<Tooltip position="left" enterDelay={0.5} content="Crea un nuovo hotel (CTRL+D)">*/}
-                        <Link className="btn btn-success" to={routeRegister.getLinkTo('hotels.create')}>{this.context.steiner.messages.create}</Link>
+                        <Link className="btn btn-success" to={routeRegister.getLinkTo('hotels.create')}>{createLabel}</Link>
                     {/*</Tooltip>*/}
                 </div>
             </div>
@@ -50,16 +51,24 @@ class HotelsListFilter extends Component {
 }
 
 HotelsListFilter.propTypes = {
+    createLabel: PropTypes.string,
     filters: PropTypes.object,
+    inputListFilterPlaceholder: PropTypes.string,
     updateFilter: PropTypes.func
+};
+
+HotelsListFilter.defaultProps = {
+    createLabel: 'Create',
+    inputListFilterPlaceholder: 'Type to search...'
 };
 
 HotelsListFilter.contextTypes = {
     router: PropTypes.object
 };
 
-HotelsListFilter.contextTypes = {
-    steiner: PropTypes.object
-};
+const KeyedHotelsListFilter = KeyBinderHoc(HotelsListFilter);
 
-export default KeyBinderHoc(HotelsListFilter);
+export default TranslatorHoc(KeyedHotelsListFilter, {
+    createLabel: 'steiner.labels.create',
+    inputListFilterPlaceholder: 'steiner.labels.searchPlaceholder'
+});

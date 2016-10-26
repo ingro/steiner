@@ -1,3 +1,7 @@
+## 0.9.0 (October 26, 2016)
+
+- Update templates for steiner@0.9.0
+
 ## 0.8.0 (October 20, 2016)
 
 - Update templates for steiner@0.8.0

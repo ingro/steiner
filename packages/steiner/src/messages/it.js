@@ -26,15 +26,19 @@ export default {
         }
     },
     components: {
-        actions: 'Azioni',
-        cancel: 'Annulla',
-        confirmDeleteMessage: 'Vuoi davvero cancellare l\'oggetto selezionato?',
-        create: 'Crea',
-        edit: 'Modifica',
-        inputListFilterPlaceholder: 'Ricerca...',
-        loadingMsg: 'Attendere prego...',
-        noRowsMsg: 'Nessun oggetto da mostrare',
-        reset: 'Resetta',
-        submit: 'Salva'
+        labels: {
+            actions: 'Azioni',
+            cancel: 'Annulla',
+            create: 'Crea',
+            edit: 'Modifica',
+            reset: 'Resetta',
+            searchPlaceholder: 'Ricerca...',
+            submit: 'Salva'
+        },
+        messages: {
+            confirmDelete: 'Vuoi davvero cancellare l\'oggetto selezionato?',
+            loading: 'Attendere prego...',
+            noRows: 'Nessun oggetto da mostrare',
+        }
     }
 };

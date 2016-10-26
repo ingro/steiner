@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Provider as SteinerProvider } from 'steiner';
+import TranslatorProvider from 'vivi/lib/TranslatorProvider';
+import viviMessages from 'vivi/lib/messages/en';
 import messages from 'steiner/lib/messages/en';
 
 import App from './App';
@@ -11,17 +12,32 @@ import rootSaga from './sagas';
 import 'vivi/lib/style.css';
 import './index.css';
 
-const store = configureStore();
+import history from './history';
+
+const store = configureStore({
+    router: {
+        location: history.location,
+        action: history.action
+    }
+});
 
 store.runSaga(rootSaga);
 
+const translations = {
+    ...viviMessages,
+    steiner: {
+        ...messages.components
+    } 
+};
+
 ReactDOM.render(
     <Provider store={store}>
-        <SteinerProvider
-            messages={messages.components}
+        <TranslatorProvider
+            locale="en"
+            messages={translations}
         >
             <App />
-        </SteinerProvider>
+        </TranslatorProvider>
     </Provider>,
     document.getElementById('root')
 );

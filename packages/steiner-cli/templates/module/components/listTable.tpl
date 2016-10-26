@@ -1,14 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { ListTable } from 'steiner';
-import helper from 'helpers/steinerHelper';
+import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 
+import helper from 'helpers/steinerHelper';
 import routeRegister from 'helpers/routeRegister';
 
-export default class {{name | title}}ListTable extends Component {
+export class {{name | title}}ListTable extends Component {
     handleDelete = (id) => {
         this.props.dispatch(helper.createConfirmAction({
-            message: this.context.steiner.messages.confirmDeleteMessage,
+            message: this.props.confirmDeleteMessage,
             onSuccess: () => this.props.delete(id)
         }));
     }
@@ -28,11 +29,11 @@ export default class {{name | title}}ListTable extends Component {
             },
             {
                 width: 200,
-                label: this.context.steiner.messages.actions,
+                label: this.props.actionsLabel,
                 dataKey: 'id',
                 flexGrow: 0,
                 cellRenderer: ({ cellData }) => <div>
-                    <Link className="btn btn-primary" to={routeRegister.getLinkTo('{{name}}.edit', { id: cellData })}>{this.context.steiner.messages.edit}</Link>
+                    <Link className="btn btn-primary" to={routeRegister.getLinkTo('{{name}}.edit', { id: cellData })}>{this.props.editLabel}</Link>
                     {' '}
                     <button className="btn btn-danger" onClick={this.handleDelete.bind(this, cellData)}><i className="fa fa-times" /></button>
                 </div>
@@ -41,27 +42,45 @@ export default class {{name | title}}ListTable extends Component {
     }
 
     render() {
+        const { loadingMsg, noRowsMsg, changeOrder } = this.props;
+
         return (
             <ListTable
                 {...this.props}
                 columns={this.getColumns()}
-                onChangeOrder={this.props.changeOrder}
-                loadingMsg={this.context.steiner.messages.loadingMsg}
-                noRowsMsg={this.context.steiner.messages.noRowsMsg}
+                onChangeOrder={.changeOrder}
+                loadingMsg={loadingMsg}
+                noRowsMsg={noRowsMsg}
             />
         );
     }
 }
 
 {{name | title}}ListTable.propTypes = {
+    actionsLabel: PropTypes.string,
     changeOrder: PropTypes.func,
+    confirmDeleteMessage: PropTypes.string,
     delete: PropTypes.func,
+    editLabel: PropTypes.string,
     errorMessage: PropTypes.string,
     filters: PropTypes.object,
     isFetching: PropTypes.bool,
-    items: PropTypes.array
+    items: PropTypes.array,
+    loadingMsg: PropTypes.string,
+    noRowsMsg: PropTypes.string
 };
 
-{{name | title}}.contextTypes = {
-    steiner: PropTypes.object
+{{name | title}}.defaultProps = {
+    actionsLabel: 'Actions',
+    confirmDeleteMessage: 'Do you really want to delete the selected item?',
+    editLabel: 'Edit',
+    loadingMsg: 'Loading...',
+    noRowsMsg: 'No items to show'
 };
+
+export default TranslatorHoc({{name | title}}, {
+    confirmDeleteMessage: 'steiner.messages.confirmDelete',
+    editLabel: 'steiner.labels.edit',
+    loadingMsg: 'steiner.messages.loading',
+    noRowsMsg: 'steiner.messages.noRows'
+});

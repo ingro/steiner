@@ -67,8 +67,8 @@ export function updateProfileSuccess(data) {
         type: UPDATE_PROFILE_SUCCESS,
         payload: data,
         notification: {
-            title: 'Hooray',
-            message: 'Profile updated!',
+            title: 'Hooray!',
+            message: 'Profile updated successfully!',
             status: 'success'
         }
     };
@@ -77,7 +77,12 @@ export function updateProfileSuccess(data) {
 export function updateProfileFail(error) {
     return {
         type: UPDATE_PROFILE_FAIL,
-        error: error.response && error.response.data ? { message: error.response.data.error } : error 
+        error: error.response && error.response.data ? { message: error.response.data.error } : error,
+        notification: {
+            title: 'Oh snap!',
+            message: 'An error occured while updating the profile!',
+            status: 'error'
+        }
     };
 }
 

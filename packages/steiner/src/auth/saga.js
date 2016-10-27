@@ -1,4 +1,4 @@
-import { take, call, put, fork } from 'redux-saga/effects';
+import { take, call, put, select, fork } from 'redux-saga/effects';
 
 import { actions, actionTypes } from './actions';
 
@@ -30,9 +30,26 @@ export default function createAuthSaga(options) {
         }
     }
 
+    const updateProfileSaga = function*() {
+        while (true) {
+            try {
+                const action = yield take(actionTypes.updateProfile);
+
+                const user = yield select(state => state.user);
+
+                const response = yield call(options.updateProfileAction, user.id, action.payload);
+
+                yield put(actions.updateProfileSuccess(response.data));
+            } catch(error) {
+                yield put(actions.updateProfileFail(error));
+            }
+        }
+    }
+
     return [
         fork(loginSaga),
-        fork(logoutSaga)
+        fork(logoutSaga),
+        fork(updateProfileSaga)
     ];
 }
 

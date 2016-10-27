@@ -7,6 +7,9 @@
 - Use [redux-seamless-immutable](https://www.npmjs.com/package/redux-seamless-immutable)?
 - BUG: Wrapping a Link with a Tooltip results in a page change
 - Add a language option for user in store, when changed force a refresh of the page to translate all the app
+- Translate missing strings (logout request, navigate away from forms)
+- Make use of forms easier
+- Make all the whole auth package of Steiner more customizable
 
 ## Current .env
 

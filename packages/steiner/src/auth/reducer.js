@@ -11,6 +11,12 @@ const handlers = {
     },
     [actionTypes.logoutSuccess]: (state, action) => {
         return DEFAULT_STATE;
+    },
+    [actionTypes.updateProfileSuccess]: (state, action) => {
+        return Immutable({
+            ...state,
+            ...action.payload
+        });
     }
 };
 

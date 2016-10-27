@@ -19,7 +19,6 @@ import Breadcrumb from './components/Breadcrumb';
 import SidebarToggle from './components/SidebarToggle';
 import SidebarMenu from './components/SidebarMenu';
 import Omnibox from './components/Omnibox';
-import Settings from './components/Settings';
 import Profile from './components/Profile';
 import ModalHelp from './components/ModalHelp';
 import routes from './routes';
@@ -71,7 +70,11 @@ class App extends Component {
         });
     }
 
-    toggleHelpModal = () => {
+    toggleHelpModal = (e) => {
+        if (e) {
+            e.preventDefault();
+        }
+
         this.setState({
             isHelpModalOpen: ! this.state.isHelpModalOpen
         });
@@ -79,7 +82,9 @@ class App extends Component {
         this.dropdown.close();
     }
 
-    requestLogout = () => {
+    requestLogout = (e) => {
+        e.preventDefault();
+
         this.props.dispatch(createConfirm({
             title: 'Logout',
             message: 'Are you really want to exit from the application?',
@@ -134,11 +139,10 @@ class App extends Component {
                                             {user
                                                 ? <Dropdown text={<i className="fa fa-cog" />} type="navbar" ref={ref => this.dropdown = ref}>
                                                     <li className="dropdown-header">{user.email}</li>
-                                                    <li><Link to="/profile"><i className="fa fa-user"/> Profile</Link></li>
-                                                    <li><Link to="/settings"><i className="fa fa-wrench" /> Settings</Link></li>
-                                                    <li><a onClick={this.toggleHelpModal}><i className="fa fa-question"/> Help</a></li>
+                                                    <li><Link to="/profile"><i className="fa fa-user"/> Profile & Settings</Link></li>
+                                                    <li><a href onClick={this.toggleHelpModal}><i className="fa fa-question"/> Help</a></li>
                                                     <li role="separator" className="divider"></li>
-                                                    <li><a onClick={this.requestLogout}><i className="fa fa-sign-out"/> Logout</a></li>
+                                                    <li><a href onClick={this.requestLogout}><i className="fa fa-sign-out"/> Logout</a></li>
                                                 </Dropdown>
                                                 : <HeaderLink to="/login" name="Login" />
                                             }
@@ -148,8 +152,7 @@ class App extends Component {
                             </div>
                             <div className="container-fluid">
                                 <Match pattern="/" exactly={true} render={() => <Welcome user={user}/>} />
-                                <Match pattern="/settings" component={Settings}/>
-                                <Match pattern="/profile" component={Profile}/>
+                                <Match pattern="/profile" render={() => <Profile user={user} />}/>
                                 {routes.map((route, i) => (
                                     <MatchWhenAuthorized key={i} user={user} {...route}/>
                                 ))}

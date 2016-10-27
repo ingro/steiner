@@ -11,6 +11,7 @@ import { getUser } from 'steiner/lib/auth/reducer';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Dropdown from 'vivi/lib/Dropdown';
 import { getRouter } from 'steiner/lib/routing/reducer';
+import TranslatorProvider from 'vivi/lib/TranslatorProvider';
 
 import routeRegister from 'helpers/routeRegister';
 import Welcome from './components/Welcome';
@@ -37,11 +38,28 @@ class App extends Component {
         this.state = {
             isOmniboxOpen: false,
             isSidebarOpen: false,
-            isHelpModalOpen: false
+            isHelpModalOpen: false,
+            isLanguageLoaded: false
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
+        const language = this.props.user.language || 'en';
+        // const language = 'it';
+
+        require([`vivi/lib/messages/${language}`, `steiner/lib/messages/${language}`], (viviMessages, messages) => {
+            const translations = {
+                ...viviMessages,
+                steiner: messages.default.components
+            };
+
+            this.translations = translations;
+
+            this.setState({
+                isLanguageLoaded: true
+            });
+        });
+
         this.props.bindShortcut(['ctrl+p', 'command+p'], (e) => {
             e.preventDefault();
             this.toggleOmnibox();
@@ -101,8 +119,14 @@ class App extends Component {
                 location={router.location}
                 action={router.action}
                 dispatch={dispatch}
-            >
+            >             
                 <div>
+                    {!this.state.isLanguageLoaded && <div>Loading...</div>}
+                    {this.state.isLanguageLoaded && <TranslatorProvider
+                        locale="it"
+                        messages={this.translations}
+                    >
+                    <div>   
                     <Helmet
                         title="App"
                         titleTemplate={`${process.env.REACT_APP_NAME} | %s`}
@@ -169,6 +193,8 @@ class App extends Component {
                             allowHTML: true
                         }}
                     />
+                    </div>
+                    </TranslatorProvider>}
                 </div>
             </ControlledRouter>
         );

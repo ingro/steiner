@@ -12,7 +12,12 @@ import SelectField from 'vivi/lib/Form/SelectField';
 function submit(data, dispatch) {
     const action = createFormAction(auth.actionTypes.updateProfile, [auth.actionTypes.updateProfileSuccess, auth.actionTypes.updateProfileFail])
 
-    return action(data, dispatch);
+    const payload = {
+        ...data,
+        language: data.language.id ? data.language.id : data.language
+    }
+
+    return action(payload, dispatch);
 }
 
 export class Profile extends Component {

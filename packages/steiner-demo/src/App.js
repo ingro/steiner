@@ -8,9 +8,10 @@ import Helmet from 'react-helmet';
 import theme from 'reapop-theme-wybo';
 import { ControlledRouter, MatchWhenAuthorized, MatchWhenGuest, HeaderLink, auth, createConfirm } from 'steiner';
 import { getUser } from 'steiner/lib/auth/reducer';
+import { getRouter } from 'steiner/lib/routing/reducer';
+import { getSettings } from 'steiner/lib/settings/reducer';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Dropdown from 'vivi/lib/Dropdown';
-import { getRouter } from 'steiner/lib/routing/reducer';
 import TranslatorProvider from 'vivi/lib/TranslatorProvider';
 
 import routeRegister from 'helpers/routeRegister';
@@ -22,10 +23,9 @@ import SidebarMenu from './components/SidebarMenu';
 import Omnibox from './components/Omnibox';
 import Profile from './components/Profile';
 import ModalHelp from './components/ModalHelp';
+import KeyBinderHoc from './components/KeyBinder';
 import routes from './routes';
 import history from './history';
-
-import KeyBinderHoc from './components/KeyBinder';
 
 const sidebarMenuLinks = routeRegister.getSidebarLinks();
 
@@ -44,8 +44,8 @@ class App extends Component {
     }
 
     componentDidMount() {
-        const language = this.props.user.language || 'en';
-        // const language = 'it';
+        const language = this.props.settings.language || process.env.REACT_APP_DEFAULT_LANGUAGE;
+        // const language = 'en';
 
         require([`vivi/lib/messages/${language}`, `steiner/lib/messages/${language}`], (viviMessages, messages) => {
             const translations = {
@@ -203,4 +203,4 @@ class App extends Component {
 
 const KeyedApp = KeyBinderHoc(App);
 
-export default connect(state => ({ user: getUser(state), router: getRouter(state) }))(KeyedApp);
+export default connect(state => ({ user: getUser(state), router: getRouter(state), settings: getSettings(state) }))(KeyedApp);

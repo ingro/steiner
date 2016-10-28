@@ -17,7 +17,7 @@ const enhancer = compose(
         notificationMiddleware,
         loadingBarMiddleware
     ),
-    persistState('user', { 
+    persistState(['user', 'settings'], { 
         key: process.env.REACT_APP_NAME
     }),
     batchedSubscribe(batchedUpdates)

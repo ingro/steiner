@@ -3,8 +3,9 @@ import { reduxForm, Field } from 'redux-form';
 import { FormControls } from 'steiner';
 import { NavigationPrompt } from 'react-router';
 import Helmet from 'react-helmet';
-import { auth } from 'steiner';
+import { auth, createConfirm } from 'steiner';
 import { createFormAction } from 'steiner/lib/helpers/reduxFormSaga';
+import debounce from 'lodash/debounce';
 
 import InputField from 'vivi/lib/Form/InputField';
 import SelectField from 'vivi/lib/Form/SelectField';
@@ -26,6 +27,8 @@ export class Profile extends Component {
         super(props);
         
         this.submit = submit;
+
+        this.confirmRefresh = debounce(this.showConfirmRefresh, 500);
     }
 
     componentDidMount() {
@@ -34,13 +37,19 @@ export class Profile extends Component {
         this.props.initialize(user);
     }
 
-    // componentWillReceiveProps(nextProps) {
-    //     if (nextProps.submitSucceeded) {
-    //         setTimeout(() => {
-    //             window.location.reload(false);
-    //         }, 1000);
-    //     }
-    // }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.submitSucceeded) {
+            this.confirmRefresh();
+        }
+    }
+
+    showConfirmRefresh = () => {
+        this.props.dispatch(createConfirm({
+            title: 'Confirm',
+            message: 'The page needs to be reloaded in order to apply the changes.',
+            onSuccess: () => window.location.reload(false)
+        }));
+    }
 
     render() {
         const { handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset } = this.props;
@@ -52,9 +61,6 @@ export class Profile extends Component {
                 <div className="col-xs-6 col-xs-offset-3 text-center">
                     <h2>User's Profile</h2>
                     {error && <div className="alert alert-danger">{error}</div>}
-                    <div className="alert alert-info">
-                        <p>The page will be reloaded after updating to reflect the changes in the app.</p>
-                    </div>
                     <form onSubmit={handleSubmit(this.submit)} className="form-horizontal">
                         <Field
                             className="form-control"

@@ -21,13 +21,15 @@ class LoginForm extends Component {
         this.form.elements[0].focus();
     }
 
-    componentWillReceiveProps(props) {
-        if (props.submitSucceeded) {
-            setTimeout(() => {
-                this.context.router.transitionTo('/');
-            }, 0);
-        }
-    }
+    // componentWillReceiveProps(props) {
+    //     if (props.submitSucceeded) {
+    //         setTimeout(() => {
+    //             const redirectUrl = (this.props.location.state.from) ? this.props.location.state.from.path : '/';
+
+    //             // this.context.router.transitionTo(redirectUrl);
+    //         }, 0);
+    //     }
+    // }
 
     render() {
         const { handleSubmit, submitting, error } = this.props;

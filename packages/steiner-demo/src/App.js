@@ -177,11 +177,11 @@ class App extends Component {
                             </div>
                             <div className="container-fluid">
                                 <Match pattern="/" exactly={true} render={() => <Welcome user={user}/>} />
+                                <MatchWhenGuest pattern="/login" exactly={true} component={LoginForm} user={user} location={router.location} />
                                 <Match pattern="/profile" render={() => <Profile user={user} />}/>
                                 {routes.map((route, i) => (
                                     <MatchWhenAuthorized key={i} user={user} {...route}/>
                                 ))}
-                                <MatchWhenGuest pattern="/login" exactly={true} component={LoginForm} user={user}/>
                             </div>
                         </div>
                     </Sidebar>

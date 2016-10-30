@@ -2,14 +2,15 @@ import React, { PropTypes } from 'react';
 import { Match, Redirect } from 'react-router';
 
 // TODO: when ControlledRouter is released implement auth within redux store
-const MatchWhenGuest = ({ component: Component, user, redirectTo, ...rest }) => {
+const MatchWhenGuest = ({ component: Component, user, defaultRedirectTo, ...rest }) => {
     return <Match {...rest} render={props => {
         return ! user ? (
             <Component {...props}/>
         ) : (
             <Redirect to={{
-                pathname: redirectTo,
-                state: { from: props.location }
+                pathname: (props.location.state.from) ? props.location.state.from.pathname : defaultRedirectTo,
+                search: (props.location.state.from) ? props.location.state.from.search : '',
+                state: {}
             }}/>
         )
     }}/>
@@ -18,12 +19,12 @@ const MatchWhenGuest = ({ component: Component, user, redirectTo, ...rest }) => 
 MatchWhenGuest.props = {
     component: PropTypes.node.isRequired,
     location: PropTypes.object.isRequired,
-    redirectTo: PropTypes.string,
+    defaultRedirectTo: PropTypes.string,
     user: PropTypes.object
 };
 
 MatchWhenGuest.defaultProps = {
-    redirectTo: '/'
+    defaultRedirectTo: '/'
 };
 
 

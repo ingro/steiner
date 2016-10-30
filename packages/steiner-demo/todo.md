@@ -8,9 +8,7 @@
 - Translate missing strings (logout request, navigate away from forms)
 - Make use of forms easier
 - Make all the whole auth package of Steiner more customizable
-- How to make update in user's language and rows per page be reflected in the store and the app? Languages needs to be dynamically loaded with webpack (chunks?) while perPage setting should be set in all the resource list reducers?
 - Update Profile.js, App.js, LoginForm.js, reducers/index.js and createStore on app's skeleton
-- How to load initial settings from localstorage or user's store?
 
 ## Current .env
 

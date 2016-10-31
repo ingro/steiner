@@ -65,7 +65,6 @@ class LoginForm extends Component {
                                     <LoadingButton
                                         className="btn-success btn-block"
                                         loading={submitting}
-                                        loadingMsg="Authenticating..."
                                     >
                                         Login
                                     </LoadingButton>

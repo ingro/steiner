@@ -28,7 +28,6 @@ class Omnibox extends Component {
                     ref={select => this.select = select}
                     valueKey="id"
                     labelKey="label"
-                    placeholder="Search..."
                     options={this.props.options}
                     onChange={this.handleChange}
                     openOnFocus={true}

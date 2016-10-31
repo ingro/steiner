@@ -2,10 +2,10 @@
 
 - Breadcrumbs: wait for a better implementation of [react-router-addons-routes](https://github.com/ReactTraining/react-router-addons-routes) to find nested routes easily
 - Write a simple getting started guide after bootstrap a new app with `steiner-cli`
-- Use all the helpers from SteinerHelper
 - Use [redux-seamless-immutable](https://www.npmjs.com/package/redux-seamless-immutable)?
 - BUG: Wrapping a Link with a Tooltip results in a page change
-- Translate missing strings (logout request, navigate away from forms)
+- Translate missing strings (logout request, navigate away from forms, confirm update profile, modal help)
+- Add profile link to Omnibox
 - Make use of forms easier
 - Make all the whole auth package of Steiner more customizable
 - Update Profile.js, App.js, LoginForm.js, reducers/index.js, helpers/steinerHelper and createStore on app's skeleton

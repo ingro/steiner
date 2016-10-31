@@ -1,5 +1,6 @@
 import defaults from 'lodash/defaults';
 import get from 'lodash/get';
+import set from 'lodash/set';
 
 import { createActions, createActionTypes } from './actionCreator';
 import createApi from './apiCreator';
@@ -106,6 +107,10 @@ export default class SteinerHelper {
     }
 
     createDefaultState(customState = {}) {
+        if (typeof get(customState, 'list.filters.perPage') === 'undefined' && this.options.defaultPerPage) {
+            set(customState, 'list.filters.perPage', this.options.defaultPerPage);
+        }
+
         return DEFAULT_STATE.merge(customState, { deep: true });
     }
 }

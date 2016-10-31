@@ -108,16 +108,28 @@ describe('steinerHelper', () => {
             expect(result).toMatchSnapshot();
         });
 
-        it('returns the custom state', () => {
+        it('uses default values if defined', () => {
+            const helper = new steinerHelper({
+                defaultPerPage: 30
+            });
+
+            expect(helper.createDefaultState()).toMatchSnapshot();
+        });
+
+        it('returns the custom state even if a default is provided', () => {
             const helper = new steinerHelper({
                 defaultPerPage: 50
             });
 
-            const result = helper.createDefaultState();
+            const result = helper.createDefaultState({
+                list: {
+                    filters: {
+                        perPage: 15
+                    }
+                }
+            });
 
-            // expect(helper.createDefaultState()).toMatchSnapshot();
-
-            console.log(result.list.filters.perPage);
+            expect(result).toMatchSnapshot();
         });
     });
 });

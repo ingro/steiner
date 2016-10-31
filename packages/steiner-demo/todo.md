@@ -8,7 +8,8 @@
 - Translate missing strings (logout request, navigate away from forms)
 - Make use of forms easier
 - Make all the whole auth package of Steiner more customizable
-- Update Profile.js, App.js, LoginForm.js, reducers/index.js and createStore on app's skeleton
+- Update Profile.js, App.js, LoginForm.js, reducers/index.js, helpers/steinerHelper and createStore on app's skeleton
+- Update reducer in module's skeleton
 
 ## Current .env
 

@@ -9,8 +9,6 @@
 - Optimistically update items on update?
 - Add all the missing helper's function on SteinerHelper
 - Pass only the minimum state/actions from redux's connect?
-- Create helper to merge custom state with default state?
 - Use reselect for selectors?
-- Option to define default perPage for each resource?
 
 ## Translations

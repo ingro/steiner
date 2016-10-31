@@ -86,4 +86,38 @@ describe('steinerHelper', () => {
             expect(helper.getCreateActionsOptions(options)).toMatchSnapshot();
         });
     });
+
+    describe('createDefaultState', () => {
+        it('returns the default state defined in the reducer', () => {
+            const helper = new steinerHelper();
+
+            expect(helper.createDefaultState()).toMatchSnapshot();
+        }) ;
+
+        it('returns the custom state', () => {
+            const helper = new steinerHelper();
+
+            const result = helper.createDefaultState({
+                list: {
+                    filters: {
+                        perPage: 50
+                    }
+                }
+            });
+
+            expect(result).toMatchSnapshot();
+        });
+
+        it('returns the custom state', () => {
+            const helper = new steinerHelper({
+                defaultPerPage: 50
+            });
+
+            const result = helper.createDefaultState();
+
+            // expect(helper.createDefaultState()).toMatchSnapshot();
+
+            console.log(result.list.filters.perPage);
+        });
+    });
 });

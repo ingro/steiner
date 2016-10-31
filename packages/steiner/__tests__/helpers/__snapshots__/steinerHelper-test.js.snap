@@ -1,3 +1,53 @@
+exports[`steinerHelper createDefaultState returns the custom state 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": null,
+    "isFetching": false,
+    "item": null,
+  },
+  "list": Object {
+    "errorMessage": null,
+    "filters": Object {
+      "orderDirection": "ASC",
+      "orderKey": null,
+      "page": 1,
+      "perPage": 50,
+      "q": "",
+    },
+    "isFetching": false,
+    "itemsById": Object {},
+    "itemsId": Array [],
+    "selected": Array [],
+    "total": 0,
+  },
+}
+`;
+
+exports[`steinerHelper createDefaultState returns the default state defined in the reducer 1`] = `
+Object {
+  "current": Object {
+    "errorMessage": null,
+    "isFetching": false,
+    "item": null,
+  },
+  "list": Object {
+    "errorMessage": null,
+    "filters": Object {
+      "orderDirection": "ASC",
+      "orderKey": null,
+      "page": 1,
+      "perPage": 20,
+      "q": "",
+    },
+    "isFetching": false,
+    "itemsById": Object {},
+    "itemsId": Array [],
+    "selected": Array [],
+    "total": 0,
+  },
+}
+`;
+
 exports[`steinerHelper getCreateActionsOptions allow to override the helper's options 1`] = `
 Object {
   "messageTemplates": Object {

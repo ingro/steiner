@@ -1,8 +1,9 @@
 import defaults from 'lodash/defaults';
+import get from 'lodash/get';
 
 import { createActions, createActionTypes } from './actionCreator';
 import createApi from './apiCreator';
-import { createHandlers } from './reducerCreator';
+import { createHandlers, DEFAULT_STATE } from './reducerCreator';
 import { generateRoutes } from './routeCreator';
 import createConfirm from './confirmCreator';
 
@@ -102,5 +103,9 @@ export default class SteinerHelper {
     createConfirmAction(options) {
         defaults(options, this.getConfirmDialogOptions());
         return createConfirm(options);
+    }
+
+    createDefaultState(customState = {}) {
+        return DEFAULT_STATE.merge(customState, { deep: true });
     }
 }

@@ -31,12 +31,17 @@ export default {
             cancel: 'Cancel',
             create: 'Create',
             edit: 'Edit',
+            help: 'Help',
+            profileAndSettings: 'Profile & Settings',
             reset: 'Reset',
             searchPlaceholder: 'Type to search...',
             submit: 'Save'
         },
         messages: {
             confirmDelete: 'Do you really want to delete the selected item?',
+            confirmLogout: 'Are you really want to exit from the application?',
+            confirmReload: 'The page needs to be reloaded in order to apply the changes.',
+            confirmUnsaved: 'Are you sure? Any unsaved changes will be lost.',
             loading: 'Please wait...',
             noRows: 'No items to show'
         }

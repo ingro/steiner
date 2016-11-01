@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { FormControls } from 'steiner';
 import { NavigationPrompt } from 'react-router';
@@ -6,7 +6,7 @@ import Helmet from 'react-helmet';
 import { auth, createConfirm } from 'steiner';
 import { createFormAction } from 'steiner/lib/helpers/reduxFormSaga';
 import debounce from 'lodash/debounce';
-
+import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 import InputField from 'vivi/lib/Form/InputField';
 import SelectField from 'vivi/lib/Form/SelectField';
 
@@ -45,19 +45,18 @@ export class Profile extends Component {
 
     showConfirmRefresh = () => {
         this.props.dispatch(createConfirm({
-            title: 'Confirm',
-            message: 'The page needs to be reloaded in order to apply the changes.',
+            message: this.props.reloadMessage,
             onSuccess: () => window.location.reload(false)
         }));
     }
 
     render() {
-        const { handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset } = this.props;
+        const { handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset, unsavedMessage } = this.props;
 
         return (
             <div className="container">
                 <Helmet title="Profile" />
-                <NavigationPrompt when={dirty && !submitSucceeded} message="Are you sure? Any unsaved changes will be lost." />
+                <NavigationPrompt when={dirty && !submitSucceeded} message={unsavedMessage} />
                 <div className="col-xs-6 col-xs-offset-3 text-center">
                     <h2>User's Profile</h2>
                     {error && <div className="alert alert-danger">{error}</div>}
@@ -93,6 +92,22 @@ export class Profile extends Component {
     }
 }
 
+Profile.propTypes = {
+    reloadMessage: PropTypes.string,
+    unsavedMessage: PropTypes.string,
+    user: PropTypes.object,
+};
+
+Profile.defaultProps = {
+    reloadMessage: 'The page needs to be reloaded in order to apply the changes.',
+    unsavedMessage: 'Are you sure? Any unsaved changes will be lost.'
+}
+
+const TranslatedProfile = TranslatorHoc(Profile, {
+    reloadMessage: 'steiner.messages.confirmReload',
+    unsavedMessage: 'steiner.messages.confirmUnsaved',
+});
+
 export default reduxForm({
     form: 'profile'
-})(Profile);
+})(TranslatedProfile);

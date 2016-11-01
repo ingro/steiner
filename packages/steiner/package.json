@@ -29,7 +29,7 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "cross-env": "^3.1.3",
-    "eslint": "^3.8.1",
+    "eslint": "^3.9.1",
     "eslint-config-react-app": "^0.3.0",
     "eslint-plugin-flowtype": "^2.25.0",
     "eslint-plugin-import": "^2.0.1",
@@ -51,7 +51,7 @@
     "reapop": "^0.6.0",
     "redux": "^3.6.0",
     "redux-form": "^6.1.0",
-    "redux-saga": "^0.12.0",
+    "redux-saga": "^0.12.1",
     "reflexbox": "^2.2.2",
     "vivi": "^0.4.0"
   },

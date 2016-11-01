@@ -31,12 +31,17 @@ export default {
             cancel: 'Annulla',
             create: 'Crea',
             edit: 'Modifica',
+            help: 'Aiuto',
+            profileAndSettings: 'Profilo & Impostazioni',
             reset: 'Resetta',
             searchPlaceholder: 'Ricerca...',
             submit: 'Salva'
         },
         messages: {
             confirmDelete: 'Vuoi davvero cancellare l\'oggetto selezionato?',
+            confirmLogout: 'Vuoi davvero uscire dall\'applicazione?',
+            confirmReload: 'La pagina deve essere aggiornata in maniera da applicare le modifiche.',
+            confirmUnsaved: 'Sei sicuro? Tutte le modifiche non salvate andranno perse.',
             loading: 'Attendere prego...',
             noRows: 'Nessun oggetto da mostrare',
         }

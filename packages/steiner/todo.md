@@ -12,3 +12,5 @@
 - Use reselect for selectors?
 
 ## Translations
+
+- How to translate confirmMessage title and buttons?

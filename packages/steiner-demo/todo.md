@@ -4,11 +4,11 @@
 - Write a simple getting started guide after bootstrap a new app with `steiner-cli`
 - Use [redux-seamless-immutable](https://www.npmjs.com/package/redux-seamless-immutable)?
 - BUG: Wrapping a Link with a Tooltip results in a page change
-- Translate missing strings (logout request, navigate away from forms, confirm update profile, modal help)
+- Translate missing strings (navigate away from forms, modal help)
 - Add profile link to Omnibox
 - Make use of forms easier
 - Make all the whole auth package of Steiner more customizable
-- Update Profile.js, App.js, LoginForm.js, reducers/index.js, helpers/steinerHelper and createStore on app's skeleton
+- Update Profile.js, App.js, LoginForm.js, Header.js, reducers/index.js, helpers/steinerHelper and createStore on app's skeleton
 - Update reducer in module's skeleton
 
 ## Current .env

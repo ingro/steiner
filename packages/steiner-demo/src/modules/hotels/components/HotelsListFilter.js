@@ -1,11 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import { InputListFilter } from 'steiner';
+import { InputListFilter, KeyBinderHoc } from 'steiner';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 // import Tooltip from 'vivi/lib/Tooltip';
 
 import routeRegister from 'helpers/routeRegister';
-import KeyBinderHoc from 'components/KeyBinder';
 
 class HotelsListFilter extends Component {
     componentWillMount() {

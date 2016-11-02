@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
-import { formHelper } from 'steiner';
+import { formHelper, FormWrapper } from 'steiner';
 import Helmet from 'react-helmet';
 import InputField from 'vivi/lib/Form/InputField';
 import CheckboxField from 'vivi/lib/Form/CheckboxField';
@@ -18,8 +18,6 @@ import routeRegister from 'helpers/routeRegister';
 import { createReactSelectLoader } from 'helpers/helpers';
 import { actionTypes } from '../actions/hotels';
 // import KeyBinderHoc from 'components/KeyBinder';
-
-import FormWrapper from 'components/FormWrapper';
 
 const validate = combineValidators({
     name: composeValidators(

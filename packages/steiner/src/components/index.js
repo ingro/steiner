@@ -1,5 +1,7 @@
 import ControlledRouterComponent from './ControlledRouter';
 import FormControlsComponent from './FormControls';
+import FormWrapperComponent from './FormWrapper';
+import KeyBinderHocComponent from './KeyBinderHoc';
 import InputListFilterComponent from './InputListFilter';
 import ItemLoaderComponent from './ItemLoader';
 import ListLayoutComponent from './ListLayout';
@@ -11,6 +13,8 @@ import HeaderLinkComponent from './HeaderLink';
 
 export const ControlledRouter = ControlledRouterComponent;
 export const FormControls = FormControlsComponent;
+export const FormWrapper = FormWrapperComponent;
+export const KeyBinderHoc = KeyBinderHocComponent;
 export const InputListFilter = InputListFilterComponent;
 export const ItemLoader = ItemLoaderComponent;
 export const ListLayout = ListLayoutComponent;

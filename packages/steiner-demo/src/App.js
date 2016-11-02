@@ -6,7 +6,7 @@ import LoadingBar from 'react-redux-loading-bar';
 import Sidebar from 'react-sidebar';
 import Helmet from 'react-helmet';
 import theme from 'reapop-theme-wybo';
-import { ControlledRouter, MatchWhenAuthorized, MatchWhenGuest } from 'steiner';
+import { ControlledRouter, MatchWhenAuthorized, MatchWhenGuest, KeyBinderHoc } from 'steiner';
 import { getUser } from 'steiner/lib/auth/reducer';
 import { getRouter } from 'steiner/lib/routing/reducer';
 import { getSettings } from 'steiner/lib/settings/reducer';
@@ -21,7 +21,6 @@ import SidebarMenu from './components/SidebarMenu';
 import Omnibox from './components/Omnibox';
 import Profile from './components/Profile';
 import ModalHelp from './components/ModalHelp';
-import KeyBinderHoc from './components/KeyBinder';
 import routes from './routes';
 import history from './history';
 

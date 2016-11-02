@@ -1,20 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { NavigationPrompt } from 'react-router';
-import { FormControls } from 'steiner';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 
-import KeyBinderHoc from 'components/KeyBinder';
+import FormControls from './FormControls';
+import KeyBinderHoc from './KeyBinderHoc';
 
 export class FormWrapper extends Component {
-    // constructor(props) {
-    //     super(props);
-
-    //     this.submit = formHelper.createSubmit(actionTypes, data => ({
-    //         ...data,
-    //         positionId: data.positionId ? data.positionId.id : null
-    //     }));
-    // }
-
     componentWillMount() {
         const { item } = this.props;
 
@@ -43,12 +34,6 @@ export class FormWrapper extends Component {
             }
         }
     }
-
-    // createInitialFormValues(item) {
-    //     return {
-    //         ...item
-    //     };
-    // }
 
     render() {
         const { handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset } = this.props;

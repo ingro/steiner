@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import { InputListFilter } from 'steiner';
+import InputListFilter from 'steiner/lib/components/InputListFilter';
+{% if richComponents %}import KeyBinderHoc from 'steiner/lib/components/KeyBinderHoc';{% endif %}
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 
 import routeRegister from 'helpers/routeRegister';
-{% if richComponents %}import KeyBinderHoc from 'components/KeyBinder';{% endif %}
 
 {%- set componentName = name | title + 'ListFilter' %}
 

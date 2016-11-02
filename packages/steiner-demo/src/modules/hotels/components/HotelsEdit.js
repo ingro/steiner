@@ -17,7 +17,6 @@ import client from 'apis/client';
 import routeRegister from 'helpers/routeRegister';
 import { createReactSelectLoader } from 'helpers/helpers';
 import { actionTypes } from '../actions/hotels';
-// import KeyBinderHoc from 'components/KeyBinder';
 
 const validate = combineValidators({
     name: composeValidators(

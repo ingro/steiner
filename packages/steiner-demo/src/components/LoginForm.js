@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { createFormAction } from 'steiner/lib/helpers/reduxFormSaga';
 import { auth } from 'steiner';
@@ -78,10 +78,6 @@ class LoginForm extends Component {
         )
     }
 }
-
-LoginForm.contextTypes = {
-    router: PropTypes.object
-};
 
 export default reduxForm({
     form: 'login'

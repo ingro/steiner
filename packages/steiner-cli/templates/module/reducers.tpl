@@ -8,7 +8,11 @@ import helper from 'helpers/steinerHelper';
 {%- endif -%}
 import { actionTypes } from '../actions/{{name}}';
 
-export const DEFAULT_STATE = reducerCreator.DEFAULT_STATE;
+{% if useHelper %}
+    export const DEFAULT_STATE = helper.createDefaultState();
+{%- else -%}
+    export const DEFAULT_STATE = reducerCreator.DEFAULT_STATE;
+{%- endif %}
 
 const handlers = {{obj}}.createHandlers(actionTypes);
 

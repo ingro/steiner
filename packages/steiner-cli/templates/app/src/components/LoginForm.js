@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { createFormAction } from 'steiner/lib/helpers/reduxFormSaga';
 import { auth } from 'steiner';
@@ -21,14 +21,6 @@ class LoginForm extends Component {
         this.form.elements[0].focus();
     }
 
-    componentWillReceiveProps(props) {
-        if (props.submitSucceeded) {
-            setTimeout(() => {
-                this.context.router.transitionTo('/');
-            }, 0);
-        }
-    }
-
     render() {
         const { handleSubmit, submitting, error } = this.props;
 
@@ -37,7 +29,7 @@ class LoginForm extends Component {
                 <Helmet title="Login" />
                 <div className="col-xs-6 col-xs-offset-3 text-center">
                     <div className="panel panel-info">
-                        <div className="panel-heading">Login</div>
+                        <div className="panel-heading">{process.env.REACT_APP_NAME} - Login</div>
                         <div className="panel-body">
                             <form ref={form => this.form = form} onSubmit={handleSubmit(this.submit)}>
                                 <div className="form-group">
@@ -63,7 +55,6 @@ class LoginForm extends Component {
                                     <LoadingButton
                                         className="btn-success btn-block"
                                         loading={submitting}
-                                        loadingMsg="Authenticating..."
                                     >
                                         Login
                                     </LoadingButton>
@@ -77,10 +68,6 @@ class LoginForm extends Component {
         )
     }
 }
-
-LoginForm.contextTypes = {
-    router: PropTypes.object
-};
 
 export default reduxForm({
     form: 'login'

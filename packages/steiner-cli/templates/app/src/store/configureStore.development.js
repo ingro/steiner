@@ -30,7 +30,7 @@ const enhancer = composeWithDevTools(
         loadingBarMiddleware,
         loggerMiddleware
     ),
-    persistState('user', { 
+    persistState(['user', 'settings'], { 
         key: process.env.REACT_APP_NAME
     }),
     // batchedSubscribe(batchedUpdates)

@@ -29,7 +29,7 @@ export default function createConfirm(options = {}) {
             {
                 name: options.btn_secondary_text,
                 primary: false
-            },
+            }
         ]
     });
 }

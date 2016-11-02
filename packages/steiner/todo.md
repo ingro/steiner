@@ -10,6 +10,7 @@
 - Add all the missing helper's function on SteinerHelper
 - Pass only the minimum state/actions from redux's connect?
 - Use reselect for selectors?
+- SteinerHelper loads all the languages by default, find a way to load only the current one?
 
 ## Translations
 

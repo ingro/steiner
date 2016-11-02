@@ -43,7 +43,6 @@ class App extends Component {
 
     componentDidMount() {
         const language = this.props.settings.language || process.env.REACT_APP_DEFAULT_LANGUAGE;
-        // const language = 'en';
 
         require([`vivi/lib/messages/${language}`, `steiner/lib/messages/${language}`], (viviMessages, messages) => {
             const translations = {
@@ -105,7 +104,7 @@ class App extends Component {
                 <div>
                     {!this.state.isLanguageLoaded && <div>Loading...</div>}
                     {this.state.isLanguageLoaded && <TranslatorProvider
-                        locale="it"
+                        locale={this.props.settings.language}
                         messages={this.translations}
                     >
                         <div>   

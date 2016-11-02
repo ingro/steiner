@@ -1,10 +1,16 @@
+## 0.10.0 (November 3, 2016)
+
+- Added `<KeyBinderHoc />` component
+- Added `<FormWrapper />` component
+- Update and added translations
+
 ## 0.9.0 (October 26, 2016)
 
 - Added messages translations
 
 ## 0.8.0 (October 20, 2016)
 
-- Added <ControlledRouter /> component
+- Added `<ControlledRouter />` component
 - Added sync between list filters and url (experimental)
 
 ## 0.7.0 (October 18, 2016)

@@ -6,7 +6,6 @@ import App from './App';
 import configureStore from './store/configureStore';
 import rootSaga from './sagas';
 
-import 'vivi/lib/style.css';
 import './index.css';
 
 import history from './history';

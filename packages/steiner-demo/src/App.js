@@ -101,7 +101,7 @@ class App extends Component {
                 dispatch={dispatch}
             >             
                 <div>
-                    {!this.state.isLanguageLoaded && <div>Loading...</div>}
+                    {!this.state.isLanguageLoaded && <div className="splash"><h1 className="loading dots">{process.env.REACT_APP_NAME} </h1></div>}
                     {this.state.isLanguageLoaded && <TranslatorProvider
                         locale={this.props.settings.language}
                         messages={this.translations}

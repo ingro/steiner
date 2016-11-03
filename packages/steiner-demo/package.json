@@ -42,6 +42,7 @@
     "revalidate": "^1.0.0",
     "seamless-immutable": "^6.3.0",
     "steiner": "^0.10.0",
+    "text-spinners": "^1.0.4",
     "vivi": "^0.4.0"
   },
   "scripts": {

@@ -31,8 +31,14 @@ class RouteRegister {
     }
 
     getOmniboxOptions() {
-        const options = [];
-        let i = 1;
+        const options = [{
+            id: 1,
+            type: 'link',
+            path: '/profile',
+            label: 'Profile'
+        }];
+        
+        let i = 2;
 
         const actions = ['list', 'create'];
 

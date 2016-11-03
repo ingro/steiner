@@ -13,8 +13,14 @@ import history from './history';
 
 const store = configureStore({
     router: {
-        location: history.location,
-        action: history.action
+        current: {
+            location: history.location,
+            action: history.action
+        },
+        previous: {
+            location: null,
+            action: null
+        }
     }
 });
 

@@ -37,33 +37,6 @@ class HotelsEdit extends Component {
         }));
     }
 
-    // componentWillMount() {
-    //     const { item } = this.props;
-
-    //     this.props.initialize(this.createInitialFormValues(item));
-
-    //     this.props.bindShortcut(['ctrl+s', 'command+s'], (e) => {
-    //         e.preventDefault();
-    //         this.props.handleSubmit(this.submit)();
-    //     }, true);
-    // }
-
-    // componentDidMount() {
-    //     this.form.elements[0].focus();
-    // }
-
-    // componentWillReceiveProps(nextProps) {
-    //     if (nextProps.item && nextProps.item.id !== this.props.item.id)  {
-    //         this.props.initialize(this.createInitialFormValues(nextProps.item));
-    //     }
-
-    //     if (nextProps.submitSucceeded) {
-    //         setTimeout(() => {
-    //             this.context.router.transitionTo(routeRegister.getLinkTo('hotels.list'));
-    //         }, 0);
-    //     }
-    // }
-
     createInitialFormValues(item) {
         return {
             ...item,
@@ -78,6 +51,10 @@ class HotelsEdit extends Component {
         return item.name ? item.name : 'Create new Hotels';
     }
 
+    getCancelLink() {
+        return this.props.previousUrl ? this.props.previousUrl : routeRegister.getLinkTo('hotels.list');
+    }
+
     render() {
         return (
             <div>
@@ -85,7 +62,7 @@ class HotelsEdit extends Component {
                 <FormWrapper
                     {...this.props}
                     title={this.getTitle()}
-                    cancelLink={routeRegister.getLinkTo('hotels.list')}
+                    cancelLink={this.getCancelLink()}
                     submit={this.submit}
                     createInitialFormValues={this.createInitialFormValues}
                 >
@@ -126,72 +103,7 @@ class HotelsEdit extends Component {
             </div>
         );
     }
-
-    // render() {
-    //     const { handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset } = this.props;
-
-    //     return(
-    //         <div className="row">
-    //             <Helmet title={`Hotels > ${this.getTitle()}`} />
-    //             <NavigationPrompt when={dirty && !submitSucceeded} message="Are you sure? Any unsaved changes will be lost." />
-    //             <div className="col-xs-6 col-xs-offset-3 text-center">
-    //                 <h3>{this.getTitle()}</h3>
-    //                 {error && <div className="alert alert-danger">{error}</div>}
-    //                 <form ref={form => this.form = form} onSubmit={handleSubmit(this.submit)} className="form-horizontal">
-    //                     <Field
-    //                         className="form-control"
-    //                         name="name"
-    //                         placeholder="Name"
-    //                         component={InputField}
-    //                     />
-    //                     <Field
-    //                         className="form-control"
-    //                         name="address"
-    //                         placeholder="Address"
-    //                         component={InputField}
-    //                     />
-    //                     <Field
-    //                         className="form-control"
-    //                         name="positionId"
-    //                         placeholder="Position"
-    //                         component={SelectAsyncField}
-    //                         loadOptions={createReactSelectLoader('positions', client)}
-    //                     />
-    //                     <Field
-    //                         className="form-control"
-    //                         name="tags"
-    //                         placeholder="Tags"
-    //                         component={SelectAsyncField}
-    //                         loadOptions={createReactSelectLoader('tags', client)}
-    //                         selectOptions={{ multi: true }}
-    //                     />
-    //                     <Field
-    //                         className="form-control"
-    //                         name="active"
-    //                         component={CheckboxField}
-    //                         type="checkbox"
-    //                     />
-    //                     <div className="row">
-    //                         <FormControls
-    //                             valid={valid}
-    //                             submitting={submitting}
-    //                             dirty={dirty}
-    //                             cancelLink={routeRegister.getLinkTo('hotels.list')}
-    //                             onReset={reset}
-    //                         />
-    //                     </div>
-    //                 </form>
-    //             </div>
-    //         </div>
-    //     );
-    // }
 }
-
-// HotelsEdit.contextTypes = {
-//     router: PropTypes.object
-// };
-
-// const HotelsEditKeyed = KeyBinderHoc(HotelsEdit);
 
 export default reduxForm({
     form: 'hotels',

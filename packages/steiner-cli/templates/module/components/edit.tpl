@@ -27,6 +27,10 @@ class {{componentName}} extends Component {
         return item.name ? item.name : 'Create new {{name | title}}';
     }
 
+    getCancelLink() {
+        return this.props.previousUrl ? this.props.previousUrl : routeRegister.getLinkTo('{{name}}.list');
+    }
+
     render() {
         const { handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset } = this.props;
 
@@ -36,7 +40,7 @@ class {{componentName}} extends Component {
                 <FormWrapper
                     {...this.props}
                     title={this.getTitle()}
-                    cancelLink={routeRegister.getLinkTo('{{name}}.list')}
+                    cancelLink={this.getCancelLink()}
                     submit={this.submit}
                     createInitialFormValues={this.createInitialFormValues}
                 >

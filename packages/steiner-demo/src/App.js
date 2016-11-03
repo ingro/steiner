@@ -8,7 +8,7 @@ import Helmet from 'react-helmet';
 import theme from 'reapop-theme-wybo';
 import { ControlledRouter, MatchWhenAuthorized, MatchWhenGuest, KeyBinderHoc } from 'steiner';
 import { getUser } from 'steiner/lib/auth/reducer';
-import { getRouter } from 'steiner/lib/routing/reducer';
+import { getCurrentRoute } from 'steiner/lib/routing/reducer';
 import { getSettings } from 'steiner/lib/settings/reducer';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import TranslatorProvider from 'vivi/lib/TranslatorProvider';
@@ -91,13 +91,13 @@ class App extends Component {
     }
 
     render() {
-        const { user, router, dispatch } = this.props;
+        const { user, currentRoute, dispatch } = this.props;
 
         return (
             <ControlledRouter
                 history={history}
-                location={router.location}
-                action={router.action}
+                location={currentRoute.location}
+                action={currentRoute.action}
                 dispatch={dispatch}
             >             
                 <div>
@@ -136,7 +136,7 @@ class App extends Component {
                                     />
                                     <div className="container-fluid">
                                         <Match pattern="/" exactly={true} render={() => <Welcome user={user}/>} />
-                                        <MatchWhenGuest pattern="/login" exactly={true} component={LoginForm} user={user} location={router.location} />
+                                        <MatchWhenGuest pattern="/login" exactly={true} component={LoginForm} user={user} location={currentRoute.location} />
                                         <Match pattern="/profile" render={() => <Profile user={user} />}/>
                                         {routes.map((route, i) => (
                                             <MatchWhenAuthorized key={i} user={user} {...route}/>
@@ -162,4 +162,4 @@ class App extends Component {
 
 const KeyedApp = KeyBinderHoc(App);
 
-export default connect(state => ({ user: getUser(state), router: getRouter(state), settings: getSettings(state) }))(KeyedApp);
+export default connect(state => ({ user: getUser(state), currentRoute: getCurrentRoute(state), settings: getSettings(state) }))(KeyedApp);

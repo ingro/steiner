@@ -4,21 +4,44 @@ import { actionTypes } from './actions';
 import { createReducer } from '../helpers/reducerCreator';
 
 export const DEFAULT_STATE = Immutable({
-    location: { pathname: '/' },
-    action: 'PUSH'
+    current: {
+        location: { pathname: '/' },
+        action: 'PUSH'
+    }, 
+    previous: {
+        location: null,
+        action: null
+    }
 });
 
 const handlers = {
     [actionTypes.navigate]: (state, action) => {
+        const previous = state.current;
         return Immutable({
-            location: action.location,
-            action: action.action
+            current: {
+                location: action.location,
+                action: action.action
+            },
+            previous
         });
     }
 };
 
 export default createReducer(handlers, DEFAULT_STATE);
 
-export function getRouter(state) {
-    return state.router;
+export function getCurrentRoute(state) {
+    return state.router.current;
+}
+
+export function getPreviousRoute(state) {
+    return state.router.previous;
+}
+
+export function getPreviousUrl(state) {
+    if (state.router.previous.location) {
+        const { pathname, search } = state.router.previous.location;
+        return pathname + search;
+    }
+    
+    return null;
 }

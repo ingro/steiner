@@ -7,7 +7,6 @@
 - Translate missing strings (modal help)
 - Add profile link and logout action to Omnibox
 - Make all the whole auth package of Steiner more customizable
-- Update route reducer to include both current and previous entry for better redirects after form's submit?
 
 ## Current .env
 

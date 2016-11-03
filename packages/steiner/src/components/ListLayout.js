@@ -17,7 +17,7 @@ export default class ListLayout extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if ((nextProps.router.location.search !== this.props.router.location.search) && nextProps.router.action === 'POP') {
+        if ((nextProps.currentRoute.location.search !== this.props.currentRoute.location.search) && nextProps.currentRoute.action === 'POP') {
             this.props.checkSync(queryString.parse(window.location.search));
         }
     }

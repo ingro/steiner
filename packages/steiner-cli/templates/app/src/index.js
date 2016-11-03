@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import TranslatorProvider from 'vivi/lib/TranslatorProvider';
-import viviMessages from 'vivi/lib/messages/en';
-import messages from 'steiner/lib/messages/en';
 
 import App from './App';
 import configureStore from './store/configureStore';
@@ -16,28 +13,22 @@ import history from './history';
 
 const store = configureStore({
     router: {
-        location: history.location,
-        action: history.action
+        current: {
+            location: history.location,
+            action: history.action
+        },
+        previous: {
+            location: null,
+            action: null
+        }
     }
 });
 
 store.runSaga(rootSaga);
 
-const translations = {
-    ...viviMessages,
-    steiner: {
-        ...messages.components
-    } 
-};
-
 ReactDOM.render(
     <Provider store={store}>
-        <TranslatorProvider
-            locale="en"
-            messages={translations}
-        >
-            <App />
-        </TranslatorProvider>
+        <App />
     </Provider>,
     document.getElementById('root')
 );

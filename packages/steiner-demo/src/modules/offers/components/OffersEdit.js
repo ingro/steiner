@@ -22,11 +22,11 @@ const schema = [
         label: 'Tipologia',
         type: 'select',
         options: [{
-            id: 1,
-            name: 'Articolo'
+            value: 1,
+            label: 'Articolo'
         }, {
-            id: 2,
-            name: 'Commento'
+            value: 2,
+            label: 'Commento'
         }]
     },
     {

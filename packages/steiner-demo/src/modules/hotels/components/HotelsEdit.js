@@ -33,15 +33,15 @@ class HotelsEdit extends Component {
 
         this.submit = formHelper.createSubmit(actionTypes, data => ({
             ...data,
-            positionId: data.positionId ? data.positionId.id : null
+            positionId: data.positionId ? data.positionId.value : null
         }));
     }
 
     createInitialFormValues(item) {
         return {
             ...item,
-            positionId: item.position ? { id: item.positionId, name: item.position.name } : {},
-            tags: [{id: 1, name: 'estate'}, {id: 4, name: 'famiglia'}]
+            positionId: item.position ? { value: item.positionId, label: item.position.name } : {},
+            tags: [{value: 1, label: 'estate'}, {value: 4, label: 'famiglia'}]
         };
     }
 
@@ -83,14 +83,14 @@ class HotelsEdit extends Component {
                         name="positionId"
                         placeholder="Position"
                         component={SelectAsyncField}
-                        loadOptions={createReactSelectLoader('positions', client)}
+                        loadOptions={createReactSelectLoader('positions', client, { labelKey: 'name', valueKey: 'id' })}
                     />
                     <Field
                         className="form-control"
                         name="tags"
                         placeholder="Tags"
                         component={SelectAsyncField}
-                        loadOptions={createReactSelectLoader('tags', client)}
+                        loadOptions={createReactSelectLoader('tags', client, { labelKey: 'name', valueKey: 'id' })}
                         selectOptions={{ multi: true }}
                     />
                     <Field

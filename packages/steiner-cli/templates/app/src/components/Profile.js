@@ -15,7 +15,7 @@ function submit(data, dispatch) {
 
     const payload = {
         ...data,
-        language: data.language.id ? data.language.id : data.language
+        language: data.language.value ? data.language.value : data.language,
     };
 
     return action(payload, dispatch);
@@ -66,7 +66,7 @@ export class Profile extends Component {
                         placeholder="Language"
                         label="Language"
                         component={SelectField}
-                        options={[{ id: 'it', name: 'Italian' }, { id: 'en', name: 'English' }]}
+                        options={[{ value: 'it', label: 'Italian' }, { value: 'en', label: 'English' }]}
                     />
                 </FormWrapper>
             </div>

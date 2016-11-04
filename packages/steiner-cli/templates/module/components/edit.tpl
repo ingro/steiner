@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
-import { NavigationPrompt } from 'react-router';
 import { formHelper, FormWrapper } from 'steiner';
 import InputField from 'vivi/lib/Form/InputField';
 {% if richComponents %}import Helmet from 'react-helmet';{% endif %}
@@ -32,8 +31,6 @@ class {{componentName}} extends Component {
     }
 
     render() {
-        const { handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset } = this.props;
-
         return(
             <div>
                 {% if richComponents %}<Helmet title={`{{name | title}} > ${this.getTitle()}`} />{% endif %}

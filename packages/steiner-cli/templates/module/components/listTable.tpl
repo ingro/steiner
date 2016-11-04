@@ -34,11 +34,11 @@ export class {{componentName}} extends Component {
                 label: this.props.actionsLabel,
                 dataKey: 'id',
                 flexGrow: 0,
-                cellRenderer: ({ cellData }) => <div>
+                cellRenderer: ({ cellData }) => (<div>
                     <Link className="btn btn-primary" to={routeRegister.getLinkTo('{{name}}.edit', { id: cellData })}>{this.props.editLabel}</Link>
                     {' '}
                     <button className="btn btn-danger" onClick={this.handleDelete.bind(this, cellData)}><i className="fa fa-times" /></button>
-                </div>
+                </div>)
             }
         ];
     }

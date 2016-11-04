@@ -1,4 +1,7 @@
-import _ from 'lodash';
+import forOwn from 'lodash/forOwn';
+import upperFirst from 'lodash/upperFirst';
+import sortBy from 'lodash/sortBy';
+import get from 'lodash/get';
 
 class RouteRegister {
     constructor() {
@@ -36,13 +39,13 @@ class RouteRegister {
 
         const actions = ['list', 'create'];
 
-        _.forOwn(this.patterns, (patterns, key) => {
+        forOwn(this.patterns, (patterns, key) => {
             actions.forEach(action => {
                 options.push({
                     id: i,
                     type: 'link',
                     path: patterns[action],
-                    label: `${_.upperFirst(key)}: ${action}`
+                    label: `${upperFirst(key)}: ${action}`
                 });
 
                 i++;
@@ -55,18 +58,18 @@ class RouteRegister {
     getSidebarLinks() {
         const links = [];
 
-        _.forOwn(this.patterns, (patterns, key) => {
+        forOwn(this.patterns, (patterns, key) => {
             links.push({
                 to: patterns['list'],
-                name: _.upperFirst(key)
+                name: upperFirst(key)
             });
         });
 
-        return _.sortBy(links, 'name');
+        return sortBy(links, 'name');
     }
 
     getLinkTo(route, props) {
-        const linkGenerator = _.get(this.links, route);
+        const linkGenerator = get(this.links, route);
 
         return linkGenerator(props);
     }

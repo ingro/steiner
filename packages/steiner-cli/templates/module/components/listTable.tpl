@@ -6,7 +6,9 @@ import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 import helper from 'helpers/steinerHelper';
 import routeRegister from 'helpers/routeRegister';
 
-export class {{name | title}}ListTable extends Component {
+{%- set componentName = name | title + 'ListTable' %}
+
+export class {{componentName}} extends Component {
     handleDelete = (id) => {
         this.props.dispatch(helper.createConfirmAction({
             message: this.props.confirmDeleteMessage,
@@ -48,7 +50,7 @@ export class {{name | title}}ListTable extends Component {
             <ListTable
                 {...this.props}
                 columns={this.getColumns()}
-                onChangeOrder={.changeOrder}
+                onChangeOrder={changeOrder}
                 loadingMsg={loadingMsg}
                 noRowsMsg={noRowsMsg}
             />
@@ -56,7 +58,7 @@ export class {{name | title}}ListTable extends Component {
     }
 }
 
-{{name | title}}ListTable.propTypes = {
+{{componentName}}.propTypes = {
     actionsLabel: PropTypes.string,
     changeOrder: PropTypes.func,
     confirmDeleteMessage: PropTypes.string,
@@ -70,7 +72,7 @@ export class {{name | title}}ListTable extends Component {
     noRowsMsg: PropTypes.string
 };
 
-{{name | title}}.defaultProps = {
+{{componentName}}.defaultProps = {
     actionsLabel: 'Actions',
     confirmDeleteMessage: 'Do you really want to delete the selected item?',
     editLabel: 'Edit',
@@ -78,7 +80,7 @@ export class {{name | title}}ListTable extends Component {
     noRowsMsg: 'No items to show'
 };
 
-export default TranslatorHoc({{name | title}}, {
+export default TranslatorHoc({{componentName}}, {
     actionsLabel: 'steiner.labels.actions',
     confirmDeleteMessage: 'steiner.messages.confirmDelete',
     editLabel: 'steiner.labels.edit',

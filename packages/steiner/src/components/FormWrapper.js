@@ -36,19 +36,19 @@ export class FormWrapper extends Component {
     }
 
     render() {
-        const { handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset } = this.props;
+        const { handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset, outerClass, innerClass, outerControlsClass } = this.props;
 
         return (
-            <div className="row">
+            <div className={outerClass}>
                 <NavigationPrompt when={dirty && !submitSucceeded} message={this.props.unsavedMessage} />
-                <div className="col-xs-6 col-xs-offset-3 text-center">
-                    <h3>{this.props.title}</h3>
+                <div className={innerClass}>
+                    <h3 className="text-center">{this.props.title}</h3>
                     {error && <div className="alert alert-danger">{error}</div>}
                     <form ref={form => this.form = form} onSubmit={handleSubmit(this.props.submit)} className="form-horizontal">
                         <div>
                             {this.props.children}
                         </div>
-                        <div className="row">
+                        <div className={outerControlsClass}>
                             <FormControls
                                 valid={valid}
                                 submitting={submitting}
@@ -68,6 +68,9 @@ FormWrapper.propTypes = {
     cancelLink: PropTypes.string,
     createInitialFormValues: PropTypes.func,
     goBackAfterSave: PropTypes.bool,
+    innerClass: PropTypes.string,
+    outerClass: PropTypes.string,
+    outerControlsClass: PropTypes.string,
     title: PropTypes.string,
     submit: PropTypes.func,
     unsavedMessage: PropTypes.string
@@ -76,6 +79,9 @@ FormWrapper.propTypes = {
 FormWrapper.defaultProps = {
     createInitialFormValues: (item) => item,
     goBackAfterSave: true,
+    innerClass: 'col-xs-6 col-xs-offset-3',
+    outerClass: 'row',
+    outerControlsClass: 'row',
     unsavedMessage: 'Are you sure? Any unsaved changes will be lost.'
 };
 

@@ -1,14 +1,21 @@
 import { routeCreator } from 'steiner';
 
+import helper from 'helpers/steinerHelper';
 import routeRegister from 'helpers/routeRegister';
-import OffersListLayout from '../containers/OffersListLayout';
-import OffersLoader from '../containers/OffersLoader';
+
 import { selectors } from '../reducers/offers';
 
-const routes = routeCreator.generateRoutes('offers', {
-    list: OffersListLayout,
-    edit: OffersLoader
-}, selectors);
+const routes = helper.generateRoutes('offers', selectors);
+routes.list = routes.list.map(route => ({
+    ...route,
+    getComponent() {
+        return new Promise((resolve, reject) => {
+            require([`modules/offers/${route.componentPath}`], (RouteComponent) => {
+                resolve(RouteComponent.default);
+            });
+        });
+    },
+}));
 
 const links = routeCreator.generateLinks(routes.patterns);
 

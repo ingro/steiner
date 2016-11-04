@@ -1,3 +1,8 @@
+## 0.11.0 (November 4, 2016)
+
+- Added `<MatchWhenAuthorizedAsync />` component
+- Reworked routes to allow async loading of modules
+
 ## 0.10.0 (November 3, 2016)
 
 - Added `<KeyBinderHoc />` component

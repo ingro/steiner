@@ -21,7 +21,7 @@ export function generateLinks(patterns) {
     return links;
 }
 
-export function generateRoutes(resource, components, selectors, options = {}) {
+export function generateRoutes(resource, selectors, options = {}) {
     const patterns = createPatterns(resource);
 
     _.defaults(options, {
@@ -33,12 +33,12 @@ export function generateRoutes(resource, components, selectors, options = {}) {
             {
                 pattern: patterns.list,
                 exactly: true,
-                component: components.list,
+                componentPath: `containers/${_.upperFirst(resource)}ListLayout`,
                 breadcrumb: _.upperFirst(resource)
             },
             {
                 pattern: patterns.edit,
-                component: components.edit,
+                componentPath: `containers/${_.upperFirst(resource)}Loader`,
                 breadcrumb: (state, ownProps) => {
                     if (ownProps.params.id === 'create') {
                         return {

@@ -9,7 +9,7 @@ export default class Welcome extends Component {
             <div className="container">
                 <Helmet title="Welcome" />
                 <div className="jumbotron">
-                    <h1>Steiner</h1>
+                    <h1>{process.env.REACT_APP_NAME}</h1>
                     {user 
                         ? <h3>Welcome <span className="text-primary">{user.email}</span></h3>
                         : <Link to="/login" className="btn btn-primary btn-lg">Login</Link>

@@ -19,7 +19,15 @@ export class FormBuilder extends Component {
                     placeholder={placeholder}
                     component={InputField}
                 />
-                break;
+            case 'password':
+                return <Field
+                    key={key}
+                    className="form-control"
+                    name={name}
+                    placeholder={placeholder}
+                    component={InputField}
+                    type="password"
+                />
             case 'checkbox':
                 return <Field
                     key={key}
@@ -30,7 +38,6 @@ export class FormBuilder extends Component {
                     component={CheckboxField}
                     type="checkbox"
                 />
-                break;
             case 'select':
                 return <Field
                     key={key}
@@ -40,7 +47,6 @@ export class FormBuilder extends Component {
                     options={item.options}
                     component={SelectField}
                 />
-                break;
             case 'textarea':
                 return <Field
                     key={key}
@@ -49,7 +55,6 @@ export class FormBuilder extends Component {
                     placeholder={placeholder}
                     component={TextareaField}
                 />
-                break;
             case 'radio':
                 return <Field
                     key={key}
@@ -59,7 +64,8 @@ export class FormBuilder extends Component {
                     options={item.options}
                     component={RadioGroupField}
                 />
-                break;
+            default:
+                return <div className="alert alert-warning">Field type "{type}" not supported!</div>
         }
     }
 

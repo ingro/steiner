@@ -1,8 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import { reduxForm, Field } from 'redux-form';
-import { NavigationPrompt } from 'react-router';
+import React, { Component } from 'react';
+import { reduxForm } from 'redux-form';
 import { FormWrapper, formHelper } from 'steiner';
-import InputField from 'vivi/lib/Form/InputField';
 
 import { actionTypes } from '../actions/offers';
 import routeRegister from 'helpers/routeRegister';
@@ -78,10 +76,8 @@ class OffersEdit extends Component {
     }
 
     render() {
-        const { handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset } = this.props;
-
         return(
-            <div className="row">
+            <div>
                 <FormWrapper
                     {...this.props}
                     title={this.getTitle()}

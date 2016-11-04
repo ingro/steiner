@@ -8,6 +8,7 @@
 - Add profile link and logout action to Omnibox
 - Make all the whole auth package of Steiner more customizable
 - Move confirm logout in saga? (to allow call it from Omnibox)
+- Bug?: applying some filters to a list and then use the link in the sidebar will load the list filtered but with the url not updated
 
 ## Current .env
 

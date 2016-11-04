@@ -1,13 +1,54 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { NavigationPrompt } from 'react-router';
-import { FormControls, formHelper } from 'steiner';
+import { FormWrapper, formHelper } from 'steiner';
 import InputField from 'vivi/lib/Form/InputField';
-
 
 import { actionTypes } from '../actions/offers';
 import routeRegister from 'helpers/routeRegister';
+import FormBuilder from 'components/FormBuilder';
 
+const schema = [
+    {
+        name: 'email',
+        label: 'Indirizzo email',
+        type: 'text'
+    },
+    {
+        name: 'active',
+        label: 'Attivo',
+        type: 'checkbox'
+    },
+    {
+        name: 'type',
+        label: 'Tipologia',
+        type: 'select',
+        options: [{
+            id: 1,
+            name: 'Articolo'
+        }, {
+            id: 2,
+            name: 'Commento'
+        }]
+    },
+    {
+        name: 'comment',
+        label: 'Commento',
+        type: 'textarea'
+    },
+    {
+        name: 'theme',
+        label: 'Tema',
+        type: 'radio',
+        options: [{
+            value: '1',
+            label: 'Bright'
+        }, {
+            value: '2',
+            label: 'Dark'
+        }]
+    }
+];
 
 class OffersEdit extends Component {
     constructor(props) {
@@ -16,30 +57,18 @@ class OffersEdit extends Component {
         this.submit = formHelper.createSubmit(actionTypes);
     }
 
-    componentWillMount() {
-        this.props.initialize(this.createInitialFormValues(this.props.item));
-
-        
-    }
-
-    componentDidMount() {
-        this.form.elements[0].focus();
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.item && nextProps.item.id !== this.props.item.id)  {
-            this.props.initialize(this.createInitialFormValues(nextProps.item));
-        }
-
-        if (nextProps.submitSucceeded) {
-            setTimeout(() => {
-                this.context.router.transitionTo(routeRegister.getLinkTo('offers.list'));
-            }, 0);
-        }
-    }
-
     createInitialFormValues(item) {
-        return item;
+        return {
+            email: 'foo@bar.com',
+            active: true,
+            type: 2,
+            comment: 'lorem ipsum',
+            theme: '2'
+        };
+    }
+
+    getCancelLink() {
+        return this.props.previousUrl ? this.props.previousUrl : routeRegister.getLinkTo('offers.list');
     }
 
     getTitle() {
@@ -53,40 +82,19 @@ class OffersEdit extends Component {
 
         return(
             <div className="row">
-                
-                <NavigationPrompt when={dirty && !submitSucceeded} message="Are you sure? Any unsaved changes will be lost." />
-                <div className="col-xs-6 col-xs-offset-3 text-center">
-                    <h3>{this.getTitle()}</h3>
-                    {error && <div className="alert alert-danger">{error}</div>}
-                    <form ref={form => this.form = form} onSubmit={handleSubmit(this.submit)} className="form-horizontal">
-                        <Field
-                            className="form-control"
-                            name="name"
-                            placeholder="Name"
-                            component={InputField}
-                        />
-                        {/* Fields... */}
-                        <div className="row">
-                            <FormControls
-                                valid={valid}
-                                submitting={submitting}
-                                dirty={dirty}
-                                cancelLink={routeRegister.getLinkTo('offers.list')}
-                                onReset={reset}
-                            />
-                        </div>
-                    </form>
-                </div>
+                <FormWrapper
+                    {...this.props}
+                    title={this.getTitle()}
+                    cancelLink={this.getCancelLink()}
+                    submit={this.submit}
+                    createInitialFormValues={this.createInitialFormValues}
+                >
+                    <FormBuilder schema={schema} />
+                </FormWrapper>
             </div>
         );
     }
 }
-
-OffersEdit.contextTypes = {
-    router: PropTypes.object
-};
-
-
 
 export default reduxForm({
     form: 'offers'

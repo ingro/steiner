@@ -118,7 +118,7 @@ function generateFailNotification(message, title) {
         title,
         message,
         status: 'error'
-    }
+    };
 }
 
 export function createDefaultMessages(resource, messageTemplates = {}) {

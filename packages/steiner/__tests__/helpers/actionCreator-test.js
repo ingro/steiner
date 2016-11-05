@@ -114,5 +114,7 @@ describe('createActions', () => {
         expect(actions.deselect(42)).toMatchSnapshot();
         expect(actions.selectAll()).toMatchSnapshot();
         expect(actions.deselectAll()).toMatchSnapshot();
+        expect(actions.resetFilters()).toMatchSnapshot();
+        expect(actions.setFilters({ foo: 'bar' })).toMatchSnapshot();
     })
 })

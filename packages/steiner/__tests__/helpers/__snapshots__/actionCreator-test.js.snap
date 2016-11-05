@@ -267,3 +267,18 @@ Object {
   "type": "posts/DESELECT_ALL",
 }
 `;
+
+exports[`createActions generates the correct actions 22`] = `
+Object {
+  "type": "posts/RESET_FILTERS",
+}
+`;
+
+exports[`createActions generates the correct actions 23`] = `
+Object {
+  "payload": Object {
+    "foo": "bar",
+  },
+  "type": "posts/SET_FILTERS",
+}
+`;

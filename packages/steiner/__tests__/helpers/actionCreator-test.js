@@ -76,7 +76,7 @@ describe('createActionMessages', () => {
             updateFail: 'An error occured while updating posts',
             updateSuccess: 'posts updated successfully!'
         });
-    })
+    });
 });
 
 describe('createActionTypes', () => {
@@ -116,5 +116,5 @@ describe('createActions', () => {
         expect(actions.deselectAll()).toMatchSnapshot();
         expect(actions.resetFilters()).toMatchSnapshot();
         expect(actions.setFilters({ foo: 'bar' })).toMatchSnapshot();
-    })
-})
+    });
+});

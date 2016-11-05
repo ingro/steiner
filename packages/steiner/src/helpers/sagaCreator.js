@@ -7,6 +7,8 @@ import defaults from 'lodash/defaults';
 import isEmpty from 'lodash/isEmpty';
 import queryString from 'query-string';
 
+import { navigate } from '../routing/actions';
+
 function success(type, response, loadingBar) {
     const action = {
         type,
@@ -42,7 +44,7 @@ export function bootSagas(sagas, actionTypes) {
         fork(sagas.delete),
         fork(sagas.filter),
         fork(sagas.syncFilters),
-        fork(sagas.checkSync),
+        fork(sagas.checkFilterSync),
         fork(sagas.resetFilters)
     ];
 }
@@ -152,15 +154,13 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
             const diff = getDiff(filters.asMutable(), defaultFilters);
 
-            yield put({
-                type: 'NAVIGATE',
-                location: { 
-                    pathname: window.location.pathname, 
-                    search: `?${queryString.stringify(diff)}`, 
-                    query: diff 
-                },
-                action: 'PUSH'
-            });
+            const location = { 
+                pathname: window.location.pathname, 
+                search: `?${queryString.stringify(diff)}`, 
+                query: diff 
+            };
+
+            yield put(navigate(location, 'PUSH'));
 
             if (task) {
                 yield put({ type:'NOOP', loadingBar: 'hide' });
@@ -173,15 +173,21 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
     sagas['syncFilters'] = function*() {
         while (true) {
-            yield take(actionTypes.syncFilters);
+            const action = yield take(actionTypes.syncFilters);
+
+            if (isEmpty(action.payload)) {
+                yield put(actions.resetFilters());
+            } else {
+                yield put(actions.setFilters(action.payload));
+            }
 
             yield put(actions.list());
         }
     }
 
-    sagas['checkSync'] = function*() {
+    sagas['checkFilterSync'] = function*() {
         while (true) {
-            const action = yield take(actionTypes.checkSync);
+            const action = yield take(actionTypes.checkFilterSync);
 
             const filters = action.payload;
 
@@ -208,7 +214,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
             const filters = defaultState.list.filters.asMutable();
 
-            yield put(actions.syncFilters(filters));
+            yield put(actions.setFilters(filters));
         }
     }
 

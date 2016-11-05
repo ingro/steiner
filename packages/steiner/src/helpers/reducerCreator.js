@@ -110,7 +110,7 @@ function updateFilter(state, action) {
     return state.setIn(['list', 'filters', action.payload.key], action.payload.value);
 }
 
-function syncFilters(state, action) {
+function setFilters(state, action) {
     const toSync = action.payload;
 
     if (toSync.page) {
@@ -170,7 +170,7 @@ export function createHandlers(actionTypes, options = {}) {
         [actionTypes.deleteSuccess]: deleteSuccess,
         [actionTypes.resetCurrent]: resetCurrent,
         [actionTypes.updateFilter]: updateFilter,
-        [actionTypes.syncFilters]: syncFilters,
+        [actionTypes.setFilters]: setFilters,
         [actionTypes.changePage]: changePage,
         [actionTypes.changeOrder]: changeOrder,
         [actionTypes.select]: select,

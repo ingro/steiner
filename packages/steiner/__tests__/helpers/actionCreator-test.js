@@ -109,7 +109,7 @@ describe('createActions', () => {
         expect(actions.changeOrder('name', 'DESC')).toMatchSnapshot();
         expect(actions.updateFilter('q', 'foo')).toMatchSnapshot();
         expect(actions.syncFilters('q', 'bar')).toMatchSnapshot();
-        expect(actions.checkSync('q', 'baz')).toMatchSnapshot();
+        expect(actions.checkFilterSync('q', 'baz')).toMatchSnapshot();
         expect(actions.select(42)).toMatchSnapshot();
         expect(actions.deselect(42)).toMatchSnapshot();
         expect(actions.selectAll()).toMatchSnapshot();

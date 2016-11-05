@@ -53,17 +53,18 @@ export function createActionTypes(resource, options = {}) {
     addAsyncGroup(resource, actionTypes, 'update', options);
     addAsyncGroup(resource, actionTypes, 'delete', options);
 
-    const resetCurrent = `${resource}/RESET_CURRENT`;
-    const updateFilter = `${resource}/UDATE_FILTER`;
-    const syncFilters  = `${resource}/SYNC_FILTERS`;
-    const checkSync    = `${resource}/CHECK_SYNC`;
-    const resetFilters = `${resource}/RESET_FILTERS`;
-    const changePage   = `${resource}/CHANGE_PAGE`;
-    const changeOrder  = `${resource}/CHANGE_ORDER`;
-    const select       = `${resource}/SELECT`;
-    const deselect     = `${resource}/DESELECT`;
-    const selectAll    = `${resource}/SELECT_ALL`;
-    const deselectAll  = `${resource}/DESELECT_ALL`;
+    const resetCurrent    = `${resource}/RESET_CURRENT`;
+    const updateFilter    = `${resource}/UDATE_FILTER`;
+    const syncFilters     = `${resource}/SYNC_FILTERS`;
+    const checkFilterSync = `${resource}/CHECK_FILTER_SYNC`;
+    const setFilters      = `${resource}/SET_FILTERS`;
+    const resetFilters    = `${resource}/RESET_FILTERS`;
+    const changePage      = `${resource}/CHANGE_PAGE`;
+    const changeOrder     = `${resource}/CHANGE_ORDER`;
+    const select          = `${resource}/SELECT`;
+    const deselect        = `${resource}/DESELECT`;
+    const selectAll       = `${resource}/SELECT_ALL`;
+    const deselectAll     = `${resource}/DESELECT_ALL`;
 
     actionTypes.resetCurrent = resetCurrent;
     actionTypes[resetCurrent] = resetCurrent;
@@ -74,8 +75,11 @@ export function createActionTypes(resource, options = {}) {
     actionTypes.syncFilters = syncFilters;
     actionTypes[syncFilters] = syncFilters;
 
-    actionTypes.checkSync = checkSync;
-    actionTypes[checkSync] = checkSync;
+    actionTypes.checkFilterSync = checkFilterSync;
+    actionTypes[checkFilterSync] = checkFilterSync;
+
+    actionTypes.setFilters = setFilters;
+    actionTypes[setFilters] = setFilters;
 
     actionTypes.resetFilters = resetFilters;
     actionTypes[resetFilters] = resetFilters;
@@ -272,10 +276,17 @@ export function createActions(resource, actionTypes, options = {}) {
         };
     }
 
-    actions['checkSync'] = function(query) {
+    actions['checkFilterSync'] = function(query) {
         return {
-            type: actionTypes.checkSync,
+            type: actionTypes.checkFilterSync,
             payload: query
+        };
+    }
+
+    actions['setFilters'] = function(filters) {
+        return {
+            type: actionTypes.setFilters,
+            payload: filters
         };
     }
 

@@ -2,7 +2,7 @@ exports[`createActionTypes generates the correct action types 1`] = `
 Object {
   "changeOrder": "posts/CHANGE_ORDER",
   "changePage": "posts/CHANGE_PAGE",
-  "checkSync": "posts/CHECK_SYNC",
+  "checkFilterSync": "posts/CHECK_FILTER_SYNC",
   "create": "posts/CREATE",
   "createFail": "posts/CREATE_FAIL",
   "createSuccess": "posts/CREATE_SUCCESS",
@@ -19,7 +19,7 @@ Object {
   "listSuccess": "posts/LIST_SUCCESS",
   "posts/CHANGE_ORDER": "posts/CHANGE_ORDER",
   "posts/CHANGE_PAGE": "posts/CHANGE_PAGE",
-  "posts/CHECK_SYNC": "posts/CHECK_SYNC",
+  "posts/CHECK_FILTER_SYNC": "posts/CHECK_FILTER_SYNC",
   "posts/CREATE": "posts/CREATE",
   "posts/CREATE_FAIL": "posts/CREATE_FAIL",
   "posts/CREATE_SUCCESS": "posts/CREATE_SUCCESS",
@@ -35,16 +35,20 @@ Object {
   "posts/LIST_FAIL": "posts/LIST_FAIL",
   "posts/LIST_SUCCESS": "posts/LIST_SUCCESS",
   "posts/RESET_CURRENT": "posts/RESET_CURRENT",
+  "posts/RESET_FILTERS": "posts/RESET_FILTERS",
   "posts/SELECT": "posts/SELECT",
   "posts/SELECT_ALL": "posts/SELECT_ALL",
+  "posts/SET_FILTERS": "posts/SET_FILTERS",
   "posts/SYNC_FILTERS": "posts/SYNC_FILTERS",
   "posts/UDATE_FILTER": "posts/UDATE_FILTER",
   "posts/UPDATE": "posts/UPDATE",
   "posts/UPDATE_FAIL": "posts/UPDATE_FAIL",
   "posts/UPDATE_SUCCESS": "posts/UPDATE_SUCCESS",
   "resetCurrent": "posts/RESET_CURRENT",
+  "resetFilters": "posts/RESET_FILTERS",
   "select": "posts/SELECT",
   "selectAll": "posts/SELECT_ALL",
+  "setFilters": "posts/SET_FILTERS",
   "syncFilters": "posts/SYNC_FILTERS",
   "update": "posts/UPDATE",
   "updateFail": "posts/UPDATE_FAIL",
@@ -230,7 +234,7 @@ Object {
 exports[`createActions generates the correct actions 17`] = `
 Object {
   "payload": "q",
-  "type": "posts/CHECK_SYNC",
+  "type": "posts/CHECK_FILTER_SYNC",
 }
 `;
 

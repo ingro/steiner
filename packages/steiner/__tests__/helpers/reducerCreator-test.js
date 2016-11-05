@@ -101,7 +101,7 @@ describe('createHandlers', () => {
         expect(handlers[actionTypes.updateFilter](state, action)).toMatchSnapshot();
     });
 
-    it('handles correctly syncFilters action', () => {
+    it('handles correctly setFilters action', () => {
         const action = {
             payload: {
                 page: '10',
@@ -109,7 +109,7 @@ describe('createHandlers', () => {
             }
         };
 
-        expect(handlers[actionTypes.syncFilters](state, action)).toMatchSnapshot();
+        expect(handlers[actionTypes.setFilters](state, action)).toMatchSnapshot();
     });
 
     it('handles correctly changePage action', () => {

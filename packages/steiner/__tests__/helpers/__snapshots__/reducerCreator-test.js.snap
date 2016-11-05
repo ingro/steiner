@@ -380,7 +380,7 @@ Object {
 }
 `;
 
-exports[`createHandlers handles correctly syncFilters action 1`] = `
+exports[`createHandlers handles correctly setFilters action 1`] = `
 Object {
   "current": Object {
     "errorMessage": null,

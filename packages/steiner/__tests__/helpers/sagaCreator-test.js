@@ -161,12 +161,18 @@ describe('createSagas', () => {
     it('generates syncFilters saga correctly', () => {
         const generator = sagas.syncFilters();
 
+        const action = {
+            payload: {}
+        };
+
         expect(generator.next().value).toEqual(take(actionTypes.syncFilters));
+        expect(generator.next(action).value).toEqual(put(actions.resetFilters()));
+        // TODO: test with non-empty payload
         expect(generator.next().value).toEqual(put(actions.list()));
     });
 
-    it('generates checkSync saga correctly', () => {
-        const generator = sagas.checkSync();
+    it('generates checkFilterSync saga correctly', () => {
+        const generator = sagas.checkFilterSync();
 
         const action = { 
             payload: { 
@@ -186,7 +192,7 @@ describe('createSagas', () => {
             }
         };
 
-        expect(generator.next().value).toEqual(take(actionTypes.checkSync));
+        expect(generator.next().value).toEqual(take(actionTypes.checkFilterSync));
         expect(generator.next(action).value).toEqual(select(selectors.getFilters));
         expect(generator.next(currentState).value).toEqual(put(syncAction));
     });

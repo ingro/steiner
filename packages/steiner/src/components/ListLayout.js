@@ -5,11 +5,7 @@ import queryString from 'query-string';
 
 export default class ListLayout extends Component {
     componentDidMount() {
-        if (window.location.search === '') {
-            this.props.resetFilters();
-        } else {
-            this.props.syncFilters(queryString.parse(window.location.search));
-        }
+        this.props.syncFilters(queryString.parse(window.location.search));
     }
 
     handleChangePage = (page) => {
@@ -22,7 +18,7 @@ export default class ListLayout extends Component {
 
     componentWillReceiveProps(nextProps) {
         if ((nextProps.currentRoute.location.search !== this.props.currentRoute.location.search) && nextProps.currentRoute.action === 'POP') {
-            this.props.checkSync(queryString.parse(window.location.search));
+            this.props.checkFilterSync(queryString.parse(window.location.search));
         }
     }
 
@@ -31,8 +27,8 @@ export default class ListLayout extends Component {
 
         return (
             <Flex 
-                wrap
-                flexColumn
+                wrap={true}
+                flexColumn={true}
                 style={{ height: 'calc(100vh - 75px)'}}
             >
                 <Box col={12}>

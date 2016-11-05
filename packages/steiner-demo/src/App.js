@@ -25,7 +25,6 @@ import routes from './routes';
 import history from './history';
 
 const sidebarMenuLinks = routeRegister.getSidebarLinks();
-
 const omniboxOptions = routeRegister.getOmniboxOptions();
 
 class App extends Component {

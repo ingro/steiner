@@ -8,6 +8,7 @@ import notificationMiddlewareModule from './notificationMiddleware';
 import reducerCreatorModule from './reducerCreator';
 import reduxFormSagaModule from './reduxFormSaga';
 import routeCreatorModule from './routeCreator';
+import routeRegisterModule from './routeRegister';
 import sagaCreatorModule from './sagaCreator';
 import steinerHelperModule from './steinerHelper';
 
@@ -21,5 +22,6 @@ export const notificationMiddleware = notificationMiddlewareModule;
 export const reducerCreator = reducerCreatorModule;
 export const reduxFormSaga = reduxFormSagaModule;
 export const routeCreator = routeCreatorModule;
+export const routeRegister = routeRegisterModule;
 export const sagaCreator = sagaCreatorModule;
 export const steinerHelper = steinerHelperModule;

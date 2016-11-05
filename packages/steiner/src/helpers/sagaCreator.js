@@ -42,7 +42,8 @@ export function bootSagas(sagas, actionTypes) {
         fork(sagas.delete),
         fork(sagas.filter),
         fork(sagas.syncFilters),
-        fork(sagas.checkSync)
+        fork(sagas.checkSync),
+        fork(sagas.resetFilters)
     ];
 }
 
@@ -196,11 +197,18 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
             // console.warn(diff);
 
             if (! isEmpty(diff)) {
-                yield put({
-                    type: actionTypes.syncFilters,
-                    payload: filters
-                });
+                yield put(actions.syncFilters(filters));
             }
+        }
+    }
+
+    sagas['resetFilters'] = function*() {
+        while (true) {
+            yield take(actionTypes.resetFilters);
+
+            const filters = defaultState.list.filters.asMutable();
+
+            yield put(actions.syncFilters(filters));
         }
     }
 

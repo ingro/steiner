@@ -57,6 +57,7 @@ export function createActionTypes(resource, options = {}) {
     const updateFilter = `${resource}/UDATE_FILTER`;
     const syncFilters  = `${resource}/SYNC_FILTERS`;
     const checkSync    = `${resource}/CHECK_SYNC`;
+    const resetFilters = `${resource}/RESET_FILTERS`;
     const changePage   = `${resource}/CHANGE_PAGE`;
     const changeOrder  = `${resource}/CHANGE_ORDER`;
     const select       = `${resource}/SELECT`;
@@ -75,6 +76,9 @@ export function createActionTypes(resource, options = {}) {
 
     actionTypes.checkSync = checkSync;
     actionTypes[checkSync] = checkSync;
+
+    actionTypes.resetFilters = resetFilters;
+    actionTypes[resetFilters] = resetFilters;
 
     actionTypes.changePage = changePage;
     actionTypes[changePage] = changePage;
@@ -272,6 +276,12 @@ export function createActions(resource, actionTypes, options = {}) {
         return {
             type: actionTypes.checkSync,
             payload: query
+        };
+    }
+
+    actions['resetFilters'] = function(query) {
+        return {
+            type: actionTypes.resetFilters
         };
     }
 

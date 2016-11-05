@@ -5,7 +5,11 @@ import queryString from 'query-string';
 
 export default class ListLayout extends Component {
     componentDidMount() {
-        this.props.syncFilters(queryString.parse(window.location.search));
+        if (window.location.search === '') {
+            this.props.resetFilters();
+        } else {
+            this.props.syncFilters(queryString.parse(window.location.search));
+        }
     }
 
     handleChangePage = (page) => {

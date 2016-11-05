@@ -5,7 +5,7 @@
 - Use [redux-seamless-immutable](https://www.npmjs.com/package/redux-seamless-immutable)?
 - BUG: Wrapping a Link with a Tooltip results in a page change
 - Translate missing strings (modal help)
-- Add profile link and logout action to Omnibox
+- Add logout action to Omnibox
 - Make all the whole auth package of Steiner more customizable
 - Move confirm logout in saga? (to allow call it from Omnibox)
 

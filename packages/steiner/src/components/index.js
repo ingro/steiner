@@ -1,4 +1,5 @@
 import ControlledRouterComponent from './ControlledRouter';
+import FormBuilderComponent from './FormBuilder';
 import FormControlsComponent from './FormControls';
 import FormWrapperComponent from './FormWrapper';
 import KeyBinderHocComponent from './KeyBinderHoc';
@@ -13,6 +14,7 @@ import MatchWhenGuestComponent from './MatchWhenGuest';
 import HeaderLinkComponent from './HeaderLink';
 
 export const ControlledRouter = ControlledRouterComponent;
+export const FormBuilder = FormBuilderComponent;
 export const FormControls = FormControlsComponent;
 export const FormWrapper = FormWrapperComponent;
 export const KeyBinderHoc = KeyBinderHocComponent;

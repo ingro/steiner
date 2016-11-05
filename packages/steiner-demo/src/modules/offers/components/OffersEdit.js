@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
-import { FormWrapper, formHelper } from 'steiner';
+import { FormWrapper, FormBuilder, formHelper } from 'steiner';
 
 import { actionTypes } from '../actions/offers';
 import routeRegister from 'helpers/routeRegister';
-import FormBuilder from 'components/FormBuilder';
 
 const schema = [
     {

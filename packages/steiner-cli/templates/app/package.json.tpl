@@ -6,7 +6,7 @@
     "react-scripts": "0.7.0",
     "react-test-renderer": "^15.3.2",
     "redux-devtools-extension": "^1.0.0",
-    "steiner-cli": "^0.10.0"
+    "steiner-cli": "^0.11.0"
   },
   "dependencies": {
     "axios": "^0.15.0",
@@ -18,7 +18,7 @@
     "react-addons-css-transition-group": "^15.3.2",
     "react-addons-shallow-compare": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-helmet": "^3.1.0",
+    "react-helmet": "^3.2.0",
     "react-highlighter": "^0.3.3",
     "react-modal": "^1.5.2",
     "react-redux": "^5.0.0-beta.3",
@@ -27,12 +27,12 @@
     "react-router-addons-controlled": "^0.0.1",
     "react-select": "^1.0.0-rc.2",
     "react-sidebar": "^2.2.1",
-    "react-virtualized": "^8.0.11",
+    "react-virtualized": "^8.4.0",
     "reapop": "^0.6.0",
     "reapop-theme-wybo": "^0.4.0",
     "redux": "^3.6.0",
     "redux-batched-subscribe": "^0.1.6",
-    "redux-form": "^6.0.5",
+    "redux-form": "^6.2.0",
     "redux-localstorage": "^0.4.1",
     "redux-logger": "^2.6.1",
     "redux-saga": "^0.12.0",
@@ -40,7 +40,7 @@
     "reflexbox": "^2.2.2",
     "revalidate": "^0.4.1",
     "seamless-immutable": "^6.1.3",
-    "steiner": "^0.10.0",
+    "steiner": "^0.11.0",
     "text-spinners": "^1.0.4",
     "vivi": "^0.4.0"
   },

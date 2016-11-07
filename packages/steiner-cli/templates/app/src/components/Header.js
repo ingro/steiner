@@ -22,8 +22,6 @@ export class Header extends Component {
         e.preventDefault();
 
         this.props.onToggleHelpModal();
-
-        this.dropdown.close();
     }
 
     render() {
@@ -45,7 +43,11 @@ export class Header extends Component {
                         </ul>*/}
                         <ul className="nav navbar-nav navbar-right">
                             {user
-                                ? <Dropdown text={<i className="fa fa-cog" />} type="navbar" ref={ref => this.dropdown = ref}>
+                                ? 
+                                <Dropdown 
+                                    text={<i className="fa fa-cog" />} 
+                                    type="navbar" 
+                                >
                                     <li className="dropdown-header">{user.email}</li>
                                     <li><Link to="/profile"><i className="fa fa-user"/> {profileAndSettingsLabel}</Link></li>
                                     <li><a href onClick={this.toggleHelpModal}><i className="fa fa-question"/> {helpLabel}</a></li>

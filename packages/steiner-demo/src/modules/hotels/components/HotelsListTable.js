@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import { ListTable, confirm } from 'steiner';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 
-import helper from 'helpers/steinerHelper';
 import routeRegister from 'helpers/routeRegister';
 
 export class HotelsListTable extends Component {

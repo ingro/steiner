@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import { ListTable } from 'steiner';
+import { ListTable, confirm } from 'steiner';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 
 import helper from 'helpers/steinerHelper';
@@ -8,7 +8,7 @@ import routeRegister from 'helpers/routeRegister';
 
 export class HotelsListTable extends Component {
     handleDelete = (id) => {
-        this.props.dispatch(helper.createConfirmAction({
+        this.props.dispatch(confirm.actions.showConfirmDialog({
             message: this.props.confirmDeleteMessage,
             onSuccess: () => this.props.delete(id)
         }));

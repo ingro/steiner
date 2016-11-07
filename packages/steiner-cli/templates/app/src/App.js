@@ -10,6 +10,7 @@ import { ControlledRouter, MatchWhenAuthorizedAsync, MatchWhenGuest, KeyBinderHo
 import { getUser } from 'steiner/lib/auth/reducer';
 import { getCurrentRoute } from 'steiner/lib/routing/reducer';
 import { getSettings } from 'steiner/lib/settings/reducer';
+import { setTranslations } from 'steiner/lib/settings/actions';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import TranslatorProvider from 'vivi/lib/TranslatorProvider';
 
@@ -23,6 +24,7 @@ import Profile from './components/Profile';
 import ModalHelp from './components/ModalHelp';
 import routes from './routes';
 import history from './history';
+import helper from './helpers/steinerHelper';
 
 const sidebarMenuLinks = routeRegister.getSidebarLinks();
 const omniboxOptions = routeRegister.getOmniboxOptions();
@@ -49,6 +51,10 @@ class App extends Component {
             };
 
             this.translations = translations;
+
+            this.props.dispatch(setTranslations(messages.default));
+
+            helper.setLanguage(this.props.settings.language);
 
             this.setState({
                 isLanguageLoaded: true
@@ -161,4 +167,12 @@ class App extends Component {
 
 const KeyedApp = KeyBinderHoc(App);
 
-export default connect(state => ({ user: getUser(state), currentRoute: getCurrentRoute(state), settings: getSettings(state) }))(KeyedApp);
+function mapStateToProps(state) {
+    return { 
+        user: getUser(state), 
+        currentRoute: getCurrentRoute(state), 
+        settings: getSettings(state) 
+    };
+}
+
+export default connect(mapStateToProps)(KeyedApp);

@@ -1,18 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import { auth, HeaderLink } from 'steiner';
+import { auth, confirm, HeaderLink } from 'steiner';
 import Dropdown from 'vivi/lib/Dropdown';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 
 import SidebarToggle from './SidebarToggle';
 import Breadcrumb from './Breadcrumb';
-import helper from 'helpers/steinerHelper';
 
 export class Header extends Component {
     requestLogout = (e) => {
         e.preventDefault();
 
-        this.props.dispatch(helper.createConfirmAction({
+        this.props.dispatch(confirm.actions.showConfirmDialog({
             message: this.props.logoutMessage,
             onSuccess: () => this.props.dispatch(auth.actions.logoutRequest())
         }));

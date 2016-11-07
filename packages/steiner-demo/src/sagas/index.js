@@ -1,7 +1,7 @@
 import { fork } from 'redux-saga/effects';
 import { reduxFormSaga } from 'steiner';
 import axios from 'axios';
-import { auth } from 'steiner';
+import { auth, confirm } from 'steiner';
 
 import client from 'apis/client';
 import hotels from '../modules/hotels/sagas/hotels';
@@ -24,6 +24,7 @@ function updateProfile(id, data) {
 }
 
 const formSaga = reduxFormSaga();
+const confirmSaga = confirm.createConfirmSaga();
 const authSaga = auth.createAuthSaga({
     loginAction: login,
     logoutAction: logout,
@@ -34,6 +35,7 @@ export default function* root() {
     yield [
         fork(formSaga),
         ...authSaga,
+        ...confirmSaga,
         ...hotels,
         ...offers
     ]

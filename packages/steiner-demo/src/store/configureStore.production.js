@@ -5,6 +5,7 @@ import { unstable_batchedUpdates as batchedUpdates } from 'react-dom';
 import createSagaMiddleware, { END } from 'redux-saga';
 import persistState from 'redux-localstorage';
 import { notificationMiddleware, loadingBarMiddleware } from 'steiner';
+import Immutable from 'seamless-immutable';
 
 import reducer from '../reducers';
 
@@ -18,7 +19,10 @@ const enhancer = compose(
         loadingBarMiddleware
     ),
     persistState(['user', 'settings'], { 
-        key: process.env.REACT_APP_NAME
+        key: process.env.REACT_APP_NAME,
+        deserialize: data => {
+            return Immutable(JSON.parse(data));
+        }
     }),
     batchedSubscribe(batchedUpdates)
 );

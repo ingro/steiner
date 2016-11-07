@@ -72,6 +72,10 @@ export default class SteinerHelper {
         return options;
     }
 
+    setLanguage(language) {
+        this.options.lang = language;
+    }
+
     createActions(resource, actionTypes, options) {
         return createActions(resource, actionTypes, this.getCreateActionsOptions(options));
     }

@@ -128,6 +128,7 @@ function bootstrapApp(appName) {
 
     // Generate files from templates
     generateFile('.env.tpl', `.env`);
+    generateFile('.env.example.tpl', `.env.example`);
     generateFile('package.json.tpl', `package.json`);
     generateFile('.gitignore.tpl', `.gitignore`);
 

@@ -38,5 +38,5 @@ export default function* root() {
         ...confirmSaga,
         ...hotels,
         ...offers
-    ]
+    ];
 }

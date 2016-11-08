@@ -1,8 +1,9 @@
 import Immutable from 'seamless-immutable';
-import { take, put, call, select, fork } from 'redux-saga/effects';
+import { take, put, call, select } from 'redux-saga/effects';
 
 import { createSagas } from '../../src/helpers/sagaCreator';
 import { createActions, createActionTypes } from '../../src/helpers/actionCreator';
+import { NAVIGATE } from '../../src/routing/actions';
 
 describe('createSagas', () => {
     const actionTypes = createActionTypes('posts');
@@ -137,9 +138,9 @@ describe('createSagas', () => {
             q: 'hello'
         });
 
-        const navigate = {
+        const navigateAction = {
             action: 'PUSH',
-            type: 'NAVIGATE',
+            type: NAVIGATE,
             location: {
                 pathname: 'blank',
                 query: {
@@ -153,7 +154,7 @@ describe('createSagas', () => {
 
         expect(generator.next().value).toEqual(take([actionTypes.updateFilter, actionTypes.changePage, actionTypes.changeOrder]));
         expect(generator.next().value).toEqual(select(selectors.getFilters));
-        expect(generator.next(filters).value).toEqual(put(navigate));
+        expect(generator.next(filters).value).toEqual(put(navigateAction));
         // TODO: not working because handleFilter is private inside SagaCreator
         // expect(generator.next(handleFilter).value).toEqual(fork(handleFilter));
     });

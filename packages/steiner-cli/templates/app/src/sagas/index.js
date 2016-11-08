@@ -7,7 +7,7 @@ import { auth, confirm } from 'steiner';
 import client from 'apis/client';
 
 function login(data) {
-    return axios.post('login', data);
+    return axios.post(process.env.REACT_APP_LOGIN_URL, data);
 }
 
 function logout() {

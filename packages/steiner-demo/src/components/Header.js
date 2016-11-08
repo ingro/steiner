@@ -46,7 +46,8 @@ export class Header extends Component {
                                 ? 
                                 <Dropdown 
                                     text={<i className="fa fa-cog" />} 
-                                    type="navbar" 
+                                    type="navbar"
+                                    right={true} 
                                 >
                                     <li className="dropdown-header">{user.email}</li>
                                     <li><Link to="/profile"><i className="fa fa-user"/> {profileAndSettingsLabel}</Link></li>

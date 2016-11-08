@@ -42,7 +42,7 @@
     "seamless-immutable": "^6.1.3",
     "steiner": "^0.11.0",
     "text-spinners": "^1.0.4",
-    "vivi": "^0.4.4"
+    "vivi": "^0.4.6"
   },
   "scripts": {
     "start:plain": "react-scripts start",

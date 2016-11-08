@@ -1,14 +1,14 @@
-export const LOGIN_REQUEST          = 'LOGIN_REQUEST';
-export const LOGIN_REQUEST_SUCCESS  = 'LOGIN_REQUEST_SUCCESS';
-export const LOGIN_REQUEST_FAIL     = 'LOGIN_REQUEST_FAIL';
+export const LOGIN_REQUEST          = 'steiner/LOGIN_REQUEST';
+export const LOGIN_REQUEST_SUCCESS  = 'steiner/LOGIN_REQUEST_SUCCESS';
+export const LOGIN_REQUEST_FAIL     = 'steiner/LOGIN_REQUEST_FAIL';
 
-export const LOGOUT_REQUEST         = 'LOGOUT_REQUEST';
-export const LOGOUT_REQUEST_SUCCESS = 'LOGOUT_REQUEST_SUCCESS';
-export const LOGOUT_REQUEST_FAIL    = 'LOGOUT_REQUEST_FAIL';
+export const LOGOUT_REQUEST         = 'steiner/LOGOUT_REQUEST';
+export const LOGOUT_REQUEST_SUCCESS = 'steiner/LOGOUT_REQUEST_SUCCESS';
+export const LOGOUT_REQUEST_FAIL    = 'steiner/LOGOUT_REQUEST_FAIL';
 
-export const UPDATE_PROFILE         = 'UPDATE_PROFILE';
-export const UPDATE_PROFILE_SUCCESS = 'UPDATE_PROFILE_SUCCESS';
-export const UPDATE_PROFILE_FAIL    = 'UPDATE_PROFILE_FAIL';
+export const UPDATE_PROFILE         = 'steiner/UPDATE_PROFILE';
+export const UPDATE_PROFILE_SUCCESS = 'steiner/UPDATE_PROFILE_SUCCESS';
+export const UPDATE_PROFILE_FAIL    = 'steiner/UPDATE_PROFILE_FAIL';
 
 export function loginRequest(data) {
     return {

@@ -1,4 +1,4 @@
-export const NAVIGATE = 'NAVIGATE';
+export const NAVIGATE = 'steiner/NAVIGATE';
 
 export function navigate(location, action) {
     return {

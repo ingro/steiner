@@ -11,17 +11,10 @@ export default class ControlledRouter extends Component {
                 location={this.props.location}
                 action={this.props.action}
                 onChange={(location, action) => {
-                    // console.warn(location);
-                    // console.warn(action);
-
                     if (action !== 'SYNC') {
                         this.props.dispatch(navigate(location, action));
                     } else {
-                        // this.props.dispatch({
-                        //     type: 'NAVIGATE',
-                        //     location,
-                        //     action: this.props.action
-                        // });
+                        // Do nothing
                     }
                 }}
             >

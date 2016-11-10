@@ -8,6 +8,7 @@
 - Add logout action to Omnibox
 - Make all the whole auth package of Steiner more customizable
 - Move confirm logout in saga? (to allow call it from Omnibox)
+- Avoid reload the entire app on language setting change (now all the translations live in the app's state)
 
 ## Current .env
 

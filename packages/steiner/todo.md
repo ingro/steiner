@@ -15,4 +15,3 @@
 
 ## Tests
 - Split actionCreator-test createActions tests in multiple assertions for easier debugging with snapshots
-- Use [redux-saga-test-plan](https://github.com/jfairbank/redux-saga-test-plan) for easier testing with redux-saga?

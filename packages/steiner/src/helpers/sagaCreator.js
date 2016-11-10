@@ -32,7 +32,7 @@ function fail(type, response, loadingBar) {
     return action;
 }
 
-function *generateNotificationPayload(actionKey, type, messages, titles, resource) {
+export function *generateNotificationPayload(actionKey, type, messages, titles, resource) {
     let translations;
 
     const language = yield select(getLanguage);

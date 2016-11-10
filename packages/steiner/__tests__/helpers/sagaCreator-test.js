@@ -1,7 +1,8 @@
 import Immutable from 'seamless-immutable';
 import { take, put, call, select } from 'redux-saga/effects';
+import testSaga from 'redux-saga-test-plan';
 
-import { createSagas } from '../../src/helpers/sagaCreator';
+import { createSagas, generateNotificationPayload } from '../../src/helpers/sagaCreator';
 import { createActions, createActionTypes } from '../../src/helpers/actionCreator';
 import { NAVIGATE } from '../../src/routing/actions';
 
@@ -47,6 +48,13 @@ describe('createSagas', () => {
             loadingBar: 'hide'
         };
 
+        // const saga = testSaga(sagas.list);
+
+        // saga.next().select(selectors.getFilters);
+        // saga.next(filters).call(api.list, filters);
+        // saga.next(response).put(success);
+        // saga.throw('error').put(error);
+
         expect(generator.next().value).toEqual(select(selectors.getFilters));
         expect(generator.next(filters).value).toEqual(call(api.list, filters));
         expect(generator.next(response).value).toEqual(put(success));
@@ -80,7 +88,7 @@ describe('createSagas', () => {
     });
 
     it('generates create saga correctly', () => {
-        const generator = sagas.create();
+        // const generator = sagas.create();
 
         const action = {
             payload: {
@@ -89,16 +97,29 @@ describe('createSagas', () => {
         };
 
         const response = { id: 42, foo: 'bar' };
+        const notification = { type: 'success' };
 
-        expect(generator.next().value).toEqual(take(actionTypes.create));
-        expect(generator.next(action).value).toEqual(call(api.create, { foo: 'bar' }));
-        // TODO: not possible to test with thunks because at each call they return a different anonymous function
-        // expect(generator.next(response).value).toBe(put(actions.createSuccess(response)));
-        // expect(generator.throw('error').value).toEqual(put(actions.createFail('error')));
+        const saga = testSaga(sagas.create);
+
+        saga
+        .next().take(actionTypes.create)
+        .next(action).call(api.create, { foo: 'bar' })
+        .save('beforeSuccess')
+        .next(response).call(generateNotificationPayload, 'createSuccess', 'success', {}, {}, 'Posts')
+        .next(notification).put(actions.createSuccess(response, notification))
+        .restore('beforeSuccess')
+        .throw('error')
+        .call(generateNotificationPayload, 'createFail', 'fail', {}, {}, 'Posts')
+        .next(notification).put(actions.createFail('error', notification));
+        
+        // expect(generator.next().value).toEqual(take(actionTypes.create));
+        // expect(generator.next(action).value).toEqual(call(api.create, { foo: 'bar' }));
+        // expect(generator.next(response).value).toEqual(call(generateNotificationPayload, 'createSuccess', 'success', {}, {}, 'Posts'));
+        // expect(generator.next(notification).value).toEqual(put(actions.createSuccess(response, notification)));
     });
 
     it('generates update saga correctly', () => {
-        const generator = sagas.update();
+        // const generator = sagas.update();
 
         const action = {
             payload: {
@@ -108,16 +129,29 @@ describe('createSagas', () => {
         };
 
         const response = { id: 42, foo: 'bar' };
+        const notification = { type: 'success' };
 
-        expect(generator.next().value).toEqual(take(actionTypes.update));
-        expect(generator.next(action).value).toEqual(call(api.update, 42, { id: 42, foo: 'bar' }));
-        // TODO: not possible to test with thunks because at each call they return a different anonymous function
-        // expect(generator.next(response).value).toEqual(put(actions.updateSuccess(response)));
-        // expect(generator.throw('error').value).toEqual(put(actions.updateFail('error')));
+        const saga = testSaga(sagas.update);
+
+        // expect(generator.next().value).toEqual(take(actionTypes.update));
+        // expect(generator.next(action).value).toEqual(call(api.update, 42, { id: 42, foo: 'bar' }));
+        // expect(generator.next(response).value).toEqual(call(generateNotificationPayload, 'updateSuccess', 'success', {}, {}, 'Posts'));
+        // expect(generator.next(notification).value).toEqual(put(actions.updateSuccess(response, notification)));
+        
+        saga
+        .next().take(actionTypes.update)
+        .next(action).call(api.update, 42, { id: 42, foo: 'bar' })
+        .save('beforeSuccess')
+        .next(response).call(generateNotificationPayload, 'updateSuccess', 'success', {}, {}, 'Posts')
+        .next(notification).put(actions.updateSuccess(response, notification))
+        .restore('beforeSuccess')
+        .throw('error')
+        .call(generateNotificationPayload, 'updateFail', 'fail', {}, {}, 'Posts')
+        .next(notification).put(actions.updateFail('error', notification)); 
     });
 
     it('generates delete saga correctly', () => {
-        const generator = sagas.delete();
+        // const generator = sagas.delete();
 
         const action = {
             payload: {
@@ -126,12 +160,25 @@ describe('createSagas', () => {
         };
 
         const response = { id: 42, foo: 'bar' };
+        const notification = { type: 'success' };
 
-        expect(generator.next().value).toEqual(take(actionTypes.delete));
-        expect(generator.next(action).value).toEqual(call(api.delete, 42));
-        // TODO: not possible to test with thunks because at each call they return a different anonymous function
-        // expect(generator.next(response).value).toEqual(put(actions.deleteSuccess({ response, id: 42 })));
-        // expect(generator.throw('error').value).toEqual(put(actions.deleteFail('error')));
+        const saga = testSaga(sagas.delete);
+
+        // expect(generator.next().value).toEqual(take(actionTypes.delete));
+        // expect(generator.next(action).value).toEqual(call(api.delete, 42));
+        // expect(generator.next(response).value).toEqual(call(generateNotificationPayload, 'deleteSuccess', 'success', {}, {}, 'Posts'));
+        // expect(generator.next(notification).value).toEqual(put(actions.deleteSuccess(response, notification)));
+        
+        saga
+        .next().take(actionTypes.delete)
+        .next(action).call(api.delete, 42)
+        .save('beforeSuccess')
+        .next(response).call(generateNotificationPayload, 'deleteSuccess', 'success', {}, {}, 'Posts')
+        .next(notification).put(actions.deleteSuccess({ response, id: 42} , notification))
+        .restore('beforeSuccess')
+        .throw('error')
+        .call(generateNotificationPayload, 'deleteFail', 'fail', {}, {}, 'Posts')
+        .next(notification).put(actions.deleteFail('error', notification)); 
     });
 
     it('generates filter saga correctly', () => {

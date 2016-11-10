@@ -175,7 +175,7 @@ function generateNotificationPayload(actionKey, type, messages, titles, getState
             translations = getTranslations(state);
         }
 
-        title = translations.messages.notifications.titles.success;
+        title = translations.messages.notifications.titles[type];
     }
 
     return {

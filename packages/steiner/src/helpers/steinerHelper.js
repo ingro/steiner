@@ -7,9 +7,7 @@ import { generateRoutes } from './routeCreator';
 
 /**
  * Options:
- * lang: string, the current language of the application
  * actionMessages: object, an object containing the message strings organized by language
- * breacrumbLabels: object, an object containing the breadcrumb labels organized by language
  * defaultClient: axios instance used by default by apis call
  * paramsMap: object, the default paramsMap used by api's list request to filter it
  * listSuccessOptions: object, the default options for the listSuccess reducer to extract data and metadata from api's response
@@ -19,16 +17,6 @@ import { generateRoutes } from './routeCreator';
 export default class SteinerHelper {
     constructor(options = {}) {
         this.options = options;
-    }
-
-    getBreadcrumbOptions(options) {
-        if (typeof options === 'undefined') {
-            options = {
-                breadcrumbs: this.options.breacrumbLabels
-            };
-        }
-
-        return options;
     }
 
     getCreateActionsOptions(options) {
@@ -67,7 +55,7 @@ export default class SteinerHelper {
     }
 
     generateRoutes(resource, selectors, options) {
-        return generateRoutes(resource, selectors, this.getBreadcrumbOptions(options));
+        return generateRoutes(resource, selectors, options);
     }
 
     // createConfirmAction(options) {

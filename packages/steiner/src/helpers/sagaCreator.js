@@ -1,13 +1,10 @@
 import { take, put, call, select, cancel, fork } from 'redux-saga/effects';
 import { delay, takeLatest } from 'redux-saga';
-import upperFirst from 'lodash/upperFirst';
-import trim from 'lodash/trim';
-import omitBy from 'lodash/omitBy';
-import defaults from 'lodash/defaults';
-import isEmpty from 'lodash/isEmpty';
+import _ from 'lodash';
 import queryString from 'query-string';
 
 import { navigate } from '../routing/actions';
+import { getTranslations, getLanguage } from '../settings/reducer';
 
 function success(type, response, loadingBar) {
     const action = {
@@ -35,6 +32,39 @@ function fail(type, response, loadingBar) {
     return action;
 }
 
+function *generateNotificationPayload(actionKey, type, messages, titles, resource) {
+    let translations;
+
+    const language = yield select(getLanguage);
+
+    let message = _.get(messages, `${language}.${actionKey}`);
+    let title = _.get(titles, `${language}.${type}`);
+
+    if (! message) {
+        translations = yield select(getTranslations);
+
+        const compiled = _.template(translations.templates.actionMessages[actionKey], {
+            interpolate : /\{\{([\s\S]+?)\}\}/g
+        });
+
+        message = compiled({ resource });
+    }
+
+    if (! title) {
+        if (! translations) {
+            translations = yield select(getTranslations);
+        }
+
+        title = translations.messages.notifications.titles[type];
+    }
+
+    return {
+        title,
+        message,
+        status: type === 'success' ? 'success' : 'error'
+    };
+}
+
 export function bootSagas(sagas, actionTypes) {
     return [
         takeLatest(actionTypes.list, sagas.list),
@@ -49,16 +79,19 @@ export function bootSagas(sagas, actionTypes) {
     ];
 }
 
-export function createSagas(resource, actionTypes, actions, api, selectors, defaultState) {
+export function createSagas(resource, actionTypes, actions, api, selectors, defaultState, options = {}) {
     if (resource == null) {
         throw new Error('Expected resource');
     }
 
-    resource = trim(upperFirst(resource));
+    resource = _.trim(_.upperFirst(resource));
+
+    const messages = options.messages || {};
+    const titles = options.notificationTitles || {};
 
     const sagas = {};
 
-    sagas[`list`] = function*() {
+    sagas['list'] = function*() {
         try {
             const filters = yield select(selectors.getFilters);
             const response = yield call(api.list, filters);
@@ -69,11 +102,11 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         }
     }
 
-    Object.defineProperty(sagas[`list`], 'name', {
+    Object.defineProperty(sagas['list'], 'name', {
         value: `list${resource}`
     });
 
-    sagas[`fetch`] = function*() {
+    sagas['fetch'] = function*() {
         while (true) {
             try {
                 const action = yield take(actionTypes.fetch);
@@ -87,44 +120,56 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         }
     }
 
-    sagas[`create`] = function*() {
+    sagas['create'] = function*() {
         while (true) {
             try {
                 const action = yield take(actionTypes.create);
 
                 const response = yield call(api.create, action.payload);
 
-                yield put(actions.createSuccess(response));
+                const notification = yield call(generateNotificationPayload, 'createSuccess', 'success', messages, titles, resource);
+
+                yield put(actions.createSuccess(response, notification));
             } catch(error) {
-                yield put(actions.createFail(error));
+                const notification = yield call(generateNotificationPayload, 'createFail', 'fail', messages, titles, resource);
+
+                yield put(actions.createFail(error, notification));
             }
         }
     }
 
-    sagas[`update`] = function*() {
+    sagas['update'] = function*() {
         while (true) {
             const action = yield take(actionTypes.update);
 
             try {
                 const response = yield call(api.update, action.payload.id, action.payload);
 
-                yield put(actions.updateSuccess(response));
+                const notification = yield call(generateNotificationPayload, 'updateSuccess', 'success', messages, titles, resource);
+
+                yield put(actions.updateSuccess(response, notification));
             } catch(error) {
-                yield put(actions.updateFail(error));
+                const notification = yield call(generateNotificationPayload, 'updateFail', 'fail', messages, titles, resource);
+
+                yield put(actions.updateFail(error, notification));
             }
         }
     }
 
-    sagas[`delete`] = function*() {
+    sagas['delete'] = function*() {
         while (true) {
             try {
                 const action = yield take(actionTypes.delete);
 
                 const response = yield call(api.delete, action.payload.id);
 
-                yield put(actions.deleteSuccess({ response, id: action.payload.id }));
+                const notification = yield call(generateNotificationPayload, 'deleteSuccess', 'success', messages, titles, resource);
+
+                yield put(actions.deleteSuccess({ response, id: action.payload.id }, notification));
             } catch(error) {
-                yield put(actions.deleteFail(error));
+                const notification = yield call(generateNotificationPayload, 'deleteFail', 'fail', messages, titles, resource);
+
+                yield put(actions.deleteFail(error, notification));
             }
         }
     }
@@ -136,10 +181,10 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
     }
 
     function getDiff(src, matchers) {
-        return omitBy(src, (v, k) => matchers[k] == v);
+        return _.omitBy(src, (v, k) => matchers[k] == v);
     }
 
-    sagas[`filter`] = function*() {
+    sagas['filter'] = function*() {
         let task;
 
         while (true) {
@@ -150,7 +195,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
             const defaultFilters = defaultState.list.filters.asMutable();
 
             // TODO: blacklist params???
-            // const diff = _.omit(_.omitBy(filters.asMutable(), (v, k) => defaultFilters[k] == v), blacklist);
+            // const diff = _.omit(_._.omitBy(filters.asMutable(), (v, k) => defaultFilters[k] == v), blacklist);
 
             const diff = getDiff(filters.asMutable(), defaultFilters);
 
@@ -175,7 +220,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         while (true) {
             const action = yield take(actionTypes.syncFilters);
 
-            if (isEmpty(action.payload)) {
+            if (_.isEmpty(action.payload)) {
                 yield put(actions.resetFilters());
             } else {
                 yield put(actions.setFilters(action.payload));
@@ -191,7 +236,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
             const filters = action.payload;
 
-            defaults(filters, defaultState.list.filters.asMutable());
+            _.defaults(filters, defaultState.list.filters.asMutable());
 
             const currentState = yield select(selectors.getFilters);
 
@@ -202,7 +247,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
             // console.warn(diff);
 
-            if (! isEmpty(diff)) {
+            if (! _.isEmpty(diff)) {
                 yield put(actions.syncFilters(filters));
             }
         }

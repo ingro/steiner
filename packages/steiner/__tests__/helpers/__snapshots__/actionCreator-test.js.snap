@@ -87,9 +87,7 @@ Object {
 exports[`createActions generates the correct actions 4`] = `
 Object {
   "notification": Object {
-    "message": "Posts created with success!",
-    "status": "success",
-    "title": "Hooray!",
+    "type": "success",
   },
   "payload": Object {
     "foo": "bar",
@@ -104,9 +102,7 @@ Object {
     "foo": "bar",
   },
   "notification": Object {
-    "message": "An error occured while creating Posts",
-    "status": "error",
-    "title": "Oh snap!",
+    "type": "fail",
   },
   "type": "posts/CREATE_FAIL",
 }
@@ -127,9 +123,7 @@ Object {
 exports[`createActions generates the correct actions 7`] = `
 Object {
   "notification": Object {
-    "message": "Posts updated successfully!",
-    "status": "success",
-    "title": "Hooray!",
+    "type": "success",
   },
   "payload": Object {
     "foo": "bar",
@@ -144,9 +138,7 @@ Object {
     "foo": "bar",
   },
   "notification": Object {
-    "message": "An error occured while updating Posts",
-    "status": "error",
-    "title": "Oh snap!",
+    "type": "fail",
   },
   "type": "posts/UPDATE_FAIL",
 }
@@ -164,9 +156,7 @@ Object {
 exports[`createActions generates the correct actions 10`] = `
 Object {
   "notification": Object {
-    "message": "Posts deleted with success!",
-    "status": "success",
-    "title": "Hooray!",
+    "type": "success",
   },
   "payload": Object {
     "foo": "bar",
@@ -181,9 +171,7 @@ Object {
     "foo": "bar",
   },
   "notification": Object {
-    "message": "An error occured while deleting Posts",
-    "status": "error",
-    "title": "Oh snap!",
+    "type": "fail",
   },
   "type": "posts/DELETE_FAIL",
 }

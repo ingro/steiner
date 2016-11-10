@@ -1,13 +1,6 @@
 import arrify from 'arrify';
 import upperFirst from 'lodash/upperFirst';
-import get from 'lodash/get';
-// import defaults from 'lodash/defaults';
-// import forOwn from 'lodash/forOwn';
 import trim from 'lodash/trim';
-import template from 'lodash/template';
-
-// import defaultMessages from '../messages/en';
-import { getTranslations, getLanguage } from '../settings/reducer';
 
 function addAsyncGroup(resource, actionTypes, group, options) {
     const upperGroup    = group.toUpperCase();
@@ -107,22 +100,6 @@ export function createActionTypes(resource, options = {}) {
     return actionTypes;
 }
 
-// function generateSuccessNotification(message, title) {
-//     return {
-//         title,
-//         message,
-//         status: 'success'
-//     }
-// }
-
-// function generateFailNotification(message, title) {
-//     return {
-//         title,
-//         message,
-//         status: 'error'
-//     };
-// }
-
 // export function createDefaultMessages(resource, messageTemplates = {}) {
 //     const messages = {};
 
@@ -151,41 +128,7 @@ export function createActionTypes(resource, options = {}) {
 //     return messages;
 // }
 
-function generateNotificationPayload(actionKey, type, messages, titles, getState, resource) {
-    let translations;
-
-    const state = getState();
-    const language = getLanguage(state);
-
-    let message = get(messages, `${language}.${actionKey}`);
-    let title = get(titles, `${language}.${type}`);
-
-    if (! message) {
-        translations = getTranslations(state);
-
-        const compiled = template(translations.templates.actionMessages[actionKey], {
-            interpolate : /\{\{([\s\S]+?)\}\}/g
-        });
-
-        message = compiled({ resource })
-    }
-
-    if (! title) {
-        if (! translations) {
-            translations = getTranslations(state);
-        }
-
-        title = translations.messages.notifications.titles[type];
-    }
-
-    return {
-        title,
-        message,
-        status: type === 'success' ? 'success' : 'error'
-    }
-}
-
-export function createActions(resource, actionTypes, options = {}) {
+export function createActions(resource, actionTypes) {
     if (resource == null) {
         throw new Error('Expected resource');
     }
@@ -194,8 +137,8 @@ export function createActions(resource, actionTypes, options = {}) {
 
     // const messages = createActionMessages(resource, options);
     // const titles = options.notificationTitles || defaultMessages.messages.notifications.titles;
-    const messages = options.messages || {};
-    const titles = options.notificationTitles || {};
+    // const messages = options.messages || {};
+    // const titles = options.notificationTitles || {};
 
     const actions = {};
 
@@ -224,24 +167,20 @@ export function createActions(resource, actionTypes, options = {}) {
         };
     }
 
-    actions['createSuccess'] = function(response) {
-        return (dispatch, getState) => {
-            dispatch({
-                type: actionTypes.createSuccess,
-                payload: response,
-                notification: generateNotificationPayload('createSuccess', 'success', messages, titles, getState, resource)
-            });
-        }
+    actions['createSuccess'] = function(response, notification) {
+        return {
+            type: actionTypes.createSuccess,
+            payload: response,
+            notification
+        };
     }
 
-    actions['createFail'] = function(error) {
-        return (dispatch, getState) => {
-            dispatch({
-                type: actionTypes.createFail,
-                error,
-                notification: generateNotificationPayload('createFail', 'fail', messages, titles, getState, resource)
-            });
-        }
+    actions['createFail'] = function(error, notification) {
+        return {
+            type: actionTypes.createFail,
+            error,
+            notification
+        };
     }
 
     actions[`update`] = function(id, data) {
@@ -254,24 +193,20 @@ export function createActions(resource, actionTypes, options = {}) {
         };
     }
 
-    actions['updateSuccess'] = function(response) {
-        return (dispatch, getState) => {
-            dispatch({
-                type: actionTypes.updateSuccess,
-                payload: response,
-                notification: generateNotificationPayload('updateSuccess', 'success', messages, titles, getState, resource)
-            });
-        }
+    actions['updateSuccess'] = function(response, notification) {
+        return {
+            type: actionTypes.updateSuccess,
+            payload: response,
+            notification
+        };
     }
 
-    actions['updateFail'] = function(error) {
-        return (dispatch, getState) => {
-            dispatch({
-                type: actionTypes.updateFail,
-                error,
-                notification: generateNotificationPayload('updateFail', 'fail', messages, titles, getState, resource)
-            });
-        }
+    actions['updateFail'] = function(error, notification) {
+        return {
+            type: actionTypes.updateFail,
+            error,
+            notification
+        };
     }
 
     actions[`delete`] = function(id) {
@@ -283,24 +218,20 @@ export function createActions(resource, actionTypes, options = {}) {
         };
     }
 
-    actions['deleteSuccess'] = function(payload) {
-        return (dispatch, getState) => {
-            dispatch({
-                type: actionTypes.deleteSuccess,
-                payload,
-                notification: generateNotificationPayload('deleteSuccess', 'success', messages, titles, getState, resource)
-            });
-        }
+    actions['deleteSuccess'] = function(payload, notification) {
+        return {
+            type: actionTypes.deleteSuccess,
+            payload,
+            notification
+        };
     }
 
-    actions['deleteFail'] = function(error) {
-        return (dispatch, getState) => {
-            dispatch({
-                type: actionTypes.deleteFail,
-                error,
-                notification: generateNotificationPayload('deleteFail', 'fail', messages, titles, getState, resource)
-            });
-        }
+    actions['deleteFail'] = function(error, notification) {    
+        return {
+            type: actionTypes.deleteFail,
+            error,
+            notification
+        };
     }
 
     actions[`resetCurrent`] = function() {

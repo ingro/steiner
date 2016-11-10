@@ -4,6 +4,7 @@ import { createActions, createActionTypes } from './actionCreator';
 import createApi from './apiCreator';
 import { createHandlers, DEFAULT_STATE } from './reducerCreator';
 import { generateRoutes } from './routeCreator';
+import { createSagas } from './sagaCreator';
 
 /**
  * Options:
@@ -19,7 +20,7 @@ export default class SteinerHelper {
         this.options = options;
     }
 
-    getCreateActionsOptions(options) {
+    getCreateSagasOptions(options) {
         if (typeof options === 'undefined') {
             options = {
                 messages: this.options.actionMessages
@@ -29,12 +30,8 @@ export default class SteinerHelper {
         return options;
     }
 
-    // setLanguage(language) {
-    //     this.options.lang = language;
-    // }
-
     createActions(resource, actionTypes, options) {
-        return createActions(resource, actionTypes, this.getCreateActionsOptions(options));
+        return createActions(resource, actionTypes, options);
     }
 
     createActionTypes(resource, options) {
@@ -58,10 +55,9 @@ export default class SteinerHelper {
         return generateRoutes(resource, selectors, options);
     }
 
-    // createConfirmAction(options) {
-    //     defaults(options, this.getConfirmDialogOptions());
-    //     return createConfirm(options);
-    // }
+    createSagas(resource, actionTypes, actions, api, selectors, defaultState, options) {
+        return createSagas(resource, actionTypes, actions, api, selectors, defaultState, this.getCreateSagasOptions(options));
+    }
 
     createDefaultState(customState = {}) {
         if (typeof _.get(customState, 'list.filters.perPage') === 'undefined' && this.options.defaultPerPage) {

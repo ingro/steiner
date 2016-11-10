@@ -98,7 +98,7 @@ Object {
 }
 `;
 
-exports[`steinerHelper getCreateActionsOptions returns actionMessages options if defined as messages 1`] = `
+exports[`steinerHelper getCreateSagasOptions returns actionMessages options if defined as messages 1`] = `
 Object {
   "messages": Object {
     "en": Object {
@@ -109,7 +109,7 @@ Object {
 }
 `;
 
-exports[`steinerHelper getCreateActionsOptions returns undefined if no helper options are defined 1`] = `
+exports[`steinerHelper getCreateSagasOptions returns undefined if no helper options are defined 1`] = `
 Object {
   "messages": undefined,
 }

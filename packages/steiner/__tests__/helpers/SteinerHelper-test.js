@@ -7,11 +7,11 @@ describe('steinerHelper', () => {
         expect(helper).toBeInstanceOf(steinerHelper);
     });
 
-    describe('getCreateActionsOptions', () => {
+    describe('getCreateSagasOptions', () => {
         it('returns undefined if no helper options are defined', () => {
             const helper = new steinerHelper();
 
-            expect(helper.getCreateActionsOptions()).toMatchSnapshot();
+            expect(helper.getCreateSagasOptions()).toMatchSnapshot();
         }); 
 
         it('returns actionMessages options if defined as messages', () => {
@@ -24,7 +24,7 @@ describe('steinerHelper', () => {
                 }
             });
 
-            expect(helper.getCreateActionsOptions()).toMatchSnapshot();
+            expect(helper.getCreateSagasOptions()).toMatchSnapshot();
         });
     });
 

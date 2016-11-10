@@ -14,7 +14,7 @@ class LoginForm extends Component {
             const action = createFormAction(auth.actionTypes.login, [auth.actionTypes.loginSuccess, auth.actionTypes.loginFail]);
 
             return action(data, dispatch);
-        }
+        };
     }
 
     componentDidMount() {

@@ -1,4 +1,5 @@
 import steinerHelper from '../../src/helpers/steinerHelper';
+import itMessages from '../../src/messages/it';
 
 describe('steinerHelper', () => {
     it('is instantiables', () => {
@@ -17,8 +18,10 @@ describe('steinerHelper', () => {
         it('returns actionMessageTemplates options if defined as messageTemplates', () => {
             const helper = new steinerHelper({
                 actionMessageTemplates: {
-                    createFail: '{{resource}} cannot be created!',
-                    createSuccess: '{{resource}} created!'
+                    en: {
+                        createFail: '{{resource}} cannot be created!',
+                        createSuccess: '{{resource}} created!'
+                    } 
                 }
             });
 
@@ -28,8 +31,10 @@ describe('steinerHelper', () => {
         it('returns actionMessages options if defined as messages', () => {
             const helper = new steinerHelper({
                 actionMessages: {
-                    createFail: 'Hooray!',
-                    createSuccess: 'Boooo'
+                    en: {
+                        createFail: 'Hooray!',
+                        createSuccess: 'Boooo'
+                    }
                 }
             });
 
@@ -38,7 +43,10 @@ describe('steinerHelper', () => {
 
         it('returns translated default messages', () => {
             const helper = new steinerHelper({
-                lang: 'it'
+                lang: 'it',
+                defaultMessages: {
+                    it: itMessages
+                }
             });
 
             expect(helper.getCreateActionsOptions()).toMatchSnapshot();
@@ -72,8 +80,10 @@ describe('steinerHelper', () => {
         it('allow to override the helper\'s options', () => {
             const helper = new steinerHelper({
                 actionMessageTemplates: {
-                    createFail: '{{resource}} cannot be created!',
-                    createSuccess: '{{resource}} created!'
+                    en: {
+                        createFail: '{{resource}} cannot be created!',
+                        createSuccess: '{{resource}} created!'
+                    }
                 }
             });
 

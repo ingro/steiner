@@ -9,15 +9,28 @@ import { generateRoutes } from './routeCreator';
 import createConfirm from './confirmCreator';
 
 import enMessages from '../messages/en';
-import itMessages from '../messages/it';
 
 const defaultOptions = {
     lang: 'en',
     defaultMessages: {
         en: enMessages,
-        it: itMessages
     }
 };
+
+/**
+ * Options:
+ * lang: string, the current language of the application
+ * defaultMessages: object, an object containing the default translated messages organized by language
+ * actionMessages: object, an object containing just the message strings organized by language
+ * actionMessageTemplates: object, an object containing just the message templates organized by language
+ * notificationTitles: object, an object containing just the notification titles organized by language
+ * breadcrumbOptions: object, an object containing just the breadcrumb strings organized by language
+ * confirmDialogOptions: object, an object containing just the confirm dialog strings organized by language
+ * defaultClient: axios instance used by default by apis call
+ * paramsMap: object, the default paramsMap used by api's list request to filter it
+ * listSuccessOptions: object, the default options for the listSuccess reducer to extract data and metadata from api's response
+ * defaultPerPage: number, default number of items to show in tables
+ */
 
 export default class SteinerHelper {
     constructor(options = {}) {
@@ -31,7 +44,7 @@ export default class SteinerHelper {
             return this.options.defaultMessages[this.options.lang].templates.actionMessages;
         }
 
-        return this.options.actionMessageTemplates;
+        return this.options.actionMessageTemplates[this.options.lang];
     }
 
     getNotificationTitles() {
@@ -39,7 +52,7 @@ export default class SteinerHelper {
             return this.options.defaultMessages[this.options.lang].messages.notifications.titles;
         }
 
-        return this.options.notificationTitles;
+        return this.options.notificationTitles[this.options.lang];
     }
 
     getBreadcrumbOptions() {
@@ -47,23 +60,24 @@ export default class SteinerHelper {
             return this.options.defaultMessages[this.options.lang].messages.breadcrumbs;
         }
 
-        return this.options.breadcrumbOptions;
+        return this.options.breadcrumbOptions[this.options.lang];
     }
 
     getConfirmDialogOptions() {
+        // ??
         return defaults(this.options.confirmDialogOptions || {}, this.options.defaultMessages[this.options.lang].messages.confirmDialog);
     }
 
     getCreateActionsOptions(options) {
         if (typeof options === 'undefined') {
             options = {
-                messages: this.options.actionMessages,
+                messages: get(this.options.actionMessages, this.options.lang),
                 messageTemplates: this.getActionMessageTemplates(),
                 notificationTitles: this.getNotificationTitles()
             };
         } else {
             options = {
-                messages: options.messages || this.options.actionMessages,
+                messages: options.messages || get(this.options.actionMessages, this.options.lang),
                 messageTemplates: options.messageTemplates || this.getActionMessageTemplates(),
                 notificationTitles: options.notificationTitles || this.getNotificationTitles()
             };

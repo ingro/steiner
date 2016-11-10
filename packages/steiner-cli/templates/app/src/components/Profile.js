@@ -3,12 +3,9 @@ import { reduxForm, Field } from 'redux-form';
 import Helmet from 'react-helmet';
 import { auth, FormWrapper } from 'steiner';
 import { createFormAction } from 'steiner/lib/helpers/reduxFormSaga';
-import debounce from 'lodash/debounce';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 import InputField from 'vivi/lib/Form/InputField';
 import SelectField from 'vivi/lib/Form/SelectField';
-
-import helper from 'helpers/steinerHelper';
 
 function submit(data, dispatch) {
     const action = createFormAction(auth.actionTypes.updateProfile, [auth.actionTypes.updateProfileSuccess, auth.actionTypes.updateProfileFail])

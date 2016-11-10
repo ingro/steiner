@@ -23,24 +23,24 @@ function submit(data, dispatch) {
 }
 
 export class Profile extends Component {
-    constructor(props) {
-        super(props);
+    // constructor(props) {
+    //     super(props);
 
-        this.confirmRefresh = debounce(this.showConfirmRefresh, 500);
-    }
+    //     this.confirmRefresh = debounce(this.showConfirmRefresh, 500);
+    // }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.submitSucceeded) {
-            this.confirmRefresh();
-        }
-    }
+    // componentWillReceiveProps(nextProps) {
+    //     if (nextProps.submitSucceeded) {
+    //         this.confirmRefresh();
+    //     }
+    // }
 
-    showConfirmRefresh = () => {
-        this.props.dispatch(helper.createConfirmAction({
-            message: this.props.reloadMessage,
-            onSuccess: () => window.location.reload(false)
-        }));
-    }
+    // showConfirmRefresh = () => {
+    //     this.props.dispatch(helper.createConfirmAction({
+    //         message: this.props.reloadMessage,
+    //         onSuccess: () => window.location.reload(false)
+    //     }));
+    // }
 
     render() {
         return (

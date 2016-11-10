@@ -43,20 +43,7 @@ class App extends Component {
     componentDidMount() {
         const language = this.props.settings.language || process.env.REACT_APP_DEFAULT_LANGUAGE;
 
-        require([`vivi/lib/messages/${language}`, `steiner/lib/messages/${language}`], (viviMessages, messages) => {
-            const translations = {
-                ...viviMessages,
-                steiner: messages.default.components
-            };
-
-            this.translations = translations;
-
-            this.props.dispatch(setTranslations(messages.default));
-
-            this.setState({
-                isLanguageLoaded: true
-            });
-        });
+        this.loadTranslations(language);
 
         this.props.bindShortcut(['ctrl+p', 'command+p'], (e) => {
             e.preventDefault();
@@ -72,6 +59,29 @@ class App extends Component {
             e.preventDefault();
             this.toggleHelpModal();
         }, true);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.settings.language !== this.props.settings.language) {
+            this.loadTranslations(nextProps.settings.language);
+        }
+    }
+
+    loadTranslations(language) {
+        require([`vivi/lib/messages/${language}`, `steiner/lib/messages/${language}`], (viviMessages, messages) => {
+            const translations = {
+                ...viviMessages,
+                steiner: messages.default.components
+            };
+
+            this.translations = translations;
+
+            this.props.dispatch(setTranslations(messages.default));
+
+            this.setState({
+                isLanguageLoaded: true
+            });
+        });
     }
 
     toggleSidebar = () => {

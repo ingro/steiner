@@ -21,7 +21,7 @@ export default {
         notifications: {
             titles: {
                 success: 'Successo!',
-                fail: 'Error!'
+                fail: 'Errore!'
             }
         }
     },

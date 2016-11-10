@@ -1,6 +1,10 @@
+## 0.12.0 (November 10, 2016)
+
+- Updated templates for steiner@0.12.0
+
 ## 0.11.0 (November 4, 2016)
 
-- Updated templates from steiner@0.11.0
+- Updated templates for steiner@0.11.0
 
 ## 0.10.0 (November 3, 2016)
 

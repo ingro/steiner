@@ -1,7 +1,7 @@
 import pathToRegexp from 'path-to-regexp';
 import _ from 'lodash';
 
-import defaultMessages from '../messages/en';
+import { getTranslations, getLanguage } from '../settings/reducer';
 
 function createPatterns(resource) {
     return {
@@ -21,12 +21,20 @@ export function generateLinks(patterns) {
     return links;
 }
 
+function getCreateLabel(options, state) {
+    if (options.breadcrumbs) {
+        const language = getLanguage(state);
+
+        return options.breadcrumbs[language].editNew;
+    }
+
+    const translations = getTranslations(state);
+
+    return translations.messages.breadcrumbs.editNew;
+}
+
 export function generateRoutes(resource, selectors, options = {}) {
     const patterns = createPatterns(resource);
-
-    _.defaults(options, {
-        breadcrumbs: defaultMessages.messages.breadcrumbs
-    });
 
     return {
         list: [
@@ -42,7 +50,7 @@ export function generateRoutes(resource, selectors, options = {}) {
                 breadcrumb: (state, ownProps) => {
                     if (ownProps.params.id === 'create') {
                         return {
-                            breadcrumbName: options.breadcrumbs.editNew
+                            breadcrumbName: getCreateLabel(options, state)
                         };
                     }
 

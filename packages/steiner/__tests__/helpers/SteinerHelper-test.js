@@ -1,5 +1,4 @@
 import steinerHelper from '../../src/helpers/steinerHelper';
-import itMessages from '../../src/messages/it';
 
 describe('steinerHelper', () => {
     it('is instantiables', () => {
@@ -15,19 +14,6 @@ describe('steinerHelper', () => {
             expect(helper.getCreateActionsOptions()).toMatchSnapshot();
         }); 
 
-        it('returns actionMessageTemplates options if defined as messageTemplates', () => {
-            const helper = new steinerHelper({
-                actionMessageTemplates: {
-                    en: {
-                        createFail: '{{resource}} cannot be created!',
-                        createSuccess: '{{resource}} created!'
-                    } 
-                }
-            });
-
-            expect(helper.getCreateActionsOptions()).toMatchSnapshot();
-        });
-
         it('returns actionMessages options if defined as messages', () => {
             const helper = new steinerHelper({
                 actionMessages: {
@@ -39,61 +25,6 @@ describe('steinerHelper', () => {
             });
 
             expect(helper.getCreateActionsOptions()).toMatchSnapshot();
-        });
-
-        it('returns translated default messages', () => {
-            const helper = new steinerHelper({
-                lang: 'it',
-                defaultMessages: {
-                    it: itMessages
-                }
-            });
-
-            expect(helper.getCreateActionsOptions()).toMatchSnapshot();
-        });
-
-        it('returns translated custom messages', () => {
-            const helper = new steinerHelper({
-                defaultMessages: {
-                    en: {
-                        templates: {
-                            actionMessages: {
-                                createSuccess: 'Hooray {{resource}}',
-                                createFail: 'Booo {{resource}}'
-                            }
-                        },
-                        messages: {
-                            notifications: {
-                                titles: {
-                                    success: 'Success',
-                                    fail: 'Fail'
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            expect(helper.getCreateActionsOptions()).toMatchSnapshot();
-        });
-
-        it('allow to override the helper\'s options', () => {
-            const helper = new steinerHelper({
-                actionMessageTemplates: {
-                    en: {
-                        createFail: '{{resource}} cannot be created!',
-                        createSuccess: '{{resource}} created!'
-                    }
-                }
-            });
-
-            const options = {
-                messageTemplates: {
-                    deleteFail: '{{resource}} cleared!'
-                }
-            };
-
-            expect(helper.getCreateActionsOptions(options)).toMatchSnapshot();
         });
     });
 

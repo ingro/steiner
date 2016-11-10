@@ -1,3 +1,7 @@
+## 0.12.0 (November 10, 2016)
+
+- Revorked translations (removed mostly from steinerHelper and simplified)
+
 ## 0.11.0 (November 4, 2016)
 
 - Added `<MatchWhenAuthorizedAsync />` component

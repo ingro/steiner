@@ -167,7 +167,7 @@ Object {
     "createSuccess": "{{resource}} creato con successo!",
     "deleteFail": "Si è verificato un errore inaspettato durante la cancellazione di {{resource}})",
     "deleteSuccess": "{{resource}} cancellato con successo!",
-    "updateFail": "Si è verificato un errore inaspettato durante l\'aggiornamento di {{resource}}",
+    "updateFail": "Si è verificato un errore inaspettato durante l'aggiornamento di {{resource}}",
     "updateSuccess": "{{resource}} aggiornato con successo!",
   },
   "messages": undefined,

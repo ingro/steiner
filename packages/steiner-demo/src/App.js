@@ -24,7 +24,6 @@ import Profile from './components/Profile';
 import ModalHelp from './components/ModalHelp';
 import routes from './routes';
 import history from './history';
-import helper from './helpers/steinerHelper';
 
 const sidebarMenuLinks = routeRegister.getSidebarLinks();
 const omniboxOptions = routeRegister.getOmniboxOptions();
@@ -53,8 +52,6 @@ class App extends Component {
             this.translations = translations;
 
             this.props.dispatch(setTranslations(messages.default));
-
-            helper.setLanguage(this.props.settings.language);
 
             this.setState({
                 isLanguageLoaded: true

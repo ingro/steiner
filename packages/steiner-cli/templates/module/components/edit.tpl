@@ -31,7 +31,7 @@ class {{componentName}} extends Component {
     }
 
     render() {
-        return(
+        return (
             <div>
                 {% if richComponents %}<Helmet title={`{{name | title}} > ${this.getTitle()}`} />{% endif %}
                 <FormWrapper

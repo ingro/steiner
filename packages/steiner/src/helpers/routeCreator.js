@@ -3,12 +3,14 @@ import _ from 'lodash';
 
 import { getTranslations, getLanguage } from '../settings/reducer';
 
-function createPatterns(resource) {
-    return {
+function createPatterns(resource, omit) {
+    const patterns = {
         list: `/${resource}`,
         edit: `/${resource}/:id`,
         create: `/${resource}/create`
     };
+
+    return _.omit(patterns, omit);
 }
 
 export function generateLinks(patterns) {
@@ -33,8 +35,16 @@ function getCreateLabel(options, state) {
     return translations.messages.breadcrumbs.editNew;
 }
 
+const generateRouteOptionsDefaults = {
+    itemLabelKey: 'name',
+    omit: []
+};
+
+// TODO: come rendere i label traducibili???
 export function generateRoutes(resource, selectors, options = {}) {
-    const patterns = createPatterns(resource);
+    _.defaults(options, generateRouteOptionsDefaults);
+
+    const patterns = createPatterns(resource, options.omit);
 
     return {
         list: [
@@ -42,7 +52,7 @@ export function generateRoutes(resource, selectors, options = {}) {
                 pattern: patterns.list,
                 exactly: true,
                 componentPath: `containers/${_.upperFirst(resource)}ListLayout`,
-                breadcrumb: _.upperFirst(resource)
+                breadcrumb: options.label ? options.label : _.upperFirst(resource)
             },
             {
                 pattern: patterns.edit,
@@ -58,7 +68,7 @@ export function generateRoutes(resource, selectors, options = {}) {
 
                     if (current && current.item) {
                         return {
-                            breadcrumbName: current.item.name
+                            breadcrumbName: current.item[options.itemLabelKey]
                         };
                     }
 

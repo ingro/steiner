@@ -38,11 +38,11 @@ export default class SteinerHelper {
         return createActionTypes(resource, options);
     }
 
-    createApi(endpoint, client, paramsMap) {
+    createApi(endpoint, client, paramsMap, options) {
         client = client || this.options.defaultClient;
         paramsMap = paramsMap || this.options.paramsMap;
 
-        return createApi(endpoint, client, paramsMap);
+        return createApi(endpoint, client, paramsMap, options);
     }
 
     createHandlers(actionTypes, options) {

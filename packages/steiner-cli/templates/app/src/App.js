@@ -25,9 +25,6 @@ import ModalHelp from './components/ModalHelp';
 import routes from './routes';
 import history from './history';
 
-const sidebarMenuLinks = routeRegister.getSidebarLinks();
-const omniboxOptions = routeRegister.getOmniboxOptions();
-
 class App extends Component {
     constructor(props) {
         super(props);
@@ -38,6 +35,9 @@ class App extends Component {
             isHelpModalOpen: false,
             isLanguageLoaded: false
         };
+
+        this.sidebarMenuLinks = [];
+        this.omniboxOptions = [];
     }
 
     componentDidMount() {
@@ -75,6 +75,9 @@ class App extends Component {
             };
 
             this.translations = translations;
+
+            this.sidebarMenuLinks = routeRegister.getSidebarLinks(language);
+            this.omniboxOptions = routeRegister.getOmniboxOptions(language);
 
             this.props.dispatch(setTranslations(messages.default));
 
@@ -128,12 +131,12 @@ class App extends Component {
                                 transitionEnterTimeout={300}
                                 transitionLeaveTimeout={300}
                             >
-                                {this.state.isOmniboxOpen && <Omnibox key="omnibox" onChange={this.toggleOmnibox} options={omniboxOptions}/>}
+                                {this.state.isOmniboxOpen && <Omnibox key="omnibox" onChange={this.toggleOmnibox} options={this.omniboxOptions}/>}
                             </ReactCSSTransitionGroup>
                             <ModalHelp isOpen={this.state.isHelpModalOpen} onClose={this.toggleHelpModal} />
                             <LoadingBar style={{ zIndex: 3 }} updateTime={250} maxProgress={95} />
                             <Sidebar
-                                sidebar={<SidebarMenu links={sidebarMenuLinks} onToggle={this.toggleSidebar}/>}
+                                sidebar={<SidebarMenu links={this.sidebarMenuLinks} onToggle={this.toggleSidebar}/>}
                                 docked={this.state.isSidebarOpen}
                                 transitions={false}
                             >

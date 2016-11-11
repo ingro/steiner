@@ -5,6 +5,7 @@ import routeRegister from 'helpers/routeRegister';
 import { selectors } from '../reducers/hotels';
 
 const routes = helper.generateRoutes('hotels', selectors);
+
 routes.list = routes.list.map(route => ({
     ...route,
     getComponent() {
@@ -18,7 +19,11 @@ routes.list = routes.list.map(route => ({
 
 const links = routeCreator.generateLinks(routes.patterns);
 
-routeRegister.addPatterns('hotels', routes.patterns);
+routeRegister.addPatterns('hotels', routes.patterns, {
+    it: 'Alberghi',
+    en: 'Hotels'
+});
+
 routeRegister.addLinks('hotels', links);
 
 export default routes.list;

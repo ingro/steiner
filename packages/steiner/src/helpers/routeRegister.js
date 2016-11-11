@@ -1,18 +1,27 @@
 import arrify from 'arrify';
-import forOwn from 'lodash/forOwn';
-import upperFirst from 'lodash/upperFirst';
-import sortBy from 'lodash/sortBy';
-import get from 'lodash/get';
+import _ from 'lodash';
+
+const defaultOptions = {
+    actionTranslations: {}
+};
 
 export default class RouteRegister {
-    constructor() {
+    constructor(options = {}) {
+        _.defaults(options, defaultOptions);
+
         this.patterns = {};
         this.links = {};
         this.staticOptions = [];
+        this.keyTranslations = {};
+        this.actionTranslations = options.actionTranslations;
     }
 
-    addPatterns(key, patterns) {
+    addPatterns(key, patterns, translations) {
         this.patterns[key] = patterns;
+
+        if (translations) {
+            this.keyTranslations[key] = translations;
+        }
     }
 
     getPatternsByKey(key) {
@@ -40,7 +49,7 @@ export default class RouteRegister {
         return this.links;
     }
 
-    getOmniboxOptions() {
+    getOmniboxOptions(language) {
         let i = 1;
 
         const options = [];
@@ -54,39 +63,61 @@ export default class RouteRegister {
             i++;
         });
 
-        const actions = ['list', 'create'];
+        const validActions = ['list', 'create'];
 
-        forOwn(this.patterns, (patterns, key) => {
-            actions.forEach(action => {
-                options.push({
-                    id: i,
-                    type: 'link',
-                    path: patterns[action],
-                    label: `${upperFirst(key)}: ${action}`
-                });
+        _.forOwn(this.patterns, (patterns, key) => {
+            _.forOwn(patterns, (path, action) => {
+                if (_.includes(validActions, action)) {
+                    options.push({
+                        id: i,
+                        type: 'link',
+                        path,
+                        label: `${this.getKeyLabel(key, language)}: ${this.getActionLabel(action, language)}`
+                    });
 
-                i++;
+                    i++;
+                }
             });
         });
 
-        return sortBy(options, 'label');
+        return _.sortBy(options, 'label');
     }
 
-    getSidebarLinks() {
+    getKeyLabel(key, language) {
+        if (this.keyTranslations[key]) {
+            return this.keyTranslations[key][language];
+        }
+
+        return _.upperFirst(key);
+    }
+
+    getActionLabel(action, language) {
+        if (this.actionTranslations[action]) {
+            return this.actionTranslations[action][language];
+        }
+
+        return action;
+    }
+
+    getSidebarLinks(language) {
         const links = [];
 
-        forOwn(this.patterns, (patterns, key) => {
+        _.forOwn(this.patterns, (patterns, key) => {
             links.push({
                 to: patterns['list'],
-                name: upperFirst(key)
+                name: this.getKeyLabel(key, language)
             });
         });
 
-        return sortBy(links, 'name');
+        return _.sortBy(links, 'name');
     }
 
     getLinkTo(route, props) {
-        const linkGenerator = get(this.links, route);
+        const linkGenerator = _.get(this.links, route);
+
+        if (! linkGenerator) {
+            return '';
+        }
 
         return linkGenerator(props);
     }

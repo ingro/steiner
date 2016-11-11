@@ -24,7 +24,12 @@ function buildParams(filters, paramsMap = {}) {
     return params;
 }
 
-export default function createApi(endpoint, client, paramsMap = {}) {
+const defaultOptions = {
+    omit: []
+};
+
+export default function createApi(endpoint, client, paramsMap = {}, options = {}) {
+    _.defaults(options, defaultOptions);
     const routes = {};
 
     const [uri, qs] = endpoint.split('?');
@@ -65,5 +70,5 @@ export default function createApi(endpoint, client, paramsMap = {}) {
         });
     }
 
-    return routes;
+    return _.omit(routes, options.omit);
 }

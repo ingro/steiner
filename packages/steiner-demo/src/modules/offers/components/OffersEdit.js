@@ -8,8 +8,9 @@ import routeRegister from 'helpers/routeRegister';
 const schema = [
     {
         name: 'email',
-        label: 'Indirizzo email',
-        type: 'text'
+        type: 'text',
+        placeholder: 'Indirizzo email',
+        label: 'Indirizzo email'
     },
     {
         name: 'active',
@@ -29,11 +30,6 @@ const schema = [
         }]
     },
     {
-        name: 'comment',
-        label: 'Commento',
-        type: 'textarea'
-    },
-    {
         name: 'theme',
         label: 'Tema',
         type: 'radio',
@@ -44,6 +40,11 @@ const schema = [
             value: '2',
             label: 'Dark'
         }]
+    },
+    {
+        name: 'comment',
+        type: 'textarea',
+        onlyInput: true
     }
 ];
 
@@ -56,7 +57,7 @@ class OffersEdit extends Component {
 
     createInitialFormValues(item) {
         return {
-            email: 'foo@bar.com',
+            email: null,
             active: true,
             type: 2,
             comment: 'lorem ipsum',

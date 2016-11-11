@@ -4,7 +4,12 @@ import helper from 'helpers/steinerHelper';
 import routeRegister from 'helpers/routeRegister';
 import { selectors } from '../reducers/hotels';
 
-const routes = helper.generateRoutes('hotels', selectors);
+const routes = helper.generateRoutes('hotels', selectors, {
+    label: {
+        it: 'Alberghi',
+        en: 'Hotels'
+    }
+});
 
 routes.list = routes.list.map(route => ({
     ...route,

@@ -13,7 +13,6 @@
 - Find a way for the confirmSaga to pass onSuccess and onFail handlers as plain actions instead of functions
 - In reducer listSuccess handler you can pass '' or null as path from `total` and this will be resolved to null, thus showing all the items in the table and not showing a paginator. If it's the desired behaviour, document it, otherwise fix it!
 - Add the option to pass a custom label for resources to better customize notifications
-- Breadcrumbs: how to translate the labels?
 - Add option to omit generate actions for given group (list, create, delete etc.)
 
 ## Tests

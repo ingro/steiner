@@ -40,7 +40,6 @@ const generateRouteOptionsDefaults = {
     omit: []
 };
 
-// TODO: come rendere i label traducibili???
 export function generateRoutes(resource, selectors, options = {}) {
     _.defaults(options, generateRouteOptionsDefaults);
 
@@ -52,7 +51,13 @@ export function generateRoutes(resource, selectors, options = {}) {
                 pattern: patterns.list,
                 exactly: true,
                 componentPath: `containers/${_.upperFirst(resource)}ListLayout`,
-                breadcrumb: options.label ? options.label : _.upperFirst(resource)
+                breadcrumb: options.label ? (state) => {
+                    const language = getLanguage(state);
+
+                    return {
+                        breadcrumbName: options.label[language]
+                    };
+                } : _.upperFirst(resource)
             },
             {
                 pattern: patterns.edit,

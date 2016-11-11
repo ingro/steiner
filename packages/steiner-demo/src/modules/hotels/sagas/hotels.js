@@ -5,6 +5,11 @@ import { actions, actionTypes } from '../actions/hotels';
 import { selectors, DEFAULT_STATE } from '../reducers/hotels';
 import api from '../apis/hotels';
 
-const sagas = helper.createSagas('hotels', actionTypes, actions, api, selectors, DEFAULT_STATE);
+const sagas = helper.createSagas('hotels', actionTypes, actions, api, selectors, DEFAULT_STATE, {
+    resourceLabel: {
+        it: 'Albergo',
+        en: 'Hotel'
+    }
+});
 
 export default sagaCreator.bootSagas(sagas, actionTypes);

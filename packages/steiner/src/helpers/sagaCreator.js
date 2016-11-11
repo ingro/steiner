@@ -47,6 +47,10 @@ export function *generateNotificationPayload(actionKey, type, messages, titles, 
             interpolate : /\{\{([\s\S]+?)\}\}/g
         });
 
+        if (_.isObject(resource)) {
+            resource = resource[language];
+        }
+
         message = compiled({ resource });
     }
 
@@ -88,6 +92,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
     const messages = options.messages || {};
     const titles = options.notificationTitles || {};
+    const resourceLabel = options.resourceLabel || resource;
 
     const sagas = {};
 
@@ -127,11 +132,11 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
                 const response = yield call(api.create, action.payload);
 
-                const notification = yield call(generateNotificationPayload, 'createSuccess', 'success', messages, titles, resource);
+                const notification = yield call(generateNotificationPayload, 'createSuccess', 'success', messages, titles, resourceLabel);
 
                 yield put(actions.createSuccess(response, notification));
             } catch(error) {
-                const notification = yield call(generateNotificationPayload, 'createFail', 'fail', messages, titles, resource);
+                const notification = yield call(generateNotificationPayload, 'createFail', 'fail', messages, titles, resourceLabel);
 
                 yield put(actions.createFail(error, notification));
             }
@@ -145,11 +150,11 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
             try {
                 const response = yield call(api.update, action.payload.id, action.payload);
 
-                const notification = yield call(generateNotificationPayload, 'updateSuccess', 'success', messages, titles, resource);
+                const notification = yield call(generateNotificationPayload, 'updateSuccess', 'success', messages, titles, resourceLabel);
 
                 yield put(actions.updateSuccess(response, notification));
             } catch(error) {
-                const notification = yield call(generateNotificationPayload, 'updateFail', 'fail', messages, titles, resource);
+                const notification = yield call(generateNotificationPayload, 'updateFail', 'fail', messages, titles, resourceLabel);
 
                 yield put(actions.updateFail(error, notification));
             }
@@ -163,11 +168,11 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
                 const response = yield call(api.delete, action.payload.id);
 
-                const notification = yield call(generateNotificationPayload, 'deleteSuccess', 'success', messages, titles, resource);
+                const notification = yield call(generateNotificationPayload, 'deleteSuccess', 'success', messages, titles, resourceLabel);
 
                 yield put(actions.deleteSuccess({ response, id: action.payload.id }, notification));
             } catch(error) {
-                const notification = yield call(generateNotificationPayload, 'deleteFail', 'fail', messages, titles, resource);
+                const notification = yield call(generateNotificationPayload, 'deleteFail', 'fail', messages, titles, resourceLabel);
 
                 yield put(actions.deleteFail(error, notification));
             }

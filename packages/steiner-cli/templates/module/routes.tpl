@@ -9,8 +9,8 @@ routes.list = routes.list.map(route => ({
     ...route,
     getComponent() {
         return new Promise((resolve, reject) => {
-            require([`modules/{{name}}/${route.componentPath}`], (RouteComponent) => {
-                resolve(RouteComponent.default);
+            require.ensure([], require => {
+                resolve(require(`modules/{{name}}/${route.componentPath}`).default);
             });
         });
     },

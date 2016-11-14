@@ -68,10 +68,13 @@ class App extends Component {
     }
 
     loadTranslations(language) {
-        require([`vivi/lib/messages/${language}`, `steiner/lib/messages/${language}`], (viviMessages, messages) => {
+        require.ensure([], require => {
+            const viviMessages = require(`vivi/lib/messages/${language}`);
+            const steinerMessages = require(`steiner/lib/messages/${language}`);
+        // require([`vivi/lib/messages/${language}`, `steiner/lib/messages/${language}`], (viviMessages, messages) => {
             const translations = {
                 ...viviMessages,
-                steiner: messages.default.components
+                steiner: steinerMessages.default.components
             };
 
             this.translations = translations;
@@ -79,7 +82,7 @@ class App extends Component {
             this.sidebarMenuLinks = routeRegister.getSidebarLinks(language);
             this.omniboxOptions = routeRegister.getOmniboxOptions(language);
 
-            this.props.dispatch(setTranslations(messages.default));
+            this.props.dispatch(setTranslations(steinerMessages.default));
 
             this.setState({
                 isLanguageLoaded: true

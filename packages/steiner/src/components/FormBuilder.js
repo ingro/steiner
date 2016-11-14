@@ -77,7 +77,7 @@ export class FormBuilder extends Component {
                     {...rest}
                 />
             default:
-                return <div className="alert alert-warning">Field type "{type}" not supported!</div>
+                return <div key={key} className="alert alert-warning">Field type "{type}" not supported!</div>
         }
     }
 

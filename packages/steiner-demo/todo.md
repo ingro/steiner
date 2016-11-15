@@ -12,6 +12,6 @@
 ## Current .env
 
 REACT_APP_NAME=Steiner
-REACT_APP_API_ROOT=https://ingruz-api-vqrljjkstb.now.sh/api
-REACT_APP_LOGIN_URL=https://ingruz-api-vqrljjkstb.now.sh/login
+REACT_APP_API_ROOT=https://ingruz-api-cetdoxknkw.now.sh/api
+REACT_APP_LOGIN_URL=https://ingruz-api-cetdoxknkw.now.sh/login
 REACT_APP_DEFAULT_LANGUAGE=en

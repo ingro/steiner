@@ -21,7 +21,8 @@ const loggerMiddleware = createLogger({
     }
 });
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMonitor = console.tron.createSagaMonitor();
+const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
 
 const enhancer = composeWithDevTools(
     applyMiddleware(

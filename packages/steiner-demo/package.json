@@ -15,7 +15,7 @@
     "axios": "^0.15.2",
     "mousetrap": "^1.6.0",
     "query-string": "^4.2.3",
-    "rc-pagination": "^1.5.5",
+    "rc-pagination": "^1.6.1",
     "rc-tooltip": "^3.4.2",
     "react": "^15.3.2",
     "react-addons-css-transition-group": "^15.3.2",
@@ -30,7 +30,7 @@
     "react-router-addons-controlled": "^0.0.1",
     "react-select": "^1.0.0-rc.2",
     "react-sidebar": "^2.2.1",
-    "react-virtualized": "^8.5.1",
+    "react-virtualized": "^8.5.2",
     "reapop": "^0.6.0",
     "reapop-theme-wybo": "^0.4.0",
     "redux": "^3.6.0",
@@ -45,7 +45,7 @@
     "seamless-immutable": "^6.3.0",
     "steiner": "^0.12.2",
     "text-spinners": "^1.0.5",
-    "vivi": "^0.4.4"
+    "vivi": "^0.4.6"
   },
   "scripts": {
     "start:plain": "react-scripts start",

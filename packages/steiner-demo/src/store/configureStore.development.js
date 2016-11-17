@@ -10,6 +10,7 @@ import { notificationMiddleware, loadingBarMiddleware } from 'steiner';
 import Immutable from 'seamless-immutable';
 
 import reducer from '../reducers';
+import apiErrorMiddleware from 'helpers/apiErrorMiddleware';
 
 const filter = /^redux-form/;
 
@@ -28,6 +29,7 @@ const enhancer = composeWithDevTools(
     applyMiddleware(
         thunkMiddleware,
         sagaMiddleware,
+        apiErrorMiddleware,
         notificationMiddleware,
         loadingBarMiddleware,
         loggerMiddleware

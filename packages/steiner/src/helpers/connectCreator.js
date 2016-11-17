@@ -39,7 +39,12 @@ export function connectItem(component, actions, selectors) {
     }
 
     function mapDispatchToProps(dispatch) {
-        return bindActionCreators(actions, dispatch);
+        const boundedActions = bindActionCreators(actions, dispatch);
+
+        return {
+            ...boundedActions,
+            dispatch
+        };
     }
 
     return connect(mapStateToProps, mapDispatchToProps)(component);

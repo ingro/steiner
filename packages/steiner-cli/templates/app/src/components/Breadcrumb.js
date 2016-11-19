@@ -25,21 +25,23 @@ const BreadcrumbMatch = (route) => {
 
     return <Match {...matchRoute} render={(props) => {
         if (typeof route.breadcrumb === 'string') {
-            return <BreadcrumbElement {...props} breadcrumbName={route.breadcrumb} />
+            return <BreadcrumbElement {...props} breadcrumbName={route.breadcrumb} />;
         } else {
             const ConnectedBreadcrumbElement = connect(route.breadcrumb)(BreadcrumbElement);
             return <ConnectedBreadcrumbElement {...props} />;
         }
-    }}/>
-}
+    }}/>;
+};
 
 export default class Breadcrumb extends Component {
     render() {
-        return <ol className="breadcrumb Breadcrumb-navbar">
-            {this.props.routes.map((route, i) => (
-                <BreadcrumbMatch key={i} {...route}/>
-            ))}
-        </ol>
+        return ( 
+            <ol className="breadcrumb Breadcrumb-navbar">
+                {this.props.routes.map((route, i) => (
+                    <BreadcrumbMatch key={i} {...route}/>
+                ))}
+            </ol>
+        );
     }
 }
 

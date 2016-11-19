@@ -71,7 +71,7 @@ FormWrapper.propTypes = {
     innerClass: PropTypes.string,
     outerClass: PropTypes.string,
     outerControlsClass: PropTypes.string,
-    title: PropTypes.string,
+    title: PropTypes.any,
     submit: PropTypes.func,
     unsavedMessage: PropTypes.string
 };

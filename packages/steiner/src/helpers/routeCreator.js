@@ -77,7 +77,9 @@ export function generateRoutes(resource, selectors, options = {}) {
                         };
                     }
 
-                    return {};
+                    return {
+                        breadcrumbName: '...'
+                    };
                 }
             }
         ],

@@ -14,28 +14,25 @@ export class FormBuilder extends Component {
             case 'text':
                 return <Field
                     key={key}
-                    className="form-control"
                     name={name}
                     placeholder={placeholder}
                     component={InputField}
                     label={label}
                     {...rest}
-                />
+                />;
             case 'password':
                 return <Field
                     key={key}
-                    className="form-control"
                     name={name}
                     placeholder={placeholder}
                     component={InputField}
                     type="password"
                     label={label}
                     {...rest}
-                />
+                />;
             case 'checkbox':
                 return <Field
                     key={key}
-                    className="form-control"
                     name={name}
                     placeholder={placeholder}
                     controlType={item.checkboxType || this.props.checkboxTypeDefault}
@@ -43,41 +40,45 @@ export class FormBuilder extends Component {
                     type="checkbox"
                     label={label}
                     {...rest}
-                />
+                />;
             case 'select':
                 return <Field
                     key={key}
-                    className="form-control"
                     name={name}
                     placeholder={placeholder}
                     options={item.options}
                     component={SelectField}
                     label={label}
                     {...rest}
-                />
+                />;
             case 'textarea':
                 return <Field
                     key={key}
-                    className="form-control"
                     name={name}
                     placeholder={placeholder}
                     component={TextareaField}
                     label={label}
                     {...rest}
-                />
+                />;
             case 'radio':
                 return <Field
                     key={key}
-                    className="form-control"
                     name={name}
                     placeholder={placeholder}
                     options={item.options}
                     component={RadioGroupField}
                     label={label}
                     {...rest}
-                />
+                />;
             default:
-                return <div key={key} className="alert alert-warning">Field type "{type}" not supported!</div>
+                return <Field
+                    key={key}
+                    name={name}
+                    placeholder={placeholder}
+                    component={InputField}
+                    type={type}
+                    {...rest}
+                />;
         }
     }
 

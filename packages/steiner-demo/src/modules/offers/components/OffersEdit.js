@@ -42,6 +42,15 @@ const schema = [
         }]
     },
     {
+        name: 'start_date',
+        type: 'date'
+    },
+    {
+        name: 'quantity',
+        type: 'number',
+        placeholder: 'Quantita'
+    },
+    {
         name: 'comment',
         type: 'textarea',
         onlyInput: true

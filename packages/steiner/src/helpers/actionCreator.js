@@ -100,45 +100,12 @@ export function createActionTypes(resource, options = {}) {
     return actionTypes;
 }
 
-// export function createDefaultMessages(resource, messageTemplates = {}) {
-//     const messages = {};
-
-//     defaults(messageTemplates, defaultMessages.templates.actionMessages);
-
-//     forOwn(messageTemplates, (value, key) => {
-//         if (typeof value === 'function') {
-//             messages[key] = value({ resource });
-//         } else if (typeof value === 'string') {
-//             const compiled = template(value, {
-//                 interpolate : /\{\{([\s\S]+?)\}\}/g
-//             });
-//             messages[key] = compiled({ resource });
-//         }
-//     });
-
-//     return messages;
-// }
-
-// export function createActionMessages(resource, options = {}) {
-//     const messages = options.messages || {};
-
-//     const defaultMessages = createDefaultMessages(resource, options.messageTemplates);
-//     defaults(messages, defaultMessages);
-
-//     return messages;
-// }
-
 export function createActions(resource, actionTypes) {
     if (resource == null) {
         throw new Error('Expected resource');
     }
 
     resource = trim(upperFirst(resource));
-
-    // const messages = createActionMessages(resource, options);
-    // const titles = options.notificationTitles || defaultMessages.messages.notifications.titles;
-    // const messages = options.messages || {};
-    // const titles = options.notificationTitles || {};
 
     const actions = {};
 

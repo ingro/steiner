@@ -18,7 +18,7 @@ class {{name | title}}ListLayout extends Component {
                     tableComponent={ {{name | title}}ListTable }
                 />
             </div>
-        )
+        );
     }
 }
 

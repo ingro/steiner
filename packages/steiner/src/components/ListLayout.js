@@ -26,7 +26,7 @@ export default class ListLayout extends Component {
         const { filters, total, filterComponent, tableComponent } = this.props;
 
         return (
-            <Flex 
+            <Flex
                 wrap={true}
                 flexColumn={true}
                 style={{ height: 'calc(100vh - 75px)'}}
@@ -38,14 +38,14 @@ export default class ListLayout extends Component {
                     {React.createElement(tableComponent, this.props)}
                 </Box>
                 <Box col={12}>
-                    <Paginator 
-                        current={filters.page} 
-                        pageSize={filters.perPage} 
-                        total={total} 
+                    <Paginator
+                        current={filters.page}
+                        pageSize={filters.perPage}
+                        total={total}
                         showStatusText={true}
                         showSizeChanger={true}
                         onSizeChange={this.handleChangePaginatorSize}
-                        sizeOptions={[10, 20, 50]} 
+                        sizeOptions={[10, 20, 50]}
                         onChange={this.handleChangePage}
                         sizeChangerOptions={{ openUp: true }}
                     />

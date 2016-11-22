@@ -18,7 +18,7 @@ class HotelsListLayout extends Component {
                     tableComponent={HotelsListTable}
                 />
             </div>
-        )
+        );
     }
 }
 

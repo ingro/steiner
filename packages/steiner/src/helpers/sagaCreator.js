@@ -79,15 +79,7 @@ export function bootSagas(sagas, actionTypes) {
         takeEvery([actionTypes.updateFilter, actionTypes.changePage, actionTypes.changeOrder], sagas.filter),
         takeEvery(actionTypes.syncFilters, sagas.syncFilters),
         takeEvery(actionTypes.checkFilterSync, sagas.checkFilterSync),
-        takeEvery(actionTypes.resetFilters, sagas.resetFilters),
-        // fork(sagas.fetch),
-        // fork(sagas.create),
-        // fork(sagas.update),
-        // fork(sagas.delete),
-        // fork(sagas.filter),
-        // fork(sagas.syncFilters),
-        // fork(sagas.checkFilterSync),
-        // fork(sagas.resetFilters)
+        takeEvery(actionTypes.resetFilters, sagas.resetFilters)
     ];
 }
 
@@ -120,17 +112,13 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
     });
 
     sagas['fetch'] = function*(action) {
-        // while (true) {
-            try {
-                // const action = yield take(actionTypes.fetch);
+        try {
+            const response = yield call(api.fetch, action.payload.id);
 
-                const response = yield call(api.fetch, action.payload.id);
-
-                yield put(success(actionTypes.fetchSuccess, response));
-            } catch(error) {
-                yield put(fail(actionTypes.fetchFail, error));
-            }
-        // }
+            yield put(success(actionTypes.fetchSuccess, response));
+        } catch(error) {
+            yield put(fail(actionTypes.fetchFail, error));
+        }
     }
 
     Object.defineProperty(sagas['fetch'], 'name', {
@@ -138,21 +126,17 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
     });
 
     sagas['create'] = function*(action) {
-        // while (true) {
-            try {
-                // const action = yield take(actionTypes.create);
+        try {
+            const response = yield call(api.create, action.payload);
 
-                const response = yield call(api.create, action.payload);
+            const notification = yield call(generateNotificationPayload, 'createSuccess', 'success', messages, titles, resourceLabel);
 
-                const notification = yield call(generateNotificationPayload, 'createSuccess', 'success', messages, titles, resourceLabel);
+            yield put(actions.createSuccess(response, notification));
+        } catch(error) {
+            const notification = yield call(generateNotificationPayload, 'createFail', 'fail', messages, titles, resourceLabel);
 
-                yield put(actions.createSuccess(response, notification));
-            } catch(error) {
-                const notification = yield call(generateNotificationPayload, 'createFail', 'fail', messages, titles, resourceLabel);
-
-                yield put(actions.createFail(error, notification));
-            }
-        // }
+            yield put(actions.createFail(error, notification));
+        }
     }
 
     Object.defineProperty(sagas['create'], 'name', {
@@ -160,21 +144,17 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
     });
 
     sagas['update'] = function*(action) {
-        // while (true) {
-            // const action = yield take(actionTypes.update);
+        try {
+            const response = yield call(api.update, action.payload.id, action.payload);
 
-            try {
-                const response = yield call(api.update, action.payload.id, action.payload);
+            const notification = yield call(generateNotificationPayload, 'updateSuccess', 'success', messages, titles, resourceLabel);
 
-                const notification = yield call(generateNotificationPayload, 'updateSuccess', 'success', messages, titles, resourceLabel);
+            yield put(actions.updateSuccess(response, notification));
+        } catch(error) {
+            const notification = yield call(generateNotificationPayload, 'updateFail', 'fail', messages, titles, resourceLabel);
 
-                yield put(actions.updateSuccess(response, notification));
-            } catch(error) {
-                const notification = yield call(generateNotificationPayload, 'updateFail', 'fail', messages, titles, resourceLabel);
-
-                yield put(actions.updateFail(error, notification));
-            }
-        // }
+            yield put(actions.updateFail(error, notification));
+        }
     }
 
     Object.defineProperty(sagas['update'], 'name', {
@@ -182,21 +162,17 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
     });
 
     sagas['delete'] = function*(action) {
-        // while (true) {
-            try {
-                // const action = yield take(actionTypes.delete);
+        try {
+            const response = yield call(api.delete, action.payload.id);
 
-                const response = yield call(api.delete, action.payload.id);
+            const notification = yield call(generateNotificationPayload, 'deleteSuccess', 'success', messages, titles, resourceLabel);
 
-                const notification = yield call(generateNotificationPayload, 'deleteSuccess', 'success', messages, titles, resourceLabel);
+            yield put(actions.deleteSuccess({ response, id: action.payload.id }, notification));
+        } catch(error) {
+            const notification = yield call(generateNotificationPayload, 'deleteFail', 'fail', messages, titles, resourceLabel);
 
-                yield put(actions.deleteSuccess({ response, id: action.payload.id }, notification));
-            } catch(error) {
-                const notification = yield call(generateNotificationPayload, 'deleteFail', 'fail', messages, titles, resourceLabel);
-
-                yield put(actions.deleteFail(error, notification));
-            }
-        // }
+            yield put(actions.deleteFail(error, notification));
+        }
     }
 
     Object.defineProperty(sagas['delete'], 'name', {
@@ -216,33 +192,29 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
     sagas['filter'] = function*() {
         let task;
 
-        // while (true) {
-            // yield take([actionTypes.updateFilter, actionTypes.changePage, actionTypes.changeOrder]);
+        const filters = yield select(selectors.getFilters);
 
-            const filters = yield select(selectors.getFilters);
+        const defaultFilters = defaultState.list.filters.asMutable();
 
-            const defaultFilters = defaultState.list.filters.asMutable();
+        // TODO: blacklist params???
+        // const diff = _.omit(_._.omitBy(filters.asMutable(), (v, k) => defaultFilters[k] == v), blacklist);
 
-            // TODO: blacklist params???
-            // const diff = _.omit(_._.omitBy(filters.asMutable(), (v, k) => defaultFilters[k] == v), blacklist);
+        const diff = getDiff(filters.asMutable(), defaultFilters);
 
-            const diff = getDiff(filters.asMutable(), defaultFilters);
+        const location = { 
+            pathname: window.location.pathname, 
+            search: `?${queryString.stringify(diff)}`, 
+            query: diff 
+        };
 
-            const location = { 
-                pathname: window.location.pathname, 
-                search: `?${queryString.stringify(diff)}`, 
-                query: diff 
-            };
+        yield put(navigate(location, 'PUSH'));
 
-            yield put(navigate(location, 'PUSH'));
+        if (task) {
+            yield put({ type:'NOOP', loadingBar: 'hide' });
+            yield cancel(task);
+        }
 
-            if (task) {
-                yield put({ type:'NOOP', loadingBar: 'hide' });
-                yield cancel(task);
-            }
-
-            task = yield fork(handleFilter);
-        // }
+        task = yield fork(handleFilter);
     }
 
     Object.defineProperty(sagas['filter'], 'name', {
@@ -250,17 +222,13 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
     });
 
     sagas['syncFilters'] = function*(action) {
-        // while (true) {
-            // const action = yield take(actionTypes.syncFilters);
+        if (_.isEmpty(action.payload)) {
+            yield put(actions.resetFilters());
+        } else {
+            yield put(actions.setFilters(action.payload));
+        }
 
-            if (_.isEmpty(action.payload)) {
-                yield put(actions.resetFilters());
-            } else {
-                yield put(actions.setFilters(action.payload));
-            }
-
-            yield put(actions.list());
-        // }
+        yield put(actions.list());
     }
 
     Object.defineProperty(sagas['syncFilters'], 'name', {
@@ -268,26 +236,22 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
     });
 
     sagas['checkFilterSync'] = function*(action) {
-        // while (true) {
-            // const action = yield take(actionTypes.checkFilterSync);
+        const filters = action.payload;
 
-            const filters = action.payload;
+        _.defaults(filters, defaultState.list.filters.asMutable());
 
-            _.defaults(filters, defaultState.list.filters.asMutable());
+        const currentState = yield select(selectors.getFilters);
 
-            const currentState = yield select(selectors.getFilters);
+        // console.warn(filters);
+        // console.warn(currentState);
 
-            // console.warn(filters);
-            // console.warn(currentState);
+        const diff = getDiff(filters, currentState);
 
-            const diff = getDiff(filters, currentState);
+        // console.warn(diff);
 
-            // console.warn(diff);
-
-            if (! _.isEmpty(diff)) {
-                yield put(actions.syncFilters(filters));
-            }
-        // }
+        if (! _.isEmpty(diff)) {
+            yield put(actions.syncFilters(filters));
+        }
     }
 
     Object.defineProperty(sagas['checkFilterSync'], 'name', {
@@ -295,13 +259,9 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
     });
 
     sagas['resetFilters'] = function*() {
-        // while (true) {
-            // yield take(actionTypes.resetFilters);
+        const filters = defaultState.list.filters.asMutable();
 
-            const filters = defaultState.list.filters.asMutable();
-
-            yield put(actions.setFilters(filters));
-        // }
+        yield put(actions.setFilters(filters));
     }
 
     Object.defineProperty(sagas['resetFilters'], 'name', {

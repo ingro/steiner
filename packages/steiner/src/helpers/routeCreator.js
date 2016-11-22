@@ -46,8 +46,8 @@ export function generateRoutes(resource, selectors, options = {}) {
     const patterns = createPatterns(resource, options.omit);
 
     return {
-        list: [
-            {
+        list: {
+            list: {
                 pattern: patterns.list,
                 exactly: true,
                 componentPath: `containers/${_.upperFirst(resource)}ListLayout`,
@@ -59,7 +59,7 @@ export function generateRoutes(resource, selectors, options = {}) {
                     };
                 } : _.upperFirst(resource)
             },
-            {
+            edit: {
                 pattern: patterns.edit,
                 componentPath: `containers/${_.upperFirst(resource)}Loader`,
                 breadcrumb: (state, ownProps) => {
@@ -82,7 +82,7 @@ export function generateRoutes(resource, selectors, options = {}) {
                     };
                 }
             }
-        ],
+        },
         patterns
     };
 }

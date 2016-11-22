@@ -1,3 +1,7 @@
+## 0.13.0 (November 23, 2016)
+
+- Easier way to extend routes
+
 ## 0.12.0 (November 10, 2016)
 
 - Revorked translations (removed mostly from steinerHelper and simplified)

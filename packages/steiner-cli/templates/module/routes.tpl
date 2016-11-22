@@ -5,7 +5,7 @@ import routeRegister from 'helpers/routeRegister';
 import { selectors } from '../reducers/{{name}}';
 
 const routes = helper.generateRoutes('{{name}}', selectors);
-routes.list = routes.list.map(route => ({
+const list = Object.values(routes.list).map(route => ({
     ...route,
     getComponent() {
         return new Promise((resolve, reject) => {
@@ -21,4 +21,4 @@ const links = routeCreator.generateLinks(routes.patterns);
 routeRegister.addPatterns('{{name}}', routes.patterns);
 routeRegister.addLinks('{{name}}', links);
 
-export default routes.list;
+export default list;

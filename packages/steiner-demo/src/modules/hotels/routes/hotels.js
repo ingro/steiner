@@ -11,7 +11,7 @@ const routes = helper.generateRoutes('hotels', selectors, {
     }
 });
 
-routes.list = routes.list.map(route => ({
+const list = Object.values(routes.list).map(route => ({
     ...route,
     getComponent() {
         return new Promise((resolve, reject) => {
@@ -31,4 +31,4 @@ routeRegister.addPatterns('hotels', routes.patterns, {
 
 routeRegister.addLinks('hotels', links);
 
-export default routes.list;
+export default list;

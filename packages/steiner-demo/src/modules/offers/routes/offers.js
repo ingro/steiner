@@ -6,7 +6,8 @@ import routeRegister from 'helpers/routeRegister';
 import { selectors } from '../reducers/offers';
 
 const routes = helper.generateRoutes('offers', selectors);
-routes.list = routes.list.map(route => ({
+
+const list = Object.values(routes.list).map(route => ({
     ...route,
     getComponent() {
         return new Promise((resolve, reject) => {
@@ -22,4 +23,4 @@ const links = routeCreator.generateLinks(routes.patterns);
 routeRegister.addPatterns('offers', routes.patterns);
 routeRegister.addLinks('offers', links);
 
-export default routes.list;
+export default list;

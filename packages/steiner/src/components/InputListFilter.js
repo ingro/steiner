@@ -10,7 +10,7 @@ export default class InputListFilter extends Component {
             value: props.value
         };
 
-        this.updateFilter = debounce(() => props.updateFilter(props.key, this.state.value), 500);
+        this.updateFilter = debounce(() => props.updateFilter(props.fieldKey, this.state.value), 500);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -22,6 +22,10 @@ export default class InputListFilter extends Component {
     }
 
     handleChange = (value) => {
+        if (this.props.parseInt && value !== '') {
+            value = parseInt(value, 10);
+        }
+
         this.setState({
             value
         });
@@ -53,13 +57,18 @@ export default class InputListFilter extends Component {
 }
 
 InputListFilter.propTypes = {
-    key: PropTypes.string,
+    fieldKey: PropTypes.string,
+    parseInt: PropTypes.bool,
     placeholder: PropTypes.string,
     updateFilter: PropTypes.func,
-    value: PropTypes.string
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ])
 };
 
 InputListFilter.defaultProps = {
-    key: 'q',
+    fieldKey: 'q',
+    parseInt: false,
     placeholder: 'Type to search...'
 };

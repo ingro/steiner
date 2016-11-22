@@ -31,7 +31,7 @@
     "react-select": "^1.0.0-rc.2",
     "react-sidebar": "^2.2.1",
     "react-virtualized": "^8.5.2",
-    "reapop": "^0.6.0",
+    "reapop": "^0.6.1",
     "reapop-theme-wybo": "^0.4.0",
     "redux": "^3.6.0",
     "redux-batched-subscribe": "^0.1.6",

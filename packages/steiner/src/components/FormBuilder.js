@@ -77,6 +77,7 @@ export class FormBuilder extends Component {
                     placeholder={placeholder}
                     component={InputField}
                     type={type}
+                    label={label}
                     {...rest}
                 />;
         }

@@ -7,4 +7,8 @@ import api from '../apis/{{name}}';
 
 const sagas = helper.createSagas('{{name}}', actionTypes, actions, api, selectors, DEFAULT_STATE);
 
-export default sagaCreator.bootSagas(sagas, actionTypes);
+const defaultSagas = sagaCreator.bootSagas(sagas, actionTypes);
+
+export default [
+    ...defaultSagas
+];

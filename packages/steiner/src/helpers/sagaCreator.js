@@ -83,10 +83,16 @@ export function bootSagas(sagas, actionTypes) {
     ];
 }
 
+const defaultOptions = {
+    intFilters: []
+};
+
 export function createSagas(resource, actionTypes, actions, api, selectors, defaultState, options = {}) {
     if (resource == null) {
         throw new Error('Expected resource');
     }
+
+    _.defaults(options, defaultOptions);
 
     resource = _.trim(_.upperFirst(resource));
 
@@ -225,7 +231,14 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         if (_.isEmpty(action.payload)) {
             yield put(actions.resetFilters());
         } else {
-            yield put(actions.setFilters(action.payload));
+            // TODO: cycle filters only if options.intFilters isn't empty
+            const filters = {};
+
+            _.forOwn(action.payload, (value, key) => {
+                filters[key] = _.includes(options.intFilters, key) ? parseInt(value, 10) : value;
+            });
+
+            yield put(actions.setFilters(filters));
         }
 
         yield put(actions.list());

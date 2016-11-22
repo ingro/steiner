@@ -84,7 +84,8 @@ export function bootSagas(sagas, actionTypes) {
 }
 
 const defaultOptions = {
-    intFilters: []
+    clientFilters: false,
+    numberFilters: []
 };
 
 export function createSagas(resource, actionTypes, actions, api, selectors, defaultState, options = {}) {
@@ -108,6 +109,10 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
             const response = yield call(api.list, filters);
 
             yield put(success(actionTypes.listSuccess, response, 'hide'));
+
+            if (options.clientFilters) {
+                yield put(actions.filterCollection());
+            }
         } catch(error) {
             yield put(fail(actionTypes.listFail, error, 'hide'));
         }
@@ -220,7 +225,11 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
             yield cancel(task);
         }
 
-        task = yield fork(handleFilter);
+        if (options.clientFilters) {
+            yield put(actions.filterCollection());
+        } else {
+            task = yield fork(handleFilter);
+        }
     }
 
     Object.defineProperty(sagas['filter'], 'name', {
@@ -231,17 +240,21 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         if (_.isEmpty(action.payload)) {
             yield put(actions.resetFilters());
         } else {
-            // TODO: cycle filters only if options.intFilters isn't empty
+            // TODO: cycle filters only if options.numberFilters isn't empty
             const filters = {};
 
             _.forOwn(action.payload, (value, key) => {
-                filters[key] = _.includes(options.intFilters, key) ? parseInt(value, 10) : value;
+                filters[key] = _.includes(options.numberFilters, key) ? parseInt(value, 10) : value;
             });
 
             yield put(actions.setFilters(filters));
         }
 
-        yield put(actions.list());
+        if (options.clientFilters) {
+            yield put(actions.filterCollection());
+        } else {
+            yield put(actions.list());
+        }
     }
 
     Object.defineProperty(sagas['syncFilters'], 'name', {

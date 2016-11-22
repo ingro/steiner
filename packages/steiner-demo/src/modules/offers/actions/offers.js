@@ -1,4 +1,7 @@
 import helper from 'helpers/steinerHelper';
-    
-export const actionTypes = helper.createActionTypes('offers');
-export const actions = helper.createActions('offers', actionTypes);
+
+const actionTypesObj = helper.createActionTypes('offers');
+const actionsObj = helper.createActions('offers', actionTypesObj);
+
+export const actionTypes = actionTypesObj;
+export const actions = actionsObj;

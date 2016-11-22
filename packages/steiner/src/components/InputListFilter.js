@@ -45,10 +45,10 @@ export default class InputListFilter extends Component {
 
     render() {
         const { value } = this.state;
-        const { placeholder } = this.props;
+        const { autofocus, placeholder } = this.props;
 
         return <ClearableInput
-            autofocus={true}
+            autofocus={autofocus}
             value={value}
             placeholder={placeholder}
             onChange={this.handleChange}
@@ -57,6 +57,7 @@ export default class InputListFilter extends Component {
 }
 
 InputListFilter.propTypes = {
+    autofocus: PropTypes.bool,
     fieldKey: PropTypes.string,
     parseInt: PropTypes.bool,
     placeholder: PropTypes.string,
@@ -68,6 +69,7 @@ InputListFilter.propTypes = {
 };
 
 InputListFilter.defaultProps = {
+    autofocus: true,
     fieldKey: 'q',
     parseInt: false,
     placeholder: 'Type to search...'

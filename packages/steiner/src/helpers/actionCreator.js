@@ -1,11 +1,10 @@
 import arrify from 'arrify';
-import upperFirst from 'lodash/upperFirst';
-import trim from 'lodash/trim';
+import _ from 'lodash';
 
 function addAsyncGroup(resource, actionTypes, group, options) {
     const upperGroup    = group.toUpperCase();
 
-    resource = trim(resource);
+    resource = _.trim(resource);
 
     const start        = `${resource}/${upperGroup}`;
     const success      = `${resource}/${upperGroup}_SUCCESS`;
@@ -25,16 +24,19 @@ function addAsyncGroup(resource, actionTypes, group, options) {
     }
 }
 
+const defaultOptions = {
+    addAlias: true,
+    clientFilters: false
+};
+
 export function createActionTypes(resource, options = {}) {
     if (resource == null) {
         throw new Error('Expected resource');
     }
 
-    if (options.addAlias == null) {
-        options.addAlias = true;
-    }
+    _.defaults(options, defaultOptions);
 
-    resource = trim(resource);
+    resource = _.trim(resource);
 
     if (resource === '') {
         throw new Error('Expected resource');
@@ -48,18 +50,19 @@ export function createActionTypes(resource, options = {}) {
     addAsyncGroup(resource, actionTypes, 'update', options);
     addAsyncGroup(resource, actionTypes, 'delete', options);
 
-    const resetCurrent    = `${resource}/RESET_CURRENT`;
-    const updateFilter    = `${resource}/UDATE_FILTER`;
-    const syncFilters     = `${resource}/SYNC_FILTERS`;
-    const checkFilterSync = `${resource}/CHECK_FILTER_SYNC`;
-    const setFilters      = `${resource}/SET_FILTERS`;
-    const resetFilters    = `${resource}/RESET_FILTERS`;
-    const changePage      = `${resource}/CHANGE_PAGE`;
-    const changeOrder     = `${resource}/CHANGE_ORDER`;
-    const select          = `${resource}/SELECT`;
-    const deselect        = `${resource}/DESELECT`;
-    const selectAll       = `${resource}/SELECT_ALL`;
-    const deselectAll     = `${resource}/DESELECT_ALL`;
+    const resetCurrent     = `${resource}/RESET_CURRENT`;
+    const updateFilter     = `${resource}/UDATE_FILTER`;
+    const syncFilters      = `${resource}/SYNC_FILTERS`;
+    const checkFilterSync  = `${resource}/CHECK_FILTER_SYNC`;
+    const setFilters       = `${resource}/SET_FILTERS`;
+    const resetFilters     = `${resource}/RESET_FILTERS`;
+    const changePage       = `${resource}/CHANGE_PAGE`;
+    const changeOrder      = `${resource}/CHANGE_ORDER`;
+    const select           = `${resource}/SELECT`;
+    const deselect         = `${resource}/DESELECT`;
+    const selectAll        = `${resource}/SELECT_ALL`;
+    const deselectAll      = `${resource}/DESELECT_ALL`;
+    const filterCollection = `${resource}/FILTER_COLLECTION`;
 
     actionTypes.resetCurrent = resetCurrent;
     actionTypes[resetCurrent] = resetCurrent;
@@ -97,6 +100,9 @@ export function createActionTypes(resource, options = {}) {
     actionTypes.deselectAll = deselectAll;
     actionTypes[deselectAll] = deselectAll;
 
+    actionTypes.filterCollection = filterCollection;
+    actionTypes[filterCollection] = filterCollection;
+
     return actionTypes;
 }
 
@@ -105,7 +111,7 @@ export function createActions(resource, actionTypes) {
         throw new Error('Expected resource');
     }
 
-    resource = trim(upperFirst(resource));
+    resource = _.trim(_.upperFirst(resource));
 
     const actions = {};
 
@@ -286,6 +292,12 @@ export function createActions(resource, actionTypes) {
     actions['deselectAll'] = function() {
         return {
             type: actionTypes.deselectAll
+        };
+    }
+
+    actions['filterCollection'] = function() {
+        return {
+            type: actionTypes.filterCollection
         };
     }
 

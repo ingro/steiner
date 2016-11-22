@@ -5,6 +5,9 @@ import queryString from 'query-string';
 
 export default class ListLayout extends Component {
     componentDidMount() {
+        if (this.props.clientFilters) {
+            this.props.list();
+        }
         this.props.syncFilters(queryString.parse(window.location.search));
     }
 
@@ -23,7 +26,7 @@ export default class ListLayout extends Component {
     }
 
     render() {
-        const { filters, total, filterComponent, tableComponent } = this.props;
+        const { clientFilters, filters, items, total, filterComponent, tableComponent } = this.props;
 
         return (
             <Flex
@@ -37,18 +40,23 @@ export default class ListLayout extends Component {
                 <Box col={12} style={{ flexGrow: 1 }}>
                     {React.createElement(tableComponent, this.props)}
                 </Box>
-                <Box col={12}>
-                    <Paginator
-                        current={filters.page}
-                        pageSize={filters.perPage}
-                        total={total}
-                        showStatusText={true}
-                        showSizeChanger={true}
-                        onSizeChange={this.handleChangePaginatorSize}
-                        sizeOptions={[10, 20, 50]}
-                        onChange={this.handleChangePage}
-                        sizeChangerOptions={{ openUp: true }}
-                    />
+                <Box col={12} style={clientFilters ? { height: '30px', marginTop: '25px' } : {}}>
+                    {clientFilters &&
+                        <div className="text-right">Total: <strong>{items.length}</strong></div>
+                    }
+                    {! clientFilters &&
+                        <Paginator
+                            current={filters.page}
+                            pageSize={filters.perPage}
+                            total={total}
+                            showStatusText={true}
+                            showSizeChanger={true}
+                            onSizeChange={this.handleChangePaginatorSize}
+                            sizeOptions={[10, 20, 50]}
+                            onChange={this.handleChangePage}
+                            sizeChangerOptions={{ openUp: true }}
+                        />
+                    }
                 </Box>
             </Flex>
         );
@@ -57,9 +65,15 @@ export default class ListLayout extends Component {
 
 ListLayout.propTypes = {
     changePage: PropTypes.func,
+    clientFilters: PropTypes.bool,
     filterComponent: PropTypes.func,
     filters: PropTypes.object,
+    items: PropTypes.array,
     list: PropTypes.func,
     tableComponent: PropTypes.func,
     total: PropTypes.number
+};
+
+ListLayout.defaultProps = {
+    clientFilters: false
 };

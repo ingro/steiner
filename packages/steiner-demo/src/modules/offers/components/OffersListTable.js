@@ -22,9 +22,33 @@ export default class OffersListTable extends Component {
                 flexGrow: 0
             },
             {
-                label: 'Name',
-                dataKey: 'name',
+                label: 'Title',
+                dataKey: 'title',
                 flexGrow: 1
+            },
+            {
+                width: 100,
+                dataKey: 'hotelsId',
+                label: 'Hotel ID',
+                flexGrow: 0
+            },
+            {
+                width: 150,
+                label: 'Price',
+                dataKey: 'price',
+                flexGrow: 0
+            },
+            {
+                width: 150,
+                label: 'Start',
+                dataKey: 'start',
+                flexGrow: 0
+            },
+            {
+                width: 150,
+                label: 'End',
+                dataKey: 'end',
+                flexGrow: 0
             },
             {
                 width: 200,

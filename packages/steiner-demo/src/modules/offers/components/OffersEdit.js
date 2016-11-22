@@ -81,7 +81,7 @@ class OffersEdit extends Component {
     getTitle() {
         const { item } = this.props;
 
-        return item.name ? item.name : 'Create new Offers';
+        return item.title ? item.title : 'Create new Offer';
     }
 
     render() {

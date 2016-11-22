@@ -1,4 +1,6 @@
 import Immutable from 'seamless-immutable';
+import matchSorter from 'match-sorter';
+import sift from 'sift';
 import _ from 'lodash';
 
 export const DEFAULT_STATE = Immutable({
@@ -159,6 +161,87 @@ function deselectAll(state) {
     return state.setIn(['list', 'selected'], []);
 }
 
+/**
+ * For example
+    {
+        additionalFilters: {
+            countryId: {
+                field: 'countryId',
+                op: '$eq'
+            },
+            priceMin: {
+                field: 'price',
+                op: '$gte',
+            },
+            priceMax: {
+                field: 'price',
+                op: '$lte',
+            }
+        },
+        searchKeys: ['title']
+    }
+ */
+const defaultFilterCollectionOptions = {
+    additionalFilters: {},
+    defaultOrderKey: 'id',
+    searchKeys: ['name']
+};
+
+function createFilterCollectionHandler(options = {}) {
+    _.defaults(options, defaultFilterCollectionOptions);
+
+    const { additionalFilters, defaultOrderKey, searchKeys } = options;
+
+    return function filterCollection(state, action) {
+        let itemsId = [];
+
+        const filters = state.list.filters;
+        const items = state.list.itemsById;
+
+        if (filters.q === '') {
+            itemsId = Object.keys(items);
+        } else {
+            const matches = matchSorter(Object.values(items), filters.q, {
+                keys: searchKeys,
+                threshold: matchSorter.rankings.CONTAINS
+            });
+
+            itemsId = matches.map(match => match.id);
+        }
+
+        let filtered = itemsId.map(id => items[id]);
+
+        const query = {};
+
+        Object.keys(filters).forEach(key => {
+            if (_.includes(Object.keys(additionalFilters), key) && filters[key]) {
+                const queryKey = additionalFilters[key].field;
+                if (! query[queryKey]) {
+                    query[queryKey] = {};
+                }
+
+                query[queryKey][additionalFilters[key].op] = filters[key];
+            }
+        });
+
+        // console.warn(filtered);
+        // console.warn(query);
+        
+        filtered = sift(query, filtered);
+
+        let sorted = _.sortBy(filtered, filters.orderKey ? filters.orderKey : defaultOrderKey);
+
+        if (filters.orderDirection === 'DESC') {
+            sorted = sorted.reverse();
+        }
+        
+        return state.updateIn(['list'], list => ({
+            ...list,
+            itemsId: sorted.map(item => item.id)
+        }));
+    }
+}
+
 export function createHandlers(actionTypes, options = {}) {
     return {
         [actionTypes.list]: list,
@@ -176,7 +259,8 @@ export function createHandlers(actionTypes, options = {}) {
         [actionTypes.select]: select,
         [actionTypes.deselect]: deselect,
         [actionTypes.selectAll]: selectAll,
-        [actionTypes.deselectAll]: deselectAll
+        [actionTypes.deselectAll]: deselectAll,
+        [actionTypes.filterCollection]: createFilterCollectionHandler(options)
     };
 }
 
@@ -188,7 +272,7 @@ export function createSelectors(key) {
         getFilters: state => state[key].list.filters,
         getSelectedId: state => state[key].list.selected,
         getSelected: state => state[key].list.selected.map(id => state[key].list.itemsById[id])
-    }
+    };
 }
 
 export function createReducer(handlers, defaultState = DEFAULT_STATE) {

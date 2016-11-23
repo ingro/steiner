@@ -193,23 +193,25 @@ function createFilterCollectionHandler(options = {}) {
     const { additionalFilters, defaultOrderKey, searchKeys } = options;
 
     return function filterCollection(state, action) {
-        let itemsId = [];
+        // let itemsId = [];
+        let filtered = [];
 
         const filters = state.list.filters;
         const items = state.list.itemsById;
 
         if (filters.q === '') {
-            itemsId = Object.keys(items);
+            filtered = Object.values(items);
+            // itemsId = Object.keys(items);
         } else {
-            const matches = matchSorter(Object.values(items), filters.q, {
+            filtered = matchSorter(Object.values(items), filters.q, {
                 keys: searchKeys,
                 threshold: matchSorter.rankings.CONTAINS
             });
 
-            itemsId = matches.map(match => match.id);
+            // itemsId = matches.map(match => match.id);
         }
 
-        let filtered = itemsId.map(id => items[id]);
+        // let filtered = itemsId.map(id => items[id]);
 
         const query = {};
 

@@ -30,6 +30,7 @@ export default {
             actions: 'Azioni',
             cancel: 'Annulla',
             create: 'Crea',
+            displaying: 'Visualizzati',
             edit: 'Modifica',
             help: 'Aiuto',
             profileAndSettings: 'Profilo & Impostazioni',

@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import Paginator from 'vivi/lib/Paginator';
+import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 import { Flex, Box } from 'reflexbox';
 import queryString from 'query-string';
 
-export default class ListLayout extends Component {
+export class ListLayout extends Component {
     componentDidMount() {
         if (this.props.clientFilters) {
             this.props.list();
@@ -26,7 +27,7 @@ export default class ListLayout extends Component {
     }
 
     render() {
-        const { clientFilters, filters, items, total, filterComponent, tableComponent } = this.props;
+        const { clientFilters, displayingLabel, filters, items, total, filterComponent, tableComponent } = this.props;
 
         return (
             <Flex
@@ -42,7 +43,7 @@ export default class ListLayout extends Component {
                 </Box>
                 <Box col={12} style={clientFilters ? { height: '30px', marginTop: '25px' } : {}}>
                     {clientFilters &&
-                        <div className="text-right">Total: <strong>{items.length}</strong></div>
+                        <div className="text-right">{displayingLabel} <strong>{items.length}/{total}</strong></div>
                     }
                     {! clientFilters &&
                         <Paginator
@@ -70,10 +71,16 @@ ListLayout.propTypes = {
     filters: PropTypes.object,
     items: PropTypes.array,
     list: PropTypes.func,
+    displayingLabel: PropTypes.string,
     tableComponent: PropTypes.func,
     total: PropTypes.number
 };
 
 ListLayout.defaultProps = {
-    clientFilters: false
+    clientFilters: false,
+    displayingLabel: 'Showing'
 };
+
+export default TranslatorHoc(ListLayout, {
+    displayingLabel: 'steiner.labels.displaying'
+});

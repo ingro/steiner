@@ -43,17 +43,23 @@ const schema = [
     },
     {
         name: 'start_date',
-        type: 'date'
+        type: 'date',
+        label: 'Data inizio'
     },
     {
         name: 'quantity',
         type: 'number',
+        label: 'Quantità',
         placeholder: 'Quantita'
     },
     {
         name: 'comment',
         type: 'textarea',
         onlyInput: true
+    },
+    {
+        name: 'hidden_id',
+        type: 'hidden'
     }
 ];
 
@@ -70,7 +76,8 @@ class OffersEdit extends Component {
             active: true,
             type: 2,
             comment: 'lorem ipsum',
-            theme: '2'
+            theme: '2',
+            hidden_id: 42
         };
     }
 

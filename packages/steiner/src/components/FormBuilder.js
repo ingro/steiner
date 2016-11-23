@@ -30,6 +30,14 @@ export class FormBuilder extends Component {
                     label={label}
                     {...rest}
                 />;
+            case 'hidden':
+                return <Field
+                    key={key}
+                    name={name}
+                    component="input"
+                    type="hidden"
+                    {...rest}
+                />;
             case 'checkbox':
                 return <Field
                     key={key}

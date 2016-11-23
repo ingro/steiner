@@ -7,60 +7,68 @@ import routeRegister from 'helpers/routeRegister';
 
 const schema = [
     {
-        name: 'email',
-        type: 'text',
-        placeholder: 'Indirizzo email',
-        label: 'Indirizzo email'
+        name: 'title',
+        type: 'text'
     },
     {
-        name: 'active',
-        label: 'Attivo',
-        type: 'checkbox'
-    },
-    {
-        name: 'type',
-        label: 'Tipologia',
-        type: 'select',
-        options: [{
-            value: 1,
-            label: 'Articolo'
-        }, {
-            value: 2,
-            label: 'Commento'
-        }]
-    },
-    {
-        name: 'theme',
-        label: 'Tema',
-        type: 'radio',
-        options: [{
-            value: '1',
-            label: 'Bright'
-        }, {
-            value: '2',
-            label: 'Dark'
-        }]
-    },
-    {
-        name: 'start_date',
-        type: 'date',
-        label: 'Data inizio'
-    },
-    {
-        name: 'quantity',
-        type: 'number',
-        label: 'Quantità',
-        placeholder: 'Quantita'
-    },
-    {
-        name: 'comment',
-        type: 'textarea',
-        onlyInput: true
-    },
-    {
-        name: 'hidden_id',
-        type: 'hidden'
+        name: 'price',
+        type: 'number'
     }
+    // {
+    //     name: 'email',
+    //     type: 'text',
+    //     placeholder: 'Indirizzo email',
+    //     label: 'Indirizzo email'
+    // },
+    // {
+    //     name: 'active',
+    //     label: 'Attivo',
+    //     type: 'checkbox'
+    // },
+    // {
+    //     name: 'type',
+    //     label: 'Tipologia',
+    //     type: 'select',
+    //     options: [{
+    //         value: 1,
+    //         label: 'Articolo'
+    //     }, {
+    //         value: 2,
+    //         label: 'Commento'
+    //     }]
+    // },
+    // {
+    //     name: 'theme',
+    //     label: 'Tema',
+    //     type: 'radio',
+    //     options: [{
+    //         value: '1',
+    //         label: 'Bright'
+    //     }, {
+    //         value: '2',
+    //         label: 'Dark'
+    //     }]
+    // },
+    // {
+    //     name: 'start_date',
+    //     type: 'date',
+    //     label: 'Data inizio'
+    // },
+    // {
+    //     name: 'quantity',
+    //     type: 'number',
+    //     label: 'Quantità',
+    //     placeholder: 'Quantita'
+    // },
+    // {
+    //     name: 'comment',
+    //     type: 'textarea',
+    //     onlyInput: true
+    // },
+    // {
+    //     name: 'hidden_id',
+    //     type: 'hidden'
+    // }
 ];
 
 class OffersEdit extends Component {
@@ -71,14 +79,15 @@ class OffersEdit extends Component {
     }
 
     createInitialFormValues(item) {
-        return {
-            email: null,
-            active: true,
-            type: 2,
-            comment: 'lorem ipsum',
-            theme: '2',
-            hidden_id: 42
-        };
+        // return {
+        //     email: null,
+        //     active: true,
+        //     type: 2,
+        //     comment: 'lorem ipsum',
+        //     theme: '2',
+        //     hidden_id: 42
+        // };
+        return item;
     }
 
     getCancelLink() {

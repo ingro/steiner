@@ -8,7 +8,6 @@
 - Add logout action to Omnibox
 - Make all the whole auth package of Steiner more customizable
 - Move confirm logout in saga? (to allow call it from Omnibox)
-- Add apiErrorMiddleware to steiner? (make it configurable and translable)
 
 ## Current .env
 

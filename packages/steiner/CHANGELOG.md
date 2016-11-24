@@ -1,3 +1,7 @@
+## 0.13.2 (November 24, 2016)
+
+- Added `createAuthErrorMiddleware`
+
 ## 0.13.0 (November 23, 2016)
 
 - Easier way to extend routes

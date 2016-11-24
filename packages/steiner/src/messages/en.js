@@ -19,6 +19,7 @@ export default {
             btn_secondary_text: 'Cancel'
         },
         notifications: {
+            authError: 'Authentication failed, please login again!',
             titles: {
                 success: 'Hooray!',
                 fail: 'Oh snap!'

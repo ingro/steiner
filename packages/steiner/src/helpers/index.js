@@ -1,5 +1,6 @@
 import actionCreatorModule from './actionCreator';
 import apiCreatorModule from './apiCreator';
+import createAuthErrorMiddlewareModule from './createAuthErrorMiddleware';
 import connectCreatorModule from './connectCreator';
 import createConfirmModule from './confirmCreator';
 import formHelperModule from './formHelper';
@@ -14,6 +15,7 @@ import steinerHelperModule from './steinerHelper';
 
 export const actionCreator = actionCreatorModule;
 export const apiCreator = apiCreatorModule;
+export const createAuthErrorMiddleware = createAuthErrorMiddlewareModule;
 export const connectCreator = connectCreatorModule;
 export const createConfirm = createConfirmModule;
 export const formHelper = formHelperModule;

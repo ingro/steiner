@@ -19,6 +19,7 @@ export default {
             btn_secondary_text: 'Annulla'
         },
         notifications: {
+            authError: 'Autenticazione fallita, si prega di effettuare nuovamente il login!',
             titles: {
                 success: 'Successo!',
                 fail: 'Errore!'

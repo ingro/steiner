@@ -4,11 +4,10 @@ import { batchedSubscribe } from 'redux-batched-subscribe';
 import { unstable_batchedUpdates as batchedUpdates } from 'react-dom';
 import createSagaMiddleware, { END } from 'redux-saga';
 import persistState from 'redux-localstorage';
-import { notificationMiddleware, loadingBarMiddleware } from 'steiner';
+import { notificationMiddleware, loadingBarMiddleware, createAuthErrorMiddleware } from 'steiner';
 import Immutable from 'seamless-immutable';
 
 import reducer from '../reducers';
-import apiErrorMiddleware from 'helpers/apiErrorMiddleware';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -16,6 +15,7 @@ const enhancer = compose(
     applyMiddleware(
         thunkMiddleware,
         sagaMiddleware,
+        createAuthErrorMiddleware(),
         apiErrorMiddleware,
         notificationMiddleware,
         loadingBarMiddleware

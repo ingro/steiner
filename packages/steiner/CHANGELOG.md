@@ -1,4 +1,4 @@
-## 0.13.2 (November 24, 2016)
+## 0.13.1 (November 24, 2016)
 
 - Added `createAuthErrorMiddleware`
 

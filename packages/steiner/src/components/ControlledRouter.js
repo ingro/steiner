@@ -10,6 +10,7 @@ export default class ControlledRouter extends Component {
                 history={this.props.history}
                 location={this.props.location}
                 action={this.props.action}
+                basename={this.props.basename}
                 onChange={(location, action) => {
                     if (action !== 'SYNC') {
                         this.props.dispatch(navigate(location, action));
@@ -26,6 +27,7 @@ export default class ControlledRouter extends Component {
 
 ControlledRouter.propTypes = {
     action: PropTypes.string.isRequired,
+    basename: PropTypes.string,
     children: PropTypes.any,
     dispatch: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,

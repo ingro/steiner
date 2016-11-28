@@ -15,6 +15,7 @@
 - In auth's loginSaga saga make optional the settings extractor? Otherwise it could delete settings like language;
 - Refactor the reducers? Create root reducers for entities, filters etc. and add (even lazily) keys corresponding to resources;
 - Add option to omit generate actions for given group (list, create, delete etc.)
+- Find a way to pass basename option's to all sagaCreators if needed
 
 ## Tests
 - Split actionCreator-test createActions tests in multiple assertions for easier debugging with snapshots

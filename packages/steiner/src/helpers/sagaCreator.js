@@ -218,6 +218,11 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
             query: diff 
         };
 
+        if (options.basename) {
+            const re = new RegExp(`^${options.basename}`);
+            location.pathname = location.pathname.replace(re, '');
+        }
+
         yield put(navigate(location, 'PUSH'));
 
         if (task) {

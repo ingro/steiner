@@ -117,7 +117,7 @@ class App extends Component {
                 location={currentRoute.location}
                 action={currentRoute.action}
                 dispatch={dispatch}
-            >             
+            >
                 <div>
                     {!this.state.isLanguageLoaded && <div className="splash"><h1 className="loading dots">{process.env.REACT_APP_NAME} </h1></div>}
                     {this.state.isLanguageLoaded && <TranslatorProvider

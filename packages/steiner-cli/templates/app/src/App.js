@@ -6,7 +6,7 @@ import LoadingBar from 'react-redux-loading-bar';
 import Sidebar from 'react-sidebar';
 import Helmet from 'react-helmet';
 import theme from 'reapop-theme-wybo';
-import { ControlledRouter, MatchWhenAuthorizedAsync, MatchWhenGuest, KeyBinderHoc } from 'steiner';
+import { ControlledRouter, MatchWhenAuthorized, MatchWhenAuthorizedAsync, MatchWhenGuest, KeyBinderHoc } from 'steiner';
 import { getUser } from 'steiner/lib/auth/reducer';
 import { getCurrentRoute } from 'steiner/lib/routing/reducer';
 import { getSettings } from 'steiner/lib/settings/reducer';
@@ -155,7 +155,7 @@ class App extends Component {
                                     <div className="container-fluid">
                                         <Match pattern="/" exactly={true} render={() => <Welcome user={user}/>} />
                                         <MatchWhenGuest pattern="/login" exactly={true} component={LoginForm} user={user} location={currentRoute.location} />
-                                        <Match pattern="/profile" render={() => <Profile user={user} />}/>
+                                        <MatchWhenAuthorized pattern="/profile" render={() => <Profile user={user} />}/>
                                         {routes.map((route, i) => (
                                             <MatchWhenAuthorizedAsync key={i} user={user} {...route}/>
                                         ))}

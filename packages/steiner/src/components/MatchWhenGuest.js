@@ -14,11 +14,19 @@ class MatchWhenGuest extends Component {
     componentWillReceiveProps(nextProps) {
         // User logged in
         if (nextProps.user && !this.props.user) {
+            // This to avoid a redirect before the old component get unmounted correctly
             setTimeout(() => {
                 this.setState({
                     authorized: true
                 });
             }, 500);
+        }
+
+        // User logged out
+        if (!nextProps.user && this.props.user) {
+            this.setState({
+                authorized: false
+            });
         }
     }
 

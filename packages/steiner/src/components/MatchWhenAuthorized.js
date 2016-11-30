@@ -16,8 +16,8 @@ const MatchWhenAuthorized = ({ component: Component, user, redirectTo, ...rest }
 };
 
 MatchWhenAuthorized.propTypes = {
-    component: PropTypes.node.isRequired,
-    location: PropTypes.object.isRequired,
+    component: PropTypes.any.isRequired,
+    location: PropTypes.object,
     redirectTo: PropTypes.string,
     user: PropTypes.object
 };

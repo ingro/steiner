@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { auth, FormWrapper } from 'steiner';
 import { createFormAction } from 'steiner/lib/helpers/reduxFormSaga';
@@ -12,32 +13,13 @@ function submit(data, dispatch) {
 
     const payload = {
         ...data,
-        language: data.language.value ? data.language.value : data.language,
+        language: data.language.value ? data.language.value : data.language
     };
 
     return action(payload, dispatch);
 }
 
 export class Profile extends Component {
-    // constructor(props) {
-    //     super(props);
-
-    //     this.confirmRefresh = debounce(this.showConfirmRefresh, 500);
-    // }
-
-    // componentWillReceiveProps(nextProps) {
-    //     if (nextProps.submitSucceeded) {
-    //         this.confirmRefresh();
-    //     }
-    // }
-
-    // showConfirmRefresh = () => {
-    //     this.props.dispatch(helper.createConfirmAction({
-    //         message: this.props.reloadMessage,
-    //         onSuccess: () => window.location.reload(false)
-    //     }));
-    // }
-
     render() {
         return (
             <div>
@@ -87,6 +69,8 @@ const TranslatedProfile = TranslatorHoc(Profile, {
     unsavedMessage: 'steiner.messages.confirmUnsaved',
 });
 
+const ConnectedTranslatedProfile = connect(state => ({ user: getUser(state) }))(TranslatedProfile);
+
 export default reduxForm({
     form: 'profile'
-})(TranslatedProfile);
+})(ConnectedTranslatedProfile);

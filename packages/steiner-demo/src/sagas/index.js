@@ -1,7 +1,7 @@
-import { fork } from 'redux-saga/effects';
+import { fork, put } from 'redux-saga/effects';
 import { reduxFormSaga } from 'steiner';
 import axios from 'axios';
-import { auth, confirm } from 'steiner';
+import { auth, confirm, settings } from 'steiner';
 
 import client from 'apis/client';
 import hotels from '../modules/hotels/sagas/hotels';
@@ -23,12 +23,22 @@ function updateProfile(id, data) {
     });
 }
 
+function *loginSuccessAction(loginData) {
+    const action = settings.actions.updateSettings({
+        language: loginData.language
+    });
+
+    yield put(action);
+}
+
 const formSaga = reduxFormSaga();
 const confirmSaga = confirm.createConfirmSaga();
 const authSaga = auth.createAuthSaga({
     loginAction: login,
     logoutAction: logout,
-    updateProfileAction: updateProfile
+    updateProfileAction: updateProfile,
+    loginSuccessAction,
+    updateProfileSuccessAction: loginSuccessAction
 });
 
 export default function* root() {

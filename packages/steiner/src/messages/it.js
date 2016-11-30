@@ -19,6 +19,11 @@ export default {
             btn_secondary_text: 'Annulla'
         },
         notifications: {
+            auth: {
+                loginSuccess: 'Autenticazione eseguita con successo!',
+                profileUpdateFail: 'Si è verificato un errore durante l\'aggiornamento del profilo!',
+                profileUpdateSuccess: 'Profilo aggiornato con successo!'
+            },
             authError: 'Autenticazione fallita, si prega di effettuare nuovamente il login!',
             titles: {
                 success: 'Successo!',

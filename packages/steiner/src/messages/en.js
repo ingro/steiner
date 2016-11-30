@@ -19,12 +19,17 @@ export default {
             btn_secondary_text: 'Cancel'
         },
         notifications: {
+            auth: {
+                loginSuccess: 'Authentication successfull!',
+                profileUpdateFail: 'An error occured while updating the profile!',
+                profileUpdateSuccess: 'Profile updated successfully!'
+            },
             authError: 'Authentication failed, please login again!',
             titles: {
                 success: 'Hooray!',
                 fail: 'Oh snap!'
             }
-        }
+        },
     },
     components: {
         labels: {

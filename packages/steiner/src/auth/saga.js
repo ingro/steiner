@@ -1,15 +1,41 @@
 import { take, call, put, select, fork } from 'redux-saga/effects';
-import defaults from 'lodash/defaults';
+import _ from 'lodash';
 
 import { actions, actionTypes } from './actions';
-import { actions as settingsActions } from '../settings/actions';
+import { getTranslations, getLanguage } from '../settings/reducer';
 
-const defaultOptions = {
-    settingsExtractor: (data) => ({ language: data.language })
-};
+export function *generateNotificationPayload(actionKey, type, messages, titles) {
+    let translations;
 
-export default function createAuthSaga(options) {
-    defaults(options, defaultOptions);
+    const language = yield select(getLanguage);
+
+    let message = _.get(messages, `${language}.${actionKey}`);
+    let title = _.get(titles, `${language}.${type}`);
+
+    if (! message) {
+        translations = yield select(getTranslations);
+
+        message = translations.messages.notifications.auth[actionKey];
+    }
+
+    if (! title) {
+        if (! translations) {
+            translations = yield select(getTranslations);
+        }
+
+        title = translations.messages.notifications.titles[type];
+    }
+
+    return {
+        title,
+        message,
+        status: type === 'success' ? 'success' : 'error'
+    };
+}
+
+export default function createAuthSaga(options = {}) {
+    const messages = options.messages || {};
+    const titles = options.notificationTitles || {};
 
     const loginSaga = function*() {
         while (true) {
@@ -18,13 +44,24 @@ export default function createAuthSaga(options) {
 
                 const response = yield call(options.loginAction, action.payload);
 
-                yield put(actions.loginRequestSuccess(response.data));
-                yield put(settingsActions.updateSettings(options.settingsExtractor(response.data)));
+                const notification = yield call(generateNotificationPayload, 'loginSuccess', 'success', messages, titles);
+
+                yield put(actions.loginRequestSuccess(response.data, notification));
+
+                if (options.loginSuccessAction) {
+                    yield call(options.loginSuccessAction, response.data);
+                }
             } catch(error) {
-                yield put(actions.loginRequestFail(error));
+                const errorPayload = error.response && error.response.data ? { message: error.response.data.error } : error;
+
+                yield put(actions.loginRequestFail(errorPayload));
+
+                if (options.logoutSuccessAction) {
+                    yield call(options.logoutSuccessAction);
+                }
             }
         }
-    }
+    };
 
     const logoutSaga = function*() {
         while (true) {
@@ -34,10 +71,11 @@ export default function createAuthSaga(options) {
                 yield call(options.logoutAction);
                 yield put(actions.logoutRequestSuccess());
             } catch(error) {
-                yield put(actions.logoutRequestFail(error));
+                const errorPayload = error.response && error.response.data ? { message: error.response.data.error } : error;
+                yield put(actions.logoutRequestFail(errorPayload));
             }
         }
-    }
+    };
 
     const updateProfileSaga = function*() {
         while (true) {
@@ -48,13 +86,22 @@ export default function createAuthSaga(options) {
 
                 const response = yield call(options.updateProfileAction, user.id, action.payload);
 
-                yield put(actions.updateProfileSuccess(response.data));
-                yield put(settingsActions.updateSettings(options.settingsExtractor(response.data)));
+                const notification = yield call(generateNotificationPayload, 'profileUpdateSuccess', 'success', messages, titles);
+
+                yield put(actions.updateProfileSuccess(response.data, notification));
+
+                if (options.updateProfileSuccessAction) {
+                    yield call(options.updateProfileSuccessAction, response.data);
+                }
             } catch(error) {
-                yield put(actions.updateProfileFail(error));
+                const errorPayload = error.response && error.response.data ? { message: error.response.data.error } : error;
+
+                const notification = yield call(generateNotificationPayload, 'profileUpdateFail', 'error', messages, titles);
+
+                yield put(actions.updateProfileFail(errorPayload, notification));
             }
         }
-    }
+    };
 
     return [
         fork(loginSaga),

@@ -17,23 +17,19 @@ export function loginRequest(data) {
     };
 }
 
-export function loginRequestSuccess(response) {
+export function loginRequestSuccess(response, notification) {
     return {
-        type: LOGIN_REQUEST_SUCCESS, 
-        payload: response, 
-        notification: {
-            title: 'Hooray',
-            message: 'Authentication successfull!',
-            status: 'success'
-        }
-    }
+        type: LOGIN_REQUEST_SUCCESS,
+        payload: response,
+        notification
+    };
 }
 
 export function loginRequestFail(error) {
     return { 
         type: LOGIN_REQUEST_FAIL, 
-        error: error.response && error.response.data ? { message: error.response.data.error } : error 
-    }
+        error
+    };
 }
 
 export function logoutRequest() {
@@ -51,8 +47,8 @@ export function logoutRequestSuccess() {
 export function logoutRequestFail(error) {
     return {
         type: LOGOUT_REQUEST_FAIL,
-        error: error.response && error.response.data ? { message: error.response.data.error } : error 
-    }
+        error
+    };
 }
 
 export function updateProfile(data) {
@@ -62,27 +58,19 @@ export function updateProfile(data) {
     };
 }
 
-export function updateProfileSuccess(data) {
+export function updateProfileSuccess(data, notification) {
     return {
         type: UPDATE_PROFILE_SUCCESS,
         payload: data,
-        notification: {
-            title: 'Hooray!',
-            message: 'Profile updated successfully!',
-            status: 'success'
-        }
+        notification
     };
 }
 
-export function updateProfileFail(error) {
+export function updateProfileFail(error, notification) {
     return {
         type: UPDATE_PROFILE_FAIL,
-        error: error.response && error.response.data ? { message: error.response.data.error } : error,
-        notification: {
-            title: 'Oh snap!',
-            message: 'An error occured while updating the profile!',
-            status: 'error'
-        }
+        error,
+        notification
     };
 }
 

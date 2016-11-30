@@ -1,3 +1,7 @@
+## 0.14.0 (November 30, 2016)
+
+- Reworked auth module
+
 ## 0.13.1 (November 24, 2016)
 
 - Added `createAuthErrorMiddleware`

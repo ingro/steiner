@@ -9,7 +9,7 @@
     "reactotron-react-js": "^1.5.3",
     "reactotron-redux-saga": "^1.5.3",
     "redux-devtools-extension": "^1.0.0",
-    "steiner-cli": "^0.13.0"
+    "steiner-cli": "^0.14.0"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -43,7 +43,7 @@
     "reflexbox": "^2.2.3",
     "revalidate": "^1.0.0",
     "seamless-immutable": "^6.3.0",
-    "steiner": "^0.13.0",
+    "steiner": "^0.14.0",
     "text-spinners": "^1.0.5",
     "vivi": "^0.4.6"
   },

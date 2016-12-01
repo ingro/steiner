@@ -1,11 +1,12 @@
 import { routeCreator } from 'steiner';
+import _ from 'lodash';
 
 import helper from 'helpers/steinerHelper';
 import routeRegister from 'helpers/routeRegister';
 import { selectors } from '../reducers/{{name}}';
 
 const routes = helper.generateRoutes('{{name}}', selectors);
-const list = Object.values(routes.list).map(route => ({
+const list = _.values(routes.list).map(route => ({
     ...route,
     getComponent() {
         return new Promise((resolve, reject) => {

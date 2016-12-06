@@ -190,11 +190,11 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         value: `delete${resource}`
     });
 
-    function* handleFilter() {
-        yield call(delay, 100);
+    // function* handleFilter() {
+    //     yield call(delay, 100);
 
-        yield put(actions.list());
-    }
+    //     yield put(actions.list());
+    // }
 
     function getDiff(src, matchers) {
         return _.omitBy(src, (v, k) => matchers[k] == v);
@@ -233,7 +233,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         if (options.clientFilters) {
             yield put(actions.filterCollection());
         } else {
-            task = yield fork(handleFilter);
+            // task = yield fork(handleFilter);
         }
     }
 
@@ -258,7 +258,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         if (options.clientFilters) {
             yield put(actions.filterCollection());
         } else {
-            yield put(actions.list());
+            // yield put(actions.list());
         }
     }
 

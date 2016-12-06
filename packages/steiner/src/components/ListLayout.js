@@ -21,8 +21,13 @@ export class ListLayout extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        if (nextProps.filters !== this.props.filters && !this.props.clientFilters) {
+            this.props.list();
+        }
+
         if ((nextProps.currentRoute.location.search !== this.props.currentRoute.location.search) && nextProps.currentRoute.action === 'POP') {
-            this.props.checkFilterSync(queryString.parse(window.location.search));
+            // this.props.checkFilterSync(queryString.parse(window.location.search));
+            this.props.syncFilters(queryString.parse(window.location.search));
         }
     }
 

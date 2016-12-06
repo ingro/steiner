@@ -82,6 +82,6 @@
     "redux-form": "^6.0.0",
     "redux-saga": "^0.13.0",
     "reflexbox": "^2.2.2",
-    "vivi": "^0.4.6"
+    "vivi": "^0.4.8"
   }
 }

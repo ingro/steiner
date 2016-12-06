@@ -242,9 +242,9 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
     });
 
     sagas['syncFilters'] = function*(action) {
-        if (_.isEmpty(action.payload)) {
-            yield put(actions.resetFilters());
-        } else {
+        // if (_.isEmpty(action.payload)) {
+            // yield put(actions.resetFilters());
+        // } else {
             // TODO: cycle filters only if options.numberFilters isn't empty
             const filters = {};
 
@@ -253,7 +253,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
             });
 
             yield put(actions.setFilters(filters));
-        }
+        // }
 
         if (options.clientFilters) {
             yield put(actions.filterCollection());

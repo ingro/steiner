@@ -76,7 +76,7 @@ export function bootSagas(sagas, actionTypes) {
         takeEvery(actionTypes.create, sagas.create),
         takeEvery(actionTypes.update, sagas.update),
         takeEvery(actionTypes.delete, sagas.delete),
-        takeEvery([actionTypes.updateFilter, actionTypes.changePage, actionTypes.changeOrder], sagas.filter),
+        takeEvery([actionTypes.updateFilter, actionTypes.changePage, actionTypes.changeOrder, actionTypes.setFilters], sagas.filter),
         takeEvery(actionTypes.syncFilters, sagas.syncFilters),
         takeEvery(actionTypes.checkFilterSync, sagas.checkFilterSync),
         takeEvery(actionTypes.resetFilters, sagas.resetFilters)

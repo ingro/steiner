@@ -155,7 +155,7 @@ class App extends Component {
                                     <div className="container-fluid">
                                         <Match pattern="/" exactly={true} render={() => <Welcome user={user}/>} />
                                         <MatchWhenGuest pattern="/login" exactly={true} component={LoginForm} user={user} location={currentRoute.location} />
-                                        <MatchWhenAuthorized pattern="/profile" render={() => <Profile user={user} />}/>
+                                        <MatchWhenAuthorized pattern="/profile" component={Profile} />
                                         {routes.map((route, i) => (
                                             <MatchWhenAuthorizedAsync key={i} user={user} {...route} />
                                         ))}

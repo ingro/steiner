@@ -8,6 +8,7 @@ export function connectList(component, actions, selectors) {
 
         return {
             ...list,
+            filters: selectors.getFilters(state),
             items: selectors.itemsSelector(state),
             selected: selectors.getSelectedId(state),
             currentRoute: getCurrentRoute(state)

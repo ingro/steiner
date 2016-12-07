@@ -37,7 +37,10 @@ export class FormControls extends Component {
 
 FormControls.propTypes = {
     cancelLabel: PropTypes.string,
-    cancelLink: PropTypes.string,
+    cancelLink: PropTypes.oneof([
+        PropTypes.string,
+        PropTypes.object
+    ]),
     dirty: PropTypes.bool,
     onReset: PropTypes.func,
     resetLabel: PropTypes.string,

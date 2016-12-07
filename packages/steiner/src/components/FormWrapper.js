@@ -65,7 +65,10 @@ export class FormWrapper extends Component {
 }
 
 FormWrapper.propTypes = {
-    cancelLink: PropTypes.string,
+    cancelLink: PropTypes.oneof([
+        PropTypes.string,
+        PropTypes.object
+    ]),
     createInitialFormValues: PropTypes.func,
     goBackAfterSave: PropTypes.bool,
     innerClass: PropTypes.string,

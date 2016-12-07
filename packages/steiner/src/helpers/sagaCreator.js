@@ -71,7 +71,7 @@ export function *generateNotificationPayload(actionKey, type, messages, titles, 
 
 export function bootSagas(sagas, actionTypes) {
     return [
-        takeLatest(actionTypes.list, sagas.list),
+        takeEvery(actionTypes.list, sagas.list),
         takeEvery(actionTypes.fetch, sagas.fetch),
         takeEvery(actionTypes.create, sagas.create),
         takeEvery(actionTypes.update, sagas.update),
@@ -85,7 +85,12 @@ export function bootSagas(sagas, actionTypes) {
 
 const defaultOptions = {
     clientFilters: false,
-    numberFilters: []
+    numberFilters: [],
+    getApiListParams: function* getApiListParams(selectors) {
+        const filters = yield select(selectors.getFilters);
+
+        return [filters];
+    }
 };
 
 export function createSagas(resource, actionTypes, actions, api, selectors, defaultState, options = {}) {
@@ -103,10 +108,14 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
     const sagas = {};
 
-    sagas['list'] = function*() {
+    let listTask;
+
+    function* fetchList() {
+        yield call(delay, 100);
+
         try {
-            const filters = yield select(selectors.getFilters);
-            const response = yield call(api.list, filters);
+            const params = yield call(options.getApiListParams, selectors);
+            const response = yield call(api.list, ...params);
 
             yield put(success(actionTypes.listSuccess, response, 'hide'));
 
@@ -116,6 +125,32 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         } catch(error) {
             yield put(fail(actionTypes.listFail, error, 'hide'));
         }
+    }
+
+    Object.defineProperty(fetchList, 'name', {
+        value: `fetchList${resource}`
+    });
+
+    sagas['list'] = function*() {
+        if (listTask && listTask.isRunning()) {
+            yield put({ type: 'NOOOOP', loadingBar: 'hide' });
+            yield cancel(listTask);
+        }
+
+        listTask = yield fork(fetchList);
+
+        // try {
+        //     const filters = yield select(selectors.getFilters);
+        //     const response = yield call(api.list, filters);
+
+        //     yield put(success(actionTypes.listSuccess, response, 'hide'));
+
+        //     if (options.clientFilters) {
+        //         yield put(actions.filterCollection());
+        //     }
+        // } catch(error) {
+        //     yield put(fail(actionTypes.listFail, error, 'hide'));
+        // }
     }
 
     Object.defineProperty(sagas['list'], 'name', {
@@ -190,18 +225,18 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         value: `delete${resource}`
     });
 
-    function* handleFilter() {
-        yield call(delay, 100);
+    // function* handleFilter() {
+    //     yield call(delay, 100);
 
-        yield put(actions.list());
-    }
+    //     yield put(actions.list());
+    // }
 
     function getDiff(src, matchers) {
         return _.omitBy(src, (v, k) => matchers[k] == v);
     }
 
     sagas['filter'] = function*() {
-        let task;
+        // let task;
 
         const filters = yield select(selectors.getFilters);
 
@@ -225,15 +260,16 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
         yield put(navigate(location, 'PUSH'));
 
-        if (task) {
-            yield put({ type:'NOOP', loadingBar: 'hide' });
-            yield cancel(task);
-        }
+        // if (task) {
+        //     yield put({ type:'NOOP', loadingBar: 'hide' });
+        //     yield cancel(task);
+        // }
 
         if (options.clientFilters) {
             yield put(actions.filterCollection());
         } else {
-            task = yield fork(handleFilter);
+            // task = yield fork(handleFilter);
+            yield put(actions.list());
         }
     }
 

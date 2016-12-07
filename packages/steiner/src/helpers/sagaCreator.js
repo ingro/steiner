@@ -76,7 +76,7 @@ export function bootSagas(sagas, actionTypes) {
         takeEvery(actionTypes.create, sagas.create),
         takeEvery(actionTypes.update, sagas.update),
         takeEvery(actionTypes.delete, sagas.delete),
-        takeEvery([actionTypes.updateFilter, actionTypes.changePage, actionTypes.changeOrder, actionTypes.setFilters], sagas.filter),
+        takeEvery([actionTypes.updateFilter, actionTypes.changePage, actionTypes.changeOrder], sagas.filter),
         takeEvery(actionTypes.syncFilters, sagas.syncFilters),
         takeEvery(actionTypes.checkFilterSync, sagas.checkFilterSync),
         takeEvery(actionTypes.resetFilters, sagas.resetFilters)
@@ -190,11 +190,11 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         value: `delete${resource}`
     });
 
-    // function* handleFilter() {
-    //     yield call(delay, 100);
+    function* handleFilter() {
+        yield call(delay, 100);
 
-    //     yield put(actions.list());
-    // }
+        yield put(actions.list());
+    }
 
     function getDiff(src, matchers) {
         return _.omitBy(src, (v, k) => matchers[k] == v);
@@ -233,7 +233,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         if (options.clientFilters) {
             yield put(actions.filterCollection());
         } else {
-            // task = yield fork(handleFilter);
+            task = yield fork(handleFilter);
         }
     }
 
@@ -242,9 +242,9 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
     });
 
     sagas['syncFilters'] = function*(action) {
-        // if (_.isEmpty(action.payload)) {
-            // yield put(actions.resetFilters());
-        // } else {
+        if (_.isEmpty(action.payload)) {
+            yield put(actions.resetFilters());
+        } else {
             // TODO: cycle filters only if options.numberFilters isn't empty
             const filters = {};
 
@@ -253,12 +253,12 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
             });
 
             yield put(actions.setFilters(filters));
-        // }
+        }
 
         if (options.clientFilters) {
             yield put(actions.filterCollection());
         } else {
-            // yield put(actions.list());
+            yield put(actions.list());
         }
     }
 

@@ -9,8 +9,6 @@ import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 import InputField from 'vivi/lib/Form/InputField';
 import SelectField from 'vivi/lib/Form/SelectField';
 
-import { selectors } from 'steiner/lib/auth/reducer';
-
 function submit(data, dispatch) {
     const action = createFormAction(auth.actionTypes.updateProfile, [auth.actionTypes.updateProfileSuccess, auth.actionTypes.updateProfileFail])
 
@@ -72,7 +70,7 @@ const TranslatedProfile = TranslatorHoc(Profile, {
     unsavedMessage: 'steiner.messages.confirmUnsaved',
 });
 
-const ConnectedTranslatedProfile = connect(state => ({ user: selectors.getUser(state) }))(TranslatedProfile);
+const ConnectedTranslatedProfile = connect(state => ({ user: getUser(state) }))(TranslatedProfile);
 
 export default reduxForm({
     form: 'profile'

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { auth, FormWrapper } from 'steiner';
 import { createFormAction } from 'steiner/lib/helpers/reduxFormSaga';
+import { getUser } from 'steiner/lib/auth/reducer';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 import InputField from 'vivi/lib/Form/InputField';
 import SelectField from 'vivi/lib/Form/SelectField';

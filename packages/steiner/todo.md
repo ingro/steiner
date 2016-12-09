@@ -16,6 +16,8 @@
 - Refactor the reducers? Create root reducers for entities, filters etc. and add (even lazily) keys corresponding to resources;
 - Add option to omit generate actions for given group (list, create, delete etc.)
 - Find a way to pass basename option's to all sagaCreators if needed
+- If listSuccessOptions are defined in steinerHelper merge with those declared in modules
+- Check if set paramsMap on steinerHelper works
 
 ## Tests
 - Split actionCreator-test createActions tests in multiple assertions for easier debugging with snapshots

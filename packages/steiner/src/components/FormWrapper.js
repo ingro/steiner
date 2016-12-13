@@ -65,7 +65,7 @@ export class FormWrapper extends Component {
 }
 
 FormWrapper.propTypes = {
-    cancelLink: PropTypes.oneof([
+    cancelLink: PropTypes.oneOf([
         PropTypes.string,
         PropTypes.object
     ]),

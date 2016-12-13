@@ -38,11 +38,25 @@ export default class SteinerHelper {
         return createActionTypes(resource, options);
     }
 
-    createApi(endpoint, client, paramsMap, options) {
-        client = client || this.options.defaultClient;
-        paramsMap = paramsMap || this.options.paramsMap;
+    // This should be private, find a way to make it so and make it testable anyway
+    getFinalParamsMap(paramsMap, options) {
+        let finalParamsMap = {};
 
-        return createApi(endpoint, client, paramsMap, options);
+        if (options.mergeParamsWithDefault) {
+            finalParamsMap = _.defaults(paramsMap, this.options.paramsMap);
+        } else {
+            finalParamsMap = paramsMap || this.options.paramsMap;
+        }
+
+        return finalParamsMap;
+    }
+
+    createApi(endpoint, client, paramsMap, options = {}) {
+        client = client || this.options.defaultClient;
+
+        const finalParamsMap = this.getFinalParamsMap(paramsMap, options);
+
+        return createApi(endpoint, client, finalParamsMap, options);
     }
 
     createHandlers(actionTypes, options) {

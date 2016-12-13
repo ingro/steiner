@@ -73,4 +73,44 @@ describe('steinerHelper', () => {
             expect(result).toMatchSnapshot();
         });
     });
+
+    describe('createApi', () => {
+        it('it merge params if needed', () => {
+            const helper = new steinerHelper({
+                paramsMap: {
+                    baz: 'qux'
+                }
+            });
+
+            const params = helper.getFinalParamsMap({ foo: 'bar' }, {
+                mergeParamsWithDefault: true
+            });
+
+            expect(params).toMatchSnapshot();
+        });
+
+        it('it uses user defined params if not', () => {
+            const helper = new steinerHelper({
+                paramsMap: {
+                    baz: 'qux'
+                }
+            });
+
+            const params = helper.getFinalParamsMap({ foo: 'bar' }, {});
+
+            expect(params).toMatchSnapshot();
+        });
+
+        it('it uses default params if no other are set', () => {
+            const helper = new steinerHelper({
+                paramsMap: {
+                    baz: 'qux'
+                }
+            });
+
+            const params = helper.getFinalParamsMap(null, {});
+
+            expect(params).toMatchSnapshot();
+        });
+    });
 });

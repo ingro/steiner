@@ -17,8 +17,6 @@
 - Add option to omit generate actions for given group (list, create, delete etc.)
 - Find a way to pass basename option's to all sagaCreators if needed
 - If listSuccessOptions are defined in steinerHelper merge with those declared in modules
-- Check if set paramsMap on steinerHelper works
-- paramsMap: switch key - value so user-defined one will overwrite defaults for a specific key in the store
 
 ## Tests
 - Split actionCreator-test createActions tests in multiple assertions for easier debugging with snapshots

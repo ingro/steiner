@@ -1,5 +1,6 @@
 import Immutable from 'seamless-immutable';
 import { take, put, call, select } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import testSaga from 'redux-saga-test-plan';
 
 import { createSagas, generateNotificationPayload } from '../../src/helpers/sagaCreator';
@@ -30,10 +31,16 @@ describe('createSagas', () => {
         }
     });
 
-    const sagas = createSagas('posts', actionTypes, actions, api, selectors, defaultState);
+    const options = {
+        getApiListParams: function() {
+            return [{ foo: 'bar' }];
+        }
+    };
+
+    const sagas = createSagas('posts', actionTypes, actions, api, selectors, defaultState, options);
 
     it('generates list saga correctly', () => {
-        const generator = sagas.list();
+        const generator = sagas.fetchList();
 
         const filters = { foo: 'bar' };
         const response = { data: [1, 2, 3] };
@@ -55,20 +62,22 @@ describe('createSagas', () => {
         // saga.next(response).put(success);
         // saga.throw('error').put(error);
 
-        expect(generator.next().value).toEqual(select(selectors.getFilters));
-        expect(generator.next(filters).value).toEqual(call(api.list, filters));
+        expect(generator.next().value).toEqual(call(delay, 100));
+        expect(generator.next().value).toEqual(call(options.getApiListParams, selectors));
+        // expect(generator.next().value).toEqual(select(selectors.getFilters));
+        expect(generator.next([filters]).value).toEqual(call(api.list, filters));
         expect(generator.next(response).value).toEqual(put(success));
         expect(generator.throw('error').value).toEqual(put(error));
     });
 
     it('generates fetch saga correctly', () => {
-        const generator = sagas.fetch();
-
         const action = {
             payload: {
                 id: 42
             }
         };
+
+        const generator = sagas.fetch(action);
 
         const response = { id: 42, foo: 'bar' };
 
@@ -81,8 +90,8 @@ describe('createSagas', () => {
             error: 'error'
         };
 
-        expect(generator.next().value).toEqual(take(actionTypes.fetch));
-        expect(generator.next(action).value).toEqual(call(api.fetch, 42));
+        // expect(generator.next().value).toEqual(take(actionTypes.fetch));
+        expect(generator.next().value).toEqual(call(api.fetch, 42));
         expect(generator.next(response).value).toEqual(put(success));
         expect(generator.throw('error').value).toEqual(put(error));
     });
@@ -99,11 +108,11 @@ describe('createSagas', () => {
         const response = { id: 42, foo: 'bar' };
         const notification = { type: 'success' };
 
-        const saga = testSaga(sagas.create);
+        const saga = testSaga(sagas.create, action);
 
         saga
-        .next().take(actionTypes.create)
-        .next(action).call(api.create, { foo: 'bar' })
+        // .next().take(actionTypes.create)
+        .next().call(api.create, { foo: 'bar' })
         .save('beforeSuccess')
         .next(response).call(generateNotificationPayload, 'createSuccess', 'success', {}, {}, 'Posts')
         .next(notification).put(actions.createSuccess(response, notification))
@@ -131,7 +140,7 @@ describe('createSagas', () => {
         const response = { id: 42, foo: 'bar' };
         const notification = { type: 'success' };
 
-        const saga = testSaga(sagas.update);
+        const saga = testSaga(sagas.update, action);
 
         // expect(generator.next().value).toEqual(take(actionTypes.update));
         // expect(generator.next(action).value).toEqual(call(api.update, 42, { id: 42, foo: 'bar' }));
@@ -139,8 +148,8 @@ describe('createSagas', () => {
         // expect(generator.next(notification).value).toEqual(put(actions.updateSuccess(response, notification)));
         
         saga
-        .next().take(actionTypes.update)
-        .next(action).call(api.update, 42, { id: 42, foo: 'bar' })
+        // .next().take(actionTypes.update)
+        .next().call(api.update, 42, { id: 42, foo: 'bar' })
         .save('beforeSuccess')
         .next(response).call(generateNotificationPayload, 'updateSuccess', 'success', {}, {}, 'Posts')
         .next(notification).put(actions.updateSuccess(response, notification))
@@ -162,7 +171,7 @@ describe('createSagas', () => {
         const response = { id: 42, foo: 'bar' };
         const notification = { type: 'success' };
 
-        const saga = testSaga(sagas.delete);
+        const saga = testSaga(sagas.delete, action);
 
         // expect(generator.next().value).toEqual(take(actionTypes.delete));
         // expect(generator.next(action).value).toEqual(call(api.delete, 42));
@@ -170,8 +179,8 @@ describe('createSagas', () => {
         // expect(generator.next(notification).value).toEqual(put(actions.deleteSuccess(response, notification)));
         
         saga
-        .next().take(actionTypes.delete)
-        .next(action).call(api.delete, 42)
+        // .next().take(actionTypes.delete)
+        .next().call(api.delete, 42)
         .save('beforeSuccess')
         .next(response).call(generateNotificationPayload, 'deleteSuccess', 'success', {}, {}, 'Posts')
         .next(notification).put(actions.deleteSuccess({ response, id: 42} , notification))
@@ -202,7 +211,7 @@ describe('createSagas', () => {
 
         // const handleFilter = () => {};
 
-        expect(generator.next().value).toEqual(take([actionTypes.updateFilter, actionTypes.changePage, actionTypes.changeOrder]));
+        // expect(generator.next().value).toEqual(take([actionTypes.updateFilter, actionTypes.changePage, actionTypes.changeOrder]));
         expect(generator.next().value).toEqual(select(selectors.getFilters));
         expect(generator.next(filters).value).toEqual(put(navigateAction));
         // TODO: not working because handleFilter is private inside SagaCreator
@@ -210,27 +219,27 @@ describe('createSagas', () => {
     });
 
     it('generates syncFilters saga correctly', () => {
-        const generator = sagas.syncFilters();
-
         const action = {
             payload: {}
         };
 
-        expect(generator.next().value).toEqual(take(actionTypes.syncFilters));
-        expect(generator.next(action).value).toEqual(put(actions.resetFilters()));
+        const generator = sagas.syncFilters(action);
+
+        // expect(generator.next().value).toEqual(take(actionTypes.syncFilters));
+        expect(generator.next().value).toEqual(put(actions.resetFilters()));
         // TODO: test with non-empty payload
         expect(generator.next().value).toEqual(put(actions.list()));
     });
 
     it('generates checkFilterSync saga correctly', () => {
-        const generator = sagas.checkFilterSync();
-
         const action = { 
             payload: { 
                 q: 'hello' 
 
             }
         };
+
+        const generator = sagas.checkFilterSync(action);
 
         const currentState = {
             q: ''
@@ -243,8 +252,8 @@ describe('createSagas', () => {
             }
         };
 
-        expect(generator.next().value).toEqual(take(actionTypes.checkFilterSync));
-        expect(generator.next(action).value).toEqual(select(selectors.getFilters));
+        // expect(generator.next().value).toEqual(take(actionTypes.checkFilterSync));
+        expect(generator.next().value).toEqual(select(selectors.getFilters));
         expect(generator.next(currentState).value).toEqual(put(syncAction));
     });
 });

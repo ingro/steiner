@@ -1,5 +1,5 @@
 import { put, call, select, cancel, fork } from 'redux-saga/effects';
-import { delay, takeLatest, takeEvery } from 'redux-saga';
+import { delay, /*takeLatest,*/ takeEvery } from 'redux-saga';
 import _ from 'lodash';
 import queryString from 'query-string';
 
@@ -110,7 +110,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
     let listTask;
 
-    function* fetchList() {
+    sagas.fetchList = function*() {
         yield call(delay, 100);
 
         try {
@@ -127,17 +127,17 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         }
     }
 
-    Object.defineProperty(fetchList, 'name', {
+    Object.defineProperty(sagas.fetchList, 'name', {
         value: `fetchList${resource}`
     });
 
-    sagas['list'] = function*() {
+    sagas.list = function*() {
         if (listTask && listTask.isRunning()) {
             yield put({ type: 'NOOOOP', loadingBar: 'hide' });
             yield cancel(listTask);
         }
 
-        listTask = yield fork(fetchList);
+        listTask = yield fork(sagas.fetchList);
 
         // try {
         //     const filters = yield select(selectors.getFilters);
@@ -153,11 +153,11 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         // }
     }
 
-    Object.defineProperty(sagas['list'], 'name', {
+    Object.defineProperty(sagas.list, 'name', {
         value: `list${resource}`
     });
 
-    sagas['fetch'] = function*(action) {
+    sagas.fetch = function*(action) {
         try {
             const response = yield call(api.fetch, action.payload.id);
 
@@ -167,11 +167,11 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         }
     }
 
-    Object.defineProperty(sagas['fetch'], 'name', {
+    Object.defineProperty(sagas.fetch, 'name', {
         value: `fetch${resource}`
     });
 
-    sagas['create'] = function*(action) {
+    sagas.create = function*(action) {
         try {
             const response = yield call(api.create, action.payload);
 
@@ -185,11 +185,11 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         }
     }
 
-    Object.defineProperty(sagas['create'], 'name', {
+    Object.defineProperty(sagas.create, 'name', {
         value: `create${resource}`
     });
 
-    sagas['update'] = function*(action) {
+    sagas.update = function*(action) {
         try {
             const response = yield call(api.update, action.payload.id, action.payload);
 
@@ -203,11 +203,11 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         }
     }
 
-    Object.defineProperty(sagas['update'], 'name', {
+    Object.defineProperty(sagas.update, 'name', {
         value: `update${resource}`
     });
 
-    sagas['delete'] = function*(action) {
+    sagas.delete = function*(action) {
         try {
             const response = yield call(api.delete, action.payload.id);
 
@@ -221,7 +221,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         }
     }
 
-    Object.defineProperty(sagas['delete'], 'name', {
+    Object.defineProperty(sagas.delete, 'name', {
         value: `delete${resource}`
     });
 
@@ -235,7 +235,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         return _.omitBy(src, (v, k) => matchers[k] == v);
     }
 
-    sagas['filter'] = function*() {
+    sagas.filter = function*() {
         // let task;
 
         const filters = yield select(selectors.getFilters);
@@ -273,11 +273,11 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         }
     }
 
-    Object.defineProperty(sagas['filter'], 'name', {
+    Object.defineProperty(sagas.filter, 'name', {
         value: `filter${resource}`
     });
 
-    sagas['syncFilters'] = function*(action) {
+    sagas.syncFilters = function*(action) {
         if (_.isEmpty(action.payload)) {
             yield put(actions.resetFilters());
         } else {
@@ -298,11 +298,11 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         }
     }
 
-    Object.defineProperty(sagas['syncFilters'], 'name', {
+    Object.defineProperty(sagas.syncFilters, 'name', {
         value: `syncFilters${resource}`
     });
 
-    sagas['checkFilterSync'] = function*(action) {
+    sagas.checkFilterSync = function*(action) {
         const filters = action.payload;
 
         _.defaults(filters, defaultState.list.filters.asMutable());
@@ -321,17 +321,17 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         }
     }
 
-    Object.defineProperty(sagas['checkFilterSync'], 'name', {
+    Object.defineProperty(sagas.checkFilterSync, 'name', {
         value: `checkFilterSync${resource}`
     });
 
-    sagas['resetFilters'] = function*() {
+    sagas.resetFilters = function*() {
         const filters = defaultState.list.filters.asMutable();
 
         yield put(actions.setFilters(filters));
     }
 
-    Object.defineProperty(sagas['resetFilters'], 'name', {
+    Object.defineProperty(sagas.resetFilters, 'name', {
         value: `resetFilters${resource}`
     });
 

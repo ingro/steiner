@@ -11,7 +11,7 @@ import Immutable from 'seamless-immutable';
 
 import reducer from '../reducers';
 
-const filter = /^redux-form/;
+const filter = /^@@redux-form/;
 
 const loggerMiddleware = createLogger({
     collapsed: true,
@@ -21,8 +21,9 @@ const loggerMiddleware = createLogger({
     }
 });
 
-const sagaMonitor = console.tron.createSagaMonitor();
-const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
+// const sagaMonitor = console.tron.createSagaMonitor();
+// const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
+const sagaMiddleware = createSagaMiddleware();
 
 const enhancer = composeWithDevTools(
     applyMiddleware(

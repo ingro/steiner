@@ -123,10 +123,11 @@ function setFilters(state, action) {
         toSync.perPage = parseInt(toSync.perPage, 10);
     }
 
-    return state.updateIn(['list', 'filters'], filters => ({
-        ...filters,
-        ...toSync
-    })); 
+    return state.updateIn(['list', 'filters'], filters => {
+        return Immutable.merge(filters, toSync);
+        // ...filters,
+        // ...toSync
+    }); 
 }
 
 function changePage(state, action) {
@@ -136,11 +137,15 @@ function changePage(state, action) {
 function changeOrder(state, action) {
     const { key, direction } = action.payload;
 
-    return state.updateIn(['list', 'filters'], filters => ({
-        ...filters,
-        orderKey: key,
-        orderDirection: direction
-    }));
+    return state.updateIn(['list', 'filters'], filters => {
+        return Immutable.merge(filters, {
+            orderKey: key,
+            orderDirection: direction
+        });
+        // ...filters,
+        // orderKey: key,
+        // orderDirection: direction
+    });
 }
 
 function select(state, action) {

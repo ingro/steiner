@@ -31,7 +31,7 @@ class App extends Component {
 
         this.state = {
             isOmniboxOpen: false,
-            isSidebarOpen: false,
+            isSidebarOpen: true,
             isHelpModalOpen: false,
             isLanguageLoaded: false
         };

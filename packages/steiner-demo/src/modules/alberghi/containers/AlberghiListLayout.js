@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connectCreator, ListLayout } from 'steiner';
+import { Redirect } from 'react-router';
+import _ from 'lodash';
 
 import { actions } from '../actions/alberghi';
 import { selectors } from '../reducers/alberghi';
@@ -29,7 +31,6 @@ class ListLayoutCustom extends Component {
 
         if ((nextProps.currentRoute.location.search !== this.props.currentRoute.location.search) && nextProps.currentRoute.action === 'POP') {
             this.props.checkFilterSync(this.getFiltersFromQuerystring());
-            // this.props.syncFilters(queryString.parse(window.location.search));
         }
     }
 
@@ -109,10 +110,55 @@ ListLayout.defaultProps = {
 // });
 
 class AlberghiListLayout extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            shouldRedirect: this.getShouldRedirect(props),
+            redirectTo: this.getRedirectTo(props)
+        };
+    }
+
+    getShouldRedirect(props) {
+        return (! props.filters.positionId && ! _.get(props, 'location.query.positionId'));
+    }
+
+    getRedirectTo(props) {
+        const location = {
+            pathname: '/alberghi',
+            query: _.merge(props.location.query || {}, {
+                positionId: 4
+            })
+        };
+
+        return location;
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.state.shouldRedirect === false) {
+            return true;
+        }
+
+        const shouldRedirect = this.getShouldRedirect(nextProps);
+
+        if (shouldRedirect === false) {
+            this.setState({
+                shouldRedirect: false
+            });
+        }
+    }
+
     render() {
+        const { shouldRedirect, redirectTo } = this.state;
+
+        if (shouldRedirect) {
+            return (
+                <Redirect to={redirectTo} />
+            );
+        }
+
         return (
             <div>
-                
                 <ListLayoutCustom
                     {...this.props}
                     filterComponent={ AlberghiListFilter }

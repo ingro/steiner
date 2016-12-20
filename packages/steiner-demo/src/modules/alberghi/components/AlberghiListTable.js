@@ -27,6 +27,18 @@ export class AlberghiListTable extends Component {
                 flexGrow: 1
             },
             {
+                width: 100,
+                label: 'Category',
+                dataKey: 'categorieId',
+                flexGrow: 0
+            },
+            {
+                width: 100,
+                label: 'Position',
+                dataKey: 'positionId',
+                flexGrow: 0
+            },
+            {
                 width: 200,
                 label: this.props.actionsLabel,
                 dataKey: 'id',

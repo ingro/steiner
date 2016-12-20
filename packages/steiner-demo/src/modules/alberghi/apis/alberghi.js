@@ -10,7 +10,9 @@ const paramsMapper = {
         }
 
         return raw;
-    }
+    },
+    categoryId: 'categorieId',
+    positionId: 'positionId'
 }
 
 const apis = helper.createApi('hotels?_expand=position', null, paramsMapper);

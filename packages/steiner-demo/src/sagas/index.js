@@ -4,6 +4,7 @@ import axios from 'axios';
 import { auth, confirm, settings } from 'steiner';
 
 import client from 'apis/client';
+import alberghi from '../modules/alberghi/sagas/alberghi';
 import hotels from '../modules/hotels/sagas/hotels';
 import offers from '../modules/offers/sagas/offers';
 
@@ -46,6 +47,7 @@ export default function* root() {
         fork(formSaga),
         ...authSaga,
         ...confirmSaga,
+        ...alberghi,
         ...hotels,
         ...offers
     ];

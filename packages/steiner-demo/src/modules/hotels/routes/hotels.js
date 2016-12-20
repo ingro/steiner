@@ -6,7 +6,7 @@ import { selectors } from '../reducers/hotels';
 
 const routes = helper.generateRoutes('hotels', selectors, {
     label: {
-        it: 'Alberghi',
+        it: 'Hotels',
         en: 'Hotels'
     }
 });
@@ -25,7 +25,7 @@ const list = Object.values(routes.list).map(route => ({
 const links = routeCreator.generateLinks(routes.patterns);
 
 routeRegister.addPatterns('hotels', routes.patterns, {
-    it: 'Alberghi',
+    it: 'Hotels',
     en: 'Hotels'
 });
 

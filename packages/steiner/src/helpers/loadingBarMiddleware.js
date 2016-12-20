@@ -1,13 +1,11 @@
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
-const notificationMiddleware = store => next => action => {
-    const result = next(action);
-
+const loadingBarMiddleware = store => next => action => {
     if (action.loadingBar) {
         store.dispatch(action.loadingBar === 'show' ? showLoading() : hideLoading());
     }
 
-    return result;
+    return next(action);
 };
 
-export default notificationMiddleware;
+export default loadingBarMiddleware;

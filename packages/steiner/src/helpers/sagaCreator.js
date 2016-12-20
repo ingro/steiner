@@ -133,7 +133,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
     sagas.list = function*() {
         if (listTask && listTask.isRunning()) {
-            yield put({ type: 'NOOOOP', loadingBar: 'hide' });
+            yield put({ type: 'NOOP', loadingBar: 'hide' });
             yield cancel(listTask);
         }
 
@@ -232,7 +232,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
     // }
 
     function getDiff(src, matchers) {
-        return _.omitBy(src, (v, k) => matchers[k] == v);
+        return _.omitBy(src, (v, k) => matchers[k] == v); // eslint-disable-line
     }
 
     sagas.filter = function*() {
@@ -240,12 +240,12 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
         const filters = yield select(selectors.getFilters);
 
-        const defaultFilters = defaultState.list.filters.asMutable();
+        const defaultFilters = defaultState.list.filters;
 
         // TODO: blacklist params???
         // const diff = _.omit(_._.omitBy(filters.asMutable(), (v, k) => defaultFilters[k] == v), blacklist);
 
-        const diff = getDiff(filters.asMutable(), defaultFilters);
+        const diff = getDiff(filters.asMutable(), defaultFilters.asMutable());
 
         const location = { 
             pathname: window.location.pathname, 
@@ -269,7 +269,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
             yield put(actions.filterCollection());
         } else {
             // task = yield fork(handleFilter);
-            yield put(actions.list());
+            // yield put(actions.list());
         }
     }
 
@@ -277,25 +277,32 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         value: `filter${resource}`
     });
 
+    // Sync filters from external source (usually the URI) with the store, then call filterCollection or list if needed
     sagas.syncFilters = function*(action) {
-        if (_.isEmpty(action.payload)) {
-            yield put(actions.resetFilters());
-        } else {
-            // TODO: cycle filters only if options.numberFilters isn't empty
-            const filters = {};
+        // if (_.isEmpty(action.payload)) {
+            // TODO: moved in ListLayout component
+            // yield put(actions.resetFilters());
+        // } else {
+        // TODO: cycle filters only if options.numberFilters isn't empty
+        const filters = {};
 
-            _.forOwn(action.payload, (value, key) => {
-                filters[key] = _.includes(options.numberFilters, key) ? parseInt(value, 10) : value;
-            });
+        _.forOwn(action.payload, (value, key) => {
+            filters[key] = _.includes(options.numberFilters, key) ? parseInt(value, 10) : value;
+        });
 
-            yield put(actions.setFilters(filters));
-        }
+        yield put(actions.setFilters(filters));
+        // }
 
         if (options.clientFilters) {
             yield put(actions.filterCollection());
         } else {
-            yield put(actions.list());
+            if (_.isEmpty(filters)) {
+                yield put(actions.list());
+            }
         }
+        // } else {
+        //     yield put(actions.list());
+        // }
     }
 
     Object.defineProperty(sagas.syncFilters, 'name', {

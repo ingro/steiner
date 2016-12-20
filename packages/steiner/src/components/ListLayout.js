@@ -4,7 +4,7 @@ import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 import { Flex, Box } from 'reflexbox';
 import queryString from 'query-string';
 
-export class ListLayout extends Component {
+class ListLayout extends Component {
     componentDidMount() {
         if (this.props.clientFilters) {
             this.props.list();
@@ -20,8 +20,11 @@ export class ListLayout extends Component {
 
         if ((nextProps.currentRoute.location.search !== this.props.currentRoute.location.search) && nextProps.currentRoute.action === 'POP') {
             this.props.checkFilterSync(this.getFiltersFromQuerystring());
-            // this.props.syncFilters(queryString.parse(window.location.search));
         }
+    }
+
+    componentWillUnmount() {
+        this.props.resetFilters();
     }
 
     handleChangePage = (page) => {
@@ -73,23 +76,6 @@ export class ListLayout extends Component {
         );
     }
 }
-
-ListLayout.propTypes = {
-    changePage: PropTypes.func,
-    clientFilters: PropTypes.bool,
-    filterComponent: PropTypes.func,
-    filters: PropTypes.object,
-    items: PropTypes.array,
-    list: PropTypes.func,
-    displayingLabel: PropTypes.string,
-    tableComponent: PropTypes.func,
-    total: PropTypes.number
-};
-
-ListLayout.defaultProps = {
-    clientFilters: false,
-    displayingLabel: 'Showing'
-};
 
 export default TranslatorHoc(ListLayout, {
     displayingLabel: 'steiner.labels.displaying'

@@ -4,7 +4,7 @@ import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 import { Flex, Box } from 'reflexbox';
 import queryString from 'query-string';
 
-class ListLayout extends Component {
+export class ListLayout extends Component {
     componentDidMount() {
         if (this.props.clientFilters) {
             this.props.list();
@@ -76,6 +76,23 @@ class ListLayout extends Component {
         );
     }
 }
+
+ListLayout.propTypes = {
+    changePage: PropTypes.func,
+    clientFilters: PropTypes.bool,
+    filterComponent: PropTypes.func,
+    filters: PropTypes.object,
+    items: PropTypes.array,
+    list: PropTypes.func,
+    displayingLabel: PropTypes.string,
+    tableComponent: PropTypes.func,
+    total: PropTypes.number
+};
+
+ListLayout.defaultProps = {
+    clientFilters: false,
+    displayingLabel: 'Showing'
+};
 
 export default TranslatorHoc(ListLayout, {
     displayingLabel: 'steiner.labels.displaying'

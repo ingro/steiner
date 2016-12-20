@@ -9,7 +9,19 @@ export class ListLayout extends Component {
         if (this.props.clientFilters) {
             this.props.list();
         }
-        this.props.syncFilters(queryString.parse(window.location.search));
+
+        this.props.syncFilters(this.getFiltersFromQuerystring());
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.filters !== this.props.filters && !this.props.clientFilters) {
+            this.props.list();
+        }
+
+        if ((nextProps.currentRoute.location.search !== this.props.currentRoute.location.search) && nextProps.currentRoute.action === 'POP') {
+            this.props.checkFilterSync(this.getFiltersFromQuerystring());
+            // this.props.syncFilters(queryString.parse(window.location.search));
+        }
     }
 
     handleChangePage = (page) => {
@@ -20,15 +32,8 @@ export class ListLayout extends Component {
         this.props.updateFilter('perPage', size);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.filters !== this.props.filters && !this.props.clientFilters) {
-            this.props.list();
-        }
-
-        if ((nextProps.currentRoute.location.search !== this.props.currentRoute.location.search) && nextProps.currentRoute.action === 'POP') {
-            this.props.checkFilterSync(queryString.parse(window.location.search));
-            // this.props.syncFilters(queryString.parse(window.location.search));
-        }
+    getFiltersFromQuerystring() {
+        return queryString.parse(window.location.search);
     }
 
     render() {

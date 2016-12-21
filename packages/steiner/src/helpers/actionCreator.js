@@ -115,7 +115,7 @@ export function createActions(resource, actionTypes) {
 
     const actions = {};
 
-    actions[`fetch`] = function(id) {
+    actions['fetch'] = function(id) {
         return {
             type: actionTypes.fetch,
             payload: {
@@ -124,14 +124,14 @@ export function createActions(resource, actionTypes) {
         };
     }
 
-    actions[`list`] = function() {
+    actions['list'] = function() {
         return {
             type: actionTypes.list,
             loadingBar: 'show'
         };
     }
 
-    actions[`create`] = function(data) {
+    actions['create'] = function(data) {
         return {
             type: actionTypes.create,
             payload: {
@@ -156,7 +156,7 @@ export function createActions(resource, actionTypes) {
         };
     }
 
-    actions[`update`] = function(id, data) {
+    actions['update'] = function(id, data) {
         return {
             type: actionTypes.update,
             payload: {
@@ -182,7 +182,7 @@ export function createActions(resource, actionTypes) {
         };
     }
 
-    actions[`delete`] = function(id) {
+    actions['delete'] = function(id) {
         return {
             type: actionTypes.delete,
             payload: {
@@ -207,7 +207,7 @@ export function createActions(resource, actionTypes) {
         };
     }
 
-    actions[`resetCurrent`] = function() {
+    actions['resetCurrent'] = function() {
         return {
             type: actionTypes.resetCurrent
         };

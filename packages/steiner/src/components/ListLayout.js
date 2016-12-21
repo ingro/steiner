@@ -24,7 +24,9 @@ export class ListLayout extends Component {
     }
 
     componentWillUnmount() {
-        this.props.resetFilters();
+        if (this.props.resetOnClose) {
+            this.props.resetFilters();
+        }
     }
 
     handleChangePage = (page) => {
@@ -80,18 +82,20 @@ export class ListLayout extends Component {
 ListLayout.propTypes = {
     changePage: PropTypes.func,
     clientFilters: PropTypes.bool,
+    displayingLabel: PropTypes.string,
     filterComponent: PropTypes.func,
     filters: PropTypes.object,
     items: PropTypes.array,
     list: PropTypes.func,
-    displayingLabel: PropTypes.string,
+    resetOnClose: PropTypes.bool,
     tableComponent: PropTypes.func,
     total: PropTypes.number
 };
 
 ListLayout.defaultProps = {
     clientFilters: false,
-    displayingLabel: 'Showing'
+    displayingLabel: 'Showing',
+    resetOnClose: true
 };
 
 export default TranslatorHoc(ListLayout, {

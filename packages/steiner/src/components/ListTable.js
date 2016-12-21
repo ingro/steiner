@@ -27,7 +27,7 @@ export default class ListTable extends Component {
         const item = this.rowGetter({ index });
 
         if (item) {
-            const find = this.props.selected.indexOf(item.id);
+            const find = this.props.selected.indexOf(item[this.props.itemKeyName]);
 
             if (find > -1) {
                 return true;
@@ -38,10 +38,12 @@ export default class ListTable extends Component {
     }
 
     onRowCheckClick = (rowData, checked) => {
+        const { select, deselect, itemKeyName } = this.props;
+
         if (checked) {
-            this.props.select(rowData.id);
+            select(rowData[itemKeyName]);
         } else {
-            this.props.deselect(rowData.id);
+            deselect(rowData.itemKeyName);
         }
     }
 
@@ -85,6 +87,7 @@ ListTable.propTypes = {
     errorMessage: PropTypes.string,
     filters: PropTypes.object,
     isFetching: PropTypes.bool,
+    itemKeyName: PropTypes.string,
     items: PropTypes.array,
     loadingMsg: PropTypes.string,
     noRowsMsg: PropTypes.string,
@@ -96,5 +99,6 @@ ListTable.propTypes = {
 };
 
 ListTable.defaultProps = {
+    itemKeyName: 'id',
     selectable: true
 };

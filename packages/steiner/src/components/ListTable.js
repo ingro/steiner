@@ -43,7 +43,7 @@ export default class ListTable extends Component {
         if (checked) {
             select(rowData[itemKeyName]);
         } else {
-            deselect(rowData.itemKeyName);
+            deselect(rowData[itemKeyName]);
         }
     }
 

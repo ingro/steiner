@@ -120,7 +120,7 @@ class AlberghiListLayout extends Component {
     }
 
     getShouldRedirect(props) {
-        return (! props.filters.positionId && ! _.get(props, 'location.query.positionId'));
+        return (/*! props.filters.positionId &&*/ ! _.get(props, 'location.query.positionId'));
     }
 
     getRedirectTo(props) {

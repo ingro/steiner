@@ -6,10 +6,16 @@ import { auth, routing, settings } from 'steiner';
 
 // import posts from '../modules/posts/reducers/posts';
 
+const defaultNotification = {
+    position: "br",
+    closeButton: true,
+    allowHTML: true
+};
+
 const rootReducer = combineReducers({
     form: formReducer,
     loadingBar: loadingBarReducer,
-    notifications: notificationsReducer,
+    notifications: notificationsReducer(defaultNotification),
     // posts,
     settings: settings.reducer,
     user: auth.reducer,

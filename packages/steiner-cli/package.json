@@ -22,7 +22,7 @@
     "commander": "^2.9.0",
     "es6-template-strings": "^2.0.1",
     "fs-jetpack": "^0.10.5",
-    "lodash": "^4.17.2",
+    "lodash": "^4.17.4",
     "nunjucks": "^3.0.0",
     "tmp": "0.0.31"
   }

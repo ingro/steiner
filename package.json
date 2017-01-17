@@ -12,12 +12,12 @@
   "devDependencies": {
     "lerna": "2.0.0-beta.30",
     "lerna-npm-readme-hack": "^1.0.6",
-    "react": "^15.3.2",
-    "react-redux": "^5.0.0",
+    "react": "^15.4.2",
+    "react-redux": "^5.0.2",
     "react-router": "^4.0.0-alpha.6",
     "react-router-addons-controlled": "0.0.1",
     "redux": "^3.6.0",
-    "redux-form": "^6.3.2",
+    "redux-form": "^6.4.3",
     "rimraf": "^2.5.4"
   }
 }

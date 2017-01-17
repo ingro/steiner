@@ -164,11 +164,6 @@ class App extends Component {
                             </Sidebar>
                             <NotificationsSystem
                                 theme={theme}
-                                defaultValues={{
-                                    position: "br",
-                                    closeButton: true,
-                                    allowHTML: true
-                                }}
                             />
                         </div>
                     </TranslatorProvider>}

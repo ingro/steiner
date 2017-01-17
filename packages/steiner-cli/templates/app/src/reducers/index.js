@@ -9,7 +9,9 @@ import { auth, routing, settings } from 'steiner';
 const defaultNotification = {
     position: "br",
     closeButton: true,
-    allowHTML: true
+    allowHTML: true,
+    dismissAfter: 5000,
+    dismissible: true
 };
 
 const rootReducer = combineReducers({

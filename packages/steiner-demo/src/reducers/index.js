@@ -8,11 +8,19 @@ import alberghi from '../modules/alberghi/reducers/alberghi';
 import hotels from '../modules/hotels/reducers/hotels';
 import offers from '../modules/offers/reducers/offers';
 
+const defaultNotification = {
+    position: "br",
+    closeButton: true,
+    allowHTML: true,
+    dismissAfter: 5000,
+    dismissible: true
+};
+
 const rootReducer = combineReducers({
     alberghi,
     form: formReducer,
     loadingBar: loadingBarReducer,
-    notifications: notificationsReducer,
+    notifications: notificationsReducer(defaultNotification),
     hotels,
     offers,
     router: routing.reducer,

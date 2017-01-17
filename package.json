@@ -19,5 +19,8 @@
     "redux": "^3.6.0",
     "redux-form": "^6.4.3",
     "rimraf": "^2.5.4"
+  },
+  "dependencies": {
+    "react-dom": "^15.4.2"
   }
 }

@@ -1,5 +1,5 @@
-import { put, call, select, cancel, fork } from 'redux-saga/effects';
-import { delay, /*takeLatest,*/ takeEvery } from 'redux-saga';
+import { put, call, select, cancel, fork, takeEvery } from 'redux-saga/effects';
+import { delay, /*takeLatest,*/ } from 'redux-saga';
 import _ from 'lodash';
 import queryString from 'query-string';
 

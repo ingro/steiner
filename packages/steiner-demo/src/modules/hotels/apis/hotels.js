@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
 import helper from 'helpers/steinerHelper';
+// import client from 'apis/client';
 
 const paramsMapper = {
     _sort: (filters) => {
@@ -15,5 +16,13 @@ const paramsMapper = {
 }
 
 const apis = helper.createApi('hotels?_expand=position', null, paramsMapper);
+
+// apis.update = function(id, data) {
+//     return client({
+//         url: `/wrong/${id}`,
+//         method: 'patch',
+//         data
+//     });
+// }
 
 export default apis;

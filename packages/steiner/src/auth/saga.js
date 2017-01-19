@@ -33,9 +33,35 @@ export function *generateNotificationPayload(actionKey, type, messages, titles) 
     };
 }
 
+function *getAuthErrorMessage(type) {
+    const translations = yield select(getTranslations);
+
+    return translations.messages.auth[type];
+}
+
+function *loginFailErrorCreator() {
+    return {
+        message: yield call(getAuthErrorMessage, 'loginFail')
+    };
+}
+
+function *updateProfileFailErrorCreator() {
+    return {
+        message: yield call(getAuthErrorMessage, 'updateProfileFail')
+    };
+}
+
+const defaultOptions = {
+    messages: {},
+    notificationTitles: {},
+    loginFailErrorCreator,
+    updateProfileFailErrorCreator
+};
+
 export default function createAuthSaga(options = {}) {
-    const messages = options.messages || {};
-    const titles = options.notificationTitles || {};
+    _.defaults(options, defaultOptions);
+
+    const { messages, titles } = options;
 
     const loginSaga = function*() {
         while (true) {
@@ -52,7 +78,7 @@ export default function createAuthSaga(options = {}) {
                     yield call(options.loginSuccessAction, response.data);
                 }
             } catch(error) {
-                const errorPayload = error.response && error.response.data ? { message: error.response.data.error } : error;
+                const errorPayload = yield call(options.loginFailErrorCreator, error);
 
                 yield put(actions.loginRequestFail(errorPayload));
 
@@ -71,7 +97,10 @@ export default function createAuthSaga(options = {}) {
                 yield call(options.logoutAction);
                 yield put(actions.logoutRequestSuccess());
             } catch(error) {
-                const errorPayload = error.response && error.response.data ? { message: error.response.data.error } : error;
+                // const errorPayload = error.response && error.response.data ? { message: error.response.data.error } : error;
+                // TODO: Generate a notification for the failed logout???
+                const errorPayload = {};
+
                 yield put(actions.logoutRequestFail(errorPayload));
             }
         }
@@ -94,7 +123,7 @@ export default function createAuthSaga(options = {}) {
                     yield call(options.updateProfileSuccessAction, response.data);
                 }
             } catch(error) {
-                const errorPayload = error.response && error.response.data ? { message: error.response.data.error } : error;
+                const errorPayload = options.updateProfileFailErrorCreator(error);
 
                 const notification = yield call(generateNotificationPayload, 'profileUpdateFail', 'error', messages, titles);
 

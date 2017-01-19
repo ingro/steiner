@@ -10,6 +10,10 @@ export default {
         }
     },
     messages: {
+        auth: {
+            loginFail: 'Impossibile effettuare il login!',
+            updateProfileFail: 'Impossibile aggiornare il profilo!'
+        },
         breadcrumbs: {
             editNew: 'Crea nuovo'
         },
@@ -17,6 +21,9 @@ export default {
             title: 'Attenzione!',
             btn_primary_text: 'Conferma',
             btn_secondary_text: 'Annulla'
+        },
+        forms: {
+            genericSubmitErrorMessage: 'Si è verificato un errore inaspettato'
         },
         notifications: {
             auth: {

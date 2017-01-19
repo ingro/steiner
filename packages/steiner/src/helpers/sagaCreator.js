@@ -83,9 +83,29 @@ export function bootSagas(sagas, actionTypes) {
     ];
 }
 
+export function *getGenericSubmitErrorMessage() {
+    const translations = yield select(getTranslations);
+
+    return translations.messages.forms.genericSubmitErrorMessage;
+}
+
+function *createFailErrorCreator() {
+    return {
+        message: yield call(getGenericSubmitErrorMessage)
+    };
+}
+
+function *updateFailErrorCreator() {
+    return {
+        message: yield call(getGenericSubmitErrorMessage)
+    };
+}
+
 const defaultOptions = {
     clientFilters: false,
     numberFilters: [],
+    createFailErrorCreator,
+    updateFailErrorCreator,
     getApiListParams: function* getApiListParams(selectors) {
         const filters = yield select(selectors.getFilters);
 
@@ -181,7 +201,9 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         } catch(error) {
             const notification = yield call(generateNotificationPayload, 'createFail', 'fail', messages, titles, resourceLabel);
 
-            yield put(actions.createFail(error, notification));
+            const errorPayload = yield call(options.createFailErrorCreator, error);
+
+            yield put(actions.createFail(errorPayload, notification));
         }
     }
 
@@ -199,7 +221,9 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         } catch(error) {
             const notification = yield call(generateNotificationPayload, 'updateFail', 'fail', messages, titles, resourceLabel);
 
-            yield put(actions.updateFail(error, notification));
+            const errorPayload = yield call(options.updateFailErrorCreator, error);
+
+            yield put(actions.updateFail(errorPayload, notification));
         }
     }
 

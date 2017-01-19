@@ -16,7 +16,7 @@ function createFormAction(requestType, types, payloadCreator = identity) {
 
     // const actionMethods = {};
 
-    const formAction = (payload) => ({
+    const formAction = payload => ({
         type: PROMISE,
         payload
     });
@@ -70,26 +70,37 @@ function createFormAction(requestType, types, payloadCreator = identity) {
     // }, actionMethods);
 }
 
-function defaultCreateErrorPayload(error) {
-    // console.log(error);
-    const errorMsg = error.error ? error.error.message : 'Unexpected error!';
-    let errors = {};
+function defaultCreateErrorPayload(action) {
+    let payload = {};
 
-    if (error.error && error.error.response) {
-        const response = error.error.response;
-        if (response.data && response.data.errors) {
-            errors = response.data.errors;
-        }
+    if (action.error.validationErrors) {
+        payload = action.error.validationErrors;
     }
 
-    return {
-        ...errors,
-        _error: errorMsg
-    };
+    if (action.error.message) {
+        payload._error = action.message;
+    }
+
+    return payload;
+
+    // const errorMsg = error.error ? error.error.message : 'Unexpected error!';
+    // let errors = {};
+
+    // if (error.error && error.error.response) {
+    //     const response = error.error.response;
+    //     if (response.data && response.data.errors) {
+    //         errors = response.data.errors;
+    //     }
+    // }
+
+    // return {
+    //     ...errors,
+    //     _error: errorMsg
+    // };
 }
 
 function crateFormActionSaga(createErrorPayload = defaultCreateErrorPayload) {
-    return function *formActionSaga () {
+    return function *formActionSaga() {
         while (true) {
             let action = yield take(PROMISE);
             let { request, defer, types } = action.payload;

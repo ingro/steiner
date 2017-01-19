@@ -10,6 +10,10 @@ export default {
         }
     },
     messages: {
+        auth: {
+            loginFail: 'Unable to login',
+            updateProfileFail: 'Unable to update the profile!'
+        },
         breadcrumbs: {
             editNew: 'Create new'
         },
@@ -17,6 +21,9 @@ export default {
             title: 'Warning!',
             btn_primary_text: 'Confirm',
             btn_secondary_text: 'Cancel'
+        },
+        forms: {
+            genericSubmitErrorMessage: 'An unexpected error has occurred'
         },
         notifications: {
             auth: {

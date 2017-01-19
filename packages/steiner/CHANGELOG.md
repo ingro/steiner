@@ -1,3 +1,7 @@
+## 0.15.0 (January 19, 2017)
+
+- Reworked generation of error payloads handled with redux-form and redux-saga
+
 ## 0.14.0 (November 30, 2016)
 
 - Reworked auth module

@@ -32,21 +32,21 @@ function *loginSuccessAction(loginData) {
     yield put(action);
 }
 
-function createErrorPayload(action) {
-    let payload = {};
+// function createErrorPayload(action) {
+//     let payload = {};
 
-    if (action.error.validationErrors) {
-        payload = action.error.validationErrors;
-    }
+//     if (action.error.validationErrors) {
+//         payload = action.error.validationErrors;
+//     }
 
-    if (action.error.message) {
-        payload._error = action.error.message;
-    }
+//     if (action.error.message) {
+//         payload._error = action.error.message;
+//     }
 
-    return payload;
-}
+//     return payload;
+// }
 
-const formSaga = reduxFormSaga(createErrorPayload);
+const formSaga = reduxFormSaga(/*createErrorPayload*/);
 const confirmSaga = confirm.createConfirmSaga();
 const authSaga = auth.createAuthSaga({
     loginAction: login,

@@ -18,6 +18,7 @@
 - If listSuccessOptions are defined in steinerHelper merge with those declared in modules
 - Get rid of react-router-addons-controlled (will use history directly from sagas), or even go back to react-router 3?
 - Generate a notification for a failed logout
+- Update code of `reduxFormSaga` -> https://github.com/mhssmnn/redux-form-saga/blob/master/src/index.js
 
 ## Tests
 - Split actionCreator-test createActions tests in multiple assertions for easier debugging with snapshots

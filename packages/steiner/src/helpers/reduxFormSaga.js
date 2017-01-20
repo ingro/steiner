@@ -78,7 +78,7 @@ function defaultCreateErrorPayload(action) {
     }
 
     if (action.error.message) {
-        payload._error = action.message;
+        payload._error = action.error.message;
     }
 
     return payload;

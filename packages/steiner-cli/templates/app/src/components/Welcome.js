@@ -5,6 +5,7 @@ import Helmet from 'react-helmet';
 export default class Welcome extends Component {
     render() {
         const { user } = this.props;
+        
         return (
             <div className="container">
                 <Helmet title="Welcome" />
@@ -19,3 +20,7 @@ export default class Welcome extends Component {
         );
     }
 }
+
+Welcome.propTypes = {
+    user: PropTypes.object
+};

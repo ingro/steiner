@@ -17,6 +17,12 @@ class BreadcrumbElement extends Component {
     }
 }
 
+BreadcrumbElement.propTypes = {
+    breadcrumbName: PropTypes.any,
+    isExact: PropTypes.bool,
+    pathname: PropTypes.string
+};
+
 const BreadcrumbMatch = (route) => {
     const matchRoute = {
         ...route,

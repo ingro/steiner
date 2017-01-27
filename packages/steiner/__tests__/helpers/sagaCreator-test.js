@@ -1,5 +1,5 @@
 import Immutable from 'seamless-immutable';
-import { take, put, call, select } from 'redux-saga/effects';
+import { /*take,*/ put, call, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import testSaga from 'redux-saga-test-plan';
 

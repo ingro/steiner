@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { InputListFilter } from 'steiner';
 import Select from 'vivi/lib/Select';
 

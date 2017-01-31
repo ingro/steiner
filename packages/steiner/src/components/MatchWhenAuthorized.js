@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
-import { Match, Redirect } from 'react-router';
+import { Route, Redirect } from 'react-router-dom';
 
 // TODO: when ControlledRouter is released implement auth within redux store
 const MatchWhenAuthorized = ({ component: Component, user, redirectTo, ...rest }) => {
-    return <Match {...rest} render={props => {
+    return <Route {...rest} render={props => {
         return user ? (
             <Component {...props}/>
         ) : (

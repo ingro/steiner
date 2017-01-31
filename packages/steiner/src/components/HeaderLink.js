@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
-const HeaderLink = (props) => <Link to={props.to} activeClassName="active" location={props.location}>{
+const HeaderLink = (props) => <Link to={props.to} location={props.location}>{
     ({ isActive, onClick, href }) => <li className={isActive ? 'active' : ''}>
         <a href={href} onClick={onClick}>{props.name}</a>
     </li>

@@ -30,7 +30,7 @@ export function connectList(component, actions, selectors) {
 export function connectItem(component, actions, selectors) {
     function mapStateToProps(state, ownProps) {
         const current = selectors.currentSelector(state);
-        const isNew = ownProps.params.id === 'create';
+        const isNew = ownProps.match.params.id === 'create';
 
         return {
             ...current,

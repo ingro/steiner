@@ -48,8 +48,8 @@ export function generateRoutes(resource, selectors, options = {}) {
     return {
         list: {
             list: {
-                pattern: patterns.list,
-                exactly: true,
+                path: patterns.list,
+                exact: true,
                 componentPath: `containers/${_.upperFirst(resource)}ListLayout`,
                 breadcrumb: options.label ? (state) => {
                     const language = getLanguage(state);
@@ -60,10 +60,10 @@ export function generateRoutes(resource, selectors, options = {}) {
                 } : _.upperFirst(resource)
             },
             edit: {
-                pattern: patterns.edit,
+                path: patterns.edit,
                 componentPath: `containers/${_.upperFirst(resource)}Loader`,
                 breadcrumb: (state, ownProps) => {
-                    if (ownProps.params.id === 'create') {
+                    if (ownProps.match.params.id === 'create') {
                         return {
                             breadcrumbName: getCreateLabel(options, state)
                         };

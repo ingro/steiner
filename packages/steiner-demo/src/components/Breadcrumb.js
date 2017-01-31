@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Match, Link } from 'react-router';
+import { Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './Breadcrumb.css';
@@ -10,7 +10,7 @@ class BreadcrumbElement extends Component {
             <li className={this.props.isExact ? 'active' : ''}>
                 {this.props.isExact
                     ? this.props.breadcrumbName
-                    : <Link to={this.props.pathname}>{this.props.breadcrumbName}</Link>
+                    : <Link to={this.props.path}>{this.props.breadcrumbName}</Link>
                 }
             </li>
         );
@@ -20,10 +20,10 @@ class BreadcrumbElement extends Component {
 const BreadcrumbMatch = (route) => {
     const matchRoute = {
         ...route,
-        exactly: false
+        exact: false
     };
 
-    return <Match {...matchRoute} render={(props) => {
+    return <Route {...matchRoute} render={(props) => {
         if (typeof route.breadcrumb === 'string') {
             return <BreadcrumbElement {...props} breadcrumbName={route.breadcrumb} />;
         } else {

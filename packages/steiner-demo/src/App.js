@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Match } from 'react-router';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import NotificationsSystem from 'reapop';
 import LoadingBar from 'react-redux-loading-bar';
 import Sidebar from 'react-sidebar';
@@ -112,12 +112,14 @@ class App extends Component {
         const { user, currentRoute, dispatch } = this.props;
 
         return (
-            <ControlledRouter
+            <div>
+            <BrowserRouter>
+            {/*<ControlledRouter
                 history={history}
                 location={currentRoute.location}
                 action={currentRoute.action}
                 dispatch={dispatch}
-            >
+            >*/}
                 <div>
                     {!this.state.isLanguageLoaded && <div className="splash"><h1 className="loading dots">{process.env.REACT_APP_NAME} </h1></div>}
                     {this.state.isLanguageLoaded && <TranslatorProvider
@@ -153,12 +155,14 @@ class App extends Component {
                                         dispatch={this.props.dispatch}
                                     />
                                     <div className="container-fluid">
-                                        <Match pattern="/" exactly={true} render={() => <Welcome user={user}/>} />
-                                        <MatchWhenGuest pattern="/login" exactly={true} component={LoginForm} user={user} location={currentRoute.location} />
-                                        <MatchWhenAuthorized user={user} pattern="/profile" component={Profile} />
-                                        {routes.map((route, i) => (
-                                            <MatchWhenAuthorizedAsync key={i} user={user} {...route} />
-                                        ))}
+                                        <Switch>
+                                            <Route path="/" exact={true} render={() => <Welcome user={user}/>} />
+                                            <MatchWhenGuest path="/login" exact={true} component={LoginForm} user={user} location={currentRoute.location} />
+                                            <MatchWhenAuthorized user={user} path="/profile" component={Profile} />
+                                            {routes.map((route, i) => (
+                                                <MatchWhenAuthorizedAsync key={i} user={user} {...route} />
+                                            ))}
+                                        </Switch>
                                     </div>
                                 </div>
                             </Sidebar>
@@ -168,7 +172,9 @@ class App extends Component {
                         </div>
                     </TranslatorProvider>}
                 </div>
-            </ControlledRouter>
+            </BrowserRouter>
+            {/*</ControlledRouter>*/}
+            </div>
         );
     }
 }

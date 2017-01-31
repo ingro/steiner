@@ -3,10 +3,10 @@ import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 
 export class ItemLoader extends Component {
     componentDidMount() {
-        if (this.props.params.id === 'create') {
+        if (this.props.match.params.id === 'create') {
             this.props.resetCurrent();
         } else {
-            this.props.fetch(this.props.params.id);
+            this.props.fetch(this.props.match.params.id);
         }
     }
 

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import LoadingButton from 'vivi/lib/LoadingButton';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export class FormControls extends Component {
     render() {

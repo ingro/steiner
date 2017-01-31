@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Match, Redirect } from 'react-router';
+import { Route, Redirect } from 'react-router-dom';
 
 // TODO: when ControlledRouter is released implement auth within redux store
 // Inspired by https://github.com/jtmthf/react-router-match-async
@@ -49,7 +49,7 @@ class MatchWhenAuthorizedAsync extends Component {
     render() {
         const { user, redirectTo, ...rest } = this.props;
 
-        return <Match {...rest} render={props => {
+        return <Route {...rest} render={props => {
             return user ? 
                 this.renderComponent(props)
             : (

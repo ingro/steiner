@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { InputListFilter, KeyBinderHoc } from 'steiner';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 // import Tooltip from 'vivi/lib/Tooltip';

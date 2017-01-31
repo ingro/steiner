@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { auth, confirm, HeaderLink } from 'steiner';
 import Dropdown from 'vivi/lib/Dropdown';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';

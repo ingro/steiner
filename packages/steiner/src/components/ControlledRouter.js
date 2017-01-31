@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Router from 'react-router-addons-controlled/ControlledBrowserRouter';
+import Router from './ControlledBrowserRouter';
 
 import { navigate } from '../routing/actions';
 

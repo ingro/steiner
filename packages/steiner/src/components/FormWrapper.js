@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { NavigationPrompt } from 'react-router';
+import { Prompt } from 'react-router-dom';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 
 import FormControls from './FormControls';
@@ -40,7 +40,7 @@ export class FormWrapper extends Component {
 
         return (
             <div className={outerClass}>
-                <NavigationPrompt when={dirty && !submitSucceeded} message={this.props.unsavedMessage} />
+                <Prompt when={dirty && !submitSucceeded} message={this.props.unsavedMessage} />
                 <div className={innerClass}>
                     <h3 className="text-center">{this.props.title}</h3>
                     {error && <div className="alert alert-danger">{error}</div>}

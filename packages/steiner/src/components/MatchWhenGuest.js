@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Match, Redirect } from 'react-router';
+import { Route, Redirect } from 'react-router-dom';
 import get from 'lodash/get';
 
 class MatchWhenGuest extends Component {
@@ -33,7 +33,7 @@ class MatchWhenGuest extends Component {
     render() {
         const { component: Component, user, defaultRedirectTo, ...rest } = this.props;
 
-        return <Match {...rest} render={props => {
+        return <Route {...rest} render={props => {
             return (!user || !this.state.authorized) ? (
                 <Component {...props}/>
             ) : (

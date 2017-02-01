@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
-import { formHelper, FormWrapper } from 'steiner';
-import InputField from 'vivi/lib/Form/InputField';
 {% if richComponents %}import Helmet from 'react-helmet';{% endif %}
 
-import { actionTypes } from '../actions/{{name}}';
+{%- set formComponentName = name | title + 'Form' %}
+
+import {{formComponentName}} from './{{formComponentName}}';
 import routeRegister from 'helpers/routeRegister';
 
 {%- set componentName = name | title + 'Edit' %}
 
-class {{componentName}} extends Component {
-    constructor(props) {
-        super(props);
-
-        this.submit = formHelper.createSubmit(actionTypes);
-    }
-
+export default class {{componentName}} extends Component {
     createInitialFormValues(item) {
         return item;
     }
@@ -31,29 +24,19 @@ class {{componentName}} extends Component {
     }
 
     render() {
+        const title = this.getTitle();
+
         return (
-            <div>
-                {% if richComponents %}<Helmet title={`{{name | title}} > ${this.getTitle()}`} />{% endif %}
-                <FormWrapper
-                    {...this.props}
-                    title={this.getTitle()}
-                    cancelLink={this.getCancelLink()}
-                    submit={this.submit}
-                    createInitialFormValues={this.createInitialFormValues}
-                >
-                    <Field
-                        className="form-control"
-                        name="name"
-                        placeholder="Name"
-                        component={InputField}
+            <div className="row">
+                <div className="col-xs-12">
+                    {% if richComponents %}<Helmet title={`{{name | title}} > ${this.getTitle()}`} />{% endif %}
+                    <h3 className="text-center">{title}</h3>
+                    <{{formComponentName}}
+                        cancelLink={this.getCancelLink()}
+                        initialValues={this.createInitialFormValues(this.props.item)}
                     />
-                    {/* Fields */}
-                </FormWrapper>
+                </div>
             </div>
         );
     }
 }
-
-export default reduxForm({
-    form: '{{name}}'
-})({{componentName}});

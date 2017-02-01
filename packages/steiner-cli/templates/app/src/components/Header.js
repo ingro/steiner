@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { auth, confirm, HeaderLink } from 'steiner';
 import Dropdown from 'vivi/lib/Dropdown';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
@@ -42,9 +42,9 @@ export class Header extends Component {
                         </ul>*/}
                         <ul className="nav navbar-nav navbar-right">
                             {user
-                                ? 
-                                <Dropdown 
-                                    text={<i className="fa fa-cog" />} 
+                                ?
+                                <Dropdown
+                                    text={<i className="fa fa-cog" />}
                                     type="navbar"
                                     right={true}
                                 >

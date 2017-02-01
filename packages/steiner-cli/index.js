@@ -42,7 +42,7 @@ function generateModule(moduleName, options) {
     // Tempdir-scoped fs
     const tf = jetpack.cwd(tmpDir.name);
 
-    const vars = { 
+    const vars = {
         name: moduleName,
         richComponents: options.richComponents,
         useHelper: options.helper
@@ -65,6 +65,7 @@ function generateModule(moduleName, options) {
     if (options.components) {
         // Components
         generateFile('components/edit.tpl', `components/${ucModuleName}Edit.js`);
+        generateFile('components/form.tpl', `components/${ucModuleName}Form.js`);
         generateFile('components/listFilter.tpl', `components/${ucModuleName}ListFilter.js`);
         generateFile('components/listTable.tpl', `components/${ucModuleName}ListTable.js`);
 
@@ -91,7 +92,7 @@ function generateModule(moduleName, options) {
 function bootstrapApp(appName) {
     // Output-scoped fs
     const od = jetpack.cwd(path.resolve(process.cwd(), appName));
-    
+
     // Check if output folder already exists
     if (od.exists('.')) {
         console.log(`${chalk.red('ERR:')} Destination folder "${chalk.bold(od.path())}" already exists, aborting...`);
@@ -111,7 +112,7 @@ function bootstrapApp(appName) {
     // Tempdir-scoped fs
     const tf = jetpack.cwd(tmpDir.name);
 
-    const vars = { 
+    const vars = {
         appName
     };
 
@@ -153,7 +154,7 @@ program
     .option('-h, --no-helper', 'Don\'t use SteinerHelper')
     .action(generateModule);
 
-program 
+program
     .command('bootstrap <app>')
     .description('bootstrap a steiners\'s app')
     .action(bootstrapApp);

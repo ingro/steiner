@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Match } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 import NotificationsSystem from 'reapop';
 import LoadingBar from 'react-redux-loading-bar';
 import Sidebar from 'react-sidebar';
@@ -117,14 +117,14 @@ class App extends Component {
                 location={currentRoute.location}
                 action={currentRoute.action}
                 dispatch={dispatch}
-            >             
+            >
                 <div>
                     {!this.state.isLanguageLoaded && <div className="splash"><h1 className="loading dots">{process.env.REACT_APP_NAME} </h1></div>}
                     {this.state.isLanguageLoaded && <TranslatorProvider
                         locale={this.props.settings.language}
                         messages={this.translations}
                     >
-                        <div>   
+                        <div>
                             <Helmet
                                 title="App"
                                 titleTemplate={`${process.env.REACT_APP_NAME} | %s`}
@@ -144,7 +144,7 @@ class App extends Component {
                                 transitions={false}
                             >
                                 <div className={this.state.isSidebarOpen ? 'sidebar-is-open' : ''}>
-                                    <Header 
+                                    <Header
                                         isSidebarOpen={this.state.isSidebarOpen}
                                         onToggleSidebar={this.toggleSidebar}
                                         onToggleHelpModal={this.toggleHelpModal}
@@ -153,12 +153,14 @@ class App extends Component {
                                         dispatch={this.props.dispatch}
                                     />
                                     <div className="container-fluid">
-                                        <Match pattern="/" exactly={true} render={() => <Welcome user={user}/>} />
-                                        <MatchWhenGuest pattern="/login" exactly={true} component={LoginForm} user={user} location={currentRoute.location} />
-                                        <MatchWhenAuthorized pattern="/profile" render={() => <Profile user={user} />}/>
-                                        {routes.map((route, i) => (
-                                            <MatchWhenAuthorizedAsync key={i} user={user} {...route}/>
-                                        ))}
+                                        <Switch>
+                                            <Route path="/" exact={true} render={() => <Welcome user={user}/>} />
+                                            <MatchWhenGuest path="/login" exactly={true} component={LoginForm} user={user} location={currentRoute.location} />
+                                            <MatchWhenAuthorized path="/profile" render={() => <Profile user={user} />}/>
+                                            {routes.map((route, i) => (
+                                                <MatchWhenAuthorizedAsync key={i} user={user} {...route}/>
+                                            ))}
+                                        </Switch>
                                     </div>
                                 </div>
                             </Sidebar>
@@ -176,10 +178,10 @@ class App extends Component {
 const KeyedApp = KeyBinderHoc(App);
 
 function mapStateToProps(state) {
-    return { 
-        user: getUser(state), 
-        currentRoute: getCurrentRoute(state), 
-        settings: getSettings(state) 
+    return {
+        user: getUser(state),
+        currentRoute: getCurrentRoute(state),
+        settings: getSettings(state)
     };
 }
 

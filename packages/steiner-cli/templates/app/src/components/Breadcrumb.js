@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Match, Link } from 'react-router';
+import { Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './Breadcrumb.css';
@@ -7,29 +7,23 @@ import './Breadcrumb.css';
 class BreadcrumbElement extends Component {
     render() {
         return (
-            <li className={this.props.isExact ? 'active' : ''}>
-                {this.props.isExact
+            <li className={this.props.match.isExact ? 'active' : ''}>
+                {this.props.match.isExact
                     ? this.props.breadcrumbName
-                    : <Link to={this.props.pathname}>{this.props.breadcrumbName}</Link>
+                    : <Link to={this.props.match.url}>{this.props.breadcrumbName}</Link>
                 }
             </li>
         );
     }
 }
 
-BreadcrumbElement.propTypes = {
-    breadcrumbName: PropTypes.any,
-    isExact: PropTypes.bool,
-    pathname: PropTypes.string
-};
-
 const BreadcrumbMatch = (route) => {
     const matchRoute = {
         ...route,
-        exactly: false
+        exact: false
     };
 
-    return <Match {...matchRoute} render={(props) => {
+    return <Route {...matchRoute} render={(props) => {
         if (typeof route.breadcrumb === 'string') {
             return <BreadcrumbElement {...props} breadcrumbName={route.breadcrumb} />;
         } else {
@@ -41,7 +35,7 @@ const BreadcrumbMatch = (route) => {
 
 export default class Breadcrumb extends Component {
     render() {
-        return ( 
+        return (
             <ol className="breadcrumb Breadcrumb-navbar">
                 {this.props.routes.map((route, i) => (
                     <BreadcrumbMatch key={i} {...route}/>

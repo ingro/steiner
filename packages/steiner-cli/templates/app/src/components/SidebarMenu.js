@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 import SidebarToggle from './SidebarToggle';
 import './Sidebar.css';
@@ -11,10 +11,10 @@ class SidebarMenu extends Component {
                 <SidebarToggle position="sidebar" onClick={this.props.onToggle} />
                 <ul>
                     {this.props.links.map((link, i) =>
-                        <li key={i}><Link to={link.to} activeClassName="active">{link.name}</Link></li>
+                        <li key={i}><NavLink activeClassName="active" to={link.to}>{link.name}</NavLink></li>
                     )}
                 </ul>
-            </div>  
+            </div>
         );
     }
 }

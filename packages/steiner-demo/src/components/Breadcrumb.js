@@ -7,10 +7,10 @@ import './Breadcrumb.css';
 class BreadcrumbElement extends Component {
     render() {
         return (
-            <li className={this.props.isExact ? 'active' : ''}>
-                {this.props.isExact
+            <li className={this.props.match.isExact ? 'active' : ''}>
+                {this.props.match.isExact
                     ? this.props.breadcrumbName
-                    : <Link to={this.props.path}>{this.props.breadcrumbName}</Link>
+                    : <Link to={this.props.match.url}>{this.props.breadcrumbName}</Link>
                 }
             </li>
         );
@@ -35,7 +35,7 @@ const BreadcrumbMatch = (route) => {
 
 export default class Breadcrumb extends Component {
     render() {
-        return ( 
+        return (
             <ol className="breadcrumb Breadcrumb-navbar">
                 {this.props.routes.map((route, i) => (
                     <BreadcrumbMatch key={i} {...route}/>

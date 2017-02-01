@@ -1,3 +1,7 @@
+## 0.16.0 (February 1, 2017)
+
+- Updated templates for steiner@0.16.0
+
 ## 0.15.0 (January 19, 2017)
 
 - Updated templates for steiner@0.15.0

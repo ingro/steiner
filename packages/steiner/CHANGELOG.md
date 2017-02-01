@@ -1,3 +1,8 @@
+## 0.16.0 (February 1, 2017)
+
+- Update routing to `react-router@v4beta`
+- Reworked `<FormWrapper />` to have less responsibilities
+
 ## 0.15.0 (January 19, 2017)
 
 - Reworked generation of error payloads handled with redux-form and redux-saga

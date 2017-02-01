@@ -5,9 +5,11 @@ import { createReducer } from '../helpers/reducerCreator';
 
 export const DEFAULT_STATE = Immutable({
     current: {
-        location: { pathname: '/' },
+        location: {
+            pathname: '/'
+        },
         action: 'PUSH'
-    }, 
+    },
     previous: {
         location: null,
         action: null
@@ -17,6 +19,7 @@ export const DEFAULT_STATE = Immutable({
 const handlers = {
     [actionTypes.navigate]: (state, action) => {
         const previous = state.current;
+
         return Immutable({
             current: {
                 location: action.location,
@@ -42,6 +45,6 @@ export function getPreviousUrl(state) {
         const { pathname, search } = state.router.previous.location;
         return pathname + search;
     }
-    
+
     return null;
 }

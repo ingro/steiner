@@ -1,16 +1,18 @@
-import React, { PropTypes } from 'react'
-import ControlledHistory from './ControlledHistory'
-import StaticRouter from 'react-router-dom/StaticRouter'
+// From https://github.com/ReactTraining/react-router-addons-controlled, update to work with React-Router 4@beta
+
+import React, { PropTypes } from 'react';
+import ControlledHistory from './ControlledHistory';
+import Router from 'react-router-dom/Router';
 
 const restoreKeys = () => {
   try {
-    return JSON.parse(sessionStorage.ReactRouterKeys)
+    return JSON.parse(sessionStorage.ReactRouterKeys);
   } catch(e) {} // eslint-disable-line
 }
 
 const saveKeys = (keys) => {
   try {
-    sessionStorage.ReactRouterKeys = JSON.stringify(keys)
+    sessionStorage.ReactRouterKeys = JSON.stringify(keys);
   } catch(e) {} // eslint-disable-line
 }
 
@@ -31,8 +33,8 @@ const ControlledBrowserRouter = ({
     saveKeys={saveKeys}
   >
     {({ history, action, location }) => (
-      <StaticRouter
-        context={{}}
+      <Router
+        history={history}
         action={action}
         location={location}
         basename={basename}
@@ -55,6 +57,6 @@ ControlledBrowserRouter.propTypes = {
     PropTypes.func,
     PropTypes.node
   ])
-}
+};
 
-export default ControlledBrowserRouter
+export default ControlledBrowserRouter;

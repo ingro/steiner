@@ -1,42 +1,10 @@
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
-import { formHelper, FormWrapper } from 'steiner';
 import Helmet from 'react-helmet';
-import InputField from 'vivi/lib/Form/InputField';
-import CheckboxField from 'vivi/lib/Form/CheckboxField';
-import SelectAsyncField from 'vivi/lib/Form/SelectAsyncField';
 
-import {
-    composeValidators,
-    combineValidators,
-    isRequired,
-    hasLengthGreaterThan
-} from 'revalidate';
-
-import client from 'apis/client';
+import HotelsForm from './HotelsForm';
 import routeRegister from 'helpers/routeRegister';
-import { createReactSelectLoader } from 'helpers/helpers';
-import { actionTypes } from '../actions/hotels';
 
-const validate = combineValidators({
-    name: composeValidators(
-        isRequired('Name'),
-        hasLengthGreaterThan(8)({
-            message: 'The name must be at least 8 characters long'
-        })
-    )()
-});
-
-class HotelsEdit extends Component {
-    constructor(props) {
-        super(props);
-
-        this.submit = formHelper.createSubmit(actionTypes, data => ({
-            ...data,
-            positionId: data.positionId ? data.positionId.value : null
-        }));
-    }
-
+export default class HotelsEdit extends Component {
     createInitialFormValues(item) {
         return {
             ...item,
@@ -56,56 +24,19 @@ class HotelsEdit extends Component {
     }
 
     render() {
+        const title = this.getTitle();
+
         return (
-            <div>
-                <Helmet title={`Hotels > ${this.getTitle()}`} />
-                <FormWrapper
-                    {...this.props}
-                    title={this.getTitle()}
-                    cancelLink={this.getCancelLink()}
-                    submit={this.submit}
-                    createInitialFormValues={this.createInitialFormValues}
-                >
-                    <Field
-                        className="form-control"
-                        name="name"
-                        placeholder="Name"
-                        component={InputField}
+            <div className="row">
+                <div className="col-xs-12">
+                    <Helmet title={`Hotels > ${title}`} />
+                    <h3 className="text-center">{title}</h3>
+                    <HotelsForm
+                        cancelLink={this.getCancelLink()}
+                        initialValues={this.createInitialFormValues(this.props.item)}
                     />
-                    <Field
-                        className="form-control"
-                        name="address"
-                        placeholder="Address"
-                        component={InputField}
-                    />
-                    <Field
-                        className="form-control"
-                        name="positionId"
-                        placeholder="Position"
-                        component={SelectAsyncField}
-                        loadOptions={createReactSelectLoader('positions', client, { labelKey: 'name', valueKey: 'id' })}
-                    />
-                    <Field
-                        className="form-control"
-                        name="tags"
-                        placeholder="Tags"
-                        component={SelectAsyncField}
-                        loadOptions={createReactSelectLoader('tags', client, { labelKey: 'name', valueKey: 'id' })}
-                        selectOptions={{ multi: true }}
-                    />
-                    <Field
-                        className="form-control"
-                        name="active"
-                        component={CheckboxField}
-                        type="checkbox"
-                    />
-                </FormWrapper>
+                </div>
             </div>
         );
     }
 }
-
-export default reduxForm({
-    form: 'hotels',
-    validate
-})(HotelsEdit);

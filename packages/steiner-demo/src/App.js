@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch/*, BrowserRouter*/ } from 'react-router-dom';
 import NotificationsSystem from 'reapop';
 import LoadingBar from 'react-redux-loading-bar';
 import Sidebar from 'react-sidebar';
@@ -24,6 +24,7 @@ import Profile from './components/Profile';
 import ModalHelp from './components/ModalHelp';
 import routes from './routes';
 import history from './history';
+// import ControlledRouter from './components/Router/ControlledRouter';
 
 class App extends Component {
     constructor(props) {
@@ -113,20 +114,20 @@ class App extends Component {
 
         return (
             <div>
-            <BrowserRouter>
-            {/*<ControlledRouter
+            {/*<BrowserRouter>*/}
+            <ControlledRouter
                 history={history}
                 location={currentRoute.location}
                 action={currentRoute.action}
                 dispatch={dispatch}
-            >*/}
+            >
                 <div>
                     {!this.state.isLanguageLoaded && <div className="splash"><h1 className="loading dots">{process.env.REACT_APP_NAME} </h1></div>}
                     {this.state.isLanguageLoaded && <TranslatorProvider
                         locale={this.props.settings.language}
                         messages={this.translations}
                     >
-                        <div>   
+                        <div>
                             <Helmet
                                 title="App"
                                 titleTemplate={`${process.env.REACT_APP_NAME} | %s`}
@@ -146,7 +147,7 @@ class App extends Component {
                                 transitions={false}
                             >
                                 <div className={this.state.isSidebarOpen ? 'sidebar-is-open' : ''}>
-                                    <Header 
+                                    <Header
                                         isSidebarOpen={this.state.isSidebarOpen}
                                         onToggleSidebar={this.toggleSidebar}
                                         onToggleHelpModal={this.toggleHelpModal}
@@ -172,8 +173,8 @@ class App extends Component {
                         </div>
                     </TranslatorProvider>}
                 </div>
-            </BrowserRouter>
-            {/*</ControlledRouter>*/}
+            {/*</BrowserRouter>*/}
+            </ControlledRouter>
             </div>
         );
     }
@@ -182,10 +183,10 @@ class App extends Component {
 const KeyedApp = KeyBinderHoc(App);
 
 function mapStateToProps(state) {
-    return { 
-        user: getUser(state), 
-        currentRoute: getCurrentRoute(state), 
-        settings: getSettings(state) 
+    return {
+        user: getUser(state),
+        currentRoute: getCurrentRoute(state),
+        settings: getSettings(state)
     };
 }
 

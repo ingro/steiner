@@ -22,3 +22,8 @@
 
 ## Tests
 - Split actionCreator-test createActions tests in multiple assertions for easier debugging with snapshots
+
+## React Router v4 beta:
+- Allow `getUserConfirmation` prop on `<ControlledBrowserRouter>`
+- Ensure `basename` prop is still working on `<ControlledBrowserRouter>`
+- Fix or remove `<HeaderLink>`

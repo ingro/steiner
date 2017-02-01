@@ -20,10 +20,11 @@ function doSymLink(packageName, folderName) {
 function createSymLinkFor(packageName) {
     doSymLink(packageName, 'steiner-demo');
     doSymLink(packageName, 'steiner');
+    // doSymLink(packageName, 'steiner-rr4');
 }
 
 createSymLinkFor('react');
 createSymLinkFor('react-redux');
-createSymLinkFor('react-router');
-createSymLinkFor('react-router-addons-controlled');
+createSymLinkFor('react-router-dom');
+// createSymLinkFor('react-router-addons-controlled');
 createSymLinkFor('redux-form');

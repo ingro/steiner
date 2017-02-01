@@ -3,6 +3,7 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { auth, FormWrapper } from 'steiner';
+import { getUser } from 'steiner/lib/auth/reducer';
 import { createFormAction } from 'steiner/lib/helpers/reduxFormSaga';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 import InputField from 'vivi/lib/Form/InputField';

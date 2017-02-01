@@ -1,3 +1,4 @@
 /node_modules
 /.vscode
+/packages/steiner-rr4
 *.log

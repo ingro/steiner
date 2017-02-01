@@ -156,7 +156,7 @@ class App extends Component {
                                         <Switch>
                                             <Route path="/" exact={true} render={() => <Welcome user={user}/>} />
                                             <MatchWhenGuest path="/login" exactly={true} component={LoginForm} user={user} location={currentRoute.location} />
-                                            <MatchWhenAuthorized path="/profile" render={() => <Profile user={user} />}/>
+                                            <MatchWhenAuthorized user={user} path="/profile" component={Profile} />
                                             {routes.map((route, i) => (
                                                 <MatchWhenAuthorizedAsync key={i} user={user} {...route}/>
                                             ))}

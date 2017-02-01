@@ -14,10 +14,11 @@ function doClean(packageName, folderName) {
 function cleanModule(packageName) {
     doClean(packageName, 'steiner-demo');
     doClean(packageName, 'steiner');
+    // doClean(packageName, 'steiner-rr4');
 }
 
 cleanModule('react');
 cleanModule('react-redux');
-cleanModule('react-router');
-cleanModule('react-router-addons-controlled');
+cleanModule('react-router-dom');
+// cleanModule('react-router-addons-controlled');
 cleanModule('redux-form');

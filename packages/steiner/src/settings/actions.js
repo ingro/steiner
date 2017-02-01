@@ -1,5 +1,5 @@
-export const UPDATE_SETTINGS  = 'steiner/UPDATE_SETTINGS';
-export const SET_TRANSLATIONS = 'steiner/SET_TRANSLATIONS';
+export const UPDATE_SETTINGS  = '@@steiner/UPDATE_SETTINGS';
+export const SET_TRANSLATIONS = '@@steiner/SET_TRANSLATIONS';
 
 export function updateSettings(settings) {
     return {

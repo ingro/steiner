@@ -1,4 +1,4 @@
-export const SHOW_CONFIRM_DIALOG = 'steiner/SHOW_CONFIRM_DIALOG';
+export const SHOW_CONFIRM_DIALOG = '@@steiner/SHOW_CONFIRM_DIALOG';
 
 export function showConfirmDialog(options) {
     return {

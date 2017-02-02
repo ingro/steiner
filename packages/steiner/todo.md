@@ -26,4 +26,3 @@
 ## React Router v4 beta:
 - Allow `getUserConfirmation` prop on `<ControlledBrowserRouter>`
 - Ensure `basename` prop is still working on `<ControlledBrowserRouter>`
-- Fix or remove `<HeaderLink>`

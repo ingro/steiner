@@ -46,7 +46,7 @@
     "react-redux": "^5.0.2",
     "react-redux-loading-bar": "^2.6.5",
     "react-router-dom": "^4.0.0-beta.4",
-    "react-select": "^1.0.0-rc.2",
+    "react-select": "^1.0.0-rc.3",
     "react-test-renderer": "^15.4.2",
     "react-virtualized": "^8.11.2",
     "reapop": "^1.0.0",
@@ -55,7 +55,7 @@
     "redux-saga": "^0.14.3",
     "redux-saga-test-plan": "^2.2.0",
     "reflexbox": "^2.2.3",
-    "vivi": "^0.4.10"
+    "vivi": "^0.5.0"
   },
   "dependencies": {
     "arrify": "^1.0.1",
@@ -74,13 +74,12 @@
     "react-dom": "^15.0.0",
     "react-redux": "^5.0.0",
     "react-redux-loading-bar": "^2.0.0",
-    "react-router-dom": "^4.0.0-beta.3",
-    "react-router-addons-controlled": "^0.0.1",
+    "react-router-dom": "^4.0.0-beta.4",
     "reapop": "^1.0.0",
     "redux": "^3.0.0",
     "redux-form": "^6.0.0",
     "redux-saga": "^0.14.0",
     "reflexbox": "^2.0.0",
-    "vivi": "^0.4.8"
+    "vivi": "^0.5.0"
   }
 }

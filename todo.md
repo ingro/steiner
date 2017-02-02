@@ -1,0 +1,1 @@
+- Switch to `lerna bootstrap --hoist` when it gets stable

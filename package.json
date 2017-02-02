@@ -5,8 +5,10 @@
     "postinstall": "lerna bootstrap",
     "seed:demo": "rimraf packages/steiner-demo/src/modules/positions && cd packages/steiner-cli && node index generate positions -o ../steiner-demo/src/modules",
     "start:demo": "cd packages/steiner-demo && npm start",
-    "publish": "lerna publish && lerna-npm-readme-hack --packages steiner,steiner-cli",
-    "bootstrap": "node scripts/clean && lerna bootstrap && node scripts/link",
+    "publish": "lerna publish",
+    "publish-readme": "lerna publish && lerna-npm-readme-hack --packages steiner,steiner-cli",
+    "bootstrap-custom": "node scripts/clean && lerna bootstrap && node scripts/link",
+    "bootstrap": "lerna bootstrap",
     "test": "cd packages/steiner && npm test"
   },
   "devDependencies": {

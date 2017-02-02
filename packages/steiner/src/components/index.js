@@ -11,7 +11,6 @@ import NoRowsComponent from './NoRows';
 import MatchWhenAuthorizedComponent from './MatchWhenAuthorized';
 import MatchWhenAuthorizedAsyncComponent from './MatchWhenAuthorizedAsync';
 import MatchWhenGuestComponent from './MatchWhenGuest';
-import HeaderLinkComponent from './HeaderLink';
 
 export const ControlledRouter = ControlledRouterComponent;
 export const FormBuilder = FormBuilderComponent;
@@ -26,4 +25,3 @@ export const NoRows = NoRowsComponent;
 export const MatchWhenAuthorized = MatchWhenAuthorizedComponent;
 export const MatchWhenAuthorizedAsync = MatchWhenAuthorizedAsyncComponent;
 export const MatchWhenGuest = MatchWhenGuestComponent;
-export const HeaderLink = HeaderLinkComponent;

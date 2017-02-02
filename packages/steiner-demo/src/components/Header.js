@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
-import { auth, confirm, HeaderLink } from 'steiner';
+import { auth, confirm } from 'steiner';
 import Dropdown from 'vivi/lib/Dropdown';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 
 import SidebarToggle from './SidebarToggle';
 import Breadcrumb from './Breadcrumb';
+import HeaderLink from './HeaderLink';
 
 export class Header extends Component {
     requestLogout = (e) => {
@@ -43,11 +44,11 @@ export class Header extends Component {
                         </ul>*/}
                         <ul className="nav navbar-nav navbar-right">
                             {user
-                                ? 
-                                <Dropdown 
-                                    text={<i className="fa fa-cog" />} 
+                                ?
+                                <Dropdown
+                                    text={<i className="fa fa-cog" />}
                                     type="navbar"
-                                    right={true} 
+                                    right={true}
                                 >
                                     <li className="dropdown-header">{user.email}</li>
                                     <li><Link to="/profile"><i className="fa fa-user"/> {profileAndSettingsLabel}</Link></li>
@@ -55,7 +56,7 @@ export class Header extends Component {
                                     <li role="separator" className="divider"></li>
                                     <li><a onClick={this.requestLogout}><i className="fa fa-sign-out"/> Logout</a></li>
                                 </Dropdown>
-                                : <HeaderLink to="/login" name="Login" />
+                                : <HeaderLink to="/login" text="Login" />
                             }
                         </ul>
                     </div>

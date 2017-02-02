@@ -10,12 +10,12 @@
     "test": "cd packages/steiner && npm test"
   },
   "devDependencies": {
-    "lerna": "2.0.0-beta.34",
+    "lerna": "^2.0.0-beta.35",
     "lerna-npm-readme-hack": "^1.0.6",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
-    "react-router-dom": "^4.0.0-beta.3",
+    "react-router-dom": "^4.0.0-beta.4",
     "redux": "^3.6.0",
     "redux-form": "^6.5.0",
     "rimraf": "^2.5.4"

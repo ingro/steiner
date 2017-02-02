@@ -1,3 +1,7 @@
+## 0.16.1 (February 2, 2017)
+
+- Removed `<HeaderLink>` component from main steiner package
+
 ## 0.16.0 (February 1, 2017)
 
 - Update routing to `react-router@v4beta`

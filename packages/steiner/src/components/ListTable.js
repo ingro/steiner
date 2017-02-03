@@ -56,7 +56,7 @@ export default class ListTable extends Component {
     }
 
     render() {
-        const { filters, items, selected, selectable } = this.props;
+        const { filters, items, selected, selectable, rowHeight } = this.props;
 
         return (
             <Table
@@ -64,7 +64,7 @@ export default class ListTable extends Component {
                 rowCount={items.length}
                 columns={this.props.columns}
                 rowGetter={this.rowGetter}
-                rowHeight={55}
+                rowHeight={rowHeight}
                 noRowsRenderer={this.getNoRowsRenderer}
                 sortBy={filters.orderKey}
                 sortDirection={filters.orderDirection}
@@ -92,6 +92,7 @@ ListTable.propTypes = {
     loadingMsg: PropTypes.string,
     noRowsMsg: PropTypes.string,
     onChangeOrder: PropTypes.func,
+    rowHeight: PropTypes.number,
     selectable: PropTypes.bool,
     selected: PropTypes.array,
     select: PropTypes.func,
@@ -100,5 +101,6 @@ ListTable.propTypes = {
 
 ListTable.defaultProps = {
     itemKeyName: 'id',
+    rowHeight: 55,
     selectable: true
 };

@@ -6,7 +6,7 @@ import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 
 import routeRegister from 'helpers/routeRegister';
 
-{%- set componentName = name | title + 'ListFilter' %}
+{%- set componentName = ucName + 'ListFilter' %}
 
 export class {{componentName}} extends Component {
     {% if richComponents -%}

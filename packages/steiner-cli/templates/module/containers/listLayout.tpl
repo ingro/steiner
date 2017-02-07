@@ -4,22 +4,22 @@ import { connectCreator, ListLayout } from 'steiner';
 
 import { actions } from '../actions/{{name}}';
 import { selectors } from '../reducers/{{name}}';
-import {{name | title}}ListFilter from '../components/{{name | title}}ListFilter';
-import {{name | title}}ListTable from '../components/{{name | title}}ListTable';
+import {{ucName}}ListFilter from '../components/{{ucName}}ListFilter';
+import {{ucName}}ListTable from '../components/{{ucName}}ListTable';
 
-class {{name | title}}ListLayout extends Component {
+class {{ucName}}ListLayout extends Component {
     render() {
         return (
             <div>
                 {% if richComponents %}<Helmet title="{{name | title}}" />{% endif %}
                 <ListLayout
                     {...this.props}
-                    filterComponent={ {{name | title}}ListFilter }
-                    tableComponent={ {{name | title}}ListTable }
+                    filterComponent={ {{ucName}}ListFilter }
+                    tableComponent={ {{ucName}}ListTable }
                 />
             </div>
         );
     }
 }
 
-export default connectCreator.connectList({{name | title}}ListLayout, actions, selectors);
+export default connectCreator.connectList({{ucName}}ListLayout, actions, selectors);

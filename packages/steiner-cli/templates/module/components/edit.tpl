@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 {% if richComponents %}import Helmet from 'react-helmet';{% endif %}
 
-{%- set formComponentName = name | title + 'Form' %}
+{%- set formComponentName = ucName + 'Form' %}
 
 import {{formComponentName}} from './{{formComponentName}}';
 import routeRegister from 'helpers/routeRegister';
 
-{%- set componentName = name | title + 'Edit' %}
+{%- set componentName = ucName + 'Edit' %}
 
 export default class {{componentName}} extends Component {
     createInitialFormValues(item) {

@@ -16,7 +16,7 @@ function generateModule(moduleName, options) {
     // return;
 
     // Gather templates variables
-    const ucModuleName = _.capitalize(moduleName);
+    const ucModuleName = _.upperFirst(moduleName);
 
     // Output-scoped fs
     const od = jetpack.cwd(path.resolve(process.cwd(), options.outputPath, moduleName));
@@ -44,6 +44,7 @@ function generateModule(moduleName, options) {
 
     const vars = {
         name: moduleName,
+        ucName: ucModuleName,
         richComponents: options.richComponents,
         useHelper: options.helper
     };

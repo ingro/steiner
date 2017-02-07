@@ -3,17 +3,17 @@ import { connectCreator, ItemLoader } from 'steiner';
 
 import { actions } from '../actions/{{name}}';
 import { selectors } from '../reducers/{{name}}';
-import {{name | title}}Edit from '../components/{{name | title}}Edit';
+import {{ucName}}Edit from '../components/{{ucName}}Edit';
 
-class {{name | title}}Loader extends Component {
+class {{ucName}}Loader extends Component {
     render() {
         return (
             <ItemLoader
                 {...this.props}
-                component={ {{name | title}}Edit }
+                component={ {{ucName}}Edit }
             />
         );
     }
 }
 
-export default connectCreator.connectItem({{name | title}}Loader, actions, selectors);
+export default connectCreator.connectItem({{ucName}}Loader, actions, selectors);

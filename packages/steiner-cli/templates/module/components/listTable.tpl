@@ -5,7 +5,7 @@ import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 
 import routeRegister from 'helpers/routeRegister';
 
-{%- set componentName = name | title + 'ListTable' %}
+{%- set componentName = ucName + 'ListTable' %}
 
 export class {{componentName}} extends Component {
     handleDelete = (id) => {

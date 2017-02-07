@@ -3,9 +3,9 @@ import { reduxForm, Field } from 'redux-form';
 import { formHelper, FormWrapper } from 'steiner';
 import InputField from 'vivi/lib/Form/InputField';
 
-import { actionTypes } from '../actions/hotels';
+import { actionTypes } from '../actions/{{name}}';
 
-{%- set componentName = name | title + 'Edit' %}
+{%- set componentName = ucName + 'Edit' %}
 
 class {{componentName}} extends Component {
     constructor(props) {

@@ -42,7 +42,7 @@ export class FormWrapper extends Component {
     }
 
     render() {
-        const { handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset, innerClass, outerControlsClass } = this.props;
+        const { handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset, /*innerClass,*/ outerControlsClass } = this.props;
 
         return (
             <div>
@@ -72,16 +72,16 @@ FormWrapper.propTypes = {
         PropTypes.string,
         PropTypes.object
     ]),
-    createInitialFormValues: PropTypes.func,
+    // createInitialFormValues: PropTypes.func,
     goBackAfterSave: PropTypes.bool,
     outerControlsClass: PropTypes.string,
-    title: PropTypes.any,
+    // title: PropTypes.any,
     submit: PropTypes.func,
     unsavedMessage: PropTypes.string
 };
 
 FormWrapper.defaultProps = {
-    createInitialFormValues: (item) => item,
+    // createInitialFormValues: (item) => item,
     goBackAfterSave: true,
     outerControlsClass: 'row',
     unsavedMessage: 'Are you sure? Any unsaved changes will be lost.'

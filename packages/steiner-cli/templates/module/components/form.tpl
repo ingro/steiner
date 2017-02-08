@@ -5,7 +5,7 @@ import InputField from 'vivi/lib/Form/InputField';
 
 import { actionTypes } from '../actions/{{name}}';
 
-{%- set componentName = ucName + 'Edit' %}
+{%- set componentName = ucName + 'Form' %}
 
 class {{componentName}} extends Component {
     constructor(props) {

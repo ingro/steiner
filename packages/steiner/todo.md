@@ -19,6 +19,8 @@
 - Get rid of react-router-addons-controlled (will use history directly from sagas), or even go back to react-router 3?
 - Generate a notification for a failed logout
 - Update code of `reduxFormSaga` -> https://github.com/mhssmnn/redux-form-saga/blob/master/src/index.js
+- Use parameters in query only if params is not null or not equal '' to avoid something like: https://ingruz-api-cetdoxknkw.now.sh/api/hotels?=foo".
+- If the list is set on client mode paginate to slice the data
 
 ## Tests
 - Split actionCreator-test createActions tests in multiple assertions for easier debugging with snapshots

@@ -241,6 +241,12 @@ function createFilterCollectionHandler(options = {}) {
         if (filters.orderDirection === 'DESC') {
             sorted = sorted.reverse();
         }
+
+        if (filters.perPage > 0 && sorted.length > 0) {
+            const start = (filters.page * filters.perPage) - filters.perPage;
+            const end = filters.page * filters.perPage;
+            sorted = sorted.slice(start, end);
+        }
         
         return state.updateIn(['list'], list => ({
             ...list,

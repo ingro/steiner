@@ -1,5 +1,9 @@
 # Steiner
 
+Split the package in 2: 
+- `steiner`: contains only the utility functions for routes, actions, reducers and sagas plus auth, confirm, routing and settings addons (need to add `reapop` and `react-redux-loading-bar` to the dependencies)
+- `steiner-components`: (name not definitive) contains all the components and relative dependencies, maybe more packages could be create to support bootstrap, material-design etc.
+
 ## General
 
 - Better naming/organization of things

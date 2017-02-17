@@ -16,7 +16,6 @@ const enhancer = compose(
         thunkMiddleware,
         sagaMiddleware,
         createAuthErrorMiddleware(),
-        apiErrorMiddleware,
         notificationMiddleware,
         loadingBarMiddleware
     ),

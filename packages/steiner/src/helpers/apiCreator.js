@@ -8,7 +8,7 @@ export const DEFAULT_PARAMS_MAP = {
     orderDirection: '_order'
 };
 
-function buildParams(filters, paramsMap = {}) {
+export function buildParams(filters, paramsMap = {}) {
     const params = {};
 
     _.defaults(paramsMap, DEFAULT_PARAMS_MAP);

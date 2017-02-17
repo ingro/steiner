@@ -31,4 +31,3 @@ Split the package in 2:
 
 ## React Router v4 beta:
 - Allow `getUserConfirmation` prop on `<ControlledBrowserRouter>`
-- Ensure `basename` prop is still working on `<ControlledBrowserRouter>`

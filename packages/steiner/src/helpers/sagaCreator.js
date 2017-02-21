@@ -103,6 +103,7 @@ function *updateFailErrorCreator() {
 
 const defaultOptions = {
     clientFilters: false,
+    idKey: 'id',
     numberFilters: [],
     createFailErrorCreator,
     updateFailErrorCreator,
@@ -213,7 +214,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
     sagas.update = function*(action) {
         try {
-            const response = yield call(api.update, action.payload.id, action.payload);
+            const response = yield call(api.update, action.payload[options.idKey], action.payload);
 
             const notification = yield call(generateNotificationPayload, 'updateSuccess', 'success', messages, titles, resourceLabel);
 
@@ -233,11 +234,11 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
     sagas.delete = function*(action) {
         try {
-            const response = yield call(api.delete, action.payload.id);
+            const response = yield call(api.delete, action.payload[options.idKey]);
 
             const notification = yield call(generateNotificationPayload, 'deleteSuccess', 'success', messages, titles, resourceLabel);
 
-            yield put(actions.deleteSuccess({ response, id: action.payload.id }, notification));
+            yield put(actions.deleteSuccess({ response, id: action.payload[options.idKey] }, notification));
         } catch(error) {
             const notification = yield call(generateNotificationPayload, 'deleteFail', 'fail', messages, titles, resourceLabel);
 

@@ -4,18 +4,18 @@
   "private": true,
   "devDependencies": {
     "cross-env": "^3.1.4",
-    "react-scripts": "^0.8.5",
+    "react-scripts": "^0.9.0",
     "react-test-renderer": "^15.4.2",
     "reactotron-react-js": "^1.6.0",
     "reactotron-redux-saga": "^1.6.0",
-    "redux-devtools-extension": "^1.0.0",
+    "redux-devtools-extension": "^2.13.0",
     "steiner-cli": "^0.16.2"
   },
   "dependencies": {
     "axios": "^0.15.3",
     "mousetrap": "^1.6.0",
-    "query-string": "^4.3.1",
-    "rc-pagination": "^1.6.6",
+    "query-string": "^4.3.2",
+    "rc-pagination": "^1.7.1",
     "rc-tooltip": "^3.4.2",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",
@@ -26,12 +26,12 @@
     "react-modal": "^1.6.5",
     "react-redux": "^5.0.2",
     "react-redux-loading-bar": "^2.6.5",
-    "react-router-dom": "^4.0.0-beta.4",
+    "react-router-dom": "^4.0.0-beta.6",
     "react-select": "^1.0.0-rc.3",
     "react-sidebar": "^2.2.1",
-    "react-virtualized": "^8.11.2",
+    "react-virtualized": "^9.0.3",
     "reapop": "^1.0.0",
-    "reapop-theme-wybo": "^0.4.0",
+    "reapop-theme-wybo": "^0.4.1",
     "redux": "^3.6.0",
     "redux-batched-subscribe": "^0.1.6",
     "redux-form": "^6.5.0",
@@ -44,7 +44,7 @@
     "seamless-immutable": "^7.0.1",
     "steiner": "^0.16.2",
     "text-spinners": "^1.0.5",
-    "vivi": "^0.4.10"
+    "vivi": "^0.5.1"
   },
   "scripts": {
     "start:plain": "react-scripts start",

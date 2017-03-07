@@ -74,7 +74,7 @@
     "react-dom": "^15.0.0",
     "react-redux": "^5.0.0",
     "react-redux-loading-bar": "^2.0.0",
-    "react-router-dom": "^4.0.0-beta.6",
+    "react-router-dom": "^4.0.0-beta.7",
     "reapop": "^1.0.0",
     "redux": "^3.0.0",
     "redux-form": "^6.0.0",

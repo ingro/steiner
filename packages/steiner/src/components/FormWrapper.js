@@ -36,7 +36,7 @@ export class FormWrapper extends Component {
             if (nextProps.submitSucceeded && this.props.submitSucceeded === false) {
                 setTimeout(() => {
                     if (this.props.submitSucceeded) {
-                        this.context.router.push(this.props.cancelLink);
+                        this.context.history.push(this.props.cancelLink);
                     }
                 }, 100);
             }
@@ -90,7 +90,7 @@ FormWrapper.defaultProps = {
 };
 
 FormWrapper.contextTypes = {
-    router: PropTypes.object
+    history: PropTypes.object
 };
 
 const FormWrapperKeyed = KeyBinderHoc(FormWrapper);

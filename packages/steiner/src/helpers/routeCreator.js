@@ -13,6 +13,48 @@ function createPatterns(resource, omit) {
     return _.omit(patterns, omit);
 }
 
+function createList(resource, patterns, selectors, options) {
+    const list = {
+        list: {
+            path: patterns.list,
+            exact: true,
+            componentPath: `containers/${_.upperFirst(resource)}ListLayout`,
+            breadcrumb: options.label ? (state) => {
+                const language = getLanguage(state);
+
+                return {
+                    breadcrumbName: options.label[language]
+                };
+            } : _.upperFirst(resource)
+        },
+        edit: {
+            path: patterns.edit,
+            componentPath: `containers/${_.upperFirst(resource)}Loader`,
+            breadcrumb: (state, ownProps) => {
+                if (ownProps.match.params.id === 'create') {
+                    return {
+                        breadcrumbName: getCreateLabel(options, state)
+                    };
+                }
+
+                const current = selectors.currentSelector(state);
+
+                if (current && current.item) {
+                    return {
+                        breadcrumbName: current.item[options.itemLabelKey]
+                    };
+                }
+
+                return {
+                    breadcrumbName: '...'
+                };
+            }
+        }
+    };
+
+    return _.omit(list, options.omit);
+}
+
 export function generateLinks(patterns) {
     const links = {};
 
@@ -44,45 +86,10 @@ export function generateRoutes(resource, selectors, options = {}) {
     _.defaults(options, generateRouteOptionsDefaults);
 
     const patterns = createPatterns(resource, options.omit);
+    const list = createList(resource, patterns, selectors, options);
 
     return {
-        list: {
-            list: {
-                path: patterns.list,
-                exact: true,
-                componentPath: `containers/${_.upperFirst(resource)}ListLayout`,
-                breadcrumb: options.label ? (state) => {
-                    const language = getLanguage(state);
-
-                    return {
-                        breadcrumbName: options.label[language]
-                    };
-                } : _.upperFirst(resource)
-            },
-            edit: {
-                path: patterns.edit,
-                componentPath: `containers/${_.upperFirst(resource)}Loader`,
-                breadcrumb: (state, ownProps) => {
-                    if (ownProps.match.params.id === 'create') {
-                        return {
-                            breadcrumbName: getCreateLabel(options, state)
-                        };
-                    }
-
-                    const current = selectors.currentSelector(state);
-
-                    if (current && current.item) {
-                        return {
-                            breadcrumbName: current.item[options.itemLabelKey]
-                        };
-                    }
-
-                    return {
-                        breadcrumbName: '...'
-                    };
-                }
-            }
-        },
+        list,
         patterns
     };
 }

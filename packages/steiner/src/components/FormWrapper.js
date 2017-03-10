@@ -36,7 +36,7 @@ export class FormWrapper extends Component {
             if (nextProps.submitSucceeded && this.props.submitSucceeded === false) {
                 setTimeout(() => {
                     if (this.props.submitSucceeded) {
-                        this.context.router.push(this.props.cancelLink);
+                        this.context.router.history.push(this.props.cancelLink);
                     }
                 }, 100);
             }

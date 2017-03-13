@@ -23,7 +23,7 @@
     "react-modal": "^1.6.5",
     "react-redux": "^5.0.2",
     "react-redux-loading-bar": "^2.7.0",
-    "react-router-dom": "^4.0.0-beta.6",
+    "react-router-dom": "^4.0.0",
     "react-select": "^1.0.0-rc.3",
     "react-sidebar": "^2.2.1",
     "react-virtualized": "^8.11.0",

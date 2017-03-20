@@ -41,8 +41,45 @@ export class ListLayout extends Component {
         return queryString.parse(window.location.search);
     }
 
+    getFooterBoxStyle() {
+        const { clientFilters, footerBoxStyle } = this.props;
+
+        if (clientFilters) {
+            return { 
+                height: '30px', 
+                marginTop: '25px' 
+            };
+        }
+
+        return footerBoxStyle;
+    }
+
+    renderFooter() {
+        const { clientFilters, displayingLabel, filters, footerComponent, items, paginatorSizeOptions, showCustomFooter, total } = this.props;
+
+        if (showCustomFooter) {
+            return React.createElement(footerComponent, this.props);
+        }
+
+        if (clientFilters) {
+            return <div className="text-right">{displayingLabel} <strong>{items.length}/{total}</strong></div>
+        }
+
+        return <Paginator
+            current={filters.page}
+            pageSize={filters.perPage}
+            total={total}
+            showStatusText={true}
+            showSizeChanger={true}
+            onSizeChange={this.handleChangePaginatorSize}
+            sizeOptions={paginatorSizeOptions}
+            onChange={this.handleChangePage}
+            sizeChangerOptions={{ openUp: true }}
+        />;
+    }
+
     render() {
-        const { clientFilters, displayingLabel, filters, items, total, filterComponent, tableComponent } = this.props;
+        const { filterComponent, tableComponent } = this.props;
 
         return (
             <Flex
@@ -56,23 +93,8 @@ export class ListLayout extends Component {
                 <Box col={12} style={{ flexGrow: 1 }}>
                     {React.createElement(tableComponent, this.props)}
                 </Box>
-                <Box col={12} style={clientFilters ? { height: '30px', marginTop: '25px' } : {}}>
-                    {clientFilters &&
-                        <div className="text-right">{displayingLabel} <strong>{items.length}/{total}</strong></div>
-                    }
-                    {! clientFilters &&
-                        <Paginator
-                            current={filters.page}
-                            pageSize={filters.perPage}
-                            total={total}
-                            showStatusText={true}
-                            showSizeChanger={true}
-                            onSizeChange={this.handleChangePaginatorSize}
-                            sizeOptions={[10, 20, 50]}
-                            onChange={this.handleChangePage}
-                            sizeChangerOptions={{ openUp: true }}
-                        />
-                    }
+                <Box col={12} style={this.getFooterBoxStyle()}>
+                    {this.renderFooter()}
                 </Box>
             </Flex>
         );
@@ -85,9 +107,13 @@ ListLayout.propTypes = {
     displayingLabel: PropTypes.string,
     filterComponent: PropTypes.func,
     filters: PropTypes.object,
+    footerBoxStyle: PropTypes.object,
+    footerComponent: PropTypes.func,
     items: PropTypes.array,
     list: PropTypes.func,
+    paginatorSizeOptions: PropTypes.array,
     resetOnClose: PropTypes.bool,
+    showCustomFooter: PropTypes.bool,
     tableComponent: PropTypes.func,
     total: PropTypes.number
 };
@@ -95,7 +121,10 @@ ListLayout.propTypes = {
 ListLayout.defaultProps = {
     clientFilters: false,
     displayingLabel: 'Showing',
-    resetOnClose: true
+    footerBoxStyle: {},
+    paginatorSizeOptions: [10, 20, 50],
+    resetOnClose: true,
+    showCustomFooter: false
 };
 
 export default TranslatorHoc(ListLayout, {

@@ -26,7 +26,9 @@ class LoginForm extends Component {
 
         return (
             <div className="container">
-                <Helmet title="Login" />
+                <Helmet>
+                    <title>Login</title>
+                </Helmet>
                 <div className="col-xs-6 col-xs-offset-3 text-center">
                     <div className="panel panel-info">
                         <div className="panel-heading">{process.env.REACT_APP_NAME} - Login</div>

@@ -18,7 +18,7 @@
     "react-addons-css-transition-group": "^15.4.2",
     "react-addons-shallow-compare": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-helmet": "^4.0.0",
+    "react-helmet": "^5.0.0",
     "react-highlighter": "^0.3.3",
     "react-modal": "^1.6.5",
     "react-redux": "^5.0.2",

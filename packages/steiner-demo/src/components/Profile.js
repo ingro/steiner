@@ -24,7 +24,9 @@ export class Profile extends Component {
     render() {
         return (
             <div>
-                <Helmet title="Profile" />
+                <Helmet>
+                    <title>Profile</title>
+                </Helmet>
                 <FormWrapper
                     {...this.props}
                     item={this.props.user}

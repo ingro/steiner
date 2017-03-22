@@ -8,7 +8,9 @@ export default class Welcome extends Component {
 
         return (
             <div className="container">
-                <Helmet title="Welcome" />
+                <Helmet>
+                    <title>Welcome</title>
+                </Helmet>
                 <div className="jumbotron">
                     <h1>{process.env.REACT_APP_NAME}</h1>
                     {user

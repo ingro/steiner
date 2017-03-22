@@ -11,7 +11,11 @@ class {{ucName}}ListLayout extends Component {
     render() {
         return (
             <div>
-                {% if richComponents %}<Helmet title="{{name | title}}" />{% endif %}
+                {% if richComponents %}
+                <Helmet>
+                    <title>{{name | title}}</title>
+                </Helmet>
+                {% endif %}
                 <ListLayout
                     {...this.props}
                     filterComponent={ {{ucName}}ListFilter }

@@ -29,7 +29,11 @@ export default class {{componentName}} extends Component {
         return (
             <div className="row">
                 <div className="col-xs-12">
-                    {% if richComponents %}<Helmet title={`{{name | title}} > ${this.getTitle()}`} />{% endif %}
+                    {% if richComponents %}
+                    <Helmet>
+                        <title>{`{{name | title}} > ${this.getTitle()}`}</title>
+                    </Helmet>
+                    {% endif %}
                     <h3 className="text-center">{title}</h3>
                     <{{formComponentName}}
                         cancelLink={this.getCancelLink()}

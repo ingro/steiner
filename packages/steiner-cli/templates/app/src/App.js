@@ -126,9 +126,10 @@ class App extends Component {
                     >
                         <div>
                             <Helmet
-                                title="App"
                                 titleTemplate={`${process.env.REACT_APP_NAME} | %s`}
-                            />
+                            >
+                                <title>App</title>
+                            </Helmet>
                             <ReactCSSTransitionGroup
                                 transitionName="Omnibox__slide"
                                 transitionEnterTimeout={300}

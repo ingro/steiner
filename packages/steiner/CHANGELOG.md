@@ -1,3 +1,11 @@
+## 0.17.0 (March 23, 2017)
+
+- **Breaking**: switch key/values in api's params mapper
+
+## 0.16.3 (March 17, 2017)
+
+- Added `footerComponent` props to `ListLayout`
+
 ## 0.16.1 (February 2, 2017)
 
 - Removed `<HeaderLink>` component from main steiner package

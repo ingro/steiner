@@ -2,10 +2,10 @@ import _ from 'lodash';
 
 export const DEFAULT_PARAMS_MAP = {
     q: 'q',
-    page: '_page',
-    perPage: '_limit',
-    orderKey: '_sort',
-    orderDirection: '_order'
+    _page: 'page',
+    _limit: 'perPage',
+    _sort: 'orderKey',
+    _order: 'orderDirection'
 };
 
 export function buildParams(filters, paramsMap = {}) {
@@ -13,7 +13,7 @@ export function buildParams(filters, paramsMap = {}) {
 
     _.defaults(paramsMap, DEFAULT_PARAMS_MAP);
 
-    _.forOwn(paramsMap, (key, value) => {
+    _.forOwn(paramsMap, (value, key) => {
         if (typeof value === 'function') {
             params[key] = value(filters);
         } else if (key !== '') {

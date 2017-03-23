@@ -6,7 +6,7 @@
     "react-scripts": "^0.8.5",
     "react-test-renderer": "^15.4.2",
     "redux-devtools-extension": "^1.0.0",
-    "steiner-cli": "^0.16.1"
+    "steiner-cli": "^0.17.0"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -39,7 +39,7 @@
     "reflexbox": "^2.2.3",
     "revalidate": "^1.1.0",
     "seamless-immutable": "^7.0.1",
-    "steiner": "^0.16.1",
+    "steiner": "^0.17.0",
     "text-spinners": "^1.0.5",
     "vivi": "^0.5.0"
   },

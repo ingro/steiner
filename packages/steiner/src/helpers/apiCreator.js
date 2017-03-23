@@ -1,17 +1,17 @@
 import _ from 'lodash';
 
-export const DEFAULT_PARAMS_MAP = {
-    q: 'q',
-    _page: 'page',
-    _limit: 'perPage',
-    _sort: 'orderKey',
-    _order: 'orderDirection'
-};
+// export const DEFAULT_PARAMS_MAP = {
+//     q: 'q',
+//     _page: 'page',
+//     _limit: 'perPage',
+//     _sort: 'orderKey',
+//     _order: 'orderDirection'
+// };
 
 export function buildParams(filters, paramsMap = {}) {
     const params = {};
 
-    _.defaults(paramsMap, DEFAULT_PARAMS_MAP);
+    // _.defaults(paramsMap, DEFAULT_PARAMS_MAP);
 
     _.forOwn(paramsMap, (value, key) => {
         if (typeof value === 'function') {

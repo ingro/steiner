@@ -1,17 +1,22 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import _ from 'lodash';
+
 import { getCurrentRoute, getPreviousUrl } from '../routing/reducer';
 
-export function connectList(component, actions, selectors) {
+export function connectList(component, actions, selectors, additionalProps = {}) {
     function mapStateToProps(state) {
         const list = selectors.listSelector(state);
+
+        const additionalPropsMapped = _.mapValues(additionalProps, v => v(state));
 
         return {
             ...list,
             filters: selectors.getFilters(state),
             items: selectors.itemsSelector(state),
             selected: selectors.getSelectedId(state),
-            currentRoute: getCurrentRoute(state)
+            currentRoute: getCurrentRoute(state),
+            ...additionalPropsMapped
         };
     }
 

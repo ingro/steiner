@@ -21,7 +21,9 @@ const handlers = {
     }
 };
 
-export default createReducer(handlers, DEFAULT_STATE);
+export default createReducer(handlers, DEFAULT_STATE, {
+    resetOnLogout: false
+});
 
 export function getSettings(state) {
     return state.settings;

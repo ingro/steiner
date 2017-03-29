@@ -296,7 +296,7 @@ export function createReducer(handlers, defaultState = DEFAULT_STATE, options = 
     });
 
     if (options.resetOnLogout) {
-        handlers[authActionTypes.logoutSuccess] = () => DEFAULT_STATE;
+        handlers[authActionTypes.logoutSuccess] = () => defaultState;
     }
 
     return function(state = defaultState, action) {

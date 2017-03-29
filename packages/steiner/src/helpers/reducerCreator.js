@@ -3,6 +3,8 @@ import matchSorter from 'match-sorter';
 import sift from 'sift';
 import _ from 'lodash';
 
+import { actionTypes as authActionTypes } from '../auth/actions';
+
 export const DEFAULT_STATE = Immutable({
     list: {
         errorMessage: null,
@@ -288,7 +290,15 @@ export function createSelectors(key) {
     };
 }
 
-export function createReducer(handlers, defaultState = DEFAULT_STATE) {
+export function createReducer(handlers, defaultState = DEFAULT_STATE, options = {}) {
+    _.defaults(options, {
+        resetOnLogout: true
+    });
+
+    if (options.resetOnLogout) {
+        handlers[authActionTypes.logoutSuccess] = () => DEFAULT_STATE;
+    }
+
     return function(state = defaultState, action) {
         if (handlers.hasOwnProperty(action.type)) {
             return handlers[action.type](state, action);

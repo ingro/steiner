@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 {% if richComponents %}import Helmet from 'react-helmet';{% endif %}
 
 {%- set formComponentName = ucName + 'Form' %}
@@ -44,3 +44,9 @@ export default class {{componentName}} extends Component {
         );
     }
 }
+
+{{componentName}}.propTypes = {
+    item: PropTypes.object,
+    match: PropTypes.object,
+    previousUrl: PropTypes.any
+};

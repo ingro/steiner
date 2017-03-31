@@ -1,6 +1,6 @@
 {
   "name": "steiner-demo",
-  "version": "0.0.44",
+  "version": "0.0.45",
   "private": true,
   "devDependencies": {
     "cross-env": "^4.0.0",
@@ -42,7 +42,7 @@
     "reflexbox": "^2.2.3",
     "revalidate": "^1.1.0",
     "seamless-immutable": "^7.1.1",
-    "steiner": "^0.17.6",
+    "steiner": "^0.17.7",
     "text-spinners": "^1.0.5",
     "vivi": "^0.5.3"
   },

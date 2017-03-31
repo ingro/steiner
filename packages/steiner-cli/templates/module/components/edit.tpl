@@ -47,6 +47,5 @@ export default class {{componentName}} extends Component {
 
 {{componentName}}.propTypes = {
     item: PropTypes.object,
-    match: PropTypes.object,
     previousUrl: PropTypes.any
 };

@@ -281,12 +281,13 @@ export function createHandlers(actionTypes, options = {}) {
 
 export function createSelectors(key) {
     return {
-        listSelector: state => state[key].list,
-        itemsSelector: state => state[key].list.itemsId.map(id => state[key].list.itemsById[id]),
         currentSelector: state => state[key].current,
         getFilters: state => state[key].list.filters,
+        getSelected: state => state[key].list.selected.map(id => state[key].list.itemsById[id]),
         getSelectedId: state => state[key].list.selected,
-        getSelected: state => state[key].list.selected.map(id => state[key].list.itemsById[id])
+        itemSelector: (state, id) => state[key].list.itemsById[id],
+        itemsSelector: state => state[key].list.itemsId.map(id => state[key].list.itemsById[id]),
+        listSelector: state => state[key].list
     };
 }
 

@@ -45,6 +45,14 @@ function createList(resource, patterns, selectors, options) {
                     };
                 }
 
+                const item = selectors.itemSelector(state, ownProps.match.params.id);
+
+                if (item) {
+                    return {
+                        breadcrumbName: item[options.itemLabelKey]
+                    };   
+                }
+
                 return {
                     breadcrumbName: '...'
                 };

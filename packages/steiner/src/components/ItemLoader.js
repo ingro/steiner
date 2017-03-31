@@ -6,6 +6,12 @@ export class ItemLoader extends Component {
         if (this.props.match.params.id === 'create') {
             this.props.resetCurrent();
         } else {
+            if (this.props.loadFromStore) {
+                if (this.props.item) {
+                    return;
+                }
+            } 
+                
             this.props.fetch(this.props.match.params.id);
         }
     }
@@ -37,12 +43,14 @@ ItemLoader.propTypes = {
     fetch: PropTypes.func.isRequired,
     isFetching: PropTypes.bool,
     item: PropTypes.object,
+    loadFromStore: PropTypes.bool,
     loadingLabel: PropTypes.string,
     params: PropTypes.object,
     resetCurrent: PropTypes.func.isRequired
 };
 
 ItemLoader.defaultProps = {
+    loadFromStore: false,
     loadingLabel: 'Loading...'
 };
 

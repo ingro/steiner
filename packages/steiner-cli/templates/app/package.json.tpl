@@ -2,8 +2,8 @@
   "name": "${appName}",
   "private": true,
   "devDependencies": {
-    "cross-env": "^3.1.4",
-    "react-scripts": "^0.8.5",
+    "cross-env": "^4.0.0",
+    "react-scripts": "^0.9.0",
     "react-test-renderer": "^15.4.2",
     "redux-devtools-extension": "^1.0.0",
     "steiner-cli": "^0.17.0"
@@ -33,7 +33,7 @@
     "redux-batched-subscribe": "^0.1.6",
     "redux-form": "^6.5.0",
     "redux-localstorage": "^0.4.1",
-    "redux-logger": "^2.7.4",
+    "redux-logger": "^3.0.0",
     "redux-saga": "^0.14.3",
     "redux-thunk": "^2.1.0",
     "reflexbox": "^2.2.3",

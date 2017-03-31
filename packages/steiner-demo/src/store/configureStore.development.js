@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import createLogger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 // import { batchedSubscribe } from 'redux-batched-subscribe';
 // import { unstable_batchedUpdates as batchedUpdates } from 'react-dom';
 import createSagaMiddleware, { END } from 'redux-saga';

@@ -4,11 +4,11 @@ import _ from 'lodash';
 
 import { getCurrentRoute, getPreviousUrl } from '../routing/reducer';
 
-export function connectList(component, actions, selectors, additionalProps = {}) {
+export function connectList(component, actions, selectors, options = {}) {
     function mapStateToProps(state) {
         const list = selectors.listSelector(state);
 
-        const additionalPropsMapped = _.mapValues(additionalProps, v => v(state));
+        const additionalPropsMapped = options.additionalProps ? _.mapValues(options.additionalProps, v => v(state)) : {};
 
         return {
             ...list,
@@ -32,14 +32,33 @@ export function connectList(component, actions, selectors, additionalProps = {})
     return connect(mapStateToProps, mapDispatchToProps)(component);
 }
 
-export function connectItem(component, actions, selectors) {
-    function mapStateToProps(state, ownProps) {
-        const current = selectors.currentSelector(state);
-        const isNew = ownProps.match.params.id === 'create';
+export function connectItem(component, actions, selectors, options = {}) {
+    _.defaults(options, {
+        loadFromStore: false
+    });
 
+    function mapStateToProps(state, ownProps) {
+        const id = ownProps.match.params.id;
+        const isNew = id === 'create';
+        const current = selectors.currentSelector(state);
+
+        let item = {};
+
+        if (! isNew) {
+            if (options.loadFromStore) {
+                item = selectors.itemSelector(state, id);
+
+                if (! item) {
+                    item = current.item;
+                }
+            } else {
+                item = current.item;
+            }
+        }
+        
         return {
             ...current,
-            item: isNew ? {} : current.item,
+            item,
             previousUrl: getPreviousUrl(state)
         };
     }

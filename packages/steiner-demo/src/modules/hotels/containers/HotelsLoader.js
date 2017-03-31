@@ -11,9 +11,12 @@ class HotelsLoader extends Component {
             <ItemLoader
                 {...this.props}
                 component={HotelsEdit}
+                loadFromStore={true}
             />
         );
     }
 }
 
-export default connectCreator.connectItem(HotelsLoader, actions, selectors);
+export default connectCreator.connectItem(HotelsLoader, actions, selectors, {
+    loadFromStore: true
+});

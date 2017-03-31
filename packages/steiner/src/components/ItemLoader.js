@@ -16,6 +16,10 @@ export class ItemLoader extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this.props.resetCurrent();
+    }
+
     render() {
         const { component, errorMessage, isFetching, item, loadingLabel } = this.props;
 

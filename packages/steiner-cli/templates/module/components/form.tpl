@@ -34,7 +34,10 @@ class {{componentName}} extends Component {
 }
 
 {{componentName}}.propTypes = {
-    cancelLink: PropTypes.string,
+    cancelLink: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
     initialValues: PropTypes.object
 };
 

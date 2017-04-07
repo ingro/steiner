@@ -25,6 +25,7 @@ Split the package in 2:
 - Update code of `reduxFormSaga` -> https://github.com/mhssmnn/redux-form-saga/blob/master/src/index.js
 - Use parameters in query only if params is not null or not equal '' to avoid something like: https://ingruz-api-cetdoxknkw.now.sh/api/hotels?=foo".
 - If the list is set on client mode paginate to slice the data
+- Add an helper to create actions for something like START - SUCCESS - FAIL
 
 ## Tests
 - Split actionCreator-test createActions tests in multiple assertions for easier debugging with snapshots

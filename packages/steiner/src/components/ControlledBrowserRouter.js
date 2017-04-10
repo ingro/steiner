@@ -1,6 +1,7 @@
 // From https://github.com/ReactTraining/react-router-addons-controlled, update to work with React-Router 4@beta
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import ControlledHistory from './ControlledHistory';
 import Router from 'react-router-dom/Router';
 

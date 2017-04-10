@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ClearableInput from 'vivi/lib/ClearableInput';
 import debounce from 'lodash/debounce';
 

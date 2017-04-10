@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 {% if richComponents %}import Helmet from 'react-helmet';{% endif %}
 
 {%- set formComponentName = ucName + 'Form' %}

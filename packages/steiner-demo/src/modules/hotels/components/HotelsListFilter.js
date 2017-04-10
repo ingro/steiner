@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { InputListFilter, KeyBinderHoc } from 'steiner';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';

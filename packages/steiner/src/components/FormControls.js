@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import LoadingButton from 'vivi/lib/LoadingButton';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 import { Link } from 'react-router-dom';

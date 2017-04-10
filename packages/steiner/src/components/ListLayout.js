@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Paginator from 'vivi/lib/Paginator';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 import { Flex, Box } from 'reflexbox';

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { auth, confirm } from 'steiner';
 import Dropdown from 'vivi/lib/Dropdown';

@@ -1,6 +1,7 @@
 // From https://github.com/ReactTraining/react-router-addons-controlled
 
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { locationsAreEqual } from 'history/LocationUtils';
 
 const initialKeys = [undefined];

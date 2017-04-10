@@ -68,7 +68,7 @@
     "sift": "^3.2.7"
   },
   "peerDependencies": {
-    "axios": "^0.15.0",
+    "axios": "^0.16.0",
     "lodash": "^4.0.0",
     "mousetrap": "^1.6.0",
     "react": "^15.0.0",

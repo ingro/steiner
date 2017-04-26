@@ -12,6 +12,10 @@ export class ListLayout extends Component {
         }
 
         this.props.syncFilters(this.getFiltersFromQuerystring());
+
+        if (this.props.forceFetchOnMount) {
+            this.props.list();
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -108,6 +112,7 @@ ListLayout.propTypes = {
     displayingLabel: PropTypes.string,
     filterComponent: PropTypes.func,
     filters: PropTypes.object,
+    forceFetchOnMount: PropTypes.bool,
     footerBoxStyle: PropTypes.object,
     footerComponent: PropTypes.func,
     items: PropTypes.array,
@@ -122,6 +127,7 @@ ListLayout.propTypes = {
 ListLayout.defaultProps = {
     clientFilters: false,
     displayingLabel: 'Showing',
+    forceFetchOnMount: false,
     footerBoxStyle: {},
     paginatorSizeOptions: [10, 20, 50],
     resetOnClose: true,

@@ -37,7 +37,7 @@
     "redux-form": "^6.6.2",
     "redux-localstorage": "^0.4.1",
     "redux-logger": "^3.0.0",
-    "redux-saga": "^0.14.3",
+    "redux-saga": "^0.15.0",
     "redux-thunk": "^2.2.0",
     "reflexbox": "^2.2.3",
     "revalidate": "^1.1.0",

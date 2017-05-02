@@ -1,4 +1,4 @@
-import { fork, put } from 'redux-saga/effects';
+import { all, fork, put } from 'redux-saga/effects';
 import { reduxFormSaga } from 'steiner';
 import axios from 'axios';
 import { auth, confirm, settings } from 'steiner';
@@ -57,12 +57,12 @@ const authSaga = auth.createAuthSaga({
 });
 
 export default function* root() {
-    yield [
+    yield all([
         fork(formSaga),
         ...authSaga,
         ...confirmSaga,
         ...alberghi,
         ...hotels,
         ...offers
-    ];
+    ]);
 }

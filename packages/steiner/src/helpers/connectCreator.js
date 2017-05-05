@@ -55,11 +55,14 @@ export function connectItem(component, actions, selectors, options = {}) {
                 item = current.item;
             }
         }
+
+        const additionalPropsMapped = options.additionalProps ? _.mapValues(options.additionalProps, v => v(state)) : {};
         
         return {
             ...current,
             item,
-            previousUrl: getPreviousUrl(state)
+            previousUrl: getPreviousUrl(state),
+            ...additionalPropsMapped
         };
     }
 

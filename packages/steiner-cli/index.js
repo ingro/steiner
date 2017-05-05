@@ -144,7 +144,7 @@ function bootstrapApp(appName) {
 }
 
 program
-    .version('0.6.0');
+    .version('0.17.3');
 
 program
     .command('generate <module>')

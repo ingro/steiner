@@ -65,6 +65,9 @@ function list(state, action) {
 function listFail(state, action) {
     return state.update('list', list => ({
         ...list,
+        itemsById: {},
+        itemsId: [],
+        total: 0,
         isFetching: false,
         errorMessage: action.error.message
     }));

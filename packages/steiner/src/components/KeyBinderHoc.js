@@ -8,8 +8,8 @@ export default function KeyBinderHoc(Base) {
             super(props);
             this.__mousetrapBindings = [];
 
-            this.bindShortcut.bind(this);
-            this.unbindShortcut.bind(this);
+            this.bindShortcut = this.bindShortcut.bind(this);
+            this.unbindShortcut = this.unbindShortcut.bind(this);
         }
 
         bindShortcut (key, callback, global = false) {

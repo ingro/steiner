@@ -7,6 +7,9 @@ export default function KeyBinderHoc(Base) {
         constructor(props){
             super(props);
             this.__mousetrapBindings = [];
+
+            this.bindShortcut.bind(this);
+            this.unbindShortcut.bind(this);
         }
 
         bindShortcut (key, callback, global = false) {
@@ -47,8 +50,8 @@ export default function KeyBinderHoc(Base) {
         render() {
             return <Base
                 {...this.props}
-                bindShortcut={this.bindShortcut.bind(this)}
-                unbindShortcut={this.unbindShortcut.bind(this)} />;
+                bindShortcut={this.bindShortcut}
+                unbindShortcut={this.unbindShortcut} />;
         }
     }
 }

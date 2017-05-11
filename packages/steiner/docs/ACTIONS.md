@@ -100,15 +100,27 @@ The following action creator methods are created by default using the helper:
 
 ### resetCurrent
 
+Reset the `current` item in the store.
+
 ### updateFilter(key, value)
+
+Updates a single filter value.
 
 ### syncFilters(filters)
 
+Sync filters values in the store with arbitrary values (usually from the query string) and then filter the list.
+
 ### checkFilterSync(query)
+
+Check if the filters needs to be synced.
 
 ### setFilters(filters)
 
+Bulk update the filters values.
+
 ### resetFilters(query)
+
+Reset the filters to their default state.
 
 ### changePage(page)
 
@@ -123,3 +135,5 @@ The following action creator methods are created by default using the helper:
 ### deselectAll
 
 ### filterCollection
+
+Filter the collection on the client based on current filters.

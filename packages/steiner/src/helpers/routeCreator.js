@@ -41,7 +41,7 @@ function createList(resource, patterns, selectors, options) {
 
                 if (current && current.item) {
                     return {
-                        breadcrumbName: current.item[options.itemLabelKey]
+                        breadcrumbName: _.get(current.item, options.itemLabelKey)
                     };
                 }
 
@@ -49,7 +49,7 @@ function createList(resource, patterns, selectors, options) {
 
                 if (item) {
                     return {
-                        breadcrumbName: item[options.itemLabelKey]
+                        breadcrumbName: _.get(item, options.itemLabelKey)
                     };   
                 }
 

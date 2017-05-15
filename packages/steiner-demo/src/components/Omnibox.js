@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import Highlight from 'react-highlighter';
+import Highlight from 'react-highlight-words';
 
 import './Omnibox.css';
 
@@ -34,7 +34,7 @@ class Omnibox extends Component {
                     openOnFocus={true}
                     optionRenderer={option => {
                         if (this.select) {
-                            return <Highlight search={this.select.state.inputValue}>{option.label}</Highlight>;
+                            return <Highlight searchWords={[this.select.state.inputValue]} textToHighlight={option.label} />;
                         }
 
                         return <span>{option.label}</span>;

@@ -146,6 +146,11 @@ class App extends Component {
                                 sidebar={<SidebarMenu links={this.sidebarMenuLinks} onToggle={this.toggleSidebar}/>}
                                 docked={this.state.isSidebarOpen}
                                 transitions={false}
+                                styles={{
+                                    content: {
+                                        overflowY: 'auto'
+                                    }
+                                }}
                             >
                                 <div className={this.state.isSidebarOpen ? 'sidebar-is-open' : ''}>
                                     <Header

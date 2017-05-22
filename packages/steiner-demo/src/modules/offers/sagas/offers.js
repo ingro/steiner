@@ -1,5 +1,4 @@
 import { sagaCreator } from 'steiner';
-import _ from 'lodash';
 
 import { actions, actionTypes } from '../actions/offers';
 import { selectors, DEFAULT_STATE } from '../reducers/offers';

@@ -1,7 +1,6 @@
 import { reducerCreator } from 'steiner';
 // import matchSorter from 'match-sorter';
 // import sift from 'sift';
-import _ from 'lodash';
 
 import helper from 'helpers/steinerHelper';
 import { actionTypes } from '../actions/offers';

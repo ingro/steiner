@@ -13,3 +13,13 @@
     color: #0269c2;
     padding-top: calc(50vh - 27px);
 }
+
+.ListLayout--Wrapper {
+    display: flex;
+    flex-flow: column wrap;
+    height: calc(100vh - 75px);
+}
+
+.ListLayout--Content {
+    flex-grow: 1;
+}

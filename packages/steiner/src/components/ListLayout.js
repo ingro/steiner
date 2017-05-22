@@ -2,8 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Paginator from 'vivi/lib/Paginator';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
-import { Flex, Box } from 'reflexbox';
 import queryString from 'query-string';
+
+// .ListLayout--Wrapper {
+//     display: flex;
+//     flex-flow: column wrap;
+//     height: calc(100vh - 75px);
+// }
+
+// .ListLayout--Content {
+//     flex-grow: 1;
+// }
 
 export class ListLayout extends Component {
     componentDidMount() {
@@ -52,7 +61,7 @@ export class ListLayout extends Component {
         if (clientFilters) {
             return { 
                 height: '30px', 
-                marginTop: '25px' 
+                marginTop: '25px'
             };
         }
 
@@ -84,24 +93,20 @@ export class ListLayout extends Component {
     }
 
     render() {
-        const { filterComponent, tableComponent } = this.props;
+        const { contentStyle, filterBoxStyle, filterComponent, tableComponent, wrapperStyle } = this.props;
 
         return (
-            <Flex
-                wrap={true}
-                flexColumn={true}
-                style={{ height: 'calc(100vh - 75px)'}}
-            >
-                <Box col={12}>
+            <div className="ListLayout--Wrapper" style={wrapperStyle}>
+                <div className="ListLayout--Filters" style={filterBoxStyle}>
                     {React.createElement(filterComponent, this.props)}
-                </Box>
-                <Box col={12} style={{ flexGrow: 1 }}>
+                </div>
+                <div className="ListLayout--Content" style={contentStyle}>
                     {React.createElement(tableComponent, this.props)}
-                </Box>
-                <Box col={12} style={this.getFooterBoxStyle()}>
+                </div>
+                <div className="ListLayout--Footer" style={this.getFooterBoxStyle()}>
                     {this.renderFooter()}
-                </Box>
-            </Flex>
+                </div>
+            </div>
         );
     }
 }
@@ -109,7 +114,9 @@ export class ListLayout extends Component {
 ListLayout.propTypes = {
     changePage: PropTypes.func,
     clientFilters: PropTypes.bool,
+    contentStyle: PropTypes.object,
     displayingLabel: PropTypes.string,
+    filterBoxStyle: PropTypes.object,
     filterComponent: PropTypes.func,
     filters: PropTypes.object,
     forceFetchOnMount: PropTypes.bool,
@@ -121,17 +128,21 @@ ListLayout.propTypes = {
     resetOnClose: PropTypes.bool,
     showCustomFooter: PropTypes.bool,
     tableComponent: PropTypes.func,
-    total: PropTypes.number
+    total: PropTypes.number,
+    wrapperStyle: PropTypes.object
 };
 
 ListLayout.defaultProps = {
     clientFilters: false,
+    contentStyle: {},
     displayingLabel: 'Showing',
+    filterBoxStyle: {},
     forceFetchOnMount: false,
     footerBoxStyle: {},
     paginatorSizeOptions: [10, 20, 50],
     resetOnClose: true,
-    showCustomFooter: false
+    showCustomFooter: false,
+    wrapperStyle: {}
 };
 
 export default TranslatorHoc(ListLayout, {

@@ -12,7 +12,6 @@ import AlberghiListTable from '../components/AlberghiListTable';
 // import React, { Component, PropTypes } from 'react';
 import Paginator from 'vivi/lib/Paginator';
 // import TranslatorHoc from 'vivi/lib/TranslatorHoc';
-import { Flex, Box } from 'reflexbox';
 import queryString from 'query-string';
 
 class ListLayoutCustom extends Component {
@@ -55,18 +54,14 @@ class ListLayoutCustom extends Component {
         const { clientFilters, displayingLabel, filters, items, total, filterComponent, tableComponent } = this.props;
 
         return (
-            <Flex
-                wrap={true}
-                flexColumn={true}
-                style={{ height: 'calc(100vh - 75px)'}}
-            >
-                <Box col={12}>
+            <div className="ListLayout--Wrapper" style={{ display: 'flex', flexFlow: 'column wrap'}}>
+                <div>
                     {React.createElement(filterComponent, this.props)}
-                </Box>
-                <Box col={12} style={{ flexGrow: 1 }}>
+                </div>
+                <div style={{ flexGrow: 1 }}>
                     {React.createElement(tableComponent, this.props)}
-                </Box>
-                <Box col={12} style={clientFilters ? { height: '30px', marginTop: '25px' } : {}}>
+                </div>
+                <div style={clientFilters ? { height: '30px', marginTop: '25px' } : {}}>
                     {clientFilters &&
                         <div className="text-right">{displayingLabel} <strong>{items.length}/{total}</strong></div>
                     }
@@ -83,8 +78,8 @@ class ListLayoutCustom extends Component {
                             sizeChangerOptions={{ openUp: true }}
                         />
                     }
-                </Box>
-            </Flex>
+                </div>
+            </div>
         );
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "steiner-cli",
-  "version": "0.17.3",
+  "version": "0.17.4",
   "description": "Boilerplate generator for Steiner",
   "main": "index.js",
   "scripts": {

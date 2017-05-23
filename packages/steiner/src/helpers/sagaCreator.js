@@ -234,11 +234,11 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
     sagas.delete = function*(action) {
         try {
-            const response = yield call(api.delete, action.payload[options.idKey]);
+            const response = yield call(api.delete, action.payload.id);
 
             const notification = yield call(generateNotificationPayload, 'deleteSuccess', 'success', messages, titles, resourceLabel);
 
-            yield put(actions.deleteSuccess({ response, id: action.payload[options.idKey] }, notification));
+            yield put(actions.deleteSuccess({ response, id: action.payload.id }, notification));
         } catch(error) {
             const notification = yield call(generateNotificationPayload, 'deleteFail', 'fail', messages, titles, resourceLabel);
 

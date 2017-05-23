@@ -12,7 +12,7 @@ const list = _.values(routes.list).map(route => ({
         return new Promise((resolve, reject) => {
             require.ensure([], require => {
                 resolve(require(`modules/{{name}}/${route.componentPath}`).default);
-            });
+            }, '{{name}}');
         });
     },
 }));

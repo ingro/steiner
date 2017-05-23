@@ -63,7 +63,7 @@ class MatchWhenAuthorizedAsync extends Component {
     }
 }
 
-MatchWhenAuthorizedAsync.props = {
+MatchWhenAuthorizedAsync.propTypes = {
     getComponent: PropTypes.func.isRequired,
     location: PropTypes.object.isRequired,
     onError: PropTypes.func,

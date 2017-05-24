@@ -130,11 +130,11 @@ function bootstrapApp(appName) {
 
     // Generate files from templates
     generateFile('.env.tpl', `.env`);
-    generateFile('.env.example.tpl', `.env.example`);
     generateFile('package.json.tpl', `package.json`);
     generateFile('.gitignore.tpl', `.gitignore`);
 
     generateFile('public/index.html.tpl', 'public/index.html');
+    generateFile('public/manifest.json.tpl', 'public/manifest.json');
 
     // Copy the generated files to the destination path
     tf.copy('.', od.path());

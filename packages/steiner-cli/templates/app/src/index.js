@@ -10,6 +10,8 @@ import './index.css';
 
 import history from './history';
 
+// import registerServiceWorker from './registerServiceWorker';
+
 const store = configureStore({
     router: {
         current: {
@@ -31,3 +33,5 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 );
+
+// registerServiceWorker();

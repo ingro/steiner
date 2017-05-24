@@ -8,9 +8,10 @@ Split the package in 2:
 
 - Better naming/organization of things
 - Better way to export modules for easier imports -> some improvements done, now almost all the most used function can be import from 'steiner'
-- Use NamedLink from [react-router-addons-routes](https://github.com/ReactTraining/react-router-addons-routes) to generate Links to routes?
+- Use NamedLink when it will be implemented from [react-router-config](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config) to generate Links to routes?
+- Use [react-router-redux](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-redux) instead of the custom `ControlledRouter`?
 - Add missing tests
-- Optimistically update items on update?
+- Optimistically update items on update success?
 - Pass only the minimum state/actions from redux's connect?
 - Use reselect for selectors?
 - Find a way to cache template compiled for generate notification messages
@@ -20,12 +21,13 @@ Split the package in 2:
 - Add option to omit generate actions for given group (list, create, delete etc.)
 - Find a way to pass basename option's to all sagaCreators if needed
 - If listSuccessOptions are defined in steinerHelper merge with those declared in modules
-- Get rid of react-router-addons-controlled (will use history directly from sagas), or even go back to react-router 3?
 - Generate a notification for a failed logout
 - Update code of `reduxFormSaga` -> https://github.com/mhssmnn/redux-form-saga/blob/master/src/index.js
 - Use parameters in query only if params is not null or not equal '' to avoid something like: https://ingruz-api-cetdoxknkw.now.sh/api/hotels?=foo".
 - If the list is set on client mode paginate to slice the data
 - Add an helper to create actions for something like START - SUCCESS - FAIL
+- Add a single entry point for a module configuration (to avoid repeat things in different parts of the module)
+- Create a css file for the things that needs styling (see ListLayout) instead of hardcode style in components
 
 ## Tests
 - Split actionCreator-test createActions tests in multiple assertions for easier debugging with snapshots

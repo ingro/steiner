@@ -57,11 +57,12 @@ export default class ListTable extends Component {
     }
 
     render() {
-        const { filters, items, selected, selectable, rowHeight } = this.props;
+        const { filters, height, items, selected, selectable, rowHeight } = this.props;
 
         return (
             <Table
                 bordered={true}
+                height={height}
                 rowCount={items.length}
                 columns={this.props.columns}
                 rowGetter={this.rowGetter}
@@ -87,6 +88,7 @@ ListTable.propTypes = {
     deselectAll: PropTypes.func,
     errorMessage: PropTypes.string,
     filters: PropTypes.object,
+    height: PropTypes.number,
     isFetching: PropTypes.bool,
     itemKeyName: PropTypes.string,
     items: PropTypes.array,

@@ -45,7 +45,7 @@ export class FormWrapper extends Component {
     }
 
     render() {
-        const { handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset, /*innerClass,*/ outerControlsClass } = this.props;
+        const { FormControlsComponent, handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset, /*innerClass,*/ outerControlsClass } = this.props;
 
         return (
             <div>
@@ -56,7 +56,7 @@ export class FormWrapper extends Component {
                         {this.props.children}
                     </div>
                     <div className={outerControlsClass}>
-                        <FormControls
+                        <FormControlsComponent
                             valid={valid}
                             submitting={submitting}
                             dirty={dirty}
@@ -75,6 +75,7 @@ FormWrapper.propTypes = {
         PropTypes.string,
         PropTypes.object
     ]),
+    FormControlsComponent: PropTypes.element,
     // createInitialFormValues: PropTypes.func,
     goBackAfterSave: PropTypes.bool,
     outerControlsClass: PropTypes.string,
@@ -85,6 +86,7 @@ FormWrapper.propTypes = {
 
 FormWrapper.defaultProps = {
     // createInitialFormValues: (item) => item,
+    FormControlsComponent: FormControls,
     goBackAfterSave: true,
     outerControlsClass: 'row',
     unsavedMessage: 'Are you sure? Any unsaved changes will be lost.'

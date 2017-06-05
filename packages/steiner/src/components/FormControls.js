@@ -12,13 +12,13 @@ export class FormControls extends Component {
             <div>
                 <div className="col-xs-3">
                     {submitting
-                        ? <a className="btn btn-primary btn-block" disabled>{cancelLabel}</a>
+                        ? <a className="btn btn-primary btn-block" disabled={true}>{cancelLabel}</a>
                         : <Link to={cancelLink} className="btn btn-primary btn-block">{cancelLabel}</Link>
                     }
                 </div>
                 <div className="col-xs-3">
                     {(submitting || ! dirty)
-                        ? <a className="btn btn-warning btn-block" disabled>{resetLabel}</a>
+                        ? <a className="btn btn-warning btn-block" disabled={true}>{resetLabel}</a>
                         : <a onClick={onReset} className="btn btn-warning btn-block">{resetLabel}</a>
                     }
                 </div>

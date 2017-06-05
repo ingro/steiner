@@ -75,7 +75,7 @@ FormWrapper.propTypes = {
         PropTypes.string,
         PropTypes.object
     ]),
-    FormControlsComponent: PropTypes.element,
+    FormControlsComponent: PropTypes.func,
     // createInitialFormValues: PropTypes.func,
     goBackAfterSave: PropTypes.bool,
     outerControlsClass: PropTypes.string,

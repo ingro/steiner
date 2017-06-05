@@ -4,20 +4,20 @@
   "private": true,
   "devDependencies": {
     "cross-env": "^5.0.0",
-    "react-scripts": "^1.0.3",
+    "react-scripts": "^1.0.7",
     "react-test-renderer": "^15.5.0",
-    "reactotron-react-js": "^1.6.0",
-    "reactotron-redux-saga": "^1.6.0",
+    "reactotron-react-js": "^1.11.1",
+    "reactotron-redux-saga": "^1.11.1",
     "redux-devtools-extension": "^2.13.2",
     "steiner-cli": "^0.17.4"
   },
   "dependencies": {
-    "axios": "^0.16.1",
+    "axios": "^0.16.2",
     "mousetrap": "^1.6.1",
     "prop-types": "^15.5.10",
     "query-string": "^4.3.4",
-    "rc-pagination": "^1.8.10",
-    "rc-tooltip": "^3.4.3",
+    "rc-pagination": "^1.9.4",
+    "rc-tooltip": "^3.4.6",
     "react": "^15.5.4",
     "react-addons-css-transition-group": "^15.5.0",
     "react-addons-shallow-compare": "^15.5.0",
@@ -28,7 +28,7 @@
     "react-redux": "^5.0.5",
     "react-redux-loading-bar": "^2.9.1",
     "react-router-dom": "^4.1.1",
-    "react-select": "^1.0.0-rc.4",
+    "react-select": "^1.0.0-rc.5",
     "react-sidebar": "^2.3.2",
     "react-virtualized": "^9.7.6",
     "reapop": "^1.1.1",
@@ -44,7 +44,7 @@
     "seamless-immutable": "^7.1.2",
     "steiner": "^0.17.16",
     "text-spinners": "^1.0.5",
-    "vivi": "^0.5.10"
+    "vivi": "^0.5.12"
   },
   "scripts": {
     "start:plain": "react-scripts start",

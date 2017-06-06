@@ -29,6 +29,7 @@ Split the package in 2:
 - Add a single entry point for a module configuration (to avoid repeat things in different parts of the module)
 - Create a css file for the things that needs styling (see ListLayout) instead of hardcode style in components
 - Move the call of action `list()` from `ListLayout` to sagas (see `filter` and `syncFilter` sagas)
+- Add a "Clear filter" button on list filter bar
 
 ## Tests
 - Split actionCreator-test createActions tests in multiple assertions for easier debugging with snapshots

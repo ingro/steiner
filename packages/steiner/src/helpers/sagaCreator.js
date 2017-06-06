@@ -105,6 +105,7 @@ const defaultOptions = {
     clientFilters: false,
     idKey: 'id',
     numberFilters: [],
+    goToStartOnFilter: true,
     createFailErrorCreator,
     updateFailErrorCreator,
     getApiListParams: function* getApiListParams(selectors) {
@@ -260,7 +261,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         return _.omitBy(src, (v, k) => matchers[k] == v); // eslint-disable-line
     }
 
-    sagas.filter = function*() {
+    sagas.filter = function*(action) {
         // let task;
 
         const filters = yield select(selectors.getFilters);
@@ -270,7 +271,13 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         // TODO: blacklist params???
         // const diff = _.omit(_._.omitBy(filters.asMutable(), (v, k) => defaultFilters[k] == v), blacklist);
 
-        const diff = getDiff(filters.asMutable(), defaultFilters.asMutable());
+        let diff = getDiff(filters.asMutable(), defaultFilters.asMutable());
+
+        if (options.goToStartOnFilter && !options.clientFilters && action.type === actionTypes.updateFilter && filters.page > 1) {
+            yield put(actions.changePage(1));
+
+            diff = _.omit(diff, 'page');
+        }
 
         const location = { 
             pathname: window.location.pathname, 

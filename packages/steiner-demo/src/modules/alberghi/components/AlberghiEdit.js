@@ -3,7 +3,6 @@ import { reduxForm, Field } from 'redux-form';
 import { formHelper, FormWrapper } from 'steiner';
 import InputField from 'vivi/lib/Form/InputField';
 
-
 import { actionTypes } from '../actions/alberghi';
 import routeRegister from 'helpers/routeRegister';
 

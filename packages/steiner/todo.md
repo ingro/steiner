@@ -23,12 +23,10 @@ Split the package in 2:
 - If listSuccessOptions are defined in steinerHelper merge with those declared in modules
 - Generate a notification for a failed logout
 - Update code of `reduxFormSaga` -> https://github.com/mhssmnn/redux-form-saga/blob/master/src/index.js
-- Use parameters in query only if params is not null or not equal '' to avoid something like: https://ingruz-api-cetdoxknkw.now.sh/api/hotels?=foo".
 - If the list is set on client mode paginate to slice the data
 - Add an helper to create actions for something like START - SUCCESS - FAIL
 - Add a single entry point for a module configuration (to avoid repeat things in different parts of the module)
 - Create a css file for the things that needs styling (see ListLayout) instead of hardcode style in components
-- Move the call of action `list()` from `ListLayout` to sagas (see `filter` and `syncFilter` sagas)
 - Add a "Clear filter" button on list filter bar
 
 ## Tests

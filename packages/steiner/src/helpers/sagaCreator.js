@@ -301,7 +301,7 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
             yield put(actions.filterCollection());
         } else {
             // task = yield fork(handleFilter);
-            // yield put(actions.list());
+            yield put(actions.list());
         }
     }
 
@@ -328,9 +328,9 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         if (options.clientFilters) {
             yield put(actions.filterCollection());
         } else {
-            if (_.isEmpty(filters)) {
-                yield put(actions.list());
-            }
+            // if (_.isEmpty(filters)) {
+            yield put(actions.list());
+            // }
         }
         // } else {
         //     yield put(actions.list());

@@ -17,7 +17,11 @@ export function buildParams(filters, paramsMap = {}) {
         if (typeof value === 'function') {
             params[key] = value(filters);
         } else if (key !== '') {
-            params[key] = _.get(filters, value);
+            const filterValue = _.get(filters, value);
+
+            if (filterValue !== '') {
+                params[key] = filterValue;
+            }
         }
     });
 

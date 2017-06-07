@@ -4,6 +4,9 @@ import helper from 'helpers/steinerHelper';
 // import client from 'apis/client';
 
 const paramsMapper = {
+    q: 'q',
+    _page: 'page',
+    _limit: 'perPage',
     _sort: (filters) => {
         const raw = _.get(filters, 'orderKey');
 

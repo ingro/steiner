@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Paginator from 'vivi/lib/Paginator';
 import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 import queryString from 'query-string';
+import _ from 'lodash';
 
 // .ListLayout--Wrapper {
 //     display: flex;
@@ -28,9 +29,9 @@ export class ListLayout extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        // if (nextProps.filters !== this.props.filters && !this.props.clientFilters) {
-        //     this.props.list();
-        // }
+        if (! _.isEqual(nextProps.filters, this.props.filters) && ! this.props.clientFilters) {
+            this.props.list();
+        }
 
         if ((nextProps.currentRoute.location.search !== this.props.currentRoute.location.search) && nextProps.currentRoute.action === 'POP') {
             this.props.checkFilterSync(this.getFiltersFromQuerystring());

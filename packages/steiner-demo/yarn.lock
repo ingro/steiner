@@ -1601,14 +1601,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-create-react-class@^15.5.2:
-  version "15.5.2"
-  resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.5.2.tgz#6a8758348df660b88326a0e764d569f274aad681"
-  dependencies:
-    fbjs "^0.8.9"
-    object-assign "^4.1.1"
-
-create-react-class@^15.5.3:
+create-react-class@^15.5.2, create-react-class@^15.5.3:
   version "15.5.3"
   resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.5.3.tgz#fb0f7cae79339e9a179e194ef466efa3923820fe"
   dependencies:
@@ -1616,9 +1609,17 @@ create-react-class@^15.5.3:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
-cross-env@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-5.0.0.tgz#565ccae4d09676441a5087f406fe7661a29c931b"
+create-react-class@^15.6.0:
+  version "15.6.0"
+  resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.0.tgz#ab448497c26566e1e29413e883207d57cfe7bed4"
+  dependencies:
+    fbjs "^0.8.9"
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
+
+cross-env@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-5.0.1.tgz#ff4e72ea43b47da2486b43a7f2043b2609e44913"
   dependencies:
     cross-spawn "^5.1.0"
     is-windows "^1.0.0"
@@ -1822,13 +1823,13 @@ debug@2.6.1:
   dependencies:
     ms "0.7.2"
 
-debug@2.6.3, debug@^2.1.1, debug@^2.2.0, debug@^2.4.5, debug@^2.6.0, debug@^2.6.3:
+debug@2.6.3, debug@^2.1.1, debug@^2.2.0, debug@^2.4.5, debug@^2.6.0:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.3.tgz#0f7eb8c30965ec08c72accfa0130c8b79984141d"
   dependencies:
     ms "0.7.2"
 
-debug@^2.6.6:
+debug@^2.6.3, debug@^2.6.6:
   version "2.6.8"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.8.tgz#e731531ca2ede27d188222427da17821d68ff4fc"
   dependencies:
@@ -4989,7 +4990,7 @@ promise@7.1.1, promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@~15.5.7:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.5.9:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -5094,9 +5095,9 @@ rc-animate@2.x:
   dependencies:
     css-animation "^1.3.0"
 
-rc-pagination@^1.9.4:
-  version "1.9.4"
-  resolved "https://registry.yarnpkg.com/rc-pagination/-/rc-pagination-1.9.4.tgz#6e024354d455f50106c8c2cf33894f07efc8caec"
+rc-pagination@^1.9.7:
+  version "1.9.7"
+  resolved "https://registry.yarnpkg.com/rc-pagination/-/rc-pagination-1.9.7.tgz#42fa650dc7cfb96c430dd354a6782ca55f1d8043"
   dependencies:
     babel-runtime "^6.23.0"
     prop-types "^15.5.7"
@@ -5134,16 +5135,15 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-addons-css-transition-group@^15.5.0:
-  version "15.5.2"
-  resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-15.5.2.tgz#ea7e0a9f0e1c27ca426da4efd3559915bd42ead2"
+react-addons-css-transition-group@^15.6.0:
+  version "15.6.0"
+  resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-15.6.0.tgz#69887cf6e4874d25cd66e22a699e29f0d648aba0"
   dependencies:
-    fbjs "^0.8.4"
-    object-assign "^4.1.0"
+    react-transition-group "^1.2.0"
 
-react-addons-shallow-compare@^15.5.0:
-  version "15.5.2"
-  resolved "https://registry.yarnpkg.com/react-addons-shallow-compare/-/react-addons-shallow-compare-15.5.2.tgz#7cb0ee7acc8d7c93fcc202df0bf47ba916a7bdad"
+react-addons-shallow-compare@^15.6.0:
+  version "15.6.0"
+  resolved "https://registry.yarnpkg.com/react-addons-shallow-compare/-/react-addons-shallow-compare-15.6.0.tgz#b7a4e5ff9f2704c20cf686dd8a05dd08b26de252"
   dependencies:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
@@ -5170,14 +5170,18 @@ react-dev-utils@^3.0.0:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-dom@^15.5.4:
-  version "15.5.4"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.5.4.tgz#ba0c28786fd52ed7e4f2135fe0288d462aef93da"
+react-dom-factories@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-dom-factories/-/react-dom-factories-1.0.0.tgz#f43c05e5051b304f33251618d5bc859b29e46b6d"
+
+react-dom@^15.6.1:
+  version "15.6.1"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.6.1.tgz#2cb0ed4191038e53c209eb3a79a23e2a4cf99470"
   dependencies:
     fbjs "^0.8.9"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
-    prop-types "~15.5.7"
+    prop-types "^15.5.10"
 
 react-error-overlay@^1.0.7:
   version "1.0.7"
@@ -5206,6 +5210,13 @@ react-highlight-words@^0.7.2:
     highlight-words-core "^1.0.2"
     prop-types "^15.5.8"
 
+react-highlight-words@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/react-highlight-words/-/react-highlight-words-0.8.0.tgz#a83055378c1e5e46fe2061b663b0b37fde60bad6"
+  dependencies:
+    highlight-words-core "^1.0.2"
+    prop-types "^15.5.8"
+
 react-input-autosize@^1.1.3:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/react-input-autosize/-/react-input-autosize-1.1.4.tgz#cbc45072d4084ddc57806db8e3b34e644b8366ac"
@@ -5213,19 +5224,20 @@ react-input-autosize@^1.1.3:
     create-react-class "^15.5.2"
     prop-types "^15.5.8"
 
-react-modal@^1.7.7:
-  version "1.7.7"
-  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-1.7.7.tgz#70205f51c58708c487aff681ba3fed7946e391d9"
+react-modal@^1.9.6:
+  version "1.9.6"
+  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-1.9.6.tgz#b3fc0947e562bfcf0a5e295b1a4bdd5f81e77d4c"
   dependencies:
     create-react-class "^15.5.2"
     element-class "^0.2.0"
     exenv "1.2.0"
     lodash.assign "^4.2.0"
     prop-types "^15.5.7"
+    react-dom-factories "^1.0.0"
 
-react-redux-loading-bar@^2.9.1:
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/react-redux-loading-bar/-/react-redux-loading-bar-2.9.1.tgz#26d10ff08194e533f088f26fb2d42b1248d61ff8"
+react-redux-loading-bar@^2.9.2:
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/react-redux-loading-bar/-/react-redux-loading-bar-2.9.2.tgz#f0e604ee35af5ecb25addb10bf24ca3d478c95a8"
   dependencies:
     prop-types "^15.5.6"
 
@@ -5325,9 +5337,9 @@ react-sidebar@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/react-sidebar/-/react-sidebar-2.3.2.tgz#ec140bea8a6f5fa3d8ea7a56479665b44cf4f9cf"
 
-react-test-renderer@^15.5.0:
-  version "15.5.4"
-  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-15.5.4.tgz#d4ebb23f613d685ea8f5390109c2d20fbf7c83bc"
+react-test-renderer@^15.6.1:
+  version "15.6.1"
+  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-15.6.1.tgz#026f4a5bb5552661fd2cc4bbcd0d4bc8a35ebf7e"
   dependencies:
     fbjs "^0.8.9"
     object-assign "^4.1.0"
@@ -5341,9 +5353,19 @@ react-transition-group@^1.1.2:
     prop-types "^15.5.6"
     warning "^3.0.0"
 
-react-virtualized@^9.7.6:
-  version "9.7.6"
-  resolved "https://registry.yarnpkg.com/react-virtualized/-/react-virtualized-9.7.6.tgz#6be9e7ae8b214a848116f1ebd48ff1aac26fcc2f"
+react-transition-group@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-1.2.0.tgz#b51fc921b0c3835a7ef7c571c79fc82c73e9204f"
+  dependencies:
+    chain-function "^1.0.0"
+    dom-helpers "^3.2.0"
+    loose-envify "^1.3.1"
+    prop-types "^15.5.6"
+    warning "^3.0.0"
+
+react-virtualized@^9.8.0:
+  version "9.8.0"
+  resolved "https://registry.yarnpkg.com/react-virtualized/-/react-virtualized-9.8.0.tgz#7c1fe9b723ce39a1c4916cabe1c4f1bda5dbc04b"
   dependencies:
     babel-runtime "^6.11.6"
     classnames "^2.2.3"
@@ -5351,14 +5373,15 @@ react-virtualized@^9.7.6:
     loose-envify "^1.3.0"
     prop-types "^15.5.4"
 
-react@^15.5.4:
-  version "15.5.4"
-  resolved "https://registry.yarnpkg.com/react/-/react-15.5.4.tgz#fa83eb01506ab237cdc1c8c3b1cea8de012bf047"
+react@^15.6.1:
+  version "15.6.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-15.6.1.tgz#baa8434ec6780bde997cdc380b79cd33b96393df"
   dependencies:
+    create-react-class "^15.6.0"
     fbjs "^0.8.9"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
-    prop-types "^15.5.7"
+    prop-types "^15.5.10"
 
 reactotron-core-client@^1.11.1:
   version "1.11.1"
@@ -5501,9 +5524,9 @@ redux-devtools-extension@^2.13.2:
   version "2.13.2"
   resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.2.tgz#e0f9a8e8dfca7c17be92c7124958a3b94eb2911d"
 
-redux-form@^6.7.0:
-  version "6.7.0"
-  resolved "https://registry.yarnpkg.com/redux-form/-/redux-form-6.7.0.tgz#9fb0769e76f14febf1dd7686e02c4ab2d6f953aa"
+redux-form@^6.8.0:
+  version "6.8.0"
+  resolved "https://registry.yarnpkg.com/redux-form/-/redux-form-6.8.0.tgz#ff1b590b59f987d7e3ff080d752f7120bfe42af3"
   dependencies:
     deep-equal "^1.0.1"
     es6-error "^4.0.0"
@@ -5512,7 +5535,7 @@ redux-form@^6.7.0:
     is-promise "^2.1.0"
     lodash "^4.17.3"
     lodash-es "^4.17.3"
-    prop-types "^15.5.6"
+    prop-types "^15.5.9"
 
 redux-localstorage@^0.4.1:
   version "0.4.1"
@@ -6131,9 +6154,9 @@ steiner-cli@^0.17.4:
     nunjucks "^3.0.0"
     tmp "0.0.31"
 
-steiner@^0.17.16:
-  version "0.17.19"
-  resolved "https://registry.yarnpkg.com/steiner/-/steiner-0.17.19.tgz#c0af15a26236834856aad1cff6723a17cbbd2a04"
+steiner@^0.17.23:
+  version "0.17.23"
+  resolved "https://registry.yarnpkg.com/steiner/-/steiner-0.17.23.tgz#a4a974f00c9130c4aa6166ab42f653c121e681ab"
   dependencies:
     arrify "^1.0.1"
     babel-runtime "^6.23.0"
@@ -6627,9 +6650,9 @@ verror@1.3.6:
   dependencies:
     extsprintf "1.0.2"
 
-vivi@^0.5.12:
-  version "0.5.12"
-  resolved "https://registry.yarnpkg.com/vivi/-/vivi-0.5.12.tgz#d738c61122b6a3627015465aece403949f408889"
+vivi@^0.5.14:
+  version "0.5.14"
+  resolved "https://registry.yarnpkg.com/vivi/-/vivi-0.5.14.tgz#2900ec6f044346776f8a6b6a6ce1b50cc9c33a37"
   dependencies:
     classnames "^2.2.5"
     date-fns "^1.28.5"

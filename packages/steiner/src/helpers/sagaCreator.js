@@ -108,6 +108,9 @@ const defaultOptions = {
     goToStartOnFilter: true,
     createFailErrorCreator,
     updateFailErrorCreator,
+    createFailNotificationCreator: null,
+    updateFailNotificationCreator: null,
+    deleteFailNotificationCreator: null,
     getApiListParams: function* getApiListParams(selectors) {
         const filters = yield select(selectors.getFilters);
 
@@ -201,7 +204,9 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
             yield put(actions.createSuccess(response, notification));
         } catch(error) {
-            const notification = yield call(generateNotificationPayload, 'createFail', 'fail', messages, titles, resourceLabel);
+            const notification = options.createFailNotificationCreator 
+                ? yield call(options.createFailNotificationCreator, error)
+                : yield call(generateNotificationPayload, 'createFail', 'fail', messages, titles, resourceLabel);
 
             const errorPayload = yield call(options.createFailErrorCreator, error);
 
@@ -221,7 +226,9 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
             yield put(actions.updateSuccess(response, notification));
         } catch(error) {
-            const notification = yield call(generateNotificationPayload, 'updateFail', 'fail', messages, titles, resourceLabel);
+            const notification = options.updateFailNotificationCreator 
+                ? yield call(options.updateFailNotificationCreator, error)
+                : yield call(generateNotificationPayload, 'updateFail', 'fail', messages, titles, resourceLabel);
 
             const errorPayload = yield call(options.updateFailErrorCreator, error);
 
@@ -241,7 +248,9 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
 
             yield put(actions.deleteSuccess({ response, id: action.payload.id }, notification));
         } catch(error) {
-            const notification = yield call(generateNotificationPayload, 'deleteFail', 'fail', messages, titles, resourceLabel);
+            const notification = options.deleteFailNotificationCreator 
+                ? yield call(options.deleteFailNotificationCreator, error)
+                : yield call(generateNotificationPayload, 'deleteFail', 'fail', messages, titles, resourceLabel);
 
             yield put(actions.deleteFail(error, notification));
         }

@@ -126,8 +126,11 @@ ListLayout.propTypes = {
     items: PropTypes.array,
     list: PropTypes.func,
     paginatorSizeOptions: PropTypes.array,
+    resetFilters: PropTypes.func,
     resetOnClose: PropTypes.bool,
+    selected: PropTypes.array,
     showCustomFooter: PropTypes.bool,
+    syncFilters: PropTypes.func,
     tableComponent: PropTypes.func,
     total: PropTypes.number,
     wrapperStyle: PropTypes.object
@@ -138,11 +141,15 @@ ListLayout.defaultProps = {
     contentStyle: {},
     displayingLabel: 'Showing',
     filterBoxStyle: {},
+    filters: {},
     forceFetchOnMount: false,
     footerBoxStyle: {},
-    paginatorSizeOptions: [10, 20, 50],
+    paginatorSizeOptions: [20, 50, 100],
+    resetFilters: () => {},
     resetOnClose: true,
+    selected: [],
     showCustomFooter: false,
+    syncFilters: () => {},
     wrapperStyle: {}
 };
 

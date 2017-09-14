@@ -19,12 +19,13 @@ export class FormWrapper extends Component {
     // }
 
     componentDidMount() {
+        const { disabled, bindKey, bindShortcut, handleSubmit, submit } = this.props;
         this.form.elements[0].focus();
 
-        if (this.props.bindKey) {
-            this.props.bindShortcut(['ctrl+s', 'command+s'], (e) => {
+        if (bindKey && !disabled) {
+            bindShortcut(['ctrl+s', 'command+s'], (e) => {
                 e.preventDefault();
-                this.props.handleSubmit(this.props.submit)();
+                handleSubmit(submit)();
             }, true);
         }
     }
@@ -47,11 +48,11 @@ export class FormWrapper extends Component {
     }
 
     render() {
-        const { FormControlsComponent, handleSubmit, submitting, valid, error, dirty, submitSucceeded, reset, /*innerClass,*/ outerControlsClass } = this.props;
+        const { FormControlsComponent, handleSubmit, submitting, valid, error, disabled, dirty, submitSucceeded, reset, /*innerClass,*/ outerControlsClass } = this.props;
 
         return (
             <div>
-                <Prompt when={dirty && !submitSucceeded} message={this.props.unsavedMessage} />
+                {!disabled && <Prompt when={dirty && !submitSucceeded} message={this.props.unsavedMessage} />}
                 {error && <div className="alert alert-danger">{error}</div>}
                 <form ref={form => this.form = form} onSubmit={handleSubmit(this.props.submit)} className="form-horizontal">
                     <div>
@@ -78,6 +79,7 @@ FormWrapper.propTypes = {
         PropTypes.string,
         PropTypes.object
     ]),
+    disabled: PropTypes.bool,
     FormControlsComponent: PropTypes.func,
     // createInitialFormValues: PropTypes.func,
     goBackAfterSave: PropTypes.bool,
@@ -89,6 +91,7 @@ FormWrapper.propTypes = {
 
 FormWrapper.defaultProps = {
     bindKey: true,
+    disabled: false,
     // createInitialFormValues: (item) => item,
     FormControlsComponent: FormControls,
     goBackAfterSave: true,

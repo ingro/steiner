@@ -21,10 +21,12 @@ export class FormWrapper extends Component {
     componentDidMount() {
         this.form.elements[0].focus();
 
-        this.props.bindShortcut(['ctrl+s', 'command+s'], (e) => {
-            e.preventDefault();
-            this.props.handleSubmit(this.props.submit)();
-        }, true);
+        if (this.props.bindKey) {
+            this.props.bindShortcut(['ctrl+s', 'command+s'], (e) => {
+                e.preventDefault();
+                this.props.handleSubmit(this.props.submit)();
+            }, true);
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -71,6 +73,7 @@ export class FormWrapper extends Component {
 }
 
 FormWrapper.propTypes = {
+    bindKey: PropTypes.bool,
     cancelLink: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.object
@@ -85,6 +88,7 @@ FormWrapper.propTypes = {
 };
 
 FormWrapper.defaultProps = {
+    bindKey: true,
     // createInitialFormValues: (item) => item,
     FormControlsComponent: FormControls,
     goBackAfterSave: true,

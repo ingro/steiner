@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`createHandlers handles correctly changeOrder action 1`] = `
 Object {
   "current": Object {

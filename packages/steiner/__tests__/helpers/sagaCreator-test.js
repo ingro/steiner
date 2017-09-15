@@ -32,8 +32,18 @@ describe('createSagas', () => {
     });
 
     const options = {
-        getApiListParams: function() {
+        getApiListParams() {
             return [{ foo: 'bar' }];
+        },
+        createFailErrorCreator() {
+            return {
+                error: 'foo'
+            };
+        },
+        updateFailErrorCreator() {
+            return {
+                error: 'bar'
+            };
         }
     };
 
@@ -107,6 +117,7 @@ describe('createSagas', () => {
 
         const response = { id: 42, foo: 'bar' };
         const notification = { type: 'success' };
+        const errorPayload = { error: 'foo'};
 
         const saga = testSaga(sagas.create, action);
 
@@ -119,7 +130,9 @@ describe('createSagas', () => {
         .restore('beforeSuccess')
         .throw('error')
         .call(generateNotificationPayload, 'createFail', 'fail', {}, {}, 'Posts')
-        .next(notification).put(actions.createFail('error', notification));
+        .next(notification)
+        .call(options.createFailErrorCreator, 'error')
+        .next(errorPayload).put(actions.createFail(errorPayload, notification));
         
         // expect(generator.next().value).toEqual(take(actionTypes.create));
         // expect(generator.next(action).value).toEqual(call(api.create, { foo: 'bar' }));
@@ -139,6 +152,7 @@ describe('createSagas', () => {
 
         const response = { id: 42, foo: 'bar' };
         const notification = { type: 'success' };
+        const errorPayload = { error: 'bar'};
 
         const saga = testSaga(sagas.update, action);
 
@@ -156,7 +170,9 @@ describe('createSagas', () => {
         .restore('beforeSuccess')
         .throw('error')
         .call(generateNotificationPayload, 'updateFail', 'fail', {}, {}, 'Posts')
-        .next(notification).put(actions.updateFail('error', notification)); 
+        .next(notification)
+        .call(options.updateFailErrorCreator, 'error')
+        .next(errorPayload).put(actions.updateFail(errorPayload, notification)); 
     });
 
     it('generates delete saga correctly', () => {
@@ -191,7 +207,9 @@ describe('createSagas', () => {
     });
 
     it('generates filter saga correctly', () => {
-        const generator = sagas.filter();
+        const generator = sagas.filter({
+            type: 'foo'
+        });
 
         const filters = Immutable({
             q: 'hello'
@@ -226,7 +244,7 @@ describe('createSagas', () => {
         const generator = sagas.syncFilters(action);
 
         // expect(generator.next().value).toEqual(take(actionTypes.syncFilters));
-        expect(generator.next().value).toEqual(put(actions.resetFilters()));
+        expect(generator.next().value).toEqual(put(actions.setFilters({})));
         // TODO: test with non-empty payload
         expect(generator.next().value).toEqual(put(actions.list()));
     });

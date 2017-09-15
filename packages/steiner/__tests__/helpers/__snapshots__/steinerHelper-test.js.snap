@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`steinerHelper createApi it merge params if needed 1`] = `
 Object {
   "baz": "qux",

@@ -135,6 +135,10 @@ function setFilters(state, action) {
     }); 
 }
 
+function resetFilters(state, action, defaultState) {
+    return state.setIn(['list', 'filters'], defaultState.list.filters);
+}
+
 function changePage(state, action) {
     return state.setIn(['list', 'filters', 'page'], parseInt(action.payload.page, 10));
 }
@@ -272,6 +276,7 @@ export function createHandlers(actionTypes, options = {}) {
         [actionTypes.resetCurrent]: resetCurrent,
         [actionTypes.updateFilter]: updateFilter,
         [actionTypes.setFilters]: setFilters,
+        [actionTypes.resetFilters]: resetFilters,
         [actionTypes.changePage]: changePage,
         [actionTypes.changeOrder]: changeOrder,
         [actionTypes.select]: select,
@@ -305,7 +310,7 @@ export function createReducer(handlers, defaultState = DEFAULT_STATE, options = 
 
     return function(state = defaultState, action) {
         if (handlers.hasOwnProperty(action.type)) {
-            return handlers[action.type](state, action);
+            return handlers[action.type](state, action, defaultState);
         } else {
             return state;
         }

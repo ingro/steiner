@@ -165,17 +165,17 @@ describe('createHandlers', () => {
         expect(handlers[actionTypes.deselectAll](selectState)).toMatchSnapshot();
     });
 
-    it('handles correctly resetFilters action', () => {
-        const prevState = DEFAULT_STATE.setIn(['list', 'filters'], {
-            q: 'foo',
-            page: 2,
-            perPage: 20,
-            orderKey: null,
-            orderDirection: 'ASC'
-        });
+    // it('handles correctly resetFilters action', () => {
+    //     const prevState = DEFAULT_STATE.setIn(['list', 'filters'], {
+    //         q: 'foo',
+    //         page: 2,
+    //         perPage: 20,
+    //         orderKey: null,
+    //         orderDirection: 'ASC'
+    //     });
 
-        expect(handlers[actionTypes.resetFilters](prevState, {}, DEFAULT_STATE)).toMatchSnapshot();
-    });
+    //     expect(handlers[actionTypes.resetFilters](prevState, {}, DEFAULT_STATE)).toMatchSnapshot();
+    // });
 });
 
 describe('createSelectors', () => {

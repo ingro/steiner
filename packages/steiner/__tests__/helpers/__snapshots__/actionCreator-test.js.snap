@@ -262,6 +262,7 @@ Object {
 
 exports[`createActions generates the correct actions 22`] = `
 Object {
+  "payload": Object {},
   "type": "posts/RESET_FILTERS",
 }
 `;

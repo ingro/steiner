@@ -244,9 +244,10 @@ export function createActions(resource, actionTypes) {
         };
     }
 
-    actions['resetFilters'] = function(query) {
+    actions['resetFilters'] = function(payload = {}) {
         return {
-            type: actionTypes.resetFilters
+            type: actionTypes.resetFilters,
+            payload
         };
     }
 

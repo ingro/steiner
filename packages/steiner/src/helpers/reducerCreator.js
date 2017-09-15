@@ -239,9 +239,6 @@ function createFilterCollectionHandler(options = {}) {
                 query[queryKey][additionalFilters[key].op] = filters[key];
             }
         });
-
-        // console.warn(filtered);
-        // console.warn(query);
         
         filtered = sift(query, filtered);
 

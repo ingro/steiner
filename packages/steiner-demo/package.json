@@ -1,6 +1,6 @@
 {
   "name": "steiner-demo",
-  "version": "0.0.54",
+  "version": "0.0.55",
   "private": true,
   "devDependencies": {
     "cross-env": "^5.0.5",
@@ -42,7 +42,7 @@
     "redux-thunk": "^2.2.0",
     "revalidate": "^1.2.0",
     "seamless-immutable": "^7.1.2",
-    "steiner": "^0.17.28",
+    "steiner": "^0.17.29",
     "text-spinners": "^1.0.5",
     "vivi": "^0.5.14"
   },

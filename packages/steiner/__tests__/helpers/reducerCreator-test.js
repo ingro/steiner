@@ -164,6 +164,18 @@ describe('createHandlers', () => {
 
         expect(handlers[actionTypes.deselectAll](selectState)).toMatchSnapshot();
     });
+
+    it('handles correctly resetFilters action', () => {
+        const prevState = DEFAULT_STATE.setIn(['list', 'filters'], {
+            q: 'foo',
+            page: 2,
+            perPage: 20,
+            orderKey: null,
+            orderDirection: 'ASC'
+        });
+
+        expect(handlers[actionTypes.resetFilters](prevState, {}, DEFAULT_STATE)).toMatchSnapshot();
+    });
 });
 
 describe('createSelectors', () => {
@@ -171,7 +183,7 @@ describe('createSelectors', () => {
 
     const state = {
         posts: DEFAULT_STATE
-            .setIn(['list', 'itemsId'], [ 33, 42])
+            .setIn(['list', 'itemsId'], [33, 42])
             .setIn(['list', 'itemsById'], { 33: { id: 33, name: 'foo' }, 42: { id: 42, name: 'bar' }})
             .setIn(['list', 'selected'], [42])
     }

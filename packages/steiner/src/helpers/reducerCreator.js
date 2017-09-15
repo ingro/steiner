@@ -310,7 +310,7 @@ export function createReducer(handlers, defaultState = DEFAULT_STATE, options = 
 
     return function(state = defaultState, action) {
         if (handlers.hasOwnProperty(action.type)) {
-            return handlers[action.type](state, action, defaultState);
+            return handlers[action.type](state, action, DEFAULT_STATE);
         } else {
             return state;
         }

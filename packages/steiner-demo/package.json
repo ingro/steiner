@@ -1,6 +1,6 @@
 {
   "name": "steiner-demo",
-  "version": "0.0.52",
+  "version": "0.0.53",
   "private": true,
   "devDependencies": {
     "cross-env": "^5.0.5",
@@ -9,7 +9,7 @@
     "reactotron-react-js": "^1.12.0",
     "reactotron-redux-saga": "^1.12.0",
     "redux-devtools-extension": "^2.13.2",
-    "steiner-cli": "^0.17.6"
+    "steiner-cli": "^0.17.7"
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -42,7 +42,7 @@
     "redux-thunk": "^2.2.0",
     "revalidate": "^1.2.0",
     "seamless-immutable": "^7.1.2",
-    "steiner": "^0.17.26",
+    "steiner": "^0.17.27",
     "text-spinners": "^1.0.5",
     "vivi": "^0.5.14"
   },

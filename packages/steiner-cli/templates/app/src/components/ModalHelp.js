@@ -28,10 +28,10 @@ export default class ModalHelp extends Component {
                             <li><strong>CTRL+P:</strong> toggle the omnibox</li>
                             <li><strong>CTRL+H:</strong> toggle help</li>
                         </ul>
-                        <h4>List key bindings</h4>
+                        {/*<h4>List key bindings</h4>
                         <ul>
                             <li><strong>CTRL+D:</strong> create new item</li>
-                        </ul>
+                        </ul>*/}
                         <h4>Edit key bindings</h4>
                         <ul>
                             <li><strong>CTRL+S:</strong> save the item</li>

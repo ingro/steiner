@@ -377,6 +377,19 @@ export function createSagas(resource, actionTypes, actions, api, selectors, defa
         const filters = defaultState.list.filters.asMutable();
 
         yield put(actions.setFilters(filters));
+
+        const location = { 
+            pathname: window.location.pathname, 
+            search: '', 
+            query: {} 
+        };
+
+        if (options.basename) {
+            const re = new RegExp(`^${options.basename}`);
+            location.pathname = location.pathname.replace(re, '');
+        }
+
+        yield put(navigate(location, 'PUSH'));
     }
 
     Object.defineProperty(sagas.resetFilters, 'name', {

@@ -29,6 +29,7 @@ Split the package in 2:
 - Create a css file for the things that needs styling (see ListLayout) instead of hardcode style in components
 - Add a "Clear filter" button on list filter bar
 - Re-enable `ctrl+d` shortcut for creating a new item in `ListLayout`
+- Find the solution of missing `babel-core` error when upgrading to `jest@21.0.0`
 
 ## Tests
 - Split actionCreator-test createActions tests in multiple assertions for easier debugging with snapshots

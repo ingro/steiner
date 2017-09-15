@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`createActionTypes generates the correct action types 1`] = `
 Object {
   "changeOrder": "posts/CHANGE_ORDER",

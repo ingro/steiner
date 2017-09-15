@@ -1,29 +1,35 @@
-exports[`test NoRows doesn't render it there are rows 1`] = `null`;
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test NoRows renders a loading message 1`] = `
+exports[`NoRows doesn't render it there are rows 1`] = `null`;
+
+exports[`NoRows renders a loading message 1`] = `
 <div
-  className="alert alert-info text-center">
+  className="alert alert-info text-center"
+>
   Loading...
 </div>
 `;
 
-exports[`test NoRows renders an error message 1`] = `
+exports[`NoRows renders an error message 1`] = `
 <div
-  className="alert alert-danger text-center">
+  className="alert alert-danger text-center"
+>
   Too bad!
 </div>
 `;
 
-exports[`test NoRows renders correctly 1`] = `
+exports[`NoRows renders correctly 1`] = `
 <div
-  className="alert alert-warning text-center">
+  className="alert alert-warning text-center"
+>
   No items to show
 </div>
 `;
 
-exports[`test NoRows renders correctly a custom message 1`] = `
+exports[`NoRows renders correctly a custom message 1`] = `
 <div
-  className="alert alert-warning text-center">
+  className="alert alert-warning text-center"
+>
   No items to show! Check back later!
 </div>
 `;

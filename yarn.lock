@@ -5681,9 +5681,9 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-saga-test-plan@^2.4.4:
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/redux-saga-test-plan/-/redux-saga-test-plan-2.4.4.tgz#91a620e42580b3a92b0f55fa2e0785900f1f2924"
+redux-saga-test-plan@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/redux-saga-test-plan/-/redux-saga-test-plan-3.1.0.tgz#8211da73d97353b6e78ee8dc8d6e65b3cd0cebe0"
   dependencies:
     core-js "^2.4.1"
     fsm-iterator "^1.1.0"

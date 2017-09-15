@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`apiCreator creates the correct api calls 1`] = `
 Object {
   "url": "/posts/42",
@@ -6,13 +8,7 @@ Object {
 
 exports[`apiCreator creates the correct api calls 2`] = `
 Object {
-  "params": Object {
-    "_limit": undefined,
-    "_order": undefined,
-    "_page": undefined,
-    "_sort": undefined,
-    "q": undefined,
-  },
+  "params": Object {},
   "url": "/posts",
 }
 `;

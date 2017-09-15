@@ -5,16 +5,6 @@ import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 import queryString from 'query-string';
 import _ from 'lodash';
 
-// .ListLayout--Wrapper {
-//     display: flex;
-//     flex-flow: column wrap;
-//     height: calc(100vh - 75px);
-// }
-
-// .ListLayout--Content {
-//     flex-grow: 1;
-// }
-
 export class ListLayout extends Component {
     componentDidMount() {
         if (this.props.clientFilters) {

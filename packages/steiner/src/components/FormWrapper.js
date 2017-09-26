@@ -48,13 +48,13 @@ export class FormWrapper extends Component {
     }
 
     render() {
-        const { FormControlsComponent, handleSubmit, submitting, valid, error, disabled, dirty, submitSucceeded, reset, /*innerClass,*/ outerControlsClass } = this.props;
+        const { formClassName, FormControlsComponent, handleSubmit, submitting, valid, error, disabled, dirty, submitSucceeded, reset, /*innerClass,*/ outerControlsClass } = this.props;
 
         return (
             <div>
                 {!disabled && <Prompt when={dirty && !submitSucceeded} message={this.props.unsavedMessage} />}
                 {error && <div className="alert alert-danger">{error}</div>}
-                <form ref={form => this.form = form} onSubmit={handleSubmit(this.props.submit)} className="form-horizontal">
+                <form ref={form => this.form = form} onSubmit={handleSubmit(this.props.submit)} className={formClassName}>
                     <div>
                         {this.props.children}
                     </div>
@@ -80,6 +80,7 @@ FormWrapper.propTypes = {
         PropTypes.object
     ]),
     disabled: PropTypes.bool,
+    formClassName: PropTypes.string,
     FormControlsComponent: PropTypes.func,
     // createInitialFormValues: PropTypes.func,
     goBackAfterSave: PropTypes.bool,
@@ -93,6 +94,7 @@ FormWrapper.defaultProps = {
     bindKey: true,
     disabled: false,
     // createInitialFormValues: (item) => item,
+    formClassName: 'form-horizontal',
     FormControlsComponent: FormControls,
     goBackAfterSave: true,
     outerControlsClass: 'row',

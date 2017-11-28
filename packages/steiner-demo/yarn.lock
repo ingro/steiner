@@ -357,11 +357,11 @@ aws4@^1.2.1:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
 
-axios@^0.17.0:
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.17.0.tgz#7da747916db803f761651d6091d708789b953c6a"
+axios@^0.17.1:
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.17.1.tgz#2d8e3e5d0bdbd7327f91bc814f5c57660f81824d"
   dependencies:
-    follow-redirects "^1.2.3"
+    follow-redirects "^1.2.5"
     is-buffer "^1.1.5"
 
 axobject-query@^0.1.0:
@@ -1825,14 +1825,6 @@ create-react-class@15.x:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
-create-react-class@^15.5.2:
-  version "15.5.3"
-  resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.5.3.tgz#fb0f7cae79339e9a179e194ef466efa3923820fe"
-  dependencies:
-    fbjs "^0.8.9"
-    loose-envify "^1.3.1"
-    object-assign "^4.1.1"
-
 cross-env@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-5.1.1.tgz#b6d8ab97f304c0f71dae7277b75fe424c08dfa74"
@@ -2007,9 +1999,9 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-date-fns@^1.28.5:
-  version "1.28.5"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.28.5.tgz#257cfc45d322df45ef5658665967ee841cd73faf"
+date-fns@^1.29.0:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.29.0.tgz#12e609cdcb935127311d04d33334e2960a2a54e6"
 
 date-now@^0.1.4:
   version "0.1.4"
@@ -2033,7 +2025,7 @@ debug@2.6.1:
   dependencies:
     ms "0.7.2"
 
-debug@2.6.3, debug@^2.1.1, debug@^2.2.0, debug@^2.4.5, debug@^2.6.0:
+debug@2.6.3, debug@^2.1.1, debug@^2.2.0, debug@^2.6.0:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.3.tgz#0f7eb8c30965ec08c72accfa0130c8b79984141d"
   dependencies:
@@ -2967,11 +2959,11 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-follow-redirects@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.2.3.tgz#01abaeca85e3609837d9fcda3167a7e42fdaca21"
+follow-redirects@^1.2.5:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.2.6.tgz#4dcdc7e4ab3dd6765a97ff89c3b4c258117c79bf"
   dependencies:
-    debug "^2.4.5"
+    debug "^3.1.0"
 
 for-in@^1.0.1:
   version "1.0.2"
@@ -3312,12 +3304,6 @@ hawk@~3.1.3:
 he@1.1.x:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
-
-highlight-words-core@^1.0.2:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/highlight-words-core/-/highlight-words-core-1.0.3.tgz#0886d0e757c8ca3928cbc873042bd544f8f6b2e5"
-  dependencies:
-    babel-runtime "^6.11.6"
 
 highlight-words-core@^1.1.0:
   version "1.1.0"
@@ -5668,24 +5654,24 @@ rc-pagination@^1.12.11:
     babel-runtime "6.x"
     prop-types "^15.5.7"
 
-rc-tooltip@^3.6.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/rc-tooltip/-/rc-tooltip-3.6.0.tgz#560a507882b0cd1579ff5a5cdd2b322e19ddd91e"
+rc-tooltip@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/rc-tooltip/-/rc-tooltip-3.7.0.tgz#3afbf109865f7cdcfe43752f3f3f501f7be37aaa"
   dependencies:
     babel-runtime "6.x"
     prop-types "^15.5.8"
-    rc-trigger "^2.0.1"
+    rc-trigger "^2.2.2"
 
-rc-trigger@^2.0.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/rc-trigger/-/rc-trigger-2.2.1.tgz#7caf1e3ec6e76dbde6ca71c989aa3fea024fd174"
+rc-trigger@^2.2.2:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/rc-trigger/-/rc-trigger-2.3.1.tgz#48650ef537c493f9174f8669e123fec469a5d79f"
   dependencies:
     babel-runtime "6.x"
     create-react-class "15.x"
     prop-types "15.x"
     rc-align "2.x"
     rc-animate "2.x"
-    rc-util "^4.1.0"
+    rc-util "^4.3.0"
 
 rc-util@4.x:
   version "4.0.2"
@@ -5694,9 +5680,9 @@ rc-util@4.x:
     add-dom-event-listener "1.x"
     shallowequal "^0.2.2"
 
-rc-util@^4.1.0:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/rc-util/-/rc-util-4.1.1.tgz#9350e9c00368b50cd8fbd91775cc1cf9e2ca72b2"
+rc-util@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/rc-util/-/rc-util-4.3.0.tgz#31c61e747e3e107acfe78049f98b275a8051a398"
   dependencies:
     add-dom-event-listener "1.x"
     babel-runtime "6.x"
@@ -5748,9 +5734,9 @@ react-dev-utils@^4.2.1:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-dom@^16.0.0:
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.0.0.tgz#9cc3079c3dcd70d4c6e01b84aab2a7e34c303f58"
+react-dom@^16.1.1:
+  version "16.1.1"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.1.1.tgz#b2e331b6d752faf1a2d31399969399a41d8d45f8"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -5777,37 +5763,29 @@ react-highlight-words@^0.10.0:
     highlight-words-core "^1.1.0"
     prop-types "^15.5.8"
 
-react-highlight-words@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/react-highlight-words/-/react-highlight-words-0.9.0.tgz#aea72a9f28637fc6a77bc2a99efa08e638af43d7"
+react-input-autosize@^2.1.0:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-input-autosize/-/react-input-autosize-2.1.2.tgz#a3dc11a5517c434db25229925541309de3f7a8f5"
   dependencies:
-    highlight-words-core "^1.0.2"
     prop-types "^15.5.8"
 
-react-input-autosize@^1.1.3:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/react-input-autosize/-/react-input-autosize-1.1.4.tgz#cbc45072d4084ddc57806db8e3b34e644b8366ac"
-  dependencies:
-    create-react-class "^15.5.2"
-    prop-types "^15.5.8"
-
-react-modal@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.1.0.tgz#ce594f88f9ab7338ee265cfec4be3cc5253f5baa"
+react-modal@^3.1.5:
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.1.5.tgz#9cfdb7634b5003148ffb7c8ead13a36f671d744e"
   dependencies:
     exenv "^1.2.0"
     prop-types "^15.5.10"
 
-react-popper@^0.7.3:
+react-popper@^0.7.4:
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.7.4.tgz#8649d539837e7c6f47bc9b24c9cf57a404e199a1"
   dependencies:
     popper.js "^1.12.5"
     prop-types "^15.5.10"
 
-react-redux-loading-bar@^2.9.3:
-  version "2.9.3"
-  resolved "https://registry.yarnpkg.com/react-redux-loading-bar/-/react-redux-loading-bar-2.9.3.tgz#65865dddcbf597169e787edec15eec7ebfb84149"
+react-redux-loading-bar@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-redux-loading-bar/-/react-redux-loading-bar-3.0.0.tgz#1f338b82a24b86dd87077268459e11b3ddc79bc9"
   dependencies:
     prop-types "^15.5.6"
 
@@ -5888,14 +5866,13 @@ react-scripts@^1.0.17:
   optionalDependencies:
     fsevents "1.1.2"
 
-react-select@^1.0.0-rc.5:
-  version "1.0.0-rc.5"
-  resolved "https://registry.yarnpkg.com/react-select/-/react-select-1.0.0-rc.5.tgz#9d316f252b1adc372ddb5cdf1f119c6b7cfdb5d6"
+react-select@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-select/-/react-select-1.1.0.tgz#626a2de839fdea2ade74dd1b143a9bde34be6c82"
   dependencies:
     classnames "^2.2.4"
-    create-react-class "^15.5.2"
     prop-types "^15.5.8"
-    react-input-autosize "^1.1.3"
+    react-input-autosize "^2.1.0"
 
 react-side-effect@^1.1.0:
   version "1.1.0"
@@ -5908,12 +5885,13 @@ react-sidebar@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/react-sidebar/-/react-sidebar-2.3.2.tgz#ec140bea8a6f5fa3d8ea7a56479665b44cf4f9cf"
 
-react-test-renderer@^16.0.0:
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.0.0.tgz#9fe7b8308f2f71f29fc356d4102086f131c9cb15"
+react-test-renderer@^16.1.1:
+  version "16.1.1"
+  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.1.1.tgz#a05184688d564be799f212449262525d1e350537"
   dependencies:
     fbjs "^0.8.16"
     object-assign "^4.1.1"
+    prop-types "^15.6.0"
 
 react-transition-group@^1.1.2:
   version "1.1.3"
@@ -5934,9 +5912,9 @@ react-transition-group@^1.2.0:
     prop-types "^15.5.6"
     warning "^3.0.0"
 
-react-virtualized@^9.12.0:
-  version "9.12.0"
-  resolved "https://registry.yarnpkg.com/react-virtualized/-/react-virtualized-9.12.0.tgz#1b4d3e5ab197ed1d832df8e6688b1b18f725b6c5"
+react-virtualized@^9.13.0:
+  version "9.13.0"
+  resolved "https://registry.yarnpkg.com/react-virtualized/-/react-virtualized-9.13.0.tgz#83e4d984271a37631225e5fe6faeaeada6e59f53"
   dependencies:
     babel-runtime "^6.23.0"
     classnames "^2.2.3"
@@ -5944,9 +5922,9 @@ react-virtualized@^9.12.0:
     loose-envify "^1.3.0"
     prop-types "^15.5.4"
 
-react@^16.0.0:
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.0.0.tgz#ce7df8f1941b036f02b2cca9dbd0cb1f0e855e2d"
+react@^16.1.1:
+  version "16.1.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.1.1.tgz#d5c4ef795507e3012282dd51261ff9c0e824fe1f"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -6095,9 +6073,9 @@ redux-devtools-extension@^2.13.2:
   version "2.13.2"
   resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.2.tgz#e0f9a8e8dfca7c17be92c7124958a3b94eb2911d"
 
-redux-form@^7.1.2:
-  version "7.1.2"
-  resolved "https://registry.yarnpkg.com/redux-form/-/redux-form-7.1.2.tgz#6b0f25c57fd8130a05ce00f6435fe1b051f402af"
+redux-form@^7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/redux-form/-/redux-form-7.2.0.tgz#4465d9bc863e40b1704695d672bea75fcf81db04"
   dependencies:
     deep-equal "^1.0.1"
     es6-error "^4.0.0"
@@ -7301,15 +7279,15 @@ verror@1.3.6:
   dependencies:
     extsprintf "1.0.2"
 
-vivi@^0.6.6:
-  version "0.6.6"
-  resolved "https://registry.yarnpkg.com/vivi/-/vivi-0.6.6.tgz#a54965721c54e483958086be643dc3f88c61f1ae"
+vivi@^0.6.7:
+  version "0.6.7"
+  resolved "https://registry.yarnpkg.com/vivi/-/vivi-0.6.7.tgz#58469bb86483a8b7178d6e0ab0e103ffd6e9ecd4"
   dependencies:
     classnames "^2.2.5"
-    date-fns "^1.28.5"
+    date-fns "^1.29.0"
     prop-types "^15.6.0"
-    react-highlight-words "^0.9.0"
-    react-popper "^0.7.3"
+    react-highlight-words "^0.10.0"
+    react-popper "^0.7.4"
     uncontrollable "^4.1.0"
 
 vm-browserify@0.0.4:

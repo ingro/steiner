@@ -1,7 +1,7 @@
 {
   "name": "steiner",
   "version": "0.17.33",
-  "description": "Helpers and React Components to build dashboards and CRUD apps",
+  "description": "Helpers and React Components to build dashboards for CRUD apps",
   "main": "lib/index.js",
   "scripts": {
     "build": "npm run clean && npm run compile",
@@ -13,7 +13,18 @@
   "keywords": [
     "react"
   ],
-  "author": "Emanuele Ingrosso <ingro85@gmail.com>",
+  "author": {
+    "name": "Emanuele Ingrosso",
+    "email": "ingro85@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ingro/steiner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ingro/steiner/issues"
+  },
+  "homepage": "https://github.com/ingro/steiner",
   "license": "MIT",
   "devDependencies": {
     "axios": "^0.17.1",

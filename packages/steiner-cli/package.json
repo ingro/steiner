@@ -9,7 +9,18 @@
   "keywords": [
     "react"
   ],
-  "author": "Emanuele Ingrosso <ingro85@gmail.com>",
+  "author": {
+    "name": "Emanuele Ingrosso",
+    "email": "ingro85@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ingro/steiner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ingro/steiner/issues"
+  },
+  "homepage": "https://github.com/ingro/steiner",
   "license": "MIT",
   "bin": {
     "steiner": "./index.js"

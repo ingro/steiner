@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "chalk": "^2.3.0",
-    "commander": "^2.11.0",
+    "commander": "^2.13.0",
     "es6-template-strings": "^2.0.1",
     "fs-jetpack": "^1.2.0",
     "lodash": "^4.17.4",

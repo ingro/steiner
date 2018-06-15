@@ -11,7 +11,7 @@ import routeRegister from 'helpers/routeRegister';
 
 export class {{componentName}} extends Component {
     {% if richComponents -%}
-    componentWillMount() {
+    componentDidMount() {
         this.props.bindShortcut(['ctrl+d', 'command+d'], (e) => {
             e.preventDefault();
             this.context.router.transitionTo(routeRegister.getLinkTo('{{name}}.create'));

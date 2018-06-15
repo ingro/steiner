@@ -14,10 +14,10 @@ export default class InputListFilter extends Component {
         this.updateFilter = debounce(() => props.updateFilter(props.fieldKey, this.state.value), 500);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.value !== this.props.value) {
+    componentDidUpdate(prevProps) {
+        if (prevProps.value !== this.props.value) {
             this.setState({
-                value: nextProps.value
+                value: this.props.value
             });
         }
     }

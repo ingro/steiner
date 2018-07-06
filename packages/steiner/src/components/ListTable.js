@@ -57,7 +57,7 @@ export default class ListTable extends Component {
     }
 
     render() {
-        const { filters, height, items, selected, selectable, rowHeight } = this.props;
+        const { filters, height, items, selected, selectable, rowHeight, ...rest } = this.props;
 
         return (
             <Table
@@ -76,6 +76,7 @@ export default class ListTable extends Component {
                 selectedRowsCount={selected.length}
                 onRowCheckClick={this.onRowCheckClick}
                 onHeaderCheckClick={this.onHeaderCheckClick}
+                {...rest}
             />
         );
     }

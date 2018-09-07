@@ -2,7 +2,6 @@
   "private": true,
   "scripts": {
     "build": "cd packages/steiner && npm run build",
-    "postinstall": "lerna bootstrap",
     "seed:demo": "rimraf packages/steiner-demo/src/modules/positions && cd packages/steiner-cli && node index generate positions -o ../steiner-demo/src/modules",
     "start:demo": "cd packages/steiner-demo && npm start",
     "publish": "lerna publish",
@@ -11,7 +10,10 @@
     "test": "cd packages/steiner && npm test"
   },
   "devDependencies": {
-    "lerna": "2.4.0",
+    "lerna": "3.3.0",
     "rimraf": "^2.6.1"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

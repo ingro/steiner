@@ -48,6 +48,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.10.0",
     "jest": "23.5.0",
+    "jest-cli": "^23.6.0",
     "lodash": "^4.17.10",
     "mousetrap": "^1.6.2",
     "rc-pagination": "^1.16.5",

@@ -56,7 +56,7 @@ describe('createSagas', () => {
         const response = { data: [1, 2, 3] };
         const success = {
             type: actionTypes.listSuccess,
-            payload: response, 
+            payload: response,
             loadingBar: 'hide'
         };
         const error = {
@@ -133,7 +133,7 @@ describe('createSagas', () => {
         .next(notification)
         .call(options.createFailErrorCreator, 'error')
         .next(errorPayload).put(actions.createFail(errorPayload, notification));
-        
+
         // expect(generator.next().value).toEqual(take(actionTypes.create));
         // expect(generator.next(action).value).toEqual(call(api.create, { foo: 'bar' }));
         // expect(generator.next(response).value).toEqual(call(generateNotificationPayload, 'createSuccess', 'success', {}, {}, 'Posts'));
@@ -160,7 +160,7 @@ describe('createSagas', () => {
         // expect(generator.next(action).value).toEqual(call(api.update, 42, { id: 42, foo: 'bar' }));
         // expect(generator.next(response).value).toEqual(call(generateNotificationPayload, 'updateSuccess', 'success', {}, {}, 'Posts'));
         // expect(generator.next(notification).value).toEqual(put(actions.updateSuccess(response, notification)));
-        
+
         saga
         // .next().take(actionTypes.update)
         .next().call(api.update, 42, { id: 42, foo: 'bar' })
@@ -172,7 +172,7 @@ describe('createSagas', () => {
         .call(generateNotificationPayload, 'updateFail', 'fail', {}, {}, 'Posts')
         .next(notification)
         .call(options.updateFailErrorCreator, 'error')
-        .next(errorPayload).put(actions.updateFail(errorPayload, notification)); 
+        .next(errorPayload).put(actions.updateFail(errorPayload, notification));
     });
 
     it('generates delete saga correctly', () => {
@@ -193,7 +193,7 @@ describe('createSagas', () => {
         // expect(generator.next(action).value).toEqual(call(api.delete, 42));
         // expect(generator.next(response).value).toEqual(call(generateNotificationPayload, 'deleteSuccess', 'success', {}, {}, 'Posts'));
         // expect(generator.next(notification).value).toEqual(put(actions.deleteSuccess(response, notification)));
-        
+
         saga
         // .next().take(actionTypes.delete)
         .next().call(api.delete, 42)
@@ -203,7 +203,7 @@ describe('createSagas', () => {
         .restore('beforeSuccess')
         .throw('error')
         .call(generateNotificationPayload, 'deleteFail', 'fail', {}, {}, 'Posts')
-        .next(notification).put(actions.deleteFail('error', notification)); 
+        .next(notification).put(actions.deleteFail('error', notification));
     });
 
     it('generates filter saga correctly', () => {
@@ -219,7 +219,7 @@ describe('createSagas', () => {
             action: 'PUSH',
             type: NAVIGATE,
             location: {
-                pathname: 'blank',
+                pathname: '/',
                 query: {
                     q: 'hello'
                 },
@@ -250,9 +250,9 @@ describe('createSagas', () => {
     });
 
     it('generates checkFilterSync saga correctly', () => {
-        const action = { 
-            payload: { 
-                q: 'hello' 
+        const action = {
+            payload: {
+                q: 'hello'
 
             }
         };

@@ -1,3 +1,9 @@
+# CHANGELOG
+
+## 0.18.0 (November 23, 2018)
+
+- Update routes template for CRA@2
+
 ## 0.17.0 (March 23, 2017)
 
 - Updated templates for steiner@0.17.0

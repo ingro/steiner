@@ -1,3 +1,9 @@
+# CHANGELOG
+
+## 0.18.0 (November 23, 2018)
+
+- Minor fixes
+
 ## 0.17.0 (March 23, 2017)
 
 - **Breaking**: switch key/values in api's params mapper

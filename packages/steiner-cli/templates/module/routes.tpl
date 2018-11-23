@@ -9,10 +9,9 @@ const routes = helper.generateRoutes('{{name}}', selectors);
 const list = _.values(routes.list).map(route => ({
     ...route,
     getComponent() {
-        return new Promise((resolve, reject) => {
-            require.ensure([], require => {
-                resolve(require(`modules/{{name}}/${route.componentPath}`).default);
-            }, '{{name}}');
+        return new Promise(resolve => {
+            import(/* webpackChunkName: '{{name}}' */ `modules/{{name}}/${route.componentPath}`)
+                .then(response => resolve(response.default));
         });
     },
 }));

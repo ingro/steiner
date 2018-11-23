@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.18.0 (November 23, 2018)
+## 0.18.2 (November 23, 2018)
 
 - Minor fixes
 

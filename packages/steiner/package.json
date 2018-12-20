@@ -4,10 +4,10 @@
   "description": "Helpers and React Components to build dashboards for CRUD apps",
   "main": "lib/index.js",
   "scripts": {
-    "build": "npm run clean && npm run compile",
+    "build": "yarn clean && yarn compile",
     "compile": "cross-env NODE_ENV=production babel src --out-dir lib",
     "clean": "rimraf lib",
-    "prepublish": "npm run build",
+    "prepublishOnly": "yarn build",
     "test": "jest --watch"
   },
   "keywords": [

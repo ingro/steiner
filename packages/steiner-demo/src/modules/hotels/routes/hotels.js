@@ -14,12 +14,12 @@ const routes = helper.generateRoutes('hotels', selectors, {
 const list = Object.values(routes.list).map(route => ({
     ...route,
     getComponent() {
-        return new Promise((resolve, reject) => {
-            require.ensure([], require => {
-                resolve(require(`modules/hotels/${route.componentPath}`).default);
-            });
+        return new Promise(resolve => {
+            import(/* webpackChunkName: 'hotels' */ `modules/hotels/${route.componentPath}`).then(
+                response => resolve(response.default)
+            );
         });
-    },
+    }
 }));
 
 const links = routeCreator.generateLinks(routes.patterns);

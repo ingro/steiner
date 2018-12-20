@@ -34,7 +34,7 @@
     "es6-template-strings": "^2.0.1",
     "fs-jetpack": "^1.2.0",
     "lodash": "^4.17.11",
-    "nunjucks": "^3.1.4",
+    "nunjucks": "^3.1.6",
     "tmp": "0.0.33"
   }
 }

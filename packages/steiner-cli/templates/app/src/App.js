@@ -61,9 +61,9 @@ class App extends Component {
         }, true);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.settings.language !== this.props.settings.language) {
-            this.loadTranslations(nextProps.settings.language);
+    componentDidUpdate(prevProps) {
+        if (prevProps.settings.language !== this.props.settings.language) {
+            this.loadTranslations(this.props.settings.language);
         }
     }
 

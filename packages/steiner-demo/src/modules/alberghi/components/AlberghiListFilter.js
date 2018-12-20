@@ -13,7 +13,7 @@ export class AlberghiListFilter extends Component {
             this.props.updateFilter(key, parseInt(option.value, 10));
         } else {
             this.props.updateFilter(key, null);
-        }        
+        }
     }
 
     render() {
@@ -29,17 +29,17 @@ export class AlberghiListFilter extends Component {
                     />
                 </div>
                 <div className="col-xs-3">
-                    <Select 
+                    <Select
                         value={filters.categoryId}
-                        options={[{value: '1', label: 1}, {value: '2', label: 2}, {value: '3', label: 3}, {value: '4', label: 4}]}
+                        options={[{value: '1', label: '1'}, {value: '2', label: '2'}, {value: '3', label: '3'}, {value: '4', label: '4'}]}
                         onChange={this.handleChangeSelect.bind(this, 'categoryId')}
                         placeholder="Select a category"
                     />
                 </div>
                 <div className="col-xs-3">
-                    <Select 
+                    <Select
                         value={filters.positionId}
-                        options={[{value: '1', label: 1}, {value: '2', label: 2}, {value: '3', label: 3}, {value: '4', label: 4}, {value: '5', label: 5}]}
+                        options={[{value: '1', label: 'Rimini'}, {value: '2', label: 'Riccione'}, {value: '3', label: 'Milano Marittima'}, {value: '4', label: 'Cesenatico'}, {value: '5', label: 'Cattolica'}]}
                         onChange={this.handleChangeSelect.bind(this, 'positionId')}
                         placeholder="Select a position"
                     />

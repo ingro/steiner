@@ -4,11 +4,11 @@
   "private": true,
   "devDependencies": {
     "cross-env": "^5.2.0",
-    "react-scripts": "^1.1.4",
-    "react-test-renderer": "^16.6.3",
+    "react-scripts": "^2.1.1",
+    "react-test-renderer": "^16.7.0",
     "reactotron-react-js": "^1.12.2",
     "reactotron-redux-saga": "^1.12.2",
-    "redux-devtools-extension": "^2.13.5",
+    "redux-devtools-extension": "^2.13.7",
     "steiner-cli": "^0.18.2"
   },
   "dependencies": {
@@ -18,24 +18,24 @@
     "query-string": "^5.0.1",
     "rc-pagination": "^1.17.3",
     "rc-tooltip": "^3.7.3",
-    "react": "^16.6.3",
+    "react": "^16.7.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-addons-shallow-compare": "^15.6.2",
-    "react-dom": "^16.6.3",
+    "react-dom": "^16.7.0",
     "react-helmet": "^5.2.0",
     "react-highlight-words": "^0.14.0",
-    "react-modal": "^3.6.1",
-    "react-redux": "^5.1.1",
-    "react-redux-loading-bar": "^3.1.0",
+    "react-modal": "^3.8.1",
+    "react-redux": "^6.0.0",
+    "react-redux-loading-bar": "^4.1.0",
     "react-router-dom": "^4.3.1",
     "react-select": "^1.1.0",
     "react-sidebar": "^2.3.2",
     "react-virtualized": "^9.21.0",
-    "reapop": "^1.1.4",
-    "reapop-theme-wybo": "^0.4.1",
+    "reapop": "^2.0.1",
+    "reapop-theme-wybo": "^1.0.2",
     "redux": "^4.0.1",
     "redux-batched-subscribe": "^0.1.6",
-    "redux-form": "^7.4.2",
+    "redux-form": "^8.0.4",
     "redux-localstorage": "^0.4.1",
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.16.2",
@@ -54,5 +54,11 @@
     "start": "cross-env NODE_PATH=./src npm run start:plain",
     "build": "cross-env NODE_PATH=./src npm run build:plain",
     "test": "cross-env NODE_PATH=./src npm run test:plain"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

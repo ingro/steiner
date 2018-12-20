@@ -1,5 +1,5 @@
-@import "../node_modules/text-spinners/spinners.css";
-@import "../node_modules/vivi/lib/style.css";
+@import "~text-spinners/spinners.css";
+@import "~vivi/lib/style.css";
 
 .splash {
     width: 100%;

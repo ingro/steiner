@@ -34,10 +34,13 @@ export class AlberghiListTable extends Component {
                 flexGrow: 0
             },
             {
-                width: 100,
+                width: 150,
                 label: 'Position',
                 dataKey: 'positionId',
-                flexGrow: 0
+                flexGrow: 0,
+                cellRenderer: ({ rowData }) => (<div>
+                    {rowData.position.name}
+                </div>)
             },
             {
                 width: 200,

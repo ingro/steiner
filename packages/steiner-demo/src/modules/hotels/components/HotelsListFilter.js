@@ -8,7 +8,7 @@ import TranslatorHoc from 'vivi/lib/TranslatorHoc';
 import routeRegister from 'helpers/routeRegister';
 
 class HotelsListFilter extends Component {
-    componentWillMount() {
+    componentDidMount() {
         this.props.bindShortcut(['ctrl+d', 'command+d'], (e) => {
             e.preventDefault();
             this.context.router.transitionTo(routeRegister.getLinkTo('hotels.create'));
@@ -20,7 +20,7 @@ class HotelsListFilter extends Component {
 
         alert(`BATCH ACTION on items ${this.props.selected}`);
     }
-    
+
     render() {
         const { createLabel, filters, selected, updateFilter, inputListFilterPlaceholder } = this.props;
 

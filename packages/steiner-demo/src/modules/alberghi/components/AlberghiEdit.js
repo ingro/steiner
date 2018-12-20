@@ -30,7 +30,6 @@ class AlberghiEdit extends Component {
     render() {
         return (
             <div>
-                
                 <FormWrapper
                     {...this.props}
                     title={this.getTitle()}

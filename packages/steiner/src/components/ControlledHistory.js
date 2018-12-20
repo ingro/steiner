@@ -1,180 +1,168 @@
 // From https://github.com/ReactTraining/react-router-addons-controlled
 
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import { locationsAreEqual } from 'history/LocationUtils';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import { locationsAreEqual } from "history/LocationUtils";
 
 const initialKeys = [undefined];
 
 class ControlledHistory extends Component {
-    constructor(props) {
-        super(props);
-        const location = props.history.location;
-        const shouldRestoreKeys = !!location.key;
+  constructor(props) {
+    super(props);
+    const location = props.history.location;
+    const shouldRestoreKeys = !!location.key;
 
-        this.updatingFromHistoryChange = false;
-        this.syncingHistory = false;
+    this.updatingFromHistoryChange = false;
+    this.syncingHistory = false;
 
-        this.keys = shouldRestoreKeys ? (
-            props.restoreKeys() || initialKeys
-        ) : initialKeys;
+    this.keys = shouldRestoreKeys
+      ? props.restoreKeys() || initialKeys
+      : initialKeys;
 
-        this.setupHistory();
+    this.setupHistory();
 
-        this.state = {
-            location,
-            action: 'POP'
-        };
+    this.state = {
+      location,
+      action: "POP"
+    };
+  }
+
+  getChildContext() {
+    return {
+      history: this.props.history
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      !this.syncingHistory &&
+      !this.updatingFromHistoryChange &&
+      !locationsAreEqual(prevProps.location, this.props.location)
+    ) {
+      this.syncingHistory = true;
+
+    //   const { history } = this.props;
+
+      const { action, location, history } = this.props;
+
+      const nextIndex = this.keys.indexOf(location.key);
+
+      if (location.key && nextIndex !== -1) {
+        // we've been here before
+        const currentIndex = this.keys.indexOf(prevProps.location.key);
+        const delta = nextIndex - currentIndex;
+        history.go(delta);
+      } else if (action === "PUSH") {
+        history.push(location);
+      } else if (action === "REPLACE") {
+        history.replace(location);
+      }
     }
+  }
 
-    getChildContext() {
-        return {
-            history: this.props.history
-        };
-    }
+  setupHistory() {
+    this.props.history.listen((location, action) => {
+      this.storeKey(location.key, action);
+      this.updatingFromHistoryChange = true; // must come before onChange!
 
-    componentWillReceiveProps(nextProps) {
-        if (!this.syncingHistory &&
-            !this.updatingFromHistoryChange &&
-            !locationsAreEqual(
-                nextProps.location,
-                this.props.location
-            )
-        ) {
-            this.syncingHistory = true
-            const {
-                history
-            } = this.props;
+      if (this.syncingHistory) {
+        this.props.onChange(location, "SYNC");
+      } else {
+        this.props.onChange(location, action);
+      }
 
-            const {
-                action,
-                location
-            } = nextProps;
-
-            const nextIndex = this.keys.indexOf(location.key);
-
-            if (location.key && nextIndex !== -1) {
-                // we've been here before
-                const currentIndex = this.keys.indexOf(this.props.location.key);
-                const delta = nextIndex - currentIndex;
-                history.go(delta);
-            } else if (action === 'PUSH') {
-                history.push(location);
-            } else if (action === 'REPLACE') {
-                history.replace(location);
-            }
+      this.setState(
+        {
+          location,
+          action
+        },
+        () => {
+          this.updatingFromHistoryChange = false;
+          if (this.syncingHistory) {
+            this.syncingHistory = false;
+          } else {
+            this.checkIfLocationAccepted();
+          }
         }
-    }
+      );
+    });
+  }
 
-    setupHistory() {
-        this.props.history.listen((location, action) => {
-            this.storeKey(location.key, action);
-            this.updatingFromHistoryChange = true; // must come before onChange!
+  checkIfLocationAccepted() {
+    const { location } = this.props;
 
-            if (this.syncingHistory) {
-                this.props.onChange(location, 'SYNC');
-            } else {
-                this.props.onChange(location, action);
-            }
+    const { location: stateLocation, action: stateAction } = this.state;
 
-            this.setState({
-                location,
-                action
-            }, () => {
-                this.updatingFromHistoryChange = false
-                if (this.syncingHistory) {
-                    this.syncingHistory = false
-                } else {
-                    this.checkIfLocationAccepted()
-                }
-            });
-        });
-    }
+    if (!locationsAreEqual(location, stateLocation)) {
+      this.syncingHistory = true;
 
-    checkIfLocationAccepted() {
-        const {
-            location
-        } = this.props;
+      const index = this.keys.indexOf(location.key);
+      const stateIndex = this.keys.indexOf(stateLocation.key);
+      const delta = index - stateIndex;
 
-        const {
-            location: stateLocation,
-            action: stateAction
-        } = this.state;
-
-        if (!locationsAreEqual(location, stateLocation)) {
-            this.syncingHistory = true;
-
-            const index = this.keys.indexOf(location.key);
-            const stateIndex = this.keys.indexOf(stateLocation.key);
-            const delta = index - stateIndex;
-
-            if (stateAction === 'REPLACE') {
-                this.props.history.replace(location);
-            } else {
-                if (stateIndex === -1) {
-                    // playing whack-a-mole here D: after we pop off the last key a
-                    // few lines down, if they click "forward" we won't find the key
-                    // so let's just do a -1 for delta.
-                    this.props.history.go(-1);
-                } else {
-                    this.props.history.go(delta);
-                }
-
-                if (stateAction === 'PUSH') {
-                    // get rid of the last entry so our delta isn't off if they try to
-                    // push here again
-                    this.keys.pop();
-                }
-            }
-        }
-    }
-
-    storeKey(key, action) {
-        if (action === 'PUSH') {
-            this.keys.push(key);
-        } else if (action === 'REPLACE') {
-            this.keys[this.keys.length - 1] = key;
-        }
-        // browsers only keep 50 entries, so we'll do that too
-        if (this.keys.length > 50) {
-            this.keys.unshift();
+      if (stateAction === "REPLACE") {
+        this.props.history.replace(location);
+      } else {
+        if (stateIndex === -1) {
+          // playing whack-a-mole here D: after we pop off the last key a
+          // few lines down, if they click "forward" we won't find the key
+          // so let's just do a -1 for delta.
+          this.props.history.go(-1);
+        } else {
+          this.props.history.go(delta);
         }
 
-        this.props.saveKeys(this.keys)
+        if (stateAction === "PUSH") {
+          // get rid of the last entry so our delta isn't off if they try to
+          // push here again
+          this.keys.pop();
+        }
+      }
+    }
+  }
+
+  storeKey(key, action) {
+    if (action === "PUSH") {
+      this.keys.push(key);
+    } else if (action === "REPLACE") {
+      this.keys[this.keys.length - 1] = key;
+    }
+    // browsers only keep 50 entries, so we'll do that too
+    if (this.keys.length > 50) {
+      this.keys.unshift();
     }
 
-    render() {
-        const {
-            history,
-            location,
-            action
-        } = this.props;
+    this.props.saveKeys(this.keys);
+  }
 
-        return this.props.children({
-            history,
-            location,
-            action
-        });
-    }
+  render() {
+    const { history, location, action } = this.props;
+
+    return this.props.children({
+      history,
+      location,
+      action
+    });
+  }
 }
 
 ControlledHistory.propTypes = {
-    children: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    action: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    restoreKeys: PropTypes.func.isRequired,
-    saveKeys: PropTypes.func.isRequired
+  children: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  action: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  restoreKeys: PropTypes.func.isRequired,
+  saveKeys: PropTypes.func.isRequired
 };
 
 ControlledHistory.childContextTypes = {
-    history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired
 };
 
 ControlledHistory.defaultProps = {
-    restoreKeys: () => initialKeys,
-    saveKeys: () => {}
+  restoreKeys: () => initialKeys,
+  saveKeys: () => {}
 };
 
 export default ControlledHistory;

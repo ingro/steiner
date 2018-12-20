@@ -10,7 +10,7 @@
     "test": "cd packages/steiner && npm test"
   },
   "devDependencies": {
-    "lerna": "3.3.0",
+    "lerna": "3.7.1",
     "rimraf": "^2.6.1"
   },
   "workspaces": [

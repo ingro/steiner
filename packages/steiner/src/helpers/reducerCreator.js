@@ -132,7 +132,7 @@ function setFilters(state, action) {
         return Immutable.merge(filters, toSync);
         // ...filters,
         // ...toSync
-    }); 
+    });
 }
 
 // function resetFilters(state, action, defaultState) {
@@ -239,7 +239,7 @@ function createFilterCollectionHandler(options = {}) {
                 query[queryKey][additionalFilters[key].op] = filters[key];
             }
         });
-        
+
         filtered = sift(query, filtered);
 
         let sorted = _.sortBy(filtered, filters.orderKey ? filters.orderKey : defaultOrderKey);
@@ -253,7 +253,7 @@ function createFilterCollectionHandler(options = {}) {
             const end = filters.page * filters.perPage;
             sorted = sorted.slice(start, end);
         }
-        
+
         return state.updateIn(['list'], list => ({
             ...list,
             itemsId: sorted.map(item => item.id)

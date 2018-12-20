@@ -18,12 +18,12 @@ export class ListLayout extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (! _.isEqual(nextProps.filters, this.props.filters) && ! this.props.clientFilters) {
+    componentDidUpdate(prevProps) {
+        if (! _.isEqual(prevProps.filters, this.props.filters) && ! this.props.clientFilters) {
             this.props.list();
         }
 
-        if ((nextProps.currentRoute.location.search !== this.props.currentRoute.location.search) && nextProps.currentRoute.action === 'POP') {
+        if ((prevProps.currentRoute.location.search !== this.props.currentRoute.location.search) && this.props.currentRoute.action === 'POP') {
             this.props.checkFilterSync(this.getFiltersFromQuerystring());
         }
     }
@@ -50,8 +50,8 @@ export class ListLayout extends Component {
         const { clientFilters, footerBoxStyle } = this.props;
 
         if (clientFilters) {
-            return { 
-                height: '30px', 
+            return {
+                height: '30px',
                 marginTop: '25px'
             };
         }
